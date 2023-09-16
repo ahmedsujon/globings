@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\AdminPermission;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,15 +15,32 @@ class AdminTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $getAdmin = Admin::where('email', 'admin@example.com')->first();
+        $getSAdmin = Admin::where('email', 'admin@example.com')->first();
 
-        if (!$getAdmin) {
+        if (!$getSAdmin) {
             $admin = new Admin();
-            $admin->name = 'Globings Admin';
+            $admin->name = 'Nz Coding';
             $admin->email = 'admin@example.com';
             $admin->phone = '01700000000';
             $admin->password = Hash::make('12345678');
             $admin->avatar = 'assets/images/avatar.png';
+            $admin->type = 'super_admin';
+            $admin->permissions = AdminPermission::pluck('id')->toArray();
+            $admin->save();
+        }
+
+        $getAdmin = Admin::where('email', 'admin01@example.com')->first();
+
+        if (!$getAdmin) {
+            $admin = new Admin();
+            $admin->name = 'Mr Admin 01';
+            $admin->email = 'admin01@example.com';
+            $admin->phone = '01700000001';
+            $admin->password = Hash::make('12345678');
+            $admin->avatar = 'assets/images/avatar.png';
+            $admin->type = 'admin';
+            $admin->permissions = array(2,4,5);
+            $admin->added_by = '1';
             $admin->save();
         }
     }

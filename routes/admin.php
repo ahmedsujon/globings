@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogoutController;
 use App\Livewire\Admin\DashboardComponent;
 use App\Livewire\Admin\Auth\LoginComponent;
+use App\Livewire\Admin\User\AdminsComponent;
+use App\Livewire\Admin\User\UsersComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,8 @@ Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(functio
     Route::post('logout', [LogoutController::class, 'adminLogout'])->name('logout');
 
     Route::get('dashboard', DashboardComponent::class)->name('dashboard');
+
+    //users routes
+    Route::get('users', UsersComponent::class)->name('allUsers');
+    Route::get('admins', AdminsComponent::class)->name('allAdmins');
 });
