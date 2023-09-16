@@ -330,11 +330,14 @@
                                 <p class="text-muted">Enter your email and password to access admin panel</p>
                             </div>
 
-                            <form action="#">
+                            <form wire:submit.prevent='adminLogin'>
 
                                 <div class="mb-3">
                                     <label for="emailaddress" class="form-label">Email</label>
-                                    <input class="form-control" type="email" id="emailaddress" placeholder="Enter your email">
+                                    <input class="form-control" type="email" id="emailaddress" wire:model.blur="email" placeholder="Enter your email">
+                                    @error('email')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
@@ -342,10 +345,13 @@
                                         password?</a>
                                     <label for="password" class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                                        <input type="password" id="password" class="form-control" wire:model.blur="password" placeholder="Enter your password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
+                                        @error('password')
+                                            <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -357,7 +363,9 @@
                                 </div>
 
                                 <div class="mb-3 mb-0 text-center">
-                                    <button class="btn btn-primary w-50" type="submit">Log In</button>
+                                    <button class="btn btn-primary w-50" type="submit">
+                                        Log In
+                                    </button>
                                 </div>
 
                             </form>
