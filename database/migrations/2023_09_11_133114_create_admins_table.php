@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar', 2048)->nullable();
             $table->rememberToken();
+            $table->enum('type', ['super_admin', 'admin'])->default('admin');
+            $table->string('permissions')->nullable();
+            $table->string('added_by')->nullable();
             $table->timestamps();
         });
     }

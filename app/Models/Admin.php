@@ -39,6 +39,7 @@ class Admin extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        'permissions'=>'array',
         'email_verified_at' => 'datetime',
     ];
 }
