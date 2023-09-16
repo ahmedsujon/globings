@@ -27,6 +27,6 @@ Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(functio
     Route::get('dashboard', DashboardComponent::class)->name('dashboard');
 
     //users routes
-    Route::get('users', UsersComponent::class)->name('allUsers');
-    Route::get('admins', AdminsComponent::class)->name('allAdmins');
+    Route::get('users', UsersComponent::class)->name('allUsers')->middleware('adminPermission:users_manage');;
+    Route::get('admins', AdminsComponent::class)->name('allAdmins')->middleware('adminPermission:admins_manage');;
 });

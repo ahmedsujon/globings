@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Admin;
+use App\Models\AdminPermission;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -29,26 +30,26 @@ function user()
 //     return Setting::find(1);
 // }
 
-// function adminPermissions()
-// {
-//     $permissions = [];
-//     foreach (json_decode(admin()->permissions) as $permission) {
-//         $perm = AdminPermission::where('id', $permission)->first()->value;
-//         $permissions[] = $perm;
-//     }
-//     return $permissions;
-// }
+function adminPermissions()
+{
+    $permissions = [];
+    foreach (admin()->permissions as $permission) {
+        $perm = AdminPermission::where('id', $permission)->first()->value;
+        $permissions[] = $perm;
+    }
+    return $permissions;
+}
 
-// function isAdminPermitted($permission)
-// {
-//     $permission = AdminPermission::where('value', $permission)->first();
+function isAdminPermitted($permission)
+{
+    $permission = AdminPermission::where('value', $permission)->first();
 
-//     if (in_array($permission->id, json_decode(admin()->permissions))) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
+    if (in_array($permission->id, admin()->permissions)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 function loadingStateSm($key, $title)
 {
