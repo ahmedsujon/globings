@@ -10,7 +10,7 @@
                     <li class="menu-title" key="t-menu">Menu</li>
 
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="waves-effect">
+                        <a href="{{ route('admin.dashboard') }}" wire:navigate class="waves-effect">
                             <i class="bx bx-home-circle"></i>
                             <span key="t-dashboard">Dashboard</span>
                         </a>
