@@ -1,348 +1,404 @@
 <div>
-    <div class="container-fluid">
+    <div class="page-content">
+        <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-12">
-                <div class="page-title-box">
-                    <div class="page-title-right">
-                        <form class="d-flex">
-                            <div class="input-group">
-                                <input type="text" class="form-control shadow border-0" id="dash-daterange">
-                                <span class="input-group-text bg-primary border-primary text-white">
-                                    <i class="ri-calendar-todo-fill fs-13"></i>
-                                </span>
-                            </div>
-                            <a href="javascript: void(0);" class="btn btn-primary ms-2">
-                                <i class="ri-refresh-line"></i>
-                            </a>
-                        </form>
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                {{-- <li class="breadcrumb-item active">Dashboard</li> --}}
+                            </ol>
+                        </div>
+
                     </div>
-                    <h4 class="page-title">Dashboard</h4>
                 </div>
             </div>
-        </div>
+            <!-- end page title -->
 
-        <div class="row row-cols-1 row-cols-xxl-5 row-cols-lg-3 row-cols-md-2">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="text-muted fw-normal mt-0" title="Number of Customers">Customers</h5>
-                                <h3 class="my-3">54,214</h3>
-                                <p class="mb-0 text-muted text-truncate">
-                                    <span class="badge bg-success me-1"><i class="ri-arrow-up-line"></i> 2,541</span>
-                                    <span>Since last month</span>
-                                </p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <div id="widget-customers" class="apex-charts" data-colors="#47ad77,#e3e9ee"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="text-muted fw-normal mt-0" title="Number of Orders">Orders</h5>
-                                <h3 class="my-3">7,543</h3>
-                                <p class="mb-0 text-muted text-truncate">
-                                    <span class="badge bg-danger me-1"><i class="ri-arrow-down-line"></i> 1.08%</span>
-                                    <span>Since last month</span>
-                                </p>
-                            </div>
-                            <div id="widget-orders" class="apex-charts" data-colors="#3e60d5,#e3e9ee"></div>
-                        </div>
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Revenue</h5>
-                                <h3 class="my-3">$9,254</h3>
-                                <p class="mb-0 text-muted text-truncate">
-                                    <span class="badge bg-danger me-1"><i class="ri-arrow-down-line"></i> 7.00%</span>
-                                    <span>Since last month</span>
-                                </p>
-                            </div>
-                            <div id="widget-revenue" class="apex-charts" data-colors="#16a7e9,#e3e9ee"></div>
-                        </div>
-
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="text-muted fw-normal mt-0" title="Growth">Growth</h5>
-                                <h3 class="my-3">+ 20.6%</h3>
-                                <p class="mb-0 text-muted text-truncate">
-                                    <span class="badge bg-success me-1"><i class="ri-arrow-up-line"></i> 4.87%</span>
-                                    <span>Since last month</span>
-                                </p>
-                            </div>
-                            <div id="widget-growth" class="apex-charts" data-colors="#ffc35a,#e3e9ee"></div>
-                        </div>
-
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-            <div class="col col-lg-6 col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="text-muted fw-normal mt-0" title="Conversation Ration">Conversation</h5>
-                                <h3 class="my-3">9.62%</h3>
-                                <p class="mb-0 text-muted text-truncate">
-                                    <span class="badge bg-success me-1"><i class="ri-arrow-up-line"></i> 3.07%</span>
-                                    <span>Since last month</span>
-                                </p>
-                            </div>
-                            <div id="widget-conversation" class="apex-charts" data-colors="#f15776,#e3e9ee"></div>
-                        </div>
-
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-        </div> <!-- end row -->
-
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="d-flex card-header justify-content-between align-items-center">
-                        <h4 class="header-title">Revenue</h4>
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ri-more-2-fill"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="bg-light-subtle border-top border-bottom border-light">
-                            <div class="row text-center">
-                                <div class="col">
-                                    <p class="text-muted mt-3"><i class="ri-donut-chart-fill"></i> Current Week</p>
-                                    <h3 class="fw-normal mb-3">
-                                        <span>$1705.54</span>
-                                    </h3>
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card overflow-hidden">
+                        <div class="bg-primary bg-soft">
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="text-primary p-3">
+                                        <h5 class="text-primary">Welcome Back !</h5>
+                                        <p>NzCoding - LaravelCMS</p>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <p class="text-muted mt-3"><i class="ri-donut-chart-fill"></i> Previous Week</p>
-                                    <h3 class="fw-normal mb-3">
-                                        <span>$6,523.25 <i class="ri-corner-right-up-fill text-success"></i></span>
-                                    </h3>
-                                </div>
-                                <div class="col">
-                                    <p class="text-muted mt-3"><i class="ri-donut-chart-fill"></i> Conversation</p>
-                                    <h3 class="fw-normal mb-3">
-                                        <span>8.27%</span>
-                                    </h3>
-                                </div>
-                                <div class="col">
-                                    <p class="text-muted mt-3"><i class="ri-donut-chart-fill"></i> Customers</p>
-                                    <h3 class="fw-normal mb-3">
-                                        <span>69k <i class="ri-corner-right-down-line text-danger"></i></span>
-                                    </h3>
+                                <div class="col-5 align-self-end">
+                                    <img src="{{ asset('assets/admin/images/profile-img.png') }}" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div dir="ltr">
-                            <div id="revenue-chart" class="apex-charts mt-3" data-colors="#3e60d5,#47ad77"></div>
-                        </div>
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="d-flex card-header justify-content-between align-items-center">
-                        <h4 class="header-title">Total Sales</h4>
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ri-more-2-fill"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-sm-4 pb-1">
+                                    <div class="avatar-md profile-user-wid mb-2">
+                                        <img src="{{ asset(admin()->avatar) }}" alt="" class="img-thumbnail rounded-circle">
+                                    </div>
+                                    <h5 class="font-size-15 text-truncate">{{ admin()->name }}</h5>
+                                    <p class="text-muted mb-0 text-truncate">{{ admin()->phone }}</p>
+                                </div>
+
+                                {{-- <div class="col-sm-8">
+                                    <div class="pt-4">
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h5 class="font-size-15">125</h5>
+                                                <p class="text-muted mb-0">Projects</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <h5 class="font-size-15">$1245</h5>
+                                                <p class="text-muted mb-0">Revenue</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <a href="javascript: void(0);" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ms-1"></i></a>
+                                        </div>
+                                    </div>
+                                </div> --}}
                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="alert alert-warning rounded-0 mb-0 border-end-0 border-start-0" role="alert">
-                            Something went wrong. Please <strong><a href="#!" class="alert-link text-decoration-underline">refresh</a></strong> to get new data!
-                        </div>
-                    </div>
-
-                    <div class="card-body pt-0">
-                        <div id="average-sales" class="apex-charts mb-3"
-                            data-colors="#3e60d5,#47ad77,#fa5c7c,#16a7e9"></div>
-
-                        <h5 class="mb-1 mt-0 fw-normal">Brooklyn, New York</h5>
-                        <div class="progress-w-percent">
-                            <span class="progress-value fw-bold">72k </span>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <h5 class="mb-1 mt-0 fw-normal">The Castro, San Francisco</h5>
-                        <div class="progress-w-percent">
-                            <span class="progress-value fw-bold">39k </span>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar" role="progressbar" style="width: 39%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <h5 class="mb-1 mt-0 fw-normal">Kovan, Singapore</h5>
-                        <div class="progress-w-percent mb-0">
-                            <span class="progress-value fw-bold">61k </span>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar" role="progressbar" style="width: 61%;" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-        </div>
-        <!-- end row -->
-
-        <div class="row">
-            <div class="col-xl-5">
-                <div class="card">
-                    <div class="d-flex card-header justify-content-between align-items-center">
-                        <h4 class="header-title">Top Selling Products</h4>
-                        <a href="javascript:void(0);" class="btn btn-sm btn-info">Export <i class="ri-download-line ms-1"></i></a>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-hover table-nowrap table-centered m-0">
-                                <thead class="border-top border-bottom bg-light-subtle border-light">
-                                    <tr>
-                                        <th class="py-1">Product</th>
-                                        <th class="py-1">Price</th>
-                                        <th class="py-1">Orders</th>
-                                        <th class="py-1">Avl. Quantity</th>
-                                        <th class="py-1">Seller</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>ASOS Ridley High Waist</td>
-                                        <td>$79.49</td>
-                                        <td>82</td>
-                                        <td>8,540</td>
-                                        <td>Adidas</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Marco Lightweight Shirt</td>
-                                        <td>$12.5</td>
-                                        <td>58</td>
-                                        <td>6,320</td>
-                                        <td>Puma</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Half Sleeve Shirt</td>
-                                        <td>$9.99</td>
-                                        <td>254</td>
-                                        <td>10,258</td>
-                                        <td>Nike</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lightweight Jacket</td>
-                                        <td>$69.99</td>
-                                        <td>560</td>
-                                        <td>1,020</td>
-                                        <td>Puma</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Marco Sport Shoes</td>
-                                        <td>$119.99</td>
-                                        <td>75</td>
-                                        <td>357</td>
-                                        <td>Adidas</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Custom Women's T-shirts</td>
-                                        <td>$45.00</td>
-                                        <td>85</td>
-                                        <td>135</td>
-                                        <td>Branded</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="text-center">
-                            <a href="#!" class="text-primary text-decoration-underline fw-bold btn mb-2">View All</a>
                         </div>
                     </div>
                 </div>
-            </div> <!-- end col -->
+                <div class="col-xl-8">
+                    <div class="row pb-1">
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid pt-2 pb-2">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Orders</p>
+                                            <h4 class="mb-0">1,235</h4>
+                                        </div>
 
-            <div class="col-xl-7">
-                <div class="card">
-                    <div class="d-flex card-header justify-content-between align-items-center">
-                        <h4 class="header-title">Revenue By Locations</h4>
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="ri-more-2-fill"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Profit</a>
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div id="world-map-markers" class="mt-3 mb-3" style="height: 298px">
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                                <span class="avatar-title">
+                                                    <i class="bx bx-copy-alt font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4" dir="ltr">
-                                <div id="country-chart" class="apex-charts" data-colors="#47ad77"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid pt-2 pb-2">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Revenue</p>
+                                            <h4 class="mb-0">$35, 723</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center ">
+                                            <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-archive-in font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid pt-2 pb-2">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Average Price</p>
+                                            <h4 class="mb-0">$16.2</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid pt-2 pb-2">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Orders</p>
+                                            <h4 class="mb-0">1,235</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                                <span class="avatar-title">
+                                                    <i class="bx bx-copy-alt font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid pt-2 pb-2">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Revenue</p>
+                                            <h4 class="mb-0">$35, 723</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center ">
+                                            <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-archive-in font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid pt-2 pb-2">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <p class="text-muted fw-medium">Average Price</p>
+                                            <h4 class="mb-0">$16.2</h4>
+                                        </div>
+
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div> <!-- end card-->
-            </div> <!-- end col -->
-        </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Latest Transaction</h4>
+                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 20px;">
+                                                <div class="form-check font-size-16 align-middle">
+                                                    <input class="form-check-input" type="checkbox" id="transactionCheck01">
+                                                    <label class="form-check-label" for="transactionCheck01"></label>
+                                                </div>
+                                            </th>
+                                            <th class="align-middle">Order ID</th>
+                                            <th class="align-middle">Billing Name</th>
+                                            <th class="align-middle">Date</th>
+                                            <th class="align-middle">Total</th>
+                                            <th class="align-middle">Payment Status</th>
+                                            <th class="align-middle">Payment Method</th>
+                                            <th class="align-middle">View Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check font-size-16">
+                                                    <input class="form-check-input" type="checkbox" id="transactionCheck02">
+                                                    <label class="form-check-label" for="transactionCheck02"></label>
+                                                </div>
+                                            </td>
+                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2540</a> </td>
+                                            <td>Neal Matthews</td>
+                                            <td>
+                                                07 Oct, 2019
+                                            </td>
+                                            <td>
+                                                $400
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
+                                            </td>
+                                            <td>
+                                                <i class="fab fa-cc-mastercard me-1"></i> Mastercard
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div class="form-check font-size-16">
+                                                    <input class="form-check-input" type="checkbox" id="transactionCheck03">
+                                                    <label class="form-check-label" for="transactionCheck03"></label>
+                                                </div>
+                                            </td>
+                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2541</a> </td>
+                                            <td>Jamal Burnett</td>
+                                            <td>
+                                                07 Oct, 2019
+                                            </td>
+                                            <td>
+                                                $380
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-pill badge-soft-danger font-size-11">Chargeback</span>
+                                            </td>
+                                            <td>
+                                                <i class="fab fa-cc-visa me-1"></i> Visa
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div class="form-check font-size-16">
+                                                    <input class="form-check-input" type="checkbox" id="transactionCheck04">
+                                                    <label class="form-check-label" for="transactionCheck04"></label>
+                                                </div>
+                                            </td>
+                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2542</a> </td>
+                                            <td>Juan Mitchell</td>
+                                            <td>
+                                                06 Oct, 2019
+                                            </td>
+                                            <td>
+                                                $384
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
+                                            </td>
+                                            <td>
+                                                <i class="fab fa-cc-paypal me-1"></i> Paypal
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check font-size-16">
+                                                    <input class="form-check-input" type="checkbox" id="transactionCheck05">
+                                                    <label class="form-check-label" for="transactionCheck05"></label>
+                                                </div>
+                                            </td>
+                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2543</a> </td>
+                                            <td>Barry Dick</td>
+                                            <td>
+                                                05 Oct, 2019
+                                            </td>
+                                            <td>
+                                                $412
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
+                                            </td>
+                                            <td>
+                                                <i class="fab fa-cc-mastercard me-1"></i> Mastercard
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check font-size-16">
+                                                    <input class="form-check-input" type="checkbox" id="transactionCheck06">
+                                                    <label class="form-check-label" for="transactionCheck06"></label>
+                                                </div>
+                                            </td>
+                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2544</a> </td>
+                                            <td>Ronald Taylor</td>
+                                            <td>
+                                                04 Oct, 2019
+                                            </td>
+                                            <td>
+                                                $404
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-pill badge-soft-warning font-size-11">Refund</span>
+                                            </td>
+                                            <td>
+                                                <i class="fab fa-cc-visa me-1"></i> Visa
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="form-check font-size-16">
+                                                    <input class="form-check-input" type="checkbox" id="transactionCheck07">
+                                                    <label class="form-check-label" for="transactionCheck07"></label>
+                                                </div>
+                                            </td>
+                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2545</a> </td>
+                                            <td>Jacob Hunter</td>
+                                            <td>
+                                                04 Oct, 2019
+                                            </td>
+                                            <td>
+                                                $392
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
+                                            </td>
+                                            <td>
+                                                <i class="fab fa-cc-paypal me-1"></i> Paypal
+                                            </td>
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
+                                                    View Details
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end table-responsive -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- container-fluid -->
     </div>
 </div>

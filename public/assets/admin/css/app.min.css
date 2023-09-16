@@ -527,6 +527,7 @@ body[data-layout="horizontal"] .footer {
     font-size: 13px;
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
+    margin-bottom: 2px;
 }
 #sidebar-menu ul li a i {
     display: inline-block;
@@ -541,9 +542,11 @@ body[data-layout="horizontal"] .footer {
 }
 #sidebar-menu ul li a:hover {
     color: #383c40;
+    background: #262834;
 }
 #sidebar-menu ul li a:hover i {
     color: #383c40;
+    background: #262834;
 }
 #sidebar-menu ul li .badge {
     margin-top: 4px;
@@ -596,19 +599,20 @@ body[data-layout="horizontal"] .footer {
 }
 @media (max-width: 992px) {
     .vertical-menu {
-        display: none;
+        width: 0;
+        -webkit-transition: all .2s ease 0s;
+        transition: all .2s ease 0s;
     }
     .main-content {
         margin-left: 0 !important;
     }
     body.sidebar-enable .vertical-menu {
-        display: block;
+        width: 250px;
+        -webkit-transition: all .2s ease 0s;
+        transition: all .2s ease 0s;
     }
 }
 .vertical-collpsed .main-content {
-    margin-left: 70px;
-}
-.vertical-collpsed . {
     margin-left: 70px;
 }
 .vertical-collpsed .navbar-brand-box {
@@ -624,6 +628,14 @@ body[data-layout="horizontal"] .footer {
     position: absolute;
     width: 70px !important;
     z-index: 5;
+}
+.vertical-menu {
+    -webkit-transition: all .2s ease 0s;
+    transition: all .2s ease 0s;
+}
+.navbar-brand-box {
+    -webkit-transition: all .2s ease 0s;
+    transition: all .2s ease 0s;
 }
 .vertical-collpsed .vertical-menu .simplebar-content-wrapper,
 .vertical-collpsed .vertical-menu .simplebar-mask {

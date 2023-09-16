@@ -9,7 +9,7 @@
                             <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="17">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="35">
                         </span>
                     </a>
 
@@ -18,12 +18,12 @@
                             <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="19">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="35">
                         </span>
                     </a>
                 </div>
 
-                <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
                     <i class="fa fa-fw fa-bars"></i>
                 </button>
 
@@ -38,7 +38,7 @@
 
             <div class="d-flex">
                 <div class="dropdown d-inline-block d-lg-none ms-2">
-                    <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
+                    <button type="button" class="btn header-item noti-icon" id="page-header-search-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="mdi mdi-magnify"></i>
                     </button>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item waves-effect"
+                    <button type="button" class="btn header-item"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img id="header-lang-img" src="{{ asset('assets/admin/images/flags/us.jpg') }}" alt="Header Language" height="16" style="margin-top: -5px;">
                     </button>
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="dropdown d-none d-lg-inline-block ms-1">
-                    <button type="button" class="btn header-item noti-icon waves-effect"
+                    <button type="button" class="btn header-item noti-icon"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="bx bx-customize"></i>
                     </button>
@@ -144,13 +144,13 @@
                 </div>
 
                 <div class="dropdown d-none d-lg-inline-block ms-1">
-                    <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
+                    <button type="button" class="btn header-item noti-icon" data-bs-toggle="fullscreen">
                         <i class="bx bx-fullscreen"></i>
                     </button>
                 </div>
 
                 <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
+                    <button type="button" class="btn header-item noti-icon" id="page-header-notifications-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="bx bx-bell bx-tada"></i>
                         <span class="badge bg-danger rounded-pill">3</span>
@@ -237,7 +237,7 @@
                 </div>
 
                 <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                    <button type="button" class="btn header-item" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle header-profile-user" src="{{ asset(admin()->avatar) }}"
                             alt="Header Avatar">

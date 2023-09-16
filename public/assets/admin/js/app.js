@@ -3,7 +3,6 @@
     var e,
         t = localStorage.getItem("language"),
         s = "en";
-
     function n(e) {
         document.getElementById("header-lang-img") &&
             ("en" == e
@@ -31,7 +30,6 @@
                     });
             }));
     }
-
     function c() {
         for (
             var e = document
@@ -48,7 +46,6 @@
                 null !== e[t].nextElementSibling &&
                     e[t].nextElementSibling.classList.remove("show"));
     }
-
     function r(e) {
         1 == a("#light-mode-switch").prop("checked") &&
         "light-mode-switch" === e
@@ -98,7 +95,6 @@
               a("body").attr("data-layout-mode", "dark"),
               sessionStorage.setItem("is_visited", "dark-rtl-mode-switch"));
     }
-
     function o() {
         document.webkitIsFullScreen ||
             document.mozFullScreen ||
@@ -139,9 +135,7 @@
                     (e = a("#sidebar-menu .mm-active .active").offset().top) &&
                 ((e -= 300),
                 a(".vertical-menu .simplebar-content-wrapper").animate(
-                    {
-                        scrollTop: e,
-                    },
+                    { scrollTop: e },
                     "slow"
                 ));
         }),
