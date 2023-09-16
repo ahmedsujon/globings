@@ -207,7 +207,7 @@
                 </div>
             </div>
 
-            <!-- Add Data Modal -->
+            <!-- Edit Data Modal -->
             <div wire:ignore.self class="modal fade" id="editDataModal" tabindex="-1" role="dialog"
                 data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modelTitleId">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
@@ -215,7 +215,7 @@
                         <div class="modal-header" style="background: white;">
                             <h5 class="modal-title m-0" id="mySmallModalLabel">Edit User</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                                aria-label="Close" wire:click.prevent='resetInputs'></button>
                         </div>
                         <div class="modal-body">
                             <div class="row justify-content-center">

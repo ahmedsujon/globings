@@ -102,13 +102,13 @@ class UsersComponent extends Component
 
     public function resetInputs()
     {
-        $this->name = null;
-        $this->email = null;
-        $this->phone = null;
-        $this->password = null;
-        $this->avatar = null;
-        $this->uploadedAvatar = null;
-        $this->edit_id = null;
+        $this->name = '';
+        $this->email = '';
+        $this->phone = '';
+        $this->password = '';
+        $this->avatar = '';
+        $this->uploadedAvatar = '';
+        $this->edit_id = '';
     }
 
     public function deleteConfirmation($id)

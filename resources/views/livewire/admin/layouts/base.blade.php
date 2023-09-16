@@ -137,17 +137,17 @@
         $(document).ready(function() {
             toastr.options = {
                 "progressBar": true,
-                "positionClass": "toast-bottom-left"
+                "positionClass": "toast-top-right"
             };
         });
         window.addEventListener('success', event => {
-            toastr.success(event.detail.message);
+            toastr.success(event.detail[0].message);
         });
         window.addEventListener('warning', event => {
-            toastr.warning(event.detail.message);
+            toastr.warning(event.detail[0].message);
         });
         window.addEventListener('error', event => {
-            toastr.error(event.detail.message);
+            toastr.error(event.detail[0].message);
         });
         @if (Session::has('success'))
             toastr.success("{{ Session::get('success') }}");

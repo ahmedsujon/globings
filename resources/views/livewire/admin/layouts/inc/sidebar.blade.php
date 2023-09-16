@@ -9,24 +9,24 @@
                 <ul class="metismenu list-unstyled" id="side-menu">
                     <li class="menu-title" key="t-menu">Menu</li>
 
-                    <li>
-                        <a href="{{ route('admin.dashboard') }}" class="waves-effect" wire:navigate>
+                    <li class="{{ request()->is('admin/dashboard') ? 'mm-active' : '' }}">
+                        <a href="{{ route('admin.dashboard') }}" class="waves-effect">
                             <i class="bx bx-home-circle"></i>
                             <span key="t-dashboard">Dashboard</span>
                         </a>
                     </li>
 
                     @if (isAdminPermitted('users_manage'))
-                        <li>
-                            <a href="{{ route('admin.allUsers') }}" class="waves-effect" wire:navigate>
+                        <li class="{{ request()->is('admin/users') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.allUsers') }}" class="waves-effect">
                                 <i class="bx bx-group"></i>
                                 <span key="t-chat">Users</span>
                             </a>
                         </li>
                     @endif
                     @if (isAdminPermitted('admins_manage'))
-                        <li>
-                            <a href="{{ route('admin.allAdmins') }}" class="waves-effect" wire:navigate>
+                        <li class="{{ request()->is('admin/admins') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.allAdmins') }}" class="waves-effect">
                                 <i class="bx bx-group"></i>
                                 <span key="t-chat">Admins</span>
                             </a>
