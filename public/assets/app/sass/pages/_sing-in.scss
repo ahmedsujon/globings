@@ -1,0 +1,63 @@
+.sing_in_wrapper {
+  margin-top: 66px;
+  .sing_in_sub_title {
+    margin-top: 4px;
+  }
+  .mobile_form_area {
+    margin-top: 24px;
+  }
+
+  .login_btn {
+    margin-top: 24px;
+  }
+
+  //Sign Up
+  .nav-pills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: 5px;
+    padding: 4px 5px;
+    border-radius: 8px;
+    margin-top: 8px;
+    background: #edeef1;
+
+    .nav-link {
+      color: #75869c;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      border-radius: 8px;
+      width: 100%;
+      &.active {
+        color: #000;
+        background: #fff;
+      }
+    }
+  }
+  .sing_modal_area {
+    .tab-content {
+      margin-top: 20px;
+    }
+
+    .mobile_form_area {
+      .form-check {
+        label {
+          color: #13192b;
+        }
+      }
+    }
+
+    .sigin_title {
+      max-width: 253px;
+      width: 100%;
+    }
+  }
+
+  //Forget
+  .forget_modal_area {
+    margin-top: 24px;
+  }
+
+ 
+}
