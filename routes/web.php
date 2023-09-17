@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\App\Auth\LoginComponent;
+use App\Livewire\App\IndexComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', )->name('app.index');
-
+Route::get('/', IndexComponent::class)->name('app.index');
 
 //Call Route Files
 require __DIR__ . '/user.php';
