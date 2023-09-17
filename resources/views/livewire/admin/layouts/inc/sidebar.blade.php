@@ -16,34 +16,25 @@
                         </a>
                     </li>
 
-                    @if (isAdminPermitted('users_manage'))
-                        <li class="{{ request()->is('admin/users') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.allUsers') }}" class="waves-effect">
-                                <i class="bx bx-group"></i>
-                                <span key="t-chat">Users</span>
-                            </a>
-                        </li>
-                    @endif
+                    <li class="#">
+                        <a href="#" class="waves-effect">
+                            <i class="bx bx-store"></i>
+                            <span key="t-dashboard">Shops</span>
+                        </a>
+                    </li>
+
                     @if (isAdminPermitted('admins_manage'))
-                        <li class="{{ request()->is('admin/admins') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.allAdmins') }}" class="waves-effect">
-                                <i class="bx bx-group"></i>
-                                <span key="t-chat">Admins</span>
-                            </a>
-                        </li>
-                    @endif
-                    
-                    {{-- <li>
+                    <li class="{{ request()->is('admin/admins') ? 'mm-active' : '' }}">
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-share-alt"></i>
-                            <span key="t-multi-level">Multi Level</span>
+                            <i class="bx bx-group"></i>
+                            <span key="t-multi-level">User Management</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="javascript: void(0);" key="t-level-1-1">Users</a></li>
-                            <li><a href="javascript: void(0);" key="t-level-1-1">Level 1.1</a></li>
+                            <li><a href="{{ route('admin.allUsers') }}">User</a></li>
+                            <li><a href="{{ route('admin.allAdmins') }}">Admin</a></li>
                         </ul>
-                    </li> --}}
-
+                    </li>
+                    @endif
                 </ul>
             </div>
             <!-- Sidebar -->
