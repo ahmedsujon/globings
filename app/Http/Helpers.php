@@ -87,6 +87,16 @@ function loadingStateWithText($key, $title)
     return $loadingSpinner;
 }
 
+
+function loadingStateWithTextApp($key, $title)
+{
+    $loadingSpinner = '
+        ' . $title . ' <div wire:loading wire:target="' . $key . '" wire:key="' . $key . '"><i class="fa fa-spinner fa-spin" style="margin-left: 5px; position: absolute; margin-top: -8px;" aria-hidden="true"></i></div>
+    ';
+
+    return $loadingSpinner;
+}
+
 function showErrorMessage($message, $file, $line){
     if(env('APP_DEBUG') == 'true'){
         $error_array = [

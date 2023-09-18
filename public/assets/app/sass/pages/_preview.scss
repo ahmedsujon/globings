@@ -1,0 +1,48 @@
+/* preview wrapper Section */
+.preview_first_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  height: calc(100vh - 20px);
+}
+
+/* Preview Second Section */
+.preview_second_wrapper {
+  background: #1872f6;
+  min-height: 100vh;
+  .container {
+    @include max-media-width(767) {
+      padding-top: 40px;
+    }
+  }
+  .swiper {
+    padding-bottom: 70px;
+  }
+  .preview_sub_title {
+    margin-top: 16px;
+    max-width: 330px;
+    width: 100%;
+  }
+  .slider_img_area {
+    margin-top: 47px;
+    img {
+      max-height: 324px;
+    }
+  }
+  .swiper-pagination {
+    bottom: 0;
+  }
+  .login_btn_area {
+    margin-top: 56px;
+    .sub_login {
+      color: #fff;
+      margin-top: 20px;
+    }
+  }
+}
+/* Section */
+/* Section */
+/* Section */
