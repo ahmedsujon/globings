@@ -19,7 +19,7 @@
 
     <!-- App Css-->
     <link href="{{ asset('assets/admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
+    @stack('styles')
 </head>
 <style>
     .btn-xs {
