@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Category;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 
@@ -15,7 +16,12 @@ class CategoryComponent extends Component
     public $sortingValue = 10, $searchTerm;
 
     public $edit_id, $delete_id;
-    public $name, $email, $phone, $password, $avatar, $uploadedAvatar;
+    public $name, $slug, $icon, $uploadedIcon;
+
+    public function generateSlug()
+    {
+        $this->slug = Str::slug($this->name);
+    }
 
     public function storeData()
     {
@@ -32,62 +38,54 @@ class CategoryComponent extends Component
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->icon->extension();
             $this->icon->storeAs('category_icons', $fileName);
             $data->icon = 'uploads/category_icons/' . $fileName;
-        } else{
+        } else {
             $data->icon = 'assets/images/placeholder.jpg';
         }
         $data->save();
         $this->resetInputs();
         $this->dispatch('closeModal');
-        $this->dispatch('success', ['message' => 'New user added successfully']);
+        $this->dispatch('success', ['message' => 'New category added successfully']);
     }
 
     public function editData($id)
     {
-        $data = Admin::find($id);
+        $data = Category::find($id);
         $this->name = $data->name;
-        $this->email = $data->email;
-        $this->phone = $data->phone;
-        $this->uploadedAvatar = $data->avatar;
+        $this->slug = $data->slug;
+        $this->uploadedIcon = $data->icon;
         $this->edit_id = $data->id;
-
         $this->dispatch('showEditModal');
     }
 
     public function updateData()
     {
-        if ($this->password) {
+        if ($this->icon) {
             $this->validate([
                 'name' => 'required',
-                'email' => 'required|email',
-                'phone' => 'required|numeric',
-                'password' => 'min:8|max:25',
+                'slug' => 'required',
             ]);
         } else {
             $this->validate([
                 'name' => 'required',
-                'email' => 'required|email',
-                'phone' => 'required|numeric',
+                'slug' => 'required',
+                'icon' => 'required',
             ]);
         }
 
-        $user = Admin::find($this->edit_id);
-        $user->name = $this->name;
-        $user->email = $this->email;
-        $user->phone = $this->phone;
-
-        if ($this->password) {
-            $user->password = Hash::make($this->password);
+        $data = Category::find($this->edit_id);
+        $data->name = $this->name;
+        $data->slug = $this->slug;
+        if ($this->icon) {
+            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->icon->extension();
+            $this->icon->storeAs('category_icons', $fileName);
+            $data->icon = 'uploads/category_icons/' . $fileName;
+        } else {
+            $data->icon = 'assets/images/placeholder.jpg';
         }
-        if ($this->avatar) {
-            $imageName = Carbon::now()->timestamp . '_favicon' . $this->avatar->extension();
-            $this->avatar->storeAs('profile_images', $imageName);
-            $user->avatar = 'uploads/profile_images/' . $imageName;
-        }
-        $user->save();
-
+        $data->save();
         $this->resetInputs();
         $this->dispatch('closeModal');
-        $this->dispatch('success', ['message' => 'User updated successfully']);
+        $this->dispatch('success', ['message' => 'Category updated successfully']);
     }
 
     public function close()
@@ -98,11 +96,9 @@ class CategoryComponent extends Component
     public function resetInputs()
     {
         $this->name = '';
-        $this->email = '';
-        $this->phone = '';
-        $this->password = '';
-        $this->avatar = '';
-        $this->uploadedAvatar = '';
+        $this->slug = '';
+        $this->icon = '';
+        $this->uploadedIcon = '';
         $this->edit_id = '';
     }
 
@@ -114,16 +110,22 @@ class CategoryComponent extends Component
 
     public function deleteData()
     {
-        $brand = Admin::find($this->delete_id);
-        $brand->delete();
-        $this->dispatch('admin_deleted');
-        $this->delete_id = '';
+        $data = Category::find($this->delete_id);
+        if ($data) {
+            $filePath = public_path($data->icon);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $data->delete();
+            $this->dispatch('category_deleted');
+            $this->delete_id = '';
+        }
     }
 
     public function render()
     {
-        $admins = Admin::where('name', 'like', '%'.$this->searchTerm.'%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
+        $categories = Category::where('name', 'like', '%' . $this->searchTerm . '%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
         $this->dispatch('reload_scripts');
-        return view('livewire.admin.category.category-component')->layout('livewire.admin.layouts.base');
+        return view('livewire.admin.category.category-component', ['categories' => $categories])->layout('livewire.admin.layouts.base');
     }
 }
