@@ -1,0 +1,201 @@
+/* Post Home Section  */
+.post_home_wrapper {
+  margin-top: 24px;
+  padding-bottom: 80px;
+  .post_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 32px) repeat(1, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px 22px;
+    margin-bottom: 20px;
+  }
+  .hash_area {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      width: 2px;
+      height: 90%;
+      border-radius: 25px;
+      background: #d0e2fd;
+    }
+  }
+  .hash_icon {
+    position: relative;
+    background-color: white;
+    text-align: center;
+    h4 {
+      color: #d4e5fd;
+      font-size: 8px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+
+  .post_user_area {
+    display: block;
+    position: relative;
+    background-color: white;
+    .user_img {
+      width: 100%;
+      height: 32px;
+      border-radius: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+    }
+    h5 {
+      color: #000;
+      font-size: 8px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      margin-top: 2px;
+    }
+  }
+  .slider_img {
+    img {
+      width: 100%;
+      height: 198px;
+      border-radius: 8px;
+      @include min-media-width(768) {
+        height: 250px;
+      }
+    }
+  }
+
+  .action_area {
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .post_area {
+    position: relative;
+  }
+
+  .coment_area {
+    gap: 4px;
+    img {
+      max-width: 20px;
+    }
+    h5 {
+      color: #a6a8ae;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+  .swiper-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    left: auto;
+    padding: 2px;
+    width: auto;
+    min-width: 24px;
+    min-height: 16px;
+    border-radius: 4px;
+    font-size: 8px;
+    color: #fff;
+    background: rgba(0, 6, 16, 0.66);
+    backdrop-filter: blur(16.5px);
+    .swiper-pagination-current,
+    .swiper-pagination-total {
+      color: #fff;
+      text-align: center;
+
+      font-size: 8px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+}
+
+//Post Modal
+.post_modal_area {
+  .post_header_area {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 41px;
+    .notification_title {
+      position: relative;
+      top: 10px;
+      color: #000;
+      text-align: center;
+    }
+    .close_btn {
+      position: absolute;
+      z-index: 10;
+    }
+  }
+  .mobile_form_area {
+    margin-top: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .user_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 48px) repeat(1, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+    margin-bottom: 24px;
+    h4 {
+      color: #1c293e;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+    }
+    h6 {
+      color: #75869c;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+
+  .uploadSlider {
+    margin-top: 30px;
+    .swiper-slide {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 127px;
+      img,
+      video {
+        border-radius: 8px;
+        max-width: 100%;
+        max-height: 100%;
+      }
+      .upload_close {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+      }
+    }
+  }
+}
+
+/* Section */
+/* Section */
