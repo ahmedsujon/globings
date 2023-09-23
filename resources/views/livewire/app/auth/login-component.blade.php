@@ -13,13 +13,14 @@
                     @error('email')
                         <div class="input_error">{{ $message }}</div>
                     @enderror
-                    @if(session()->has('error'))
+                    @if (session()->has('error'))
                         <div class="input_error">{{ session('error') }}</div>
                     @endif
                 </div>
                 <div class="input_row">
                     <label for="">Password</label>
-                    <input type="password" placeholder="Enter password" wire:model.blur='password' class="input_field" id="passwordInput" />
+                    <input type="password" placeholder="Enter password" wire:model.blur='password' class="input_field"
+                        id="passwordInput" />
 
                     @error('password')
                         <div class="input_error">{{ $message }}</div>
@@ -56,13 +57,16 @@
                     <h5 class="others_text">or Sign in with</h5>
                     <div class="others_btn d-flex align-items-center justify-content-center flex-wrap">
                         <button type="button">
-                            <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}" alt="others login icoin" />
+                            <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}"
+                                alt="others login icoin" />
                         </button>
                         <button type="button">
-                            <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}" alt="others login icoin" />
+                            <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}"
+                                alt="others login icoin" />
                         </button>
                         <button type="button">
-                            <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}" alt="others login icoin" />
+                            <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}"
+                                alt="others login icoin" />
                         </button>
                     </div>
                     <h6 class="sub_login text-center">Continue without signing in</h6>
@@ -79,14 +83,14 @@
 
                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                        <button wire:click.prevent='accountType("private")' class="nav-link {{ $account_type == 'private' ? 'active':'' }}" id="pills-home-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                             aria-selected="true">
                             Private
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                        <button wire:click.prevent='accountType("professional")' class="nav-link {{ $account_type == 'professional' ? 'active':'' }}" id="pills-profile-tab" data-bs-toggle="pill"
                             data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                             aria-selected="false">
                             Professional
@@ -94,32 +98,45 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                    <div wire:ignore.self class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
                         <h3 class="sigin_title">Create Private account</h3>
                         <h5 class="sing_in_sub_title">
                             Please sign up to your Globings account
                         </h5>
-                        <form action="" class="mobile_form_area ">
+                        <form action="" wire:submit.prevent='userRegistration' class="mobile_form_area ">
                             <div class="input_row">
                                 <label for="">First Name</label>
-                                <input type="text" placeholder="Enter first name here" class="input_field" />
-                                <div class="invalid-feedback">Enter First Name</div>
+                                <input type="text" placeholder="Enter first name here"
+                                    wire:model.blur='first_name' class="input_field" />
+                                @error('first_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+
                             </div>
                             <div class="input_row">
                                 <label for="">Last Name</label>
-                                <input type="text" placeholder="Enter last name here" class="input_field" />
+                                <input type="text" placeholder="Enter last name here" wire:model.blur='last_name'
+                                    class="input_field" />
+                                @error('last_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="input_row">
                                 <label for="">Email</label>
-                                <input type="email" placeholder="abcdef1234@gmail.com" class="input_field" />
-                                <div class="invalid-feedback">Enter Email</div>
+                                <input type="email" placeholder="abcdef1234@gmail.com" wire:model.blur='email'
+                                    class="input_field" />
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="input_row">
                                 <label for="">Password</label>
-                                <input type="password" placeholder="Enter your password" class="input_field"
-                                    id="passwordInput2" />
-                                <div class="invalid-feedback">Enter Password</div>
+                                <input type="password" placeholder="Enter your password" wire:model.blur='password'
+                                    class="input_field" id="passwordInput2" />
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                                 <div class="password_area" id="passwordArea2">
                                     <button type="button" class="eye_open_icon" id="eyeOpenIcon2">
                                         <i class="fa-regular fa-eye"></i>
@@ -131,9 +148,11 @@
                             </div>
                             <div class="input_row">
                                 <label for="">Confirm Password</label>
-                                <input type="password" placeholder="Enter your password" class="input_field"
-                                    id="passwordInput3" />
-                                <div class="invalid-feedback">Enter Password</div>
+                                <input type="password" placeholder="Enter your password"
+                                    wire:model.blur='confirm_password' class="input_field" id="passwordInput3" />
+                                @error('confirm_password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                                 <div class="password_area" id="passwordArea3">
                                     <button type="button" class="eye_open_icon" id="eyeOpenIcon3">
                                         <i class="fa-regular fa-eye"></i>
@@ -145,8 +164,8 @@
                             </div>
                             <div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="agreeCheckbox" />
+                                    <input class="form-check-input" type="checkbox"
+                                        id="agreeCheckbox" wire:model.live='agree_checkbox' style="@if(session()->has('agree_error')) border-color: red; @endif" />
                                     <label for="agreeCheckbox">
                                         I agree to the
                                         <a href="https://translate.google.com/?sl=en&tl=bn&op=translate"
@@ -157,7 +176,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="login_btn login_btn_fill">
-                                Create Account
+                                {!! loadingStateWithTextApp('userRegistration', 'Create Account') !!}
                             </button>
                             <div class="dont_account text-center">
                                 Already a member?
@@ -167,13 +186,16 @@
                                 <h5 class="others_text">Or Log In With</h5>
                                 <div class="others_btn d-flex align-items-center justify-content-center flex-wrap">
                                     <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}" alt="others login icoin" />
+                                        <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}"
+                                            alt="others login icoin" />
                                     </button>
                                     <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}" alt="others login icoin" />
+                                        <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}"
+                                            alt="others login icoin" />
                                     </button>
                                     <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}" alt="others login icoin" />
+                                        <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}"
+                                            alt="others login icoin" />
                                     </button>
                                 </div>
                                 <h6 class="sub_login text-center">
@@ -182,59 +204,74 @@
                             </div>
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                    <div wire:ignore.self class="tab-pane fade" id="pills-profile" role="tabpanel"
                         aria-labelledby="pills-profile-tab">
                         <h3 class="sigin_title">Create Professional account</h3>
                         <h5 class="sing_in_sub_title">
                             Please sign up to your Globings account
                         </h5>
-                        <form action="" class="mobile_form_area ">
+                        <form action="" wire:submit.prevent='userRegistration' class="mobile_form_area ">
                             <div class="input_row">
                                 <label for="">First Name</label>
-                                <input type="text" placeholder="Enter first name here" class="input_field" />
-                                <div class="invalid-feedback">Enter First Name</div>
+                                <input type="text" placeholder="Enter first name here"
+                                    wire:model.blur='first_name' class="input_field" />
+                                @error('first_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+
                             </div>
                             <div class="input_row">
                                 <label for="">Last Name</label>
-                                <input type="text" placeholder="Enter last name here" class="input_field" />
+                                <input type="text" placeholder="Enter last name here" wire:model.blur='last_name'
+                                    class="input_field" />
+                                @error('last_name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="input_row">
                                 <label for="">Email</label>
-                                <input type="email" placeholder="abcdef1234@gmail.com" class="input_field" />
-                                <div class="invalid-feedback">Enter Email</div>
+                                <input type="email" placeholder="abcdef1234@gmail.com" wire:model.blur='email'
+                                    class="input_field" />
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="input_row">
                                 <label for="">Password</label>
-                                <input type="password" placeholder="Enter your password" class="input_field"
-                                    id="passwordInput4" />
-                                <div class="invalid-feedback">Enter Password</div>
-                                <div class="password_area" id="passwordArea4">
-                                    <button type="button" class="eye_open_icon" id="eyeOpenIcon4">
+                                <input type="password" placeholder="Enter your password" wire:model.blur='password'
+                                    class="input_field" id="passwordInput2" />
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="password_area" id="passwordArea2">
+                                    <button type="button" class="eye_open_icon" id="eyeOpenIcon2">
                                         <i class="fa-regular fa-eye"></i>
                                     </button>
-                                    <button type="button" class="eye_close_icon" id="eyeCloseIcon4">
+                                    <button type="button" class="eye_close_icon" id="eyeCloseIcon2">
                                         <i class="fa-regular fa-eye-slash"></i>
                                     </button>
                                 </div>
                             </div>
                             <div class="input_row">
                                 <label for="">Confirm Password</label>
-                                <input type="password" placeholder="Enter your password" class="input_field"
-                                    id="passwordInput5" />
-                                <div class="invalid-feedback">Enter Password</div>
-                                <div class="password_area" id="passwordArea5">
-                                    <button type="button" class="eye_open_icon" id="eyeOpenIcon5">
+                                <input type="password" placeholder="Enter your password"
+                                    wire:model.blur='confirm_password' class="input_field" id="passwordInput3" />
+                                @error('confirm_password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="password_area" id="passwordArea3">
+                                    <button type="button" class="eye_open_icon" id="eyeOpenIcon3">
                                         <i class="fa-regular fa-eye"></i>
                                     </button>
-                                    <button type="button" class="eye_close_icon" id="eyeCloseIcon5">
+                                    <button type="button" class="eye_close_icon" id="eyeCloseIcon3">
                                         <i class="fa-regular fa-eye-slash"></i>
                                     </button>
                                 </div>
                             </div>
                             <div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value=""
-                                        id="agreeCheckbox" />
+                                    <input class="form-check-input" type="checkbox"
+                                        id="agreeCheckbox" wire:model.live='agree_checkbox' style="@if(session()->has('agree_error')) border-color: red; @endif" />
                                     <label for="agreeCheckbox">
                                         I agree to the
                                         <a href="https://translate.google.com/?sl=en&tl=bn&op=translate"
@@ -245,7 +282,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="login_btn login_btn_fill">
-                                Create Account
+                                {!! loadingStateWithTextApp('userRegistration', 'Create Account') !!}
                             </button>
                             <div class="dont_account text-center">
                                 Already a member?
@@ -255,13 +292,16 @@
                                 <h5 class="others_text">Or Log In With</h5>
                                 <div class="others_btn d-flex align-items-center justify-content-center flex-wrap">
                                     <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}" alt="others login icoin" />
+                                        <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}"
+                                            alt="others login icoin" />
                                     </button>
                                     <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}" alt="others login icoin" />
+                                        <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}"
+                                            alt="others login icoin" />
                                     </button>
                                     <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}" alt="others login icoin" />
+                                        <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}"
+                                            alt="others login icoin" />
                                     </button>
                                 </div>
                                 <h6 class="sub_login text-center">
@@ -286,7 +326,7 @@
                         Submit your mobile to get <b>5</b> digits code
                     </h5>
                     <form action="" class="mobile_form_area " id="resetPasswordForm">
-                        <div class="input_row">
+                        <div class="input_row" wire:ignore>
                             <label for="">Phone Number</label>
                             <input type="tel" placeholder="" id="telephone" class="phone_input_field" />
                         </div>
