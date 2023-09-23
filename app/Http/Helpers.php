@@ -91,7 +91,7 @@ function loadingStateWithText($key, $title)
 function loadingStateWithTextApp($key, $title)
 {
     $loadingSpinner = '
-        ' . $title . ' <div wire:loading wire:target="' . $key . '" wire:key="' . $key . '"><i class="fa fa-spinner fa-spin" style="margin-left: 5px; position: absolute; margin-top: -8px;" aria-hidden="true"></i></div>
+        ' . $title . ' <div wire:loading wire:target="' . $key . '" wire:key="' . $key . '"><i class="fa fa-spinner fa-spin" style="margin-left: 5px; position: absolute; margin-top: -4.5px; font-size: 10px;" aria-hidden="true"></i></div>
     ';
 
     return $loadingSpinner;

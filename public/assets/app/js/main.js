@@ -1,6 +1,16 @@
 $(document).ready(function () {
+  //Hide Scroll bar
+  function hideScrollbar() {
+    $("html,body").css("overflow", "hidden");
+  }
+
+  //Show Scroll bar
+  function showScrollbar() {
+    $("html,body").css("overflow", "auto");
+  }
+
   //Nice Select
-  // $(".niceSelect").niceSelect();
+  $(".niceSelect").niceSelect();
 
   //Gallery
   // $(".gallery_popup").magnificPopup({
@@ -11,12 +21,12 @@ $(document).ready(function () {
   // });
 
   //Video Popup
-  $(".modal_video_btn").modalVideo({
-    youtube: {
-      controls: 1,
-      nocookie: true,
-    },
-  });
+//   $(".modal_video_btn").modalVideo({
+//     youtube: {
+//       controls: 1,
+//       nocookie: true,
+//     },
+//   });
   //Counter
   $(".count-num").rCounter({
     duration: 30,
@@ -75,6 +85,104 @@ $(document).ready(function () {
   $("#verifyBackBtn").click(function (e) {
     e.preventDefault();
     toggleClassElement("#verifySidebarArea", "sing_modal_active");
+  });
+
+  //Post Profile User Modal
+  $(".postUserBtn").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#profileModalArea", "sing_modal_active");
+    $("#mobileMenuWrapper").hide("slow");
+  });
+
+  $("#profileHideModal").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#profileModalArea", "sing_modal_active");
+    $("#mobileMenuWrapper").show("slow");
+  });
+
+  //Post Create Modal
+  $("#openPostCreateBtn,#closeModalBtn").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#postCreateModalArea", "sing_modal_active");
+  });
+
+  //Post Create Success
+  $("#postCreateFormSubmit").submit(function (e) {
+    e.preventDefault();
+    $("#successModalArea").show("slow");
+    $("#successOverlay").show("slow");
+  });
+  $("#successOverlay").click(function (e) {
+    e.preventDefault();
+    $("#successModalArea").hide("slow");
+    $("#successOverlay").hide("slow");
+  });
+
+  //Mobile Menu
+  $("#homeMenuBtn").click(() => {
+    if ($("#mobileMenuWrapper").hasClass("mobile_new_active")) {
+      $("#mobileMenuOverlay").hide("slow");
+      $("#mobileMenuClose").hide("slow");
+    } else {
+      $("#mobileMenuOverlay").show("slow");
+      $("#mobileMenuClose").show("slow");
+    }
+    $("#mobileMenuWrapper").toggleClass("mobile_new_active");
+  });
+  $("#mobileMenuClose").click(() => {
+    $("#mobileMenuOverlay").hide("slow");
+    $("#mobileMenuClose").hide("slow");
+    $("#mobileMenuWrapper").removeClass("mobile_new_active");
+  });
+
+  //Header Icon
+  $(".heart_icon").click(function (e) {
+    e.preventDefault();
+    $(this).toggleClass("selected_heart");
+  });
+
+  //Ratting start
+  $(".rattingStar").starRating({
+    // initialRating: 4,
+    totalStars: 5,
+    strokeColor: "#D9D9D9",
+    emptyColor: "#D9D9D9",
+    activeColor: "cornflowerblue",
+    ratedColor: "#1872F6",
+    strokeWidth: 10,
+    starSize: 25,
+    disableAfterRate: false,
+    useGradient: false,
+    // callback: function(currentRating){
+    //     alert('rated ', currentRating);
+    // }
+  });
+
+  //Comment Modal
+  $(".postCommentBtn,#commentModalClose").click(function (e) {
+    e.preventDefault();
+
+    $("#commentModalArea").toggleClass("comment_modal_active");
+    if ($("#commentModalArea").hasClass("comment_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Total React Modal
+  $(".totalReactBtn,#closeReactModalBtn").click(function (e) {
+    e.preventDefault();
+    console.log("Test");
+
+    toggleClassElement("#reactModalArea", "sing_modal_active");
+    if ($("#reactModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+      $("#reactModalArea").css("overflow", "hidden");
+    } else {
+      showScrollbar();
+      $("#reactModalArea").css("overflow", "auto");
+    }
   });
 });
 
@@ -145,30 +253,6 @@ function hideNavbar() {
   scrollOutsideScroll();
 }
 
-// Form Validation Methods Using Bootstrap 5
-(function () {
-  "use strict";
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll(".needs-validation");
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
 //Slider Single
 function swiperSlider(
   sliderID,
@@ -203,18 +287,68 @@ function swiperSlider(
   });
 }
 
-//Preview slider
-swiperSlider(
-  "#previewSlider",
-  "#previewSlider .swiper-button-next",
-  "#previewSlider .swiper-button-prev",
-  "#previewSlider .swiper-pagination",
-  {},
-  1,
-  1,
-  10,
-  "coverflow"
-);
+//Category slider
+const swiperCategory = new Swiper("#headerCategorySlider .swiper", {
+  slidesPerView: "auto",
+  speed: 1150,
+  spaceBetween: 23,
+  freeMode: true,
+});
+
+//Upload Media slider
+const swipeUploadMedia = new Swiper("#uploadSlider .swiper", {
+  slidesPerView: "auto",
+  speed: 1150,
+  spaceBetween: 10,
+  freeMode: true,
+});
+
+//Post Slider 1
+const swiperPost1 = new Swiper("#homePostArea .post_slider1", {
+  speed: 1150,
+  effect: "cards",
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    type: "fraction",
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+//Post Slider 2
+const swiperPost2 = new Swiper("#homePostArea .post_slider2", {
+  speed: 1150,
+  effect: "cards",
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    type: "fraction",
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+//Company Slider
+const companySlider = new Swiper("#companySliderArea .swiper", {
+  speed: 1150,
+  spaceBetween: 5,
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: "#companySliderArea .swiper-pagination",
+    type: "fraction",
+  },
+});
 
 //Country Input
 var input = document.querySelector("#telephone");

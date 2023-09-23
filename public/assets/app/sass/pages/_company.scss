@@ -1,0 +1,207 @@
+.company_preview_wrapper {
+    margin-bottom: 90px;
+  .bookmarkIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: #eff1f8;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+  .slider_area {
+    position: relative;
+    margin-top: 28px;
+    .slider_img {
+      img {
+        border-radius: 8px;
+        width: 100%;
+        height: 231px;
+      }
+    }
+  }
+
+  .swiper-pagination {
+    position: absolute;
+    left: auto;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 31px;
+    border-radius: 7px;
+    border: 1px solid #fff;
+    background: rgba(29, 32, 34, 0.19);
+    backdrop-filter: blur(5px);
+    font-size: 14px;
+    color: #fff;
+    span {
+      color: #fff;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+
+  .post_info_list {
+    margin-top: 11px;
+    .list_item {
+      gap: 8px;
+    }
+    h4,
+    h5 {
+      color: #75869c;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    h5 {
+      color: #000;
+      font-weight: 500;
+    }
+  }
+
+  .company_title {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 16px;
+  }
+  .star_list {
+    margin-top: 12px;
+    gap: 2px;
+    img {
+      max-width: 18px;
+    }
+    .review_text {
+      color: #16181e;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      margin-left: 6px;
+      span {
+        font-weight: 400;
+        color: #1872f6;
+      }
+    }
+  }
+
+  .dealer_area {
+    .user_img_area {
+      display: grid;
+      grid-template-columns: minmax(0, 44px) repeat(1, minmax(0, 1fr));
+      align-items: start;
+      gap: 20px 16px;
+    }
+    .user_img {
+      width: 100%;
+      height: 44px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+    .dealer {
+      font-family: $secondary-font;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      display: inline-flex;
+      padding: 4px 10px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 4px;
+      color: #fe7b1e;
+      background: #fbe2d0;
+    }
+
+    .sub_login {
+      margin-top: 7px;
+      color: #1c293e;
+    }
+  }
+
+  .location_area {
+    .notification_title {
+      margin-bottom: 16px;
+    }
+    iframe {
+      width: 100%;
+      height: 175px;
+      border-radius: 8px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      -ms-border-radius: 8px;
+      -o-border-radius: 8px;
+    }
+
+    .location_grid {
+      display: grid;
+      grid-template-columns: minmax(0, 20px) repeat(1, minmax(0, 1fr));
+      align-items: start;
+      gap: 20px 12px;
+      margin-top: 15px;
+      h5 {
+        color: #1c293e;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+      }
+    }
+  }
+  .contact_form_area {
+    .notification_title {
+      margin-bottom: 16px;
+    }
+  }
+  .review_list_area {
+    padding: 20px 18px;
+    margin-top: 13px;
+    border-radius: 10px;
+    background: #f8f9fd;
+  }
+  .review_area {
+    h5 {
+      color: #75869c;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px;
+    }
+    .list_item {
+      &:not(:first-child) {
+        margin-top: 16px;
+      }
+    }
+    .start_list {
+      gap: 2px;
+      img {
+        max-width: 18px;
+      }
+    }
+  }
+  .similar_area{
+    h4{
+        color: #000;
+font-family: $secondary-font;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 26px; /* 130% */
+    }
+  }
+}
