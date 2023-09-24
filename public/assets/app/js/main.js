@@ -76,6 +76,58 @@ $(document).ready(function () {
     e.preventDefault();
     toggleClassElement("#verifySidebarArea", "sing_modal_active");
   });
+
+  //Post Create Modal
+  $("#openPostCreateBtn,#closeModalBtn").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#postCreateModalArea", "sing_modal_active");
+  });
+  // $("#closeModalBtn").click(function (e) {
+  //   e.preventDefault();
+  //   console.log('Test');
+
+  //   toggleClassElement("#postCreateModalArea", "sing_modal_active");
+  // });
+
+  //Mobile Menu
+  $("#homeMenuBtn").click(() => {
+    if ($("#mobileMenuWrapper").hasClass("mobile_new_active")) {
+      $("#mobileMenuOverlay").hide("slow");
+      $("#mobileMenuClose").hide("slow");
+    } else {
+      $("#mobileMenuOverlay").show("slow");
+      $("#mobileMenuClose").show("slow");
+    }
+    $("#mobileMenuWrapper").toggleClass("mobile_new_active");
+  });
+  $("#mobileMenuClose").click(() => {
+    $("#mobileMenuOverlay").hide("slow");
+    $("#mobileMenuClose").hide("slow");
+    $("#mobileMenuWrapper").removeClass("mobile_new_active");
+  });
+
+  //Header Icon
+  $(".heart_icon").click(function (e) {
+    e.preventDefault();
+    $(this).toggleClass("selected_heart");
+  });
+
+  //Ratting start
+  $(".rattingStar").starRating({
+    // initialRating: 4,
+    totalStars: 5,
+    strokeColor: "#D9D9D9",
+    emptyColor: "#D9D9D9",
+    activeColor: "cornflowerblue",
+    ratedColor: "#1872F6",
+    strokeWidth: 10,
+    starSize: 25,
+    disableAfterRate: false,
+    useGradient: false,
+    // callback: function(currentRating){
+    //     alert('rated ', currentRating);
+    // }
+  });
 });
 
 //Add Class
@@ -145,30 +197,6 @@ function hideNavbar() {
   scrollOutsideScroll();
 }
 
-// Form Validation Methods Using Bootstrap 5
-(function () {
-  "use strict";
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll(".needs-validation");
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
 //Slider Single
 function swiperSlider(
   sliderID,
@@ -203,18 +231,55 @@ function swiperSlider(
   });
 }
 
-//Preview slider
-swiperSlider(
-  "#previewSlider",
-  "#previewSlider .swiper-button-next",
-  "#previewSlider .swiper-button-prev",
-  "#previewSlider .swiper-pagination",
-  {},
-  1,
-  1,
-  10,
-  "coverflow"
-);
+//Category slider
+const swiperCategory = new Swiper("#headerCategorySlider .swiper", {
+  slidesPerView: "auto",
+  speed: 1150,
+  spaceBetween: 23,
+  freeMode: true,
+});
+
+//Upload Media slider
+const swipeUploadMedia = new Swiper("#uploadSlider .swiper", {
+  slidesPerView: "auto",
+  speed: 1150,
+  spaceBetween: 10,
+  freeMode: true,
+});
+
+//Post Slider 1
+const swiperPost1 = new Swiper("#homePostArea .post_slider1", {
+  speed: 1150,
+  effect: "cards",
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    type: "fraction",
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+//Post Slider 2
+const swiperPost2 = new Swiper("#homePostArea .post_slider2", {
+  speed: 1150,
+  effect: "cards",
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    type: "fraction",
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
 
 //Country Input
 var input = document.querySelector("#telephone");
