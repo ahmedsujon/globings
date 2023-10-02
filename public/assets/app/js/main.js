@@ -1,6 +1,16 @@
 $(document).ready(function () {
+  //Hide Scroll bar
+  function hideScrollbar() {
+    $("html,body").css("overflow", "hidden");
+  }
+
+  //Show Scroll bar
+  function showScrollbar() {
+    $("html,body").css("overflow", "auto");
+  }
+
   //Nice Select
-  // $(".niceSelect").niceSelect();
+  $(".niceSelect").niceSelect();
 
   //Gallery
   // $(".gallery_popup").magnificPopup({
@@ -11,12 +21,12 @@ $(document).ready(function () {
   // });
 
   //Video Popup
-  $(".modal_video_btn").modalVideo({
-    youtube: {
-      controls: 1,
-      nocookie: true,
-    },
-  });
+//   $(".modal_video_btn").modalVideo({
+//     youtube: {
+//       controls: 1,
+//       nocookie: true,
+//     },
+//   });
   //Counter
   $(".count-num").rCounter({
     duration: 30,
@@ -77,17 +87,8 @@ $(document).ready(function () {
     toggleClassElement("#verifySidebarArea", "sing_modal_active");
   });
 
-  //Post Create Modal
-  $("#openPostCreateBtn,#closeModalBtn").click(function (e) {
-    e.preventDefault();
-    toggleClassElement("#postCreateModalArea", "sing_modal_active");
-  });
-  // $("#closeModalBtn").click(function (e) {
-  //   e.preventDefault();
-  //   console.log('Test');
 
-  //   toggleClassElement("#postCreateModalArea", "sing_modal_active");
-  // });
+
 
   //Mobile Menu
   $("#homeMenuBtn").click(() => {
@@ -128,6 +129,7 @@ $(document).ready(function () {
     //     alert('rated ', currentRating);
     // }
   });
+
 });
 
 //Add Class

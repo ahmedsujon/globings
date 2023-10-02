@@ -109,6 +109,7 @@ button {
   cursor: pointer;
   border: none !important;
   background-color: transparent;
+  padding: 0;
 }
 
 button:hover {
@@ -166,6 +167,7 @@ input[type="number"] {
 .g-lg {
   gap: 10px 15px;
 }
+
 .mt-24 {
   margin-top: 24px;
 }
@@ -178,7 +180,7 @@ input[type="number"] {
   @include max-media-width(991) {
     margin-top: 30px;
   }
-}
+
 .header_border {
   padding-top: 16px;
   border-bottom: 1px solid #dee0e2;
@@ -274,6 +276,13 @@ input[type="number"] {
   font-weight: 600;
   line-height: normal;
 }
+.react_title {
+  color: #000;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 .notification_sub_title {
   color: #16181e;
   font-size: 14px;
@@ -281,6 +290,7 @@ input[type="number"] {
   font-weight: 500;
   line-height: normal;
 }
+
 main {
   position: relative;
   // margin-top: 24px;
@@ -312,6 +322,20 @@ main {
   }
   &.login_btn_border {
     border: 1px solid #b7bac9 !important;
+  }
+}
+.message_btn {
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 8px 24px;
+  border-radius: 24px;
+  background: #1872f6;
+  &.follow_btn {
+    color: #1c293e;
+    background: #d2d5df;
   }
 }
 
@@ -529,8 +553,7 @@ main {
       padding-right: 30px;
     }
   }
-  .rattingStar{
-    svg{
+
       height: auto;
       max-height: auto;
     }
@@ -666,6 +689,7 @@ main {
       }
     }
   }
+
 }
 
 //password validation
@@ -725,7 +749,7 @@ main {
   .filter_icon {
     position: absolute;
     top: 9px;
-    right: 2px;
+
   }
 }
 
@@ -749,3 +773,4 @@ main {
     max-width: 20px;
   }
 }
+
