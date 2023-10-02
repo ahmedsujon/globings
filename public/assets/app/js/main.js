@@ -87,36 +87,8 @@ $(document).ready(function () {
     toggleClassElement("#verifySidebarArea", "sing_modal_active");
   });
 
-  //Post Profile User Modal
-  $(".postUserBtn").click(function (e) {
-    e.preventDefault();
-    toggleClassElement("#profileModalArea", "sing_modal_active");
-    $("#mobileMenuWrapper").hide("slow");
-  });
 
-  $("#profileHideModal").click(function (e) {
-    e.preventDefault();
-    toggleClassElement("#profileModalArea", "sing_modal_active");
-    $("#mobileMenuWrapper").show("slow");
-  });
 
-  //Post Create Modal
-  $("#openPostCreateBtn,#closeModalBtn").click(function (e) {
-    e.preventDefault();
-    toggleClassElement("#postCreateModalArea", "sing_modal_active");
-  });
-
-  //Post Create Success
-  $("#postCreateFormSubmit").submit(function (e) {
-    e.preventDefault();
-    $("#successModalArea").show("slow");
-    $("#successOverlay").show("slow");
-  });
-  $("#successOverlay").click(function (e) {
-    e.preventDefault();
-    $("#successModalArea").hide("slow");
-    $("#successOverlay").hide("slow");
-  });
 
   //Mobile Menu
   $("#homeMenuBtn").click(() => {
@@ -158,32 +130,6 @@ $(document).ready(function () {
     // }
   });
 
-  //Comment Modal
-  $(".postCommentBtn,#commentModalClose").click(function (e) {
-    e.preventDefault();
-
-    $("#commentModalArea").toggleClass("comment_modal_active");
-    if ($("#commentModalArea").hasClass("comment_modal_active")) {
-      hideScrollbar();
-    } else {
-      showScrollbar();
-    }
-  });
-
-  //Total React Modal
-  $(".totalReactBtn,#closeReactModalBtn").click(function (e) {
-    e.preventDefault();
-    console.log("Test");
-
-    toggleClassElement("#reactModalArea", "sing_modal_active");
-    if ($("#reactModalArea").hasClass("sing_modal_active")) {
-      hideScrollbar();
-      $("#reactModalArea").css("overflow", "hidden");
-    } else {
-      showScrollbar();
-      $("#reactModalArea").css("overflow", "auto");
-    }
-  });
 });
 
 //Add Class
@@ -334,19 +280,6 @@ const swiperPost2 = new Swiper("#homePostArea .post_slider2", {
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
-  },
-});
-
-//Company Slider
-const companySlider = new Swiper("#companySliderArea .swiper", {
-  speed: 1150,
-  spaceBetween: 5,
-  keyboard: {
-    enabled: true,
-  },
-  pagination: {
-    el: "#companySliderArea .swiper-pagination",
-    type: "fraction",
   },
 });
 
