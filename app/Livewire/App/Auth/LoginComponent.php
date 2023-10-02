@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Hash;
 class LoginComponent extends Component
 {
     public $email, $password;
-    public $first_name, $last_name, $confirm_password, $account_type = 'private', $agree_checkbox;
+    public $first_name, $last_name, $confirm_password, $account_type = 'private', $agree_checkbox, $phone, $otp, $generated_otp;
 
     public function updated($fields)
     {
         $this->validateOnly($fields, [
             'first_name' => 'required',
             'last_name' => 'required',
+            'phone' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
@@ -55,6 +56,7 @@ class LoginComponent extends Component
         $this->validate([
             'first_name' => 'required',
             'last_name' => 'required',
+            'phone' => 'required|unique:users,phone',
             'email' => 'required|unique:users,email',
             'password' => 'required|min:8',
             'confirm_password' => 'required|same:password',
@@ -65,6 +67,7 @@ class LoginComponent extends Component
             $user->first_name = $this->first_name;
             $user->last_name = $this->last_name;
             $user->email = $this->email;
+            $user->phone = $this->phone;
             $user->password = Hash::make($this->password);
             $user->account_type = $this->account_type;
             if($user->save()){
@@ -75,6 +78,47 @@ class LoginComponent extends Component
             }
         } else {
             session()->flash('agree_error', 'Must agree to terms and conditions');
+        }
+    }
+
+    public function forgetPassword()
+    {
+        $this->validate([
+            'phone' => 'required',
+        ]);
+
+        $getUser = User::where('phone', $this->phone)->first();
+
+        if($getUser){
+            $otp = rand(10000,99999);
+
+            $getUser->verification_code = $otp;
+            $getUser->save();
+
+            //function to send sms/email
+            $this->generated_otp = $otp;
+
+            $this->dispatch('code_sent');
+
+        } else {
+            session()->flash('phone_user_error', 'Invalid phone number');
+        }
+    }
+
+    public function submitOtp()
+    {
+        // $this->validate([
+        //     'otp' => 'required',
+        // ]);
+
+        dd($this->otp);
+
+        $getUser = User::where('phone', $this->phone)->first();
+
+        if($getUser->verification_code == $this->otp){
+            session()->flash('otp_success', 'Otp Verified. redirecting to update password page...');
+        } else {
+            session()->flash('otp_error', 'Invalid code');
         }
     }
 

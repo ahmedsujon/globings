@@ -75,13 +75,6 @@ $(document).ready(function () {
     // options
   });
 
-  //Forget Password submit
-  $("#resetPasswordForm").submit(function (e) {
-    e.preventDefault();
-    toggleClassElement("#forgetSidebarArea", "sing_modal_active");
-    toggleClassElement("#verifySidebarArea", "sing_modal_active");
-  });
-
   $("#verifyBackBtn").click(function (e) {
     e.preventDefault();
     toggleClassElement("#verifySidebarArea", "sing_modal_active");

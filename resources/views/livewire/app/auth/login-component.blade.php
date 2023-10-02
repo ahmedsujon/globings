@@ -325,14 +325,20 @@
                     <h5 class="sing_in_sub_title">
                         Submit your mobile to get <b>5</b> digits code
                     </h5>
-                    <form action="" class="mobile_form_area " id="resetPasswordForm">
+                    <form wire:submit.prevent='forgetPassword' class="mobile_form_area" id="resetPasswordForm">
                         <div class="input_row" wire:ignore>
                             <label for="">Phone Number</label>
-                            <input type="tel" placeholder="" id="telephone" class="phone_input_field" />
+                            <input type="tel" placeholder="Enter number" id="telephone" class="phone_input_field" />
                         </div>
+                        @error ('phone')
+                            <div class="input_error">{{ $message }}</div>
+                        @enderror
+                        @if (session()->has('phone_user_error'))
+                            <div class="input_error">{{ session('phone_user_error') }}</div>
+                        @endif
 
                         <button type="submit" class="login_btn login_btn_fill">
-                            Send Code
+                            {!! loadingStateWithTextApp('forgetPassword', 'Send Code') !!}
                         </button>
                     </form>
                 </div>
@@ -351,23 +357,54 @@
                         Plese enter the <b> 5-digit</b> code sent to: <br />
                         +966 3001234567
                     </h5>
-                    <form action="" class="mobile_form_area ">
+                    <form wire:submit.prevent='submitOtp' class="mobile_form_area ">
                         <div class="input_row">
                             <div class="d-flex-between">
-                                <label for="">Enter code</label>
-                                <label for="" class="reset_code_btn">Resend</label>
+                                <label for="">Enter code <span class="text-danger">{{ $generated_otp }}</span></label>
+                                <label for="" class="reset_code_btn">{!! loadingStateWithTextApp('submitOtp', 'Resend') !!}</label>
                             </div>
-                            <div class="verify_pin_area">
+                            <div class="verify_pin_area" wire:ignore>
                                 <input type="text" id="verifyPin" maxlength="5" autofocus />
                             </div>
+                            @if (session()->has('otp_error'))
+                                <div class="input_error">{{ session('otp_error') }}</div>
+                            @endif
                         </div>
 
                         <button type="submit" class="login_btn login_btn_fill">
-                            Verify
+                            {!! loadingStateWithTextApp('submitOtp', 'Verify') !!}
                         </button>
                     </form>
+                    @if (session()->has('otp_success'))
+                        <div class="input_success" style="color: green;">{{ session('otp_success') }}</div>
+                    @endif
+
                 </div>
             </div>
         </div>
     </section>
 </div>
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#telephone').on('change', function(){
+                @this.set('phone', $(this).val());
+            });
+
+            $('#verifyPin').on('change', function(){
+                @this.set('otp', $(this).val());
+            });
+
+            window.addEventListener('code_sent', event => {
+                function toggleClassElement(selector, className) {
+                    $(selector).toggleClass(className);
+                }
+
+                toggleClassElement("#forgetSidebarArea", "sing_modal_active");
+                toggleClassElement("#verifySidebarArea", "sing_modal_active");
+            });
+
+        });
+    </script>
+@endpush
