@@ -47,18 +47,18 @@
             <!-- Add Data Modal -->
             <div wire:ignore.self class="modal fade" id="addDataModal" tabindex="-1" role="dialog"
                 data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modelTitleId">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: white;">
-                            <h5 class="modal-title m-0" id="mySmallModalLabel">Add New Onboarding Image</h5>
+                            <h5 class="modal-title m-0" id="mySmallModalLabel">Add Onboarding Image</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row justify-content-center">
                                 <div class="col-md-11">
                                     <form wire:submit.prevent='storeData'>
-                                        <div class="row">
-                                            <div class="col-md-12 mb-2" style="text-align: center;">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-12 mb-2">
                                                 <label for="example-number-input" class="col-form-label">Image</label>
 
                                                 <input type="file" class="form-control" wire:model='photo' />
@@ -75,9 +75,9 @@
                                                     style="height: 570px; width: 280px;" />
                                                 @endif
                                             </div>
-                                            <div class="col-md-12 text-center mb-3 mt-4">
+                                            <div class="col-md-12 mb-3 text-center mt-4">
                                                 <button type="submit"
-                                                    class="btn btn-primary waves-effect waves-light w-50">
+                                                    class="btn btn-sm btn-primary waves-effect waves-light w-50">
                                                     {!! loadingStateWithText('storeData', 'Add Image') !!}
                                                 </button>
                                             </div>
@@ -93,7 +93,7 @@
             <!-- Edit Data Modal -->
             <div wire:ignore.self class="modal fade" id="editDataModal" tabindex="-1" role="dialog"
                 data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modelTitleId">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: white;">
                             <h5 class="modal-title m-0" id="mySmallModalLabel">Edit Onboarding Image</h5>
@@ -105,7 +105,7 @@
                                 <div class="col-md-11">
                                     <form wire:submit.prevent='updateData'>
                                         <div class="row">
-                                            <div class="col-md-12 mb-2" style="text-align: center;">
+                                            <div class="col-md-12 mb-2">
                                                 <label for="example-number-input" class="col-form-label">Image</label>
                                                 <input type="file" class="form-control" wire:model='photo' />
                                                 @error('photo')
@@ -127,7 +127,7 @@
                                             </div>
                                             <div class="col-md-12 text-center mb-3 mt-4">
                                                 <button type="submit"
-                                                    class="btn btn-primary waves-effect waves-light w-50">
+                                                    class="btn btn-sm btn-primary waves-effect waves-light w-50">
                                                     {!! loadingStateWithText('updateData', 'Update Image') !!}
                                                 </button>
                                             </div>
