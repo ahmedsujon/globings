@@ -21,12 +21,12 @@ $(document).ready(function () {
   // });
 
   //Video Popup
-//   $(".modal_video_btn").modalVideo({
-//     youtube: {
-//       controls: 1,
-//       nocookie: true,
-//     },
-//   });
+  $(".modal_video_btn").modalVideo({
+    youtube: {
+      controls: 1,
+      nocookie: true,
+    },
+  });
   //Counter
   $(".count-num").rCounter({
     duration: 30,
@@ -182,6 +182,46 @@ $(document).ready(function () {
     } else {
       showScrollbar();
       $("#reactModalArea").css("overflow", "auto");
+    }
+  });
+
+  //Dealer Profile Modal
+  $("#dealerProfileBtn,#dealerCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#dealerProfileModalArea").toggleClass("sing_modal_active");
+
+    if ($("#dealerProfileModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Scan Modal
+  $("#scanStartBtn,#scancloseModal,#scanOverlay").click(function (e) {
+    e.preventDefault();
+
+    $("#scanModalArea").toggleClass("comment_modal_active");
+    $("#scanOverlay").show();
+    if ($("#scanModalArea").hasClass("comment_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+      $("#scanOverlay").hide();
+    }
+  });
+
+  //Scan Result Modal
+  $("#scanResultModal,#resultCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#scanResultModalArea").toggleClass("sing_modal_active");
+
+    if ($("#scanResultModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
     }
   });
 });
@@ -348,6 +388,15 @@ const companySlider = new Swiper("#companySliderArea .swiper", {
     el: "#companySliderArea .swiper-pagination",
     type: "fraction",
   },
+});
+
+//Upload Media slider
+const swipeMapSlider = new Swiper("#mapSliderArea .swiper", {
+  slidesPerView: "auto",
+  speed: 1150,
+  spaceBetween: 11,
+  freeMode: true,
+  centeredSlides: true,
 });
 
 //Country Input
