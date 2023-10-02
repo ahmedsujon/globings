@@ -10,12 +10,19 @@
     <link rel="shortcut icon" href="{{ asset('assets/app/images/header/logo.png') }}" type="image/x-icon" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/swiper-bundle.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/modal-video.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/magnific-popup.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/nice-select.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/number-input/intlTelInput.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/sass/style.css') }}" />
 </head>
+
+<style>
+    .invalid-feedback{
+        display: block;
+    }
+</style>
 
 <body>
     <!-- Scroll To Top -->
@@ -41,10 +48,6 @@
 
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
-
-    
-
-    @stack('scripts')
 
 </body>
 

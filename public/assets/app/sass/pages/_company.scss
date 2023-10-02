@@ -1,5 +1,5 @@
 .company_preview_wrapper {
-  margin-bottom: 90px;
+    margin-bottom: 90px;
   .bookmarkIcon {
     display: flex;
     align-items: center;
@@ -102,7 +102,6 @@
       grid-template-columns: minmax(0, 44px) repeat(1, minmax(0, 1fr));
       align-items: start;
       gap: 20px 16px;
-      text-align: start;
     }
     .user_img {
       width: 100%;
@@ -195,179 +194,14 @@
       }
     }
   }
-  .similar_area {
-    h4 {
-      color: #000;
-      font-family: $secondary-font;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 26px; /* 130% */
-    }
-  }
-}
-
-//Company Map
-.company_map_wrapper {
-  .map_area {
-    iframe {
-      width: 100%;
-      height: calc(100vh - 170px);
-    }
-  }
-  .swiper-slide {
-    width: 156px;
-  }
-  .map_slider_area {
-    position: relative;
-    top: -50px;
-  }
-  .slider_item {
-    position: relative;
-    width: 100%;
-    img {
-      width: 100%;
-    }
-    h4 {
-      position: absolute;
-      left: 12px;
-      bottom: 10px;
-      width: 95%;
-      color: #fff;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 18px;
-    }
-    .star_area {
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      display: flex;
-      padding: 4px 10px;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      border-radius: 24px;
-      border: 1px solid #fff;
-      background: rgba(255, 255, 255, 0.76);
-      backdrop-filter: blur(3.5px);
-      img {
-        max-width: 14px;
-      }
-      span {
+  .similar_area{
+    h4{
         color: #000;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 14px;
-      }
+font-family: $secondary-font;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 26px; /* 130% */
     }
-  }
-}
-
-//Dealer Modal
-.dealer_profile_modal {
-  @include customScrollbar();
-  max-height: 100vh;
-  z-index: 1005 !important;
-  .dealer_header {
-    padding-top: 56px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #d2d5df;
-  }
-
-  .dealer_info_area {
-    margin-top: 24px;
-    .user_img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      img {
-        max-height: 60px;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
-      }
-    }
-  }
-  .dealer_name {
-    margin-top: 12px;
-  }
-  .archive_area {
-    margin-top: 23px;
-    li {
-      display: grid;
-      grid-template-columns: minmax(0, 24px) repeat(1, minmax(0, 1fr));
-      align-items: start;
-      gap: 20px 16px;
-      margin-bottom: 16px;
-    }
-    h5 {
-      color: #75869c;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 18px;
-    }
-  }
-  .dealer_btn_area {
-    margin-top: 48px;
-  }
-  .comment_list_wrapper {
-    margin-bottom: 32px;
-  }
-  .review_comment_area {
-    margin-top: 24px;
-    .notification_title {
-      margin-bottom: 16px;
-    }
-    .review_comment_item {
-      margin-bottom: 24px;
-      .comment {
-        margin-top: 16px;
-        p {
-          color: #434549;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 18.2px;
-          button {
-            color: #16181e;
-            font-weight: 500;
-          }
-        }
-      }
-    }
-    .user_grid {
-      display: grid;
-      grid-template-columns: minmax(0, 48px) repeat(1, minmax(0, 1fr));
-      align-items: center;
-      gap: 8px;
-      h4 {
-        color: #16181e;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-      }
-      h5 {
-        color: #75869c;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-      }
-    }
-  }
-  .nested_comment_area {
-    .review_comment_item {
-      margin-left: 48px;
-    }
-  }
-  .see_all_btn {
-    margin-top: 36px;
   }
 }
