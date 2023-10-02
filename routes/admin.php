@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogoutController;
 use App\Livewire\Admin\DashboardComponent;
 use App\Livewire\Admin\Auth\LoginComponent;
-use App\Livewire\Admin\Onboarding\CreateOnboardingComponent;
-use App\Livewire\Admin\Onboarding\EditOnboardingComponent;
+use App\Livewire\Admin\Category\CategoryComponent;
 use App\Livewire\Admin\Onboarding\OnboardingComponent;
 use App\Livewire\Admin\User\AdminsComponent;
 use App\Livewire\Admin\User\UsersComponent;
@@ -31,8 +30,9 @@ Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(functio
 
     // Onboarding routes
     Route::get('onboardings', OnboardingComponent::class)->name('onboardings');
-    Route::get('onboarding/create', CreateOnboardingComponent::class)->name('onboarding.create');
-    Route::get('onboarding/edit/{id}', EditOnboardingComponent::class)->name('onboardings.edit');
+    
+    // Category routes
+    Route::get('categories', CategoryComponent::class)->name('categories');
 
     //users routes
     Route::get('users', UsersComponent::class)->name('allUsers')->middleware('adminPermission:users_manage');;
