@@ -111,6 +111,7 @@
   z-index: 1000;
   width: 100%;
   display: none;
+  @include max-media-width(991) {
     display: block;
   }
 
@@ -151,6 +152,7 @@
     bottom: 0px;
     left: 0;
     width: 100%;
+    max-height: 76px;
     // display: none;
   }
   .active_mobile_menu {

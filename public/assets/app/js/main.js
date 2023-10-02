@@ -21,12 +21,12 @@ $(document).ready(function () {
   // });
 
   //Video Popup
-//   $(".modal_video_btn").modalVideo({
-//     youtube: {
-//       controls: 1,
-//       nocookie: true,
-//     },
-//   });
+  $(".modal_video_btn").modalVideo({
+    youtube: {
+      controls: 1,
+      nocookie: true,
+    },
+  });
   //Counter
   $(".count-num").rCounter({
     duration: 30,
@@ -87,8 +87,36 @@ $(document).ready(function () {
     toggleClassElement("#verifySidebarArea", "sing_modal_active");
   });
 
+  //Post Profile User Modal
+  $(".postUserBtn").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#profileModalArea", "sing_modal_active");
+    $("#mobileMenuWrapper").hide("slow");
+  });
 
+  $("#profileHideModal").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#profileModalArea", "sing_modal_active");
+    $("#mobileMenuWrapper").show("slow");
+  });
 
+  //Post Create Modal
+  $("#openPostCreateBtn,#closeModalBtn").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#postCreateModalArea", "sing_modal_active");
+  });
+
+  //Post Create Success
+  $("#postCreateFormSubmit").submit(function (e) {
+    e.preventDefault();
+    $("#successModalArea").show("slow");
+    $("#successOverlay").show("slow");
+  });
+  $("#successOverlay").click(function (e) {
+    e.preventDefault();
+    $("#successModalArea").hide("slow");
+    $("#successOverlay").hide("slow");
+  });
 
   //Mobile Menu
   $("#homeMenuBtn").click(() => {
@@ -130,6 +158,72 @@ $(document).ready(function () {
     // }
   });
 
+  //Comment Modal
+  $(".postCommentBtn,#commentModalClose").click(function (e) {
+    e.preventDefault();
+
+    $("#commentModalArea").toggleClass("comment_modal_active");
+    if ($("#commentModalArea").hasClass("comment_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Total React Modal
+  $(".totalReactBtn,#closeReactModalBtn").click(function (e) {
+    e.preventDefault();
+    console.log("Test");
+
+    toggleClassElement("#reactModalArea", "sing_modal_active");
+    if ($("#reactModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+      $("#reactModalArea").css("overflow", "hidden");
+    } else {
+      showScrollbar();
+      $("#reactModalArea").css("overflow", "auto");
+    }
+  });
+
+  //Dealer Profile Modal
+  $("#dealerProfileBtn,#dealerCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#dealerProfileModalArea").toggleClass("sing_modal_active");
+
+    if ($("#dealerProfileModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Scan Modal
+  $("#scanStartBtn,#scancloseModal,#scanOverlay").click(function (e) {
+    e.preventDefault();
+
+    $("#scanModalArea").toggleClass("comment_modal_active");
+    $("#scanOverlay").show();
+    if ($("#scanModalArea").hasClass("comment_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+      $("#scanOverlay").hide();
+    }
+  });
+
+  //Scan Result Modal
+  $("#scanResultModal,#resultCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#scanResultModalArea").toggleClass("sing_modal_active");
+
+    if ($("#scanResultModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
 });
 
 //Add Class
@@ -281,6 +375,28 @@ const swiperPost2 = new Swiper("#homePostArea .post_slider2", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
+});
+
+//Company Slider
+const companySlider = new Swiper("#companySliderArea .swiper", {
+  speed: 1150,
+  spaceBetween: 5,
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: "#companySliderArea .swiper-pagination",
+    type: "fraction",
+  },
+});
+
+//Upload Media slider
+const swipeMapSlider = new Swiper("#mapSliderArea .swiper", {
+  slidesPerView: "auto",
+  speed: 1150,
+  spaceBetween: 11,
+  freeMode: true,
+  centeredSlides: true,
 });
 
 //Country Input
