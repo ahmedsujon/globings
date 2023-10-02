@@ -50,6 +50,8 @@
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
 
+    @stack('scripts')
+
 </body>
 
 </html>
