@@ -24,15 +24,6 @@
                     </li>
 
                     @if (isAdminPermitted('admins_manage'))
-                    <li class="{{ request()->is('admin/categories') ? 'mm-active' : '' }}">
-                        <a href="{{ route('admin.categories') }}" class="waves-effect">
-                            <i class="bx bx-store"></i>
-                            <span key="t-dashboard">Category</span>
-                        </a>
-                    </li>
-                    @endif
-
-                    @if (isAdminPermitted('admins_manage'))
                     <li class="{{ request()->is('admin/onboardings') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.onboardings') }}" class="waves-effect">
                             <i class="bx bx-store"></i>
