@@ -18,9 +18,9 @@ class LoginComponent extends Component
             'first_name' => 'required',
             'last_name' => 'required',
             'phone' => 'required',
-            'email' => 'required|unique:users,email',
+            'email' => 'required',
             'password' => 'required',
-            'confirm_password' => 'required|same:password',
+            'confirm_password' => 'required',
         ]);
     }
 
@@ -38,7 +38,7 @@ class LoginComponent extends Component
                 Auth::guard('web')->attempt(['email' => $this->email, 'password' => $this->password]);
 
                 session()->flash('success', 'Login Successful');
-                return redirect()->route('app.index');
+                return redirect()->route('app.home');
             } else {
                 session()->flash('error', 'Incorrect email or password');
             }
