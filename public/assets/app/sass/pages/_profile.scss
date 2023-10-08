@@ -8,6 +8,7 @@
 
 //Profile Modal
 .profile_modal_area {
+  padding-top: 24px;
   .cover_img {
     img {
       width: 100%;
@@ -86,10 +87,336 @@
     padding-bottom: 24px;
     border-bottom: 1px solid #e3e5ed;
   }
-  .post_home_wrapper{
+  .post_home_wrapper {
     padding-bottom: 20px;
   }
 }
 
+//Profile Manage
+.profile_manage_wrapper {
+  padding-bottom: 100px;
+  .profile_top_area {
+    padding-top: 60px;
+    padding-bottom: 24px;
+    @include background-image();
+    .notification_title {
+      color: white;
+    }
+  }
+  .user_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 64px) repeat(1, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px 16px;
+    margin-top: 24px;
+    .img_area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 64px;
+      img {
+        max-height: 100%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+    }
+    h4 {
+      color: #fff;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+    }
+    h5 {
+      color: #eff1f8;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      margin-top: 5px;
+    }
+  }
+  .number_top_area {
+    padding: 12px 0;
+    border-bottom: 7px solid #efefefed;
+    h4 {
+      color: #1872f6;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+    }
+  }
+  .others_content_area {
+    margin-top: 23px;
+  }
+  .manage_list {
+    button,
+    a {
+      display: grid;
+      grid-template-columns: minmax(0, 24px) repeat(1, minmax(0, 1fr)) minmax(
+          0,
+          18px
+        );
+      align-items: center;
+      gap: 20px 16px;
+      padding: 16px 0;
+      width: 100%;
+      border-bottom: 1px solid #e3e5ed !important;
+      h5 {
+        color: #1c293e;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        a {
+          display: block;
+          padding: 0;
+          color: #16181e;
+          border-bottom: none !important;
+        }
+      }
+      h6 {
+        color: #767b92;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        margin-top: 5px;
+      }
+      .number_area {
+        border-radius: 57px;
+        background: rgba(#1872f6, 0.1);
+        padding: 2px 5px;
+        span {
+          color: #1872f6;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 16px;
+        }
+      }
+    }
+  }
+}
 
+// Recent Post Modal
+.recent_post_modal {
+  .bing_back_area {
+    margin-top: 20px;
+  }
+  .post_search_form {
+    margin-top: 30px;
+  }
+}
 
+//Recent Photos Modal
+.recent_photos_modal {
+  .bing_back_area {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  .top_img {
+    img {
+      border-radius: 16px;
+      -webkit-border-radius: 16px;
+      -moz-border-radius: 16px;
+      -ms-border-radius: 16px;
+      -o-border-radius: 16px;
+      width: 100%;
+      max-height: 190px;
+    }
+  }
+  .gallery_grid {
+    column-count: 2;
+    column-gap: 16px;
+  }
+  .gallery_img {
+    display: block;
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+}
+
+// Photo Details Modal
+.photo_details_modal {
+  margin-top: 30px;
+  .bing_back_area {
+    margin-top: 20px;
+  }
+  .img_item {
+    margin-top: 40px;
+    img {
+      width: 100%;
+      height: 184px;
+      border-radius: 16px;
+      -webkit-border-radius: 16px;
+      -moz-border-radius: 16px;
+      -ms-border-radius: 16px;
+      -o-border-radius: 16px;
+    }
+  }
+  .user_img_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 33px) repeat(1, minmax(0, 1fr));
+    align-items: start;
+    gap: 10px;
+    margin-top: 16px;
+    img {
+      width: 100%;
+      height: 33px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+    h4 {
+      color: #000;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 120%;
+    }
+    h5 {
+      color: #888;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      margin-top: 2px;
+    }
+  }
+  .details_title {
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    margin-top: 24px;
+  }
+  .details_item {
+    margin-top: 16px;
+    .notification_title {
+      color: #000;
+      margin-bottom: 16px;
+    }
+    p {
+      color: #75869c;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px;
+      a,
+      button {
+        color: #000;
+        font-weight: 500;
+      }
+    }
+  }
+  .map_area {
+    iframe {
+      width: 100%;
+      height: 175px;
+    }
+  }
+  .location_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 20px) repeat(1, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+    margin-top: 15px;
+    h6 {
+      color: #1c293e;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+    }
+  }
+}
+
+//My Place Modal
+.my_place_modal {
+  .bing_back_area {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+}
+
+//Setting Profile Modal
+.profile_setting_modal {
+  .profile_manage_wrapper {
+    padding-bottom: 20px;
+    .profile_top_area {
+      background-color: #1872f6;
+    }
+
+    .user_grid {
+      .img_area {
+        position: relative;
+        background-color: #d9d9d9;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border: 4px solid #fff;
+      }
+    }
+
+    .others_content_area {
+      .notification_title {
+        color: #5897f4;
+        margin-bottom: 15px;
+      }
+    }
+    .manage_list {
+      button,
+      a {
+        h5 {
+          color: #16181e;
+        }
+      }
+    }
+  }
+  .edit_icon {
+    position: absolute;
+    right: -11px;
+    bottom: 0;
+  }
+}
+
+//Profile Edit Modal
+.profile_edit_modal {
+  .bing_back_area{
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  .mobile_form_area {
+    .login_btn {
+      margin-top: 108px;
+    }
+    .input_row {
+      label {
+        color: #868686;
+      }
+      .input_field {
+        height: 30px;
+        padding-left: 0;
+        padding-right: 0;
+        // color: #16181e;
+        // font-weight: 600;
+      }
+      .niceSelect {
+        height: 30px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
