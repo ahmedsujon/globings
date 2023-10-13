@@ -40,7 +40,6 @@
     <script src="{{ asset('assets/app/plugins/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.rcounter.js') }}"></script>
-    <script src="{{ asset('assets/app/plugins/js/jquery-modal-video.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/intlTelInput.min.js') }}"></script>
@@ -50,6 +49,7 @@
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
 
+    @stack('scripts')
 </body>
 
 </html>

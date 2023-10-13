@@ -1,6 +1,16 @@
 $(document).ready(function () {
+  //Hide Scroll bar
+  function hideScrollbar() {
+    $("html,body").css("overflow", "hidden");
+  }
+
+  //Show Scroll bar
+  function showScrollbar() {
+    $("html,body").css("overflow", "auto");
+  }
+
   //Nice Select
-  // $(".niceSelect").niceSelect();
+  $(".niceSelect").niceSelect();
 
   //Gallery
   // $(".gallery_popup").magnificPopup({
@@ -11,12 +21,12 @@ $(document).ready(function () {
   // });
 
   //Video Popup
-  $(".modal_video_btn").modalVideo({
-    youtube: {
-      controls: 1,
-      nocookie: true,
-    },
-  });
+//   $(".modal_video_btn").modalVideo({
+//     youtube: {
+//       controls: 1,
+//       nocookie: true,
+//     },
+//   });
   //Counter
   $(".count-num").rCounter({
     duration: 30,
@@ -65,16 +75,22 @@ $(document).ready(function () {
     // options
   });
 
-  //Forget Password submit
-  $("#resetPasswordForm").submit(function (e) {
-    e.preventDefault();
-    toggleClassElement("#forgetSidebarArea", "sing_modal_active");
-    toggleClassElement("#verifySidebarArea", "sing_modal_active");
-  });
-
   $("#verifyBackBtn").click(function (e) {
     e.preventDefault();
     toggleClassElement("#verifySidebarArea", "sing_modal_active");
+  });
+
+  //Post Profile User Modal
+  $(".postUserBtn").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#profileModalArea", "sing_modal_active");
+    $("#mobileMenuWrapper").hide("slow");
+  });
+
+  $("#profileHideModal").click(function (e) {
+    e.preventDefault();
+    toggleClassElement("#profileModalArea", "sing_modal_active");
+    $("#mobileMenuWrapper").show("slow");
   });
 
   //Post Create Modal
@@ -82,12 +98,18 @@ $(document).ready(function () {
     e.preventDefault();
     toggleClassElement("#postCreateModalArea", "sing_modal_active");
   });
-  // $("#closeModalBtn").click(function (e) {
-  //   e.preventDefault();
-  //   console.log('Test');
 
-  //   toggleClassElement("#postCreateModalArea", "sing_modal_active");
-  // });
+  //Post Create Success
+  $("#postCreateFormSubmit").submit(function (e) {
+    e.preventDefault();
+    $("#successModalArea").show("slow");
+    $("#successOverlay").show("slow");
+  });
+  $("#successOverlay").click(function (e) {
+    e.preventDefault();
+    $("#successModalArea").hide("slow");
+    $("#successOverlay").hide("slow");
+  });
 
   //Mobile Menu
   $("#homeMenuBtn").click(() => {
@@ -127,6 +149,33 @@ $(document).ready(function () {
     // callback: function(currentRating){
     //     alert('rated ', currentRating);
     // }
+  });
+
+  //Comment Modal
+  $(".postCommentBtn,#commentModalClose").click(function (e) {
+    e.preventDefault();
+
+    $("#commentModalArea").toggleClass("comment_modal_active");
+    if ($("#commentModalArea").hasClass("comment_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Total React Modal
+  $(".totalReactBtn,#closeReactModalBtn").click(function (e) {
+    e.preventDefault();
+    console.log("Test");
+
+    toggleClassElement("#reactModalArea", "sing_modal_active");
+    if ($("#reactModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+      $("#reactModalArea").css("overflow", "hidden");
+    } else {
+      showScrollbar();
+      $("#reactModalArea").css("overflow", "auto");
+    }
   });
 });
 
@@ -278,6 +327,19 @@ const swiperPost2 = new Swiper("#homePostArea .post_slider2", {
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
+  },
+});
+
+//Company Slider
+const companySlider = new Swiper("#companySliderArea .swiper", {
+  speed: 1150,
+  spaceBetween: 5,
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: "#companySliderArea .swiper-pagination",
+    type: "fraction",
   },
 });
 

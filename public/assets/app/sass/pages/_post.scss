@@ -1,0 +1,242 @@
+// Comment Modal
+.comment_modal {
+  padding: 23px 0;
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 10001;
+  opacity: 0;
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+  background-color: white;
+  @include hover-transition();
+  &.comment_modal_active {
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    user-select: all;
+    pointer-events: all;
+  }
+  .like_area {
+    button {
+      gap: 7px;
+      user-select: none;
+      span {
+        color: #1c293e;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+      }
+    }
+  }
+  .close_icon {
+    img {
+      max-width: 30px;
+    }
+  }
+  .comment_filter_area {
+    width: 100%;
+    display: block;
+    min-height: 22px;
+    margin-top: 15px;
+  }
+  .niceSelect {
+    display: block;
+    width: 200px;
+    padding: 0;
+    border: none;
+    height: auto;
+    line-height: initial;
+
+    .current {
+      color: #000;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 22px;
+    }
+    .list {
+      .option {
+        font-size: 16px;
+        color: #000;
+      }
+    }
+    &::after {
+      width: 13px;
+      height: 13px;
+      margin-top: -8px;
+      border-color: #000;
+    }
+  }
+  .comment_wraper {
+    margin-top: 20px;
+    max-height: calc(100vh - 181px);
+    padding-bottom: 20px;
+    @include customScrollbarInner();
+  }
+  .comment_item {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 44px) repeat(1, minmax(0, 1fr));
+    align-items: start;
+    gap: 8px;
+    margin-top: 16px;
+    .comment_user {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 44px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+    .comment {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 15px;
+      background: #f8f9fd;
+      h4 {
+        color: #000;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+      }
+      p {
+        color: #1c293e;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .nested_comment {
+    &::after {
+      content: "";
+      position: absolute;
+      top: 34px;
+      left: 22px;
+      width: 31px;
+      height: 100%;
+      background-image: url("../../../assets/icons//comment_border.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .nested_comment_area {
+    margin-left: 52px;
+
+    .comment_item {
+      grid-template-columns: minmax(0, 24px) repeat(1, minmax(0, 1fr));
+      &:not(:last-child) {
+        &::before {
+          content: "";
+          position: absolute;
+          top: 18px;
+          left: 12px;
+          width: 1px;
+          height: 100%;
+          background-color: #e3e5ed;
+        }
+      }
+      .comment_user {
+        width: 100%;
+        height: 24px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+    }
+  }
+  .info {
+    gap: 10px 16px;
+    margin-top: 6px;
+    .time,
+    button,
+    a {
+      color: #75869c;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+    }
+    .like_active {
+      color: #1872f6;
+    }
+  }
+}
+
+//Total Like Modal
+.react_modal_area {
+  &.sing_modal_area {
+    z-index: 10005;
+  }
+  .back_area {
+    padding-top: 56px;
+    padding-bottom: 24px;
+    background: #1872f6;
+    img {
+      max-width: 24px;
+    }
+    .notification_title {
+      color: white;
+    }
+  }
+
+  .total_react_area {
+    padding-top: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #d2d5df;
+    .heart_icon {
+      max-width: 24px;
+    }
+  }
+
+  .like_user_area {
+    margin-top: 24px;
+    max-height: calc(100vh - 200px);
+    @include customScrollbarInner();
+    .user_grid {
+      display: grid;
+      grid-template-columns: minmax(0, 44px) repeat(1, minmax(0, 1fr));
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 23px;
+      h4 {
+        color: #2d2f34;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 130%;
+      }
+    }
+    .user_img_area {
+      position: relative;
+    }
+    .user_img {
+      width: 100%;
+      height: 44px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+    .heart_icon {
+      position: absolute;
+      right: -6px;
+      bottom: -2px;
+      max-width: 20px;
+    }
+  }
+}
