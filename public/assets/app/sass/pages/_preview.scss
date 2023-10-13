@@ -1,5 +1,6 @@
 /* preview wrapper Section */
 .preview_first_wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,6 +8,11 @@
   gap: 18px;
   width: 100%;
   height: calc(100vh - 20px);
+  .spinner-border {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+  }
 }
 
 /* Preview Second Section */
@@ -37,9 +43,12 @@
   }
   .login_btn_area {
     margin-top: 56px;
+    padding-bottom: 20px;
     .sub_login {
       color: #fff;
       margin-top: 20px;
+      width: 100%;
+      text-align: center;
     }
   }
 }
