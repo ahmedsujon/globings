@@ -13,12 +13,19 @@ $(document).ready(function () {
   $(".niceSelect").niceSelect();
 
   //Gallery
-  // $(".gallery_popup").magnificPopup({
+  // $(".recent_photos_img").magnificPopup({
   //   type: "image",
   //   gallery: {
   //     enabled: true,
   //   },
   // });
+
+  //Preview Slider
+  $("#previewSecondPage").hide();
+  setTimeout(() => {
+    $("#previewFirstPage").slideUp();
+    $("#previewSecondPage").show();
+  }, 3000);
 
   //Video Popup
 //   $(".modal_video_btn").modalVideo({
@@ -177,6 +184,194 @@ $(document).ready(function () {
       $("#reactModalArea").css("overflow", "auto");
     }
   });
+
+  //Dealer Profile Modal
+  $("#dealerProfileBtn,#dealerCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#dealerProfileModalArea").toggleClass("sing_modal_active");
+
+    if ($("#dealerProfileModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Scan Modal
+  $("#scanStartBtn,#scancloseModal,#scanOverlay").click(function (e) {
+    e.preventDefault();
+
+    $("#scanModalArea").toggleClass("comment_modal_active");
+    $("#scanOverlay").show();
+    if ($("#scanModalArea").hasClass("comment_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+      $("#scanOverlay").hide();
+    }
+  });
+
+  //Scan Result Modal
+  $("#scanResultModal,#resultCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#scanResultModalArea").toggleClass("sing_modal_active");
+
+    if ($("#scanResultModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Congratulation Result Modal
+  $("#congratulationResultModal,#congratulationCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#congratulationModalArea").toggleClass("sing_modal_active");
+
+    if ($("#congratulationModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Coin Result Modal
+  $("#coinModalBtn,#coainCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#coinModalArea").toggleClass("sing_modal_active");
+
+    if ($("#coinModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Bidges Modal
+  $("#localModalBtn,#badgesCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#loalModalArea").toggleClass("sing_modal_active");
+
+    if ($("#loalModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Invite Modal
+  $("#inviteModalBtn,#inviteCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#inviteModalArea").toggleClass("sing_modal_active");
+
+    if ($("#inviteModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Terms Modal
+  $("#termsModalBtn,#termsCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#termsModalArea").toggleClass("sing_modal_active");
+
+    if ($("#termsModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Recent Post Modal
+  $("#recentPostModalBtn,#recentPostCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#recentPostModalArea").toggleClass("sing_modal_active");
+
+    if ($("#recentPostModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Recent Photos Modal
+  $("#recentPhotosModalBtn,#recentPhotosCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#recentPhotosModalArea").toggleClass("sing_modal_active");
+
+    if ($("#recentPhotosModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Recent Photos Details Modal
+  $(".recentPhotoBtn,#photoDetailsCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#photsDetailsModalArea").toggleClass("sing_modal_active");
+
+    if ($("#photsDetailsModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Place Modal
+  $("#placeModalBtn,#placeCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#placeModalArea").toggleClass("sing_modal_active");
+
+    if ($("#placeModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Setting Profile Modal
+  $("#settingProfileBtn,#settingProfileCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#settingProfileModalArea").toggleClass("sing_modal_active");
+
+    if ($("#settingProfileModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Setting Profile Edit Modal
+  $("#profileEditModalBtn,#profileEditCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#profileEditModalArea").toggleClass("sing_modal_active");
+
+    if ($("#profileEditModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Badge Circle
+  $(".circle_area .small").percircle({
+    percent: 27,
+  });
 });
 
 //Add Class
@@ -281,6 +476,22 @@ function swiperSlider(
 }
 
 //Category slider
+const swiperPreview = new Swiper(`#previewSlider .swiper`, {
+  slidesPerView: 1,
+  slidesPerGroup: 1,
+  spaceBetween: 10,
+  speed: 1150,
+  keyboard: {
+    enabled: true,
+  },
+
+  pagination: {
+    el: "#previewSlider .swiper-pagination",
+    clickable: true,
+  },
+});
+
+//Category slider
 const swiperCategory = new Swiper("#headerCategorySlider .swiper", {
   slidesPerView: "auto",
   speed: 1150,
@@ -341,6 +552,15 @@ const companySlider = new Swiper("#companySliderArea .swiper", {
     el: "#companySliderArea .swiper-pagination",
     type: "fraction",
   },
+});
+
+//Upload Media slider
+const swipeMapSlider = new Swiper("#mapSliderArea .swiper", {
+  slidesPerView: "auto",
+  speed: 1150,
+  spaceBetween: 11,
+  freeMode: true,
+  centeredSlides: true,
 });
 
 //Country Input
