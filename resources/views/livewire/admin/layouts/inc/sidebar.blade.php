@@ -16,6 +16,13 @@
                         </a>
                     </li>
 
+                    <li class="{{ request()->is('admin/categories') ? 'mm-active' : '' }}">
+                        <a href="{{ route('admin.categories') }}" class="waves-effect">
+                            <i class="bx bx-store"></i>
+                            <span key="t-dashboard">Category</span>
+                        </a>
+                    </li>
+
                     <li class="#">
                         <a href="#" class="waves-effect">
                             <i class="bx bx-store"></i>
