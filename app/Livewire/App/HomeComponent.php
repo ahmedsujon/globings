@@ -87,7 +87,7 @@ class HomeComponent extends Component
         $posts = Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate($this->pagination_value);
 
         if($this->selected_post_id){
-            $comments = PostComment::where('post_id', $this->selected_post_id)->paginate(10);
+            $comments = PostComment::where('post_id', $this->selected_post_id)->orderBy('created_at', 'DESC')->paginate(10);
         } else {
             $comments = false;
         }

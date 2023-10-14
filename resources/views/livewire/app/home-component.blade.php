@@ -128,9 +128,8 @@
             </div>
             <div class="comment_filter_area" wire:ignore>
                 <select class="niceSelect">
-                    <option data-display="Top comments">Top comments</option>
-                    <option value="1">Most Recent</option>
-                    <option value="2">Oldest Comment</option>
+                    <option value="recent" selected>Recent Comments</option>
+                    <option value="oldest">Oldest Comments</option>
                 </select>
             </div>
             <div class="comment_wraper">
@@ -148,7 +147,7 @@
                                     </div>
 
                                     <div class="info d-flex align-items-center flex-wrap">
-                                        <div class="time">{{ substr($comment->created_at->diffForHumans(), 0, 3) }}</div>
+                                        <div class="time">{{ $comment->getShortTimeAgo($comment->created_at) }}</div>
                                         <button type="button" class="likeBtn like_active">
                                             Like
                                         </button>
@@ -174,7 +173,7 @@
                                                 </div>
 
                                                 <div class="info d-flex align-items-center flex-wrap">
-                                                    <div class="time">{{ substr($reply->created_at->diffForHumans(), 0, 3) }}</div>
+                                                    <div class="time">{{ $reply->getShortTimeAgo($reply->created_at) }}</div>
                                                     <button type="button" class="likeBtn">Like</button>
                                                     <button type="button" wire:click.prevent='replyComment({{ $comment->id }})' class="replayBtn">Reply</button>
                                                 </div>

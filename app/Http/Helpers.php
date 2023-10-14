@@ -91,6 +91,7 @@ function isAdminPermitted($permission)
     }
 }
 
+
 function loadingStateSm($key, $title)
 {
     $loadingSpinner = '
@@ -147,3 +148,4 @@ function showErrorMessage($message, $file, $line){
         return dd($error_array);
     }
 }
+
