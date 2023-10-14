@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory(5)->create();
-        
+        // Category::factory(5)->create();
+
         $this->call(AdminPermissionTableSeeder::class);
         $this->call(AdminTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(PackageTableSeeder::class);
-        
-        // $this->call(CategoryTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(PostTableSeeder::class);
     }
 }

@@ -6,11 +6,13 @@ use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
 class CategoryComponent extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     public $sortingValue = 10, $searchTerm;
 
     public $edit_id, $delete_id;
@@ -20,7 +22,7 @@ class CategoryComponent extends Component
     {
         $this->slug = Str::slug($this->name);
     }
-    
+
     public function storeData()
     {
         $this->validate([
@@ -34,10 +36,10 @@ class CategoryComponent extends Component
         $data->slug = $this->slug;
         if ($this->avatar) {
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-            $this->avatar->storeAs('category_icons', $fileName);
-            $data->avatar = 'uploads/category/' . $fileName;
+            $this->avatar->storeAs('category', $fileName);
+            $data->icon = 'uploads/category/' . $fileName;
         } else {
-            $data->avatar = 'assets/images/avatar.png';
+            $data->icon = 'assets/images/avatar.png';
         }
         $data->save();
 
@@ -67,10 +69,10 @@ class CategoryComponent extends Component
         $data->slug = $this->slug;
         if ($this->avatar) {
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-            $this->avatar->storeAs('category_icons', $fileName);
-            $data->avatar = 'uploads/category/' . $fileName;
+            $this->avatar->storeAs('category', $fileName);
+            $data->icon = 'uploads/category/' . $fileName;
         } else {
-            $data->avatar = 'assets/images/avatar.png';
+            $data->icon = 'assets/images/avatar.png';
         }
         $data->save();
 
