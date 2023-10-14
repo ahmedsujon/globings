@@ -2,13 +2,14 @@
     <main>
         <!-- Profile Manage Section  -->
         <section class="profile_manage_wrapper">
-            <div class="profile_top_area" style="background-image: url({{ asset('assets/app/images/others/profilel_bg.png') }})">
+            <div class="profile_top_area"
+                style="background-image: url({{ asset('assets/app/images/others/profilel_bg.png') }})">
                 <div class="container">
                     <div class="d-flex-between">
                         <h4 class="notification_title">Manage Profile</h4>
                         <button type="button" id="settingProfileBtn">
                             <img src="{{ asset('assets/app/icons/settings-white.svg') }}" alt="setting icon" />
-                            </button>
+                        </button>
                     </div>
                     <div class="user_grid">
                         <div class="img_area">
@@ -34,11 +35,11 @@
                     <h4 class="notification_title">Other</h4>
                     <ul class="manage_list">
                         <li>
-                            <button type="button" id="recentPostModalBtn">
+                            <a href="{{ route('app.recent-posts') }}">
                                 <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
                                 <h5>Recent posts</h5>
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </button>
+                            </a>
                         </li>
                         <li>
                             <button type="button" id="recentPhotosModalBtn">
@@ -62,7 +63,8 @@
                                     <h6>
                                         Get you
                                         <span class="number_area">
-                                            <img src="{{ asset('assets/app/icons/store_green_icon.svg') }}" alt="store icon" />
+                                            <img src="{{ asset('assets/app/icons/store_green_icon.svg') }}"
+                                                alt="store icon" />
                                             <span>150 Bings</span>
                                         </span>
                                         invite bonus!
