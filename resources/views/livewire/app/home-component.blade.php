@@ -98,7 +98,7 @@
                                             stroke-linejoin="round" />
                                     </svg>
                                 </button>
-                                <button type="button" class="coment_area postCommentBtn d-flex align-items-center flex-wrap">
+                                <button type="button" wire:click.prevent='getPostInfo({{ $post->id }})' class="coment_area postCommentBtn d-flex align-items-center flex-wrap">
                                     <img src="{{ asset('assets/app/icons/comment_icon.svg') }}" alt="comment icon" />
                                     <h5>Comment</h5>
                                 </button>
@@ -111,6 +111,133 @@
             @endif
         </div>
     </section>
+
+    <!-- Comment Modal  -->
+    <div class="comment_modal" wire:ignore.self id="commentModalArea">
+        <div class="container" style="user-select: none;">
+            <div class="d-flex-between">
+                <div class="like_area">
+                    <button type="button" class="totalReactBtn d-flex align-items-center flex-wrap">
+                        <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                        <span>{{ $total_like }}</span>
+                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                    </button>
+                </div>
+                <button type="button" class="close_icon" id="commentModalClose">
+                    <img src="{{ asset('assets/app/icons/modal_close_icon.svg') }}" alt="" />
+                </button>
+            </div>
+            <div class="comment_filter_area" wire:ignore>
+                <select class="niceSelect filter_comments">
+                    <option value="recent" selected>Recent Comments</option>
+                    <option value="oldest">Oldest Comments</option>
+                </select>
+            </div>
+            <div class="comment_wraper">
+                @if ($comments != false && $comments->count() > 0)
+                    @foreach ($comments as $comment)
+                        <div>
+                            <div class="comment_item {{ post_comment_replies_count($comment->id) > 0 ? 'nested_comment':'' }}">
+                                <div>
+                                    <img src="{{ asset( getCommentUser($comment->user_id)->avatar ) }}" alt="user " class="comment_user" />
+                                </div>
+                                <div>
+                                    <div class="comment">
+                                        <h4>{{ getCommentUser($comment->user_id)->first_name }} {{ getCommentUser($comment->user_id)->last_name }}</h4>
+                                        <p>{{ $comment->comment }}</p>
+                                    </div>
+
+                                    <div class="info d-flex align-items-center flex-wrap">
+                                        <div class="time">{{ $comment->getShortTimeAgo($comment->created_at) }}</div>
+                                        <button type="button" class="likeBtn {{ isCommentLiked($comment->id) ? 'like_active' : '' }}" wire:click.prevent='likeComment({{ $comment->id }})'>
+                                            Like
+                                        </button>
+                                        <button type="button" wire:click.prevent='replyComment({{ $comment->id }})' class="replayBtn">Reply</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (post_comment_replies_count($comment->id) > 0)
+                                <div class="nested_comment_area">
+                                    @foreach (post_comment_replies($comment->id) as $reply)
+                                        <div class="comment_item">
+                                            <div>
+                                                <img src="{{ asset('assets/app/images/post/comment_user2.png') }}" alt="user "
+                                                    class="comment_user" />
+                                            </div>
+                                            <div>
+                                                <div class="comment">
+                                                    <h4>{{ getCommentUser($reply->user_id)->first_name }} {{ getCommentUser($reply->user_id)->last_name }}</h4>
+                                                    <p>
+                                                        {{ $reply->comment }}
+                                                    </p>
+                                                </div>
+
+                                                <div class="info d-flex align-items-center flex-wrap">
+                                                    <div class="time">{{ $reply->getShortTimeAgo($reply->created_at) }}</div>
+                                                    <button type="button" class="likeBtn {{ isCommentReplyLiked($reply->id) ? 'like_active' : '' }}" wire:click.prevent='likeCommentReply({{ $reply->id }})'>Like</button>
+                                                    <button type="button" wire:click.prevent='replyComment({{ $comment->id }})' class="replayBtn">Reply</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                        </div>
+                    @endforeach
+                @else
+                    <div>
+                        <div style="text-align: center; padding: 50px 0px;">
+                            <small>No comment found!</small>
+                        </div>
+                    </div>
+                @endif
+
+            </div>
+        </div>
+        <form wire:submit.prevent='addComment' class="comment_form">
+            <div class="container">
+                <input type="text" placeholder="Write a comment..." wire:model.blur='comment' class="input_filed comment_field" />
+            </div>
+        </form>
+    </div>
+
+    <!-- Total React Modal Area  -->
+    <div class="sing_modal_area react_modal_area" id="reactModalArea">
+        <div class="back_area">
+            <div class="container">
+                <button type="button" id="closeReactModalBtn" class="d-flex align-items-center flex-wrap g-xl">
+                    <img src="{{ asset('assets/app/icons/back_white_icon.png') }}" alt="back cion" />
+                    <h4 class="notification_title">People who reacted</h4>
+                </button>
+            </div>
+        </div>
+
+        <div class="total_react_area d-flex align-items-center flex-wrap g-sm">
+            <div class="container">
+                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                <span class="react_title">{{ $total_like }}</span>
+            </div>
+        </div>
+        <div class="like_user_area">
+            <div class="container">
+                @if ($all_post_reacts)
+                    @foreach ($all_post_reacts as $react)
+                        <div class="user_grid">
+                            <div class="user_img_area">
+                                <img src="{{ asset($react->avatar) }}" alt="" class="user_img" />
+                                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                            </div>
+                            <h4>{{ $react->first_name }} {{ $react->last_name }}</h4>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 @push('scripts')
@@ -119,6 +246,16 @@
             $('.add_like_btn').on('click', function(){
                 var post_id = $(this).data('post_id');
                 @this.like(post_id);
+            });
+
+            window.addEventListener('focusOnComment', event => {
+                $('.comment_field').focus();
+            });
+
+            $('.filter_comments').on('change', function(){
+                var value = $(this).val()
+
+                @this.set('comment_filter_by', value);
             });
         });
     </script>

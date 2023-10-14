@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostComment extends Model
+class CommentReply extends Model
 {
     use HasFactory;
 
-    protected $table = 'post_comments';
+    protected $table = 'comment_replies';
 
     public function getShortTimeAgo($carbonObject) {
         return str_ireplace(

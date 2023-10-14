@@ -3,6 +3,9 @@
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\AdminPermission;
+use App\Models\CommentLike;
+use App\Models\CommentReply;
+use App\Models\CommentReplyLike;
 use App\Models\PostLike;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +29,11 @@ function user()
     return Auth::guard('web')->user();
 }
 
+function getCommentUser($id)
+{
+    return User::select('first_name', 'last_name', 'avatar')->find($id);
+}
+
 //Home
 function getUserProfileHome($id)
 {
@@ -40,6 +48,40 @@ function isLiked($post_id)
         return false;
     }
 }
+
+function total_post_like($post_id)
+{
+    return PostLike::where('post_id', $post_id)->count();
+}
+
+function post_comment_replies_count($comment_id)
+{
+    return CommentReply::where('comment_id', $comment_id)->count();
+}
+
+function post_comment_replies($comment_id)
+{
+    return CommentReply::where('comment_id', $comment_id)->get();
+}
+
+function isCommentLiked($comment_id)
+{
+    if(user()){
+        return CommentLike::select('id')->where('user_id', user()->id)->where('comment_id', $comment_id)->first();
+    } else {
+        return false;
+    }
+}
+function isCommentReplyLiked($comment_reply_id)
+{
+    if(user()){
+        return CommentReplyLike::select('id')->where('user_id', user()->id)->where('comment_reply_id', $comment_reply_id)->first();
+    } else {
+        return false;
+    }
+}
+
+
 
 //setting
 // function setting()
@@ -67,6 +109,7 @@ function isAdminPermitted($permission)
         return false;
     }
 }
+
 
 function loadingStateSm($key, $title)
 {
@@ -124,3 +167,4 @@ function showErrorMessage($message, $file, $line){
         return dd($error_array);
     }
 }
+
