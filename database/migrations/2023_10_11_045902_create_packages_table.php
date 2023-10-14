@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->longText('description')->nullable();
-            $table->double('price', 20, 2)->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
