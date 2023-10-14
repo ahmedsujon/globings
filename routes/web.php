@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\App\Auth\LoginComponent;
+use App\Livewire\App\Bings\BingComponent;
 use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', IndexComponent::class)->name('app.index');
 Route::get('/home', HomeComponent::class)->name('app.home');
+
+// Bings routes
+Route::get('/bings', BingComponent::class)->name('app.bings');
 
 //Call Route Files
 require __DIR__ . '/user.php';

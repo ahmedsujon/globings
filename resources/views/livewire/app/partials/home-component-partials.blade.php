@@ -672,7 +672,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('app.bings') }}">
                                 <img src="{{ asset('assets/app/icons/footer_icon_icon4.svg') }}" alt="menu icon" class="inactive_icon" />
                             </a>
                         </li>
