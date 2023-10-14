@@ -9,6 +9,7 @@ use App\Models\CommentReplyLike;
 use App\Models\Post;
 use App\Models\PostComment;
 use App\Models\PostLike;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -40,11 +41,14 @@ class HomeComponent extends Component
         }
     }
 
-    public $total_like = 0, $selected_post_id;
+    public $total_like = 0, $selected_post_id, $all_post_reacts;
     public function getPostInfo($post_id)
     {
         $this->total_like = total_post_like($post_id);
         $this->selected_post_id = $post_id;
+
+        $reacted_users = PostLike::where('post_id', $post_id)->pluck('user_id')->toArray();
+        $this->all_post_reacts = User::whereIn('id', $reacted_users)->select('id', 'first_name', 'last_name', 'avatar')->get();
     }
 
     public $comment_id;

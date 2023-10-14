@@ -112,6 +112,7 @@
         </div>
     </section>
 
+    <!-- Comment Modal  -->
     <div class="comment_modal" wire:ignore.self id="commentModalArea">
         <div class="container" style="user-select: none;">
             <div class="d-flex-between">
@@ -201,6 +202,42 @@
             </div>
         </form>
     </div>
+
+    <!-- Total React Modal Area  -->
+    <div class="sing_modal_area react_modal_area" id="reactModalArea">
+        <div class="back_area">
+            <div class="container">
+                <button type="button" id="closeReactModalBtn" class="d-flex align-items-center flex-wrap g-xl">
+                    <img src="{{ asset('assets/app/icons/back_white_icon.png') }}" alt="back cion" />
+                    <h4 class="notification_title">People who reacted</h4>
+                </button>
+            </div>
+        </div>
+
+        <div class="total_react_area d-flex align-items-center flex-wrap g-sm">
+            <div class="container">
+                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                <span class="react_title">{{ $total_like }}</span>
+            </div>
+        </div>
+        <div class="like_user_area">
+            <div class="container">
+                @if ($all_post_reacts)
+                    @foreach ($all_post_reacts as $react)
+                        <div class="user_grid">
+                            <div class="user_img_area">
+                                <img src="{{ asset($react->avatar) }}" alt="" class="user_img" />
+                                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                            </div>
+                            <h4>{{ $react->first_name }} {{ $react->last_name }}</h4>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 @push('scripts')
