@@ -16,7 +16,7 @@ class HomeComponent extends Component
 {
     use WithPagination;
 
-    public $categories, $pagination_value = 7, $comment;
+    public $categories, $pagination_value = 7, $comment, $comment_filter_by;
     public function mount()
     {
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
@@ -125,7 +125,23 @@ class HomeComponent extends Component
         $posts = Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate($this->pagination_value);
 
         if($this->selected_post_id){
-            $comments = PostComment::where('post_id', $this->selected_post_id)->orderBy('created_at', 'DESC')->paginate(10);
+            $comments = PostComment::where('post_id', $this->selected_post_id);
+
+            if($this->comment_filter_by){
+                if($this->comment_filter_by == 'recent'){
+                    $comments = $comments->orderBy('created_at', 'DESC');
+                }
+
+                if($this->comment_filter_by == 'oldest'){
+                    $comments = $comments->orderBy('created_at', 'ASC');
+                }
+            }
+
+            else {
+                $comments = $comments->orderBy('created_at', 'DESC');
+            }
+
+            $comments = $comments->paginate(10);
         } else {
             $comments = false;
         }

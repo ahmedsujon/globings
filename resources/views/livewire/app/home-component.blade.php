@@ -127,7 +127,7 @@
                 </button>
             </div>
             <div class="comment_filter_area" wire:ignore>
-                <select class="niceSelect">
+                <select class="niceSelect filter_comments">
                     <option value="recent" selected>Recent Comments</option>
                     <option value="oldest">Oldest Comments</option>
                 </select>
@@ -213,6 +213,12 @@
 
             window.addEventListener('focusOnComment', event => {
                 $('.comment_field').focus();
+            });
+
+            $('.filter_comments').on('change', function(){
+                var value = $(this).val()
+
+                @this.set('comment_filter_by', value);
             });
         });
     </script>
