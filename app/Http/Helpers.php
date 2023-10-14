@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\AdminPermission;
+use App\Models\PostLike;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -29,6 +30,11 @@ function user()
 function getUserProfileHome($id)
 {
     return User::select('avatar')->find($id);
+}
+
+function isLiked($post_id)
+{
+    return PostLike::select('id')->where('user_id', user()->id)->where('post_id', $post_id)->first();
 }
 
 //setting
