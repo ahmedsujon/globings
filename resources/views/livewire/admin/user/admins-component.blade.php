@@ -257,8 +257,8 @@
                                                 <label for="example-number-input"
                                                     class="col-form-label">Password</label>
 
-                                                <input class="form-control" type="text" wire:model="password"
-                                                    placeholder="Enter new password" wire:model='password'>
+                                                <input class="form-control" type="password" wire:model="password"
+                                                    placeholder="Enter new password">
                                                 @error('password')
                                                     <span class="text-danger"
                                                         style="font-size: 11.5px;">{{ $message }}</span>

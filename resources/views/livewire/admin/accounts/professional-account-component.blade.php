@@ -5,11 +5,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Category</h4>
+                        <h4 class="mb-sm-0 font-size-18">Professional Account</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Category</li>
+                                <li class="breadcrumb-item active">Professional Account</li>
                             </ol>
                         </div>
                     </div>
@@ -20,10 +20,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-white" style="border-bottom: 1px solid #e2e2e7;">
-                            <h4 class="card-title" style="float: left;">All Category</h4>
+                            <h4 class="card-title" style="float: left;">All Professional Account</h4>
                             <button class="btn btn-sm btn-dark waves-effect waves-light" data-bs-toggle="modal"
-                                data-bs-target="#addDataModal" style="float: right;"><i class="bx bx-plus"></i> Add New
-                                Category</button>
+                                data-bs-target="#addDataModal" style="float: right;"><i class="bx bx-plus"></i> Add
+                                Professional Account</button>
                         </div>
                         <div class="card-body">
                             <div class="row mb-2">
@@ -57,52 +57,56 @@
                                     <thead>
                                         <tr>
                                             <th class="align-middle text-center">ID</th>
-                                            <th class="align-middle">Name</th>
-                                            <th class="align-middle text-center">Slug</th>
+                                            <th class="align-middle text-center">Name</th>
+                                            <th class="align-middle text-center">Email</th>
+                                            <th class="align-middle text-center">Phone</th>
                                             <th class="align-middle text-center">Status</th>
                                             <th class="align-middle text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($categories->count() > 0)
+                                        @if ($professional_accounts->count() > 0)
                                         @php
-                                        $sl = $categories->perPage() * $categories->currentPage() -
-                                        ($categories->perPage() - 1);
+                                        $sl = $professional_accounts->perPage() * $professional_accounts->currentPage() -
+                                        ($professional_accounts->perPage() - 1);
                                         @endphp
-                                        @foreach ($categories as $category)
+                                        @foreach ($professional_accounts as $account)
                                         <tr>
                                             <td class="text-center">{{ $sl++ }}</td>
-                                            <td>
-                                                <img src="{{ asset('assets/images/category_icons') }}/{{ $category->avatar }}" style="height: 30px;"
+                                            <td class="text-center">
+                                                <img src="{{ asset($account->avatar) }}" style="height: 30px;"
                                                     class="img-fluid" alt="">
-                                                {{ $category->name }}
+                                                {{ $account->first_name }} {{ $account->last_name }}
                                             </td>
-                                            <td class="text-center">{{ $category->slug }}</td>
+                                            <td class="text-center">{{ $account->email }}</td>
+                                            <td class="text-center">{{ $account->phone }}</td>
                                             <td class="text-center" style="width: 15%;">
-                                                @if ($category->status == 0)
+                                                @if ($account->status == 0)
                                                 <button class="btn btn-xs btn-danger"
-                                                    wire:click.prevent='changeStatus({{ $category->id }})'
+                                                    wire:click.prevent='changeStatus({{ $account->id }})'
                                                     style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $category->id . ')', 'In-Active')
+                                                    loadingStateStatus('changeStatus(' . $account->id . ')',
+                                                    'In-Active')
                                                     !!}</button>
                                                 @else
                                                 <button class="btn btn-xs btn-success"
-                                                    wire:click.prevent='changeStatus({{ $category->id }})'
+                                                    wire:click.prevent='changeStatus({{ $account->id }})'
                                                     style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $category->id . ')', 'Active') !!}</button>
+                                                    loadingStateStatus('changeStatus(' . $account->id . ')', 'Active')
+                                                    !!}</button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 <button
                                                     class="btn btn-sm btn-soft-primary waves-effect waves-light action-btn edit_btn"
-                                                    wire:click.prevent='editData({{ $category->id }})'
+                                                    wire:click.prevent='editData({{ $account->id }})'
                                                     wire:loading.attr='disabled'>
                                                     <i
                                                         class="mdi mdi-square-edit-outline font-size-13 align-middle"></i>
                                                 </button>
                                                 <button
                                                     class="btn btn-sm btn-soft-danger waves-effect waves-light action-btn delete_btn"
-                                                    wire:click.prevent='deleteConfirmation({{ $category->id }})'
+                                                    wire:click.prevent='deleteConfirmation({{ $account->id }})'
                                                     wire:loading.attr='disabled'>
                                                     <i class="bx bx-trash font-size-13 align-middle"></i>
                                                 </button>
@@ -111,7 +115,7 @@
                                         @endforeach
                                         @else
                                         <tr>
-                                            <td colspan="5" class="text-center pt-5 pb-5">No category found!</td>
+                                            <td colspan="5" class="text-center pt-5 pb-5">No account found!</td>
                                         </tr>
                                         @endif
                                     </tbody>
@@ -119,7 +123,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-white">
-                            {{ $categories->links('livewire.pagination-links') }}
+                            {{ $professional_accounts->links('livewire.pagination-links') }}
                         </div>
                     </div>
                 </div>
@@ -131,7 +135,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: white;">
-                            <h5 class="modal-title m-0" id="mySmallModalLabel">Add New Admin</h5>
+                            <h5 class="modal-title m-0" id="mySmallModalLabel">Add New Account</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -141,10 +145,10 @@
                                         <div class="row">
 
                                             <div class="col-md-6 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Name</label>
-                                                <input class="form-control" type="text" wire:model="name"
-                                                    placeholder="Enter name" wire:keyup='generateSlug'>
-                                                @error('name')
+                                                <label for="first_name" class="col-form-label">First Name</label>
+                                                <input class="form-control" type="text" wire:model="first_name"
+                                                    placeholder="Enter first name">
+                                                @error('first_name')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
                                                     }}</span>
                                                 <br>
@@ -152,17 +156,50 @@
                                             </div>
 
                                             <div class="col-md-6 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Slug</label>
-                                                <input class="form-control" type="text" wire:model="slug"
-                                                    placeholder="Enter slug" readonly>
-                                                @error('slug')
+                                                <label for="last_name" class="col-form-label">Last Name</label>
+                                                <input class="form-control" type="text" wire:model="last_name"
+                                                    placeholder="Enter last name">
+                                                @error('last_name')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                <br>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label for="email" class="col-form-label">Email</label>
+                                                <input class="form-control" type="email" wire:model="email"
+                                                    placeholder="Enter email">
+                                                @error('email')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                <br>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label for="phone" class="col-form-label">Phone</label>
+                                                <input class="form-control" type="number" wire:model="phone"
+                                                    placeholder="Enter phone">
+                                                @error('phone')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                <br>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label for="password" class="col-form-label">Password</label>
+                                                <input class="form-control" type="text" wire:model="password"
+                                                    placeholder="Enter password">
+                                                @error('password')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
                                                     }}</span>
                                                 <br>
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Category Icon</label>
+                                                <label for="example-number-input" class="col-form-label">Image</label>
                                                 <input type="file" class="form-control" wire:model='avatar' />
                                                 @error('avatar')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
@@ -181,10 +218,11 @@
                                                     style="height: 55px; width: 55px;" />
                                                 @endif
                                             </div>
+
                                             <div class="col-md-12 text-center mb-3 mt-4">
                                                 <button type="submit"
                                                     class="btn btn-primary waves-effect waves-light w-50">
-                                                    {!! loadingStateWithText('storeData', 'Add Category') !!}
+                                                    {!! loadingStateWithText('storeData', 'Create Account') !!}
                                                 </button>
                                             </div>
                                         </div>
@@ -202,7 +240,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: white;">
-                            <h5 class="modal-title m-0" id="mySmallModalLabel">Edit Category</h5>
+                            <h5 class="modal-title m-0" id="mySmallModalLabel">Edit Account</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                 wire:click.prevent='resetInputs'></button>
                         </div>
@@ -211,11 +249,12 @@
                                 <div class="col-md-11">
                                     <form wire:submit.prevent='updateData'>
                                         <div class="row">
+
                                             <div class="col-md-6 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Name</label>
-                                                <input class="form-control" type="text" wire:model="name"
-                                                    placeholder="Enter name" wire:keyup='generateSlug'>
-                                                @error('name')
+                                                <label for="first_name" class="col-form-label">First Name</label>
+                                                <input class="form-control" type="text" wire:model="first_name"
+                                                    placeholder="Enter first name">
+                                                @error('first_name')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
                                                     }}</span>
                                                 <br>
@@ -223,17 +262,50 @@
                                             </div>
 
                                             <div class="col-md-6 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Slug</label>
-                                                <input class="form-control" type="text" wire:model="slug"
-                                                    placeholder="Enter slug" readonly>
-                                                @error('slug')
+                                                <label for="last_name" class="col-form-label">Last Name</label>
+                                                <input class="form-control" type="text" wire:model="last_name"
+                                                    placeholder="Enter last name">
+                                                @error('last_name')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                <br>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label for="email" class="col-form-label">Email</label>
+                                                <input class="form-control" type="email" wire:model="email"
+                                                    placeholder="Enter email">
+                                                @error('email')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                <br>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-6 mb-2">
+                                                <label for="phone" class="col-form-label">Phone</label>
+                                                <input class="form-control" type="number" wire:model="phone"
+                                                    placeholder="Enter phone">
+                                                @error('phone')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                <br>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-md-12 mb-2">
+                                                <label for="password" class="col-form-label">Password</label>
+                                                <input class="form-control" type="text" wire:model="password"
+                                                    placeholder="Enter password">
+                                                @error('password')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
                                                     }}</span>
                                                 <br>
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Category Icon</label>
+                                                <label for="example-number-input" class="col-form-label">Image</label>
                                                 <input type="file" class="form-control" wire:model='avatar' />
                                                 @error('avatar')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
@@ -252,10 +324,11 @@
                                                     style="height: 55px; width: 55px;" />
                                                 @endif
                                             </div>
+
                                             <div class="col-md-12 text-center mb-3 mt-4">
                                                 <button type="submit"
                                                     class="btn btn-primary waves-effect waves-light w-50">
-                                                    {!! loadingStateWithText('updateData', 'Update Category') !!}
+                                                    {!! loadingStateWithText('updateData', 'Update Account') !!}
                                                 </button>
                                             </div>
                                         </div>
@@ -308,11 +381,11 @@
             $('#editDataModal').modal('show');
         });
 
-        window.addEventListener('category_deleted', event => {
+        window.addEventListener('account_deleted', event => {
             $('#deleteDataModal').modal('hide');
             Swal.fire(
                 "Deleted!",
-                "The category has been deleted.",
+                "The account has been deleted.",
                 "success"
             );
         });

@@ -5,11 +5,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Category</h4>
+                        <h4 class="mb-sm-0 font-size-18">Articles</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Category</li>
+                                <li class="breadcrumb-item active">Articles</li>
                             </ol>
                         </div>
                     </div>
@@ -20,10 +20,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-white" style="border-bottom: 1px solid #e2e2e7;">
-                            <h4 class="card-title" style="float: left;">All Category</h4>
-                            <button class="btn btn-sm btn-dark waves-effect waves-light" data-bs-toggle="modal"
-                                data-bs-target="#addDataModal" style="float: right;"><i class="bx bx-plus"></i> Add New
-                                Category</button>
+                            <h4 class="card-title" style="float: left;">All Articles</h4>
                         </div>
                         <div class="card-body">
                             <div class="row mb-2">
@@ -64,45 +61,45 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($categories->count() > 0)
+                                        @if ($articles->count() > 0)
                                         @php
-                                        $sl = $categories->perPage() * $categories->currentPage() -
-                                        ($categories->perPage() - 1);
+                                        $sl = $articles->perPage() * $articles->currentPage() -
+                                        ($articles->perPage() - 1);
                                         @endphp
-                                        @foreach ($categories as $category)
+                                        @foreach ($articles as $article)
                                         <tr>
                                             <td class="text-center">{{ $sl++ }}</td>
                                             <td>
-                                                <img src="{{ asset('assets/images/category_icons') }}/{{ $category->avatar }}" style="height: 30px;"
+                                                <img src="{{ asset('assets/images/article_icons') }}/{{ $article->avatar }}" style="height: 30px;"
                                                     class="img-fluid" alt="">
-                                                {{ $category->name }}
+                                                {{ $article->name }}
                                             </td>
-                                            <td class="text-center">{{ $category->slug }}</td>
+                                            <td class="text-center">{{ $article->slug }}</td>
                                             <td class="text-center" style="width: 15%;">
-                                                @if ($category->status == 0)
+                                                @if ($article->status == 0)
                                                 <button class="btn btn-xs btn-danger"
-                                                    wire:click.prevent='changeStatus({{ $category->id }})'
+                                                    wire:click.prevent='changeStatus({{ $article->id }})'
                                                     style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $category->id . ')', 'In-Active')
+                                                    loadingStateStatus('changeStatus(' . $article->id . ')', 'In-Active')
                                                     !!}</button>
                                                 @else
                                                 <button class="btn btn-xs btn-success"
-                                                    wire:click.prevent='changeStatus({{ $category->id }})'
+                                                    wire:click.prevent='changeStatus({{ $article->id }})'
                                                     style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $category->id . ')', 'Active') !!}</button>
+                                                    loadingStateStatus('changeStatus(' . $article->id . ')', 'Active') !!}</button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 <button
                                                     class="btn btn-sm btn-soft-primary waves-effect waves-light action-btn edit_btn"
-                                                    wire:click.prevent='editData({{ $category->id }})'
+                                                    wire:click.prevent='editData({{ $article->id }})'
                                                     wire:loading.attr='disabled'>
                                                     <i
                                                         class="mdi mdi-square-edit-outline font-size-13 align-middle"></i>
                                                 </button>
                                                 <button
                                                     class="btn btn-sm btn-soft-danger waves-effect waves-light action-btn delete_btn"
-                                                    wire:click.prevent='deleteConfirmation({{ $category->id }})'
+                                                    wire:click.prevent='deleteConfirmation({{ $article->id }})'
                                                     wire:loading.attr='disabled'>
                                                     <i class="bx bx-trash font-size-13 align-middle"></i>
                                                 </button>
@@ -111,7 +108,7 @@
                                         @endforeach
                                         @else
                                         <tr>
-                                            <td colspan="5" class="text-center pt-5 pb-5">No category found!</td>
+                                            <td colspan="5" class="text-center pt-5 pb-5">No article found!</td>
                                         </tr>
                                         @endif
                                     </tbody>
@@ -119,14 +116,14 @@
                             </div>
                         </div>
                         <div class="card-footer bg-white">
-                            {{ $categories->links('livewire.pagination-links') }}
+                            {{ $articles->links('livewire.pagination-links') }}
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Add Data Modal -->
-            <div wire:ignore.self class="modal fade" id="addDataModal" tabindex="-1" role="dialog"
+            {{-- <div wire:ignore.self class="modal fade" id="addDataModal" tabindex="-1" role="dialog"
                 data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modelTitleId">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
                     <div class="modal-content">
@@ -194,10 +191,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Edit Data Modal -->
-            <div wire:ignore.self class="modal fade" id="editDataModal" tabindex="-1" role="dialog"
+            {{-- <div wire:ignore.self class="modal fade" id="editDataModal" tabindex="-1" role="dialog"
                 data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modelTitleId">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
                     <div class="modal-content">
@@ -265,7 +262,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Delete Modal -->
             <div wire:ignore.self class="modal fade" id="deleteDataModal" tabindex="-1" role="dialog"
