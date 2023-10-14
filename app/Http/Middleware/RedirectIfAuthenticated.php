@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                     return redirect()->route('admin.dashboard');
                 }
                 else{
-                    return redirect()->route('app.index');
+                    return redirect()->route('app.home');
                 }
             }
         }

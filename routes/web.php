@@ -5,6 +5,7 @@ use App\Livewire\App\Bings\BingComponent;
 use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
 use App\Livewire\App\Pages\TermsConditionComponent;
+use App\Livewire\App\Profile\ProfileComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', IndexComponent::class)->name('app.index');
 Route::get('/home', HomeComponent::class)->name('app.home');
 
+// Profile routes
+Route::get('/profile', ProfileComponent::class)->name('app.profile');
+
 // Bings routes
+Route::get('/bings', BingComponent::class)->name('app.bings');
+
+// Terms-and-conditions routes
 Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.terms-and-conditions');
 
 // Terms and conditions
