@@ -28,7 +28,7 @@ function user()
 //Home
 function getUserProfileHome($id)
 {
-    return User::find($id)->select('name');
+    return User::select('avatar')->find($id);
 }
 
 //setting

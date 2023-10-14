@@ -71,23 +71,19 @@
                             </div>
                             <div class="middle_bar"></div>
                             <button type="button" class="post_user_area postUserBtn">
-                                <img src="{{ asset('assets/app/images/post/post_img3.png') }}" alt="" class="user_img" />
-                                <h5>{{ getUserProfileHome($post->user_id)->first_name }} {{ getUserProfileHome($post->user_id)->last_name }}</h5>
+                                <img src="{{ asset(getUserProfileHome($post->user_id)->avatar) }}" alt="" class="user_img" />
                             </button>
                         </div>
                         <div class="post_area">
-                            <div class="swiper post_slider1">
+                            <div class="swiper post_slider1" wire:ignore>
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <div class="slider_img">
-                                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="post image" />
+                                    @foreach ($post->images as $image)
+                                        <div class="swiper-slide">
+                                            <div class="slider_img">
+                                                <img src="{{ asset($image) }}" alt="" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="slider_img">
-                                            <img src="{{ asset('assets/app/images/post/post_img2.png') }}" alt="post image" />
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                                 <!-- Add Pagination -->
                                 <div class="swiper-pagination"></div>
