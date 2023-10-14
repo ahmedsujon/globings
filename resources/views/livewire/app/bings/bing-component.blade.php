@@ -12,7 +12,8 @@
                         id="coinModalBtn">
                         <img src="{{ asset('assets/app/icons/store_green_icon.svg') }}" alt="coin" />
                         <span>150 Bings</span>
-                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" class="right_arrow" />
+                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
+                            class="right_arrow" />
                     </button>
                 </div>
                 <div class="bing_profile_wrapper">
@@ -46,6 +47,20 @@
                                     class="invite_icon" />
                             </div>
                         </a>
+                        <button type="button" class="reward_card_item" id="localModalBtn">
+                            <div>
+                                <h4>Status Bings</h4>
+                                <h5>
+                                    Rewards by shop Bonus & challenges
+                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
+                                        class="right_arrow" />
+                                </h5>
+                            </div>
+                            <div class="text-end">
+                                <img src="{{ asset('assets/app/icons/bings_invite_icon2.svg') }}" alt="invite icon"
+                                    class="invite_icon" />
+                            </div>
+                        </button>
                     </div>
                     <div class="bing_category_wrapper mb-5">
                         <h4 class="bing_inner_title">Explore Bings by category</h4>
@@ -222,4 +237,136 @@
         </div>
     </div>
     <!-- Bings Coin History Modal  -->
+
+    <!-- Bidges Invite Friends Modal  -->
+    <div class="sing_modal_area" id="loalModalArea">
+        <div class="bings_wrapper pb-0">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-xl">
+                        <button type="button" class="close_btn" id="badgesCloseBtn">
+                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+                        </button>
+                        <h6 class="notification_title">Badges</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="local_grid">
+                    <p>See your own Local Guides status Go to your contributions</p>
+                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" class="right_arrow" />
+                </div>
+                <div class="badge_profilel_area text-center">
+                    <img src="{{ asset('assets/app/icons/badge_star_icon.png') }}" alt="badge star icon" class="badge_star_icon" />
+                    <div>
+                        <h4 class="company_inner_title">Local Guide</h4>
+                        <h5 class="bidge_sub_text bidge_leavel mt-1">Level 3</h5>
+                    </div>
+
+                    <div class="progress_area">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="progress_number_area d-flex-between">
+                            <h4>1,500</h4>
+                            <h4><span>1965/</span> 20,000</h4>
+                        </div>
+                        <h5 class="bidge_sub_text text-start">
+                            As you help other people, you earn points for each contribution
+                            and get closer to the next level.
+                        </h5>
+                    </div>
+                </div>
+                <div class="circle_progress_area">
+                    <h4 class="bing_inner_title">Badges</h4>
+                    <div class="progress_grid">
+                        <div class="circle_progress_item">
+                            <div class="circle_area">
+                                <div class="small" data-percent="100" data-progressBarColor="#5897F4"></div>
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape" class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}" alt="badge check icon"
+                                    class="badge_check" />
+                                <div class="badge_group_outer">
+                                    <div class="group_inner">G1</div>
+                                </div>
+                            </div>
+                            <div class="progres_text_area">
+                                <h5>Silver Reviewer</h5>
+                            </div>
+                        </div>
+                        <div class="circle_progress_item">
+                            <div class="circle_area">
+                                <div class="small" data-percent="100" data-progressBarColor="#FE7B1E"></div>
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape" class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}" alt="badge check icon"
+                                    class="badge_check" />
+                                <div class="badge_group_outer">
+                                    <div class="group_inner">G2</div>
+                                </div>
+                            </div>
+                            <div class="progres_text_area">
+                                <h5>Bronze Photographer</h5>
+                            </div>
+                        </div>
+                        <div class="circle_progress_item">
+                            <div class="circle_area">
+                                <div class="small" data-percent="100" data-progressBarColor="#41B631"></div>
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape" class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}" alt="badge check icon"
+                                    class="badge_check" />
+                                <div class="badge_group_outer">
+                                    <div class="group_inner">G3</div>
+                                </div>
+                            </div>
+                            <div class="progres_text_area">
+                                <h5>Bronze Traiblazer</h5>
+                            </div>
+                        </div>
+                        <div class="circle_progress_item">
+                            <div class="circle_area">
+                                <div class="small" data-percent="50" data-progressBarColor="#5897F4"></div>
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape" class="badge_shape" />
+
+                                <div class="badge_group_outer">
+                                    <div class="group_inner">G4</div>
+                                </div>
+                            </div>
+                            <div class="progres_text_area">
+                                <h5>Silver Reviewer</h5>
+                                <div class="badge_status_btn">Upcoming</div>
+                            </div>
+                        </div>
+                        <div class="circle_progress_item">
+                            <div class="circle_area">
+                                <div class="small" data-percent="10" data-progressBarColor="#FE7B1E"></div>
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape" class="badge_shape" />
+
+                                <div class="badge_group_outer">
+                                    <div class="group_inner">G5</div>
+                                </div>
+                            </div>
+                            <div class="progres_text_area">
+                                <h5>Bronze Photographer</h5>
+                            </div>
+                        </div>
+                        <div class="circle_progress_item">
+                            <div class="circle_area">
+                                <div class="small" data-percent="60" data-progressBarColor="#41B631"></div>
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape" class="badge_shape" />
+
+                                <div class="badge_group_outer">
+                                    <div class="group_inner">G6</div>
+                                </div>
+                            </div>
+                            <div class="progres_text_area">
+                                <h5>Bronze Traiblazer</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bidges Invite Friends Modal  -->
 </div>
