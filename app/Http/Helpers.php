@@ -3,6 +3,7 @@
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\AdminPermission;
+use App\Models\CommentReply;
 use App\Models\PostLike;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,11 @@ function user()
     return Auth::guard('web')->user();
 }
 
+function getCommentUser($id)
+{
+    return User::select('first_name', 'last_name', 'avatar')->find($id);
+}
+
 //Home
 function getUserProfileHome($id)
 {
@@ -40,6 +46,23 @@ function isLiked($post_id)
         return false;
     }
 }
+
+function total_post_like($post_id)
+{
+    return PostLike::where('post_id', $post_id)->count();
+}
+
+function post_comment_replies_count($comment_id)
+{
+    return CommentReply::where('comment_id', $comment_id)->count();
+}
+
+function post_comment_replies($comment_id)
+{
+    return CommentReply::where('comment_id', $comment_id)->get();
+}
+
+
 
 //setting
 // function setting()

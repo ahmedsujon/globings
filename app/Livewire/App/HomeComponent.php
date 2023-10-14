@@ -3,6 +3,7 @@
 namespace App\Livewire\App;
 
 use App\Models\Category;
+use App\Models\CommentReply;
 use App\Models\Post;
 use App\Models\PostComment;
 use App\Models\PostLike;
@@ -13,7 +14,7 @@ class HomeComponent extends Component
 {
     use WithPagination;
 
-    public $categories, $pagination_value = 7;
+    public $categories, $pagination_value = 7, $comment;
     public function mount()
     {
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
@@ -37,15 +38,45 @@ class HomeComponent extends Component
         }
     }
 
-    public function comment($post_id)
+    public $total_like = 0, $selected_post_id;
+    public function getPostInfo($post_id)
+    {
+        $this->total_like = total_post_like($post_id);
+        $this->selected_post_id = $post_id;
+    }
+
+    public $comment_id;
+    public function replyComment($comment_id)
+    {
+        $this->comment_id = $comment_id;
+        $this->dispatch('focusOnComment');
+    }
+
+    public function addComment()
     {
         if(user()){
-            $comment = new PostComment();
-            $comment->user_id = user()->id;
-            $comment->post_id = $post_id;
-            $comment->comment = $this->comment;
-            $comment->status = 1;
-            $comment->save();
+            $this->validate([
+                'comment' => 'required'
+            ]);
+
+            if($this->comment_id){
+                $comment = new CommentReply();
+                $comment->user_id = user()->id;
+                $comment->comment_id = $this->comment_id;
+                $comment->comment = $this->comment;
+                $comment->status = 1;
+                $comment->save();
+            } else {
+                $comment = new PostComment();
+                $comment->user_id = user()->id;
+                $comment->post_id = $this->selected_post_id;
+                $comment->comment = $this->comment;
+                $comment->status = 1;
+                $comment->save();
+            }
+
+            $this->comment = '';
+            $this->comment_id = '';
         } else {
             return redirect()->route('login');
         }
@@ -55,6 +86,12 @@ class HomeComponent extends Component
     {
         $posts = Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate($this->pagination_value);
 
-        return view('livewire.app.home-component', ['posts' => $posts])->layout('livewire.app.layouts.base');
+        if($this->selected_post_id){
+            $comments = PostComment::where('post_id', $this->selected_post_id)->paginate(10);
+        } else {
+            $comments = false;
+        }
+
+        return view('livewire.app.home-component', ['posts' => $posts, 'comments' => $comments])->layout('livewire.app.layouts.base');
     }
 }
