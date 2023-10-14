@@ -29,10 +29,6 @@
 </style>
 
 <body>
-    <!-- Scroll To Top -->
-    <div class="scrolltop" id="scrollTop">
-        <i class="fas fa-chevron-up"></i>
-    </div>
 
     <main>
         {{ $slot }}
