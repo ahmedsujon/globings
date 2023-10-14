@@ -148,7 +148,7 @@
 
                                     <div class="info d-flex align-items-center flex-wrap">
                                         <div class="time">{{ $comment->getShortTimeAgo($comment->created_at) }}</div>
-                                        <button type="button" class="likeBtn like_active">
+                                        <button type="button" class="likeBtn {{ isCommentLiked($comment->id) ? 'like_active' : '' }}" wire:click.prevent='likeComment({{ $comment->id }})'>
                                             Like
                                         </button>
                                         <button type="button" wire:click.prevent='replyComment({{ $comment->id }})' class="replayBtn">Reply</button>
@@ -174,7 +174,7 @@
 
                                                 <div class="info d-flex align-items-center flex-wrap">
                                                     <div class="time">{{ $reply->getShortTimeAgo($reply->created_at) }}</div>
-                                                    <button type="button" class="likeBtn">Like</button>
+                                                    <button type="button" class="likeBtn {{ isCommentReplyLiked($reply->id) ? 'like_active' : '' }}" wire:click.prevent='likeCommentReply({{ $reply->id }})'>Like</button>
                                                     <button type="button" wire:click.prevent='replyComment({{ $comment->id }})' class="replayBtn">Reply</button>
                                                 </div>
                                             </div>

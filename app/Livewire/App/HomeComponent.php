@@ -3,7 +3,9 @@
 namespace App\Livewire\App;
 
 use App\Models\Category;
+use App\Models\CommentLike;
 use App\Models\CommentReply;
+use App\Models\CommentReplyLike;
 use App\Models\Post;
 use App\Models\PostComment;
 use App\Models\PostLike;
@@ -82,16 +84,16 @@ class HomeComponent extends Component
         }
     }
 
-    public function likeComment($post_id)
+    public function likeComment($comment_id)
     {
         if(user()){
-            $getLike = PostLike::where('user_id', user()->id)->where('post_id', $post_id)->first();
+            $getLike = CommentLike::where('user_id', user()->id)->where('comment_id', $comment_id)->first();
             if($getLike){
                 $getLike->delete();
             } else {
-                $like = new PostLike();
+                $like = new CommentLike();
                 $like->user_id = user()->id;
-                $like->post_id = $post_id;
+                $like->comment_id = $comment_id;
                 $like->save();
             }
 
@@ -100,16 +102,16 @@ class HomeComponent extends Component
         }
     }
 
-    public function likeCommentReply($post_id)
+    public function likeCommentReply($comment_reply_id)
     {
         if(user()){
-            $getLike = PostLike::where('user_id', user()->id)->where('post_id', $post_id)->first();
+            $getLike = CommentReplyLike::where('user_id', user()->id)->where('comment_reply_id', $comment_reply_id)->first();
             if($getLike){
                 $getLike->delete();
             } else {
-                $like = new PostLike();
+                $like = new CommentReplyLike();
                 $like->user_id = user()->id;
-                $like->post_id = $post_id;
+                $like->comment_reply_id = $comment_reply_id;
                 $like->save();
             }
 
