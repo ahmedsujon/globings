@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('icon')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
