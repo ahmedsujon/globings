@@ -73,7 +73,7 @@
                                         <tr>
                                             <td class="text-center">{{ $sl++ }}</td>
                                             <td>
-                                                <img src="{{ asset('assets/images/category_icons') }}/{{ $category->avatar }}" style="height: 30px;"
+                                                <img src="{{ asset($category->icon) }}" style="height: 30px;"
                                                     class="img-fluid" alt="">
                                                 {{ $category->name }}
                                             </td>
