@@ -146,20 +146,11 @@
 </div>
 @push('scripts')
 <script>
-    window.addEventListener('closeModal', event => {
-            $('#addDataModal').modal('hide');
-            $('#editDataModal').modal('hide');
-        });
-
-        window.addEventListener('showEditModal', event => {
-            $('#editDataModal').modal('show');
-        });
-
-        window.addEventListener('admin_deleted', event => {
+        window.addEventListener('account_deleted', event => {
             $('#deleteDataModal').modal('hide');
             Swal.fire(
                 "Deleted!",
-                "The admin has been deleted.",
+                "The accounts has been deleted.",
                 "success"
             );
         });

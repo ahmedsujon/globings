@@ -14,6 +14,20 @@ class AccountComponent extends Component
     public $edit_id, $delete_id;
     public $first_name, $slug, $status;
 
+    public function deleteConfirmation($id)
+    {
+        $this->delete_id = $id;
+        $this->dispatch('show_delete_confirmation');
+    }
+
+    public function deleteData()
+    {
+        $brand = User::find($this->delete_id);
+        $brand->delete();
+        $this->dispatch('account_deleted');
+        $this->delete_id = '';
+    }
+
     public function render()
     {
         $accounts = User::where('first_name', 'like', '%'.$this->searchTerm.'%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
