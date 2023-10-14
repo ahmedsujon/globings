@@ -82,6 +82,42 @@ class HomeComponent extends Component
         }
     }
 
+    public function likeComment($post_id)
+    {
+        if(user()){
+            $getLike = PostLike::where('user_id', user()->id)->where('post_id', $post_id)->first();
+            if($getLike){
+                $getLike->delete();
+            } else {
+                $like = new PostLike();
+                $like->user_id = user()->id;
+                $like->post_id = $post_id;
+                $like->save();
+            }
+
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function likeCommentReply($post_id)
+    {
+        if(user()){
+            $getLike = PostLike::where('user_id', user()->id)->where('post_id', $post_id)->first();
+            if($getLike){
+                $getLike->delete();
+            } else {
+                $like = new PostLike();
+                $like->user_id = user()->id;
+                $like->post_id = $post_id;
+                $like->save();
+            }
+
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
     public function render()
     {
         $posts = Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate($this->pagination_value);
