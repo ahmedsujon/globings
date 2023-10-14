@@ -4,6 +4,7 @@ namespace App\Livewire\App;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostComment;
 use App\Models\PostLike;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -31,6 +32,20 @@ class HomeComponent extends Component
                 $like->save();
             }
 
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function comment($post_id)
+    {
+        if(user()){
+            $comment = new PostComment();
+            $comment->user_id = user()->id;
+            $comment->post_id = $post_id;
+            $comment->comment = $this->comment;
+            $comment->status = 1;
+            $comment->save();
         } else {
             return redirect()->route('login');
         }

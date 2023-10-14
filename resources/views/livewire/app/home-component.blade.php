@@ -89,7 +89,7 @@
                                 <div class="swiper-pagination"></div>
                             </div>
                             <div class="action_area d-flex align-items-center flex-wrap">
-                                <button type="button" data-post_id="{{ $post->id }}" class="heart_icon {{ isLiked($post->id) ? 'selected_heart' : '' }}" id="heartIcon">
+                                <button type="button" data-post_id="{{ $post->id }}" class="heart_icon add_like_btn {{ isLiked($post->id) ? 'selected_heart' : '' }}" id="heartIcon">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -116,7 +116,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('.heart_icon').on('click', function(){
+            $('.add_like_btn').on('click', function(){
                 var post_id = $(this).data('post_id');
                 @this.like(post_id);
             });
