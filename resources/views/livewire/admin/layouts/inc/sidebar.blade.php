@@ -43,6 +43,19 @@
                     <li class="{{ request()->is('admin/admins') ? 'mm-active' : '' }}">
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-group"></i>
+                            <span key="t-multi-level">Accounts</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li><a href="{{ route('admin.private.accounts') }}">Private Account</a></li>
+                            <li><a href="{{ route('admin.professional.accounts') }}">Professional Account</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
+                    @if (isAdminPermitted('admins_manage'))
+                    <li class="{{ request()->is('admin/admins') ? 'mm-active' : '' }}">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="bx bx-group"></i>
                             <span key="t-multi-level">User Management</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">

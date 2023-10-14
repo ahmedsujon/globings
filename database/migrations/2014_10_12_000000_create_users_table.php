@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar', 2048)->nullable();
             $table->rememberToken();
-            $table->enum('account_type', ['private', 'professional']);
+            $table->enum('account_type', ['Private', 'Professional']);
             $table->string('verification_code')->nullable();
             $table->timestamps();
         });
