@@ -677,7 +677,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{ route('app.profile') }}">
                                 <img src="{{ asset('assets/app/icons/footer_icon_icon5.svg') }}" alt="menu icon" class="inactive_icon" />
                             </a>
                         </li>
