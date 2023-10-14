@@ -68,11 +68,21 @@
                 <div class="login_btn_area">
                     <a href="{{ route('login') }}" class="login_btn"> Sign in </a>
                     <button type="button" class="sub_login">
-                        Continue without <a href="{{ route('app.index') }}">signing in</a>
+                        Continue without <a href="{{ route('app.home') }}">signing in</a>
                     </button>
                 </div>
             </div>
         </section>
     </div>
-
 </div>
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            setTimeout(function(){
+                @this.checkAuth();
+            }, 2000);
+        });
+    </script>
+@endpush
