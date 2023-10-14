@@ -6,6 +6,7 @@ use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
 use App\Livewire\App\Pages\TermsConditionComponent;
 use App\Livewire\App\Profile\ProfileComponent;
+use App\Livewire\App\Profile\RecentPostComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/home', HomeComponent::class)->name('app.home');
 
 // Profile routes
 Route::get('/profile', ProfileComponent::class)->name('app.profile');
+Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
 
 // Bings routes
 Route::get('/bings', BingComponent::class)->name('app.bings');
