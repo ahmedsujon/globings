@@ -40,7 +40,7 @@
                     @endif
 
                     @if (isAdminPermitted('admins_manage'))
-                    <li class="{{ request()->is('admin/admins') ? 'mm-active' : '' }}">
+                    <li class="{{ request()->is('admin/accounts') ? 'mm-active' : '' }}">
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-group"></i>
                             <span key="t-multi-level">Accounts</span>

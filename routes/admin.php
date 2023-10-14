@@ -2,10 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogoutController;
-use App\Livewire\Admin\Accounts\AccountComponent;
-use App\Livewire\Admin\Accounts\CreateAccountComponent;
-use App\Livewire\Admin\Accounts\EditAccountComponent;
-use App\Livewire\Admin\Accounts\ViewAccountComponent;
+use App\Livewire\Admin\Accounts\PrivateAccountComponent;
+use App\Livewire\Admin\Accounts\ProfessionalAccountComponent;
 use App\Livewire\Admin\DashboardComponent;
 use App\Livewire\Admin\Auth\LoginComponent;
 use App\Livewire\Admin\Category\CategoryComponent;
@@ -38,16 +36,9 @@ Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(functio
     Route::get('categories', CategoryComponent::class)->name('categories');
 
     // Private Account routes
-    Route::get('private/accounts', AccountComponent::class)->name('private.accounts');
-    Route::get('private/accounts/create', CreateAccountComponent::class)->name('private.accounts.create');
-    Route::get('private/accounts/edit/{id}', EditAccountComponent::class)->name('private.accounts.edit');
-    Route::get('private/accounts/view/{id}', ViewAccountComponent::class)->name('private.accounts.view');
-
+    Route::get('accounts/private', PrivateAccountComponent::class)->name('private.accounts');
     // Professional Account routes
-    Route::get('professional/accounts', AccountComponent::class)->name('professional.accounts');
-    Route::get('professional/accounts/create', CreateAccountComponent::class)->name('professional.accounts.create');
-    Route::get('professional/accounts/edit/{id}', EditAccountComponent::class)->name('professional.accounts.edit');
-    Route::get('professional/accounts/view/{id}', ViewAccountComponent::class)->name('professional.accounts.view');
+    Route::get('accounts/professional', ProfessionalAccountComponent::class)->name('professional.accounts');
 
     // Onboarding routes
     Route::get('onboardings', OnboardingComponent::class)->name('onboardings');
