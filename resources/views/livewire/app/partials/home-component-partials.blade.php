@@ -281,7 +281,7 @@
             <div class="container position-relative">
                 <ul class="top_mobile_menu_list">
                     <li>
-                        <a href="#">
+                        <a href="{{ route('app.home') }}">
                             <img src="{{ asset('assets/app/icons/footer_top_menu_icon1.svg') }}" alt="footer menu icon " />
                             <span class="text">Bings</span>
                         </a>
@@ -316,7 +316,7 @@
                 <div class="container">
                     <ul class="menu_list">
                         <li>
-                            <a href="#" class="active_mobile_menu">
+                            <a href="{{ route('app.home') }}" class="active_mobile_menu">
                                 <img src="{{ asset('assets/app/icons/footer_active_icon_icon1.svg') }}" alt="menu icon"
                                     class="active_icon" />
                                 <img src="{{ asset('assets/app/icons/footer_icon_icon1.svg') }}" alt="menu icon" class="inactive_icon" />
