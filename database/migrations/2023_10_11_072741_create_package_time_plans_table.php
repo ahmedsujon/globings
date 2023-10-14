@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('package_id')->nullable();
             $table->string('name')->nullable();
-            $table->integer('duration_in_days')->default(0);
+            $table->integer('duration')->default(0);
             $table->double('price', 20, 2)->default(0);
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

@@ -27,17 +27,10 @@ $(document).ready(function () {
     $("#previewSecondPage").show();
   }, 3000);
 
-  //Video Popup
-//   $(".modal_video_btn").modalVideo({
-//     youtube: {
-//       controls: 1,
-//       nocookie: true,
-//     },
-//   });
   //Counter
-  $(".count-num").rCounter({
-    duration: 30,
-  });
+  // $(".count-num").rCounter({
+  //   duration: 30,
+  // });
   // <span class="count-num">2575</span> if decimal 2,5.6
   //Select 2
   function selectTwo(selectID, placeholder) {

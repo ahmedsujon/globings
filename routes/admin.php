@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogoutController;
+use App\Livewire\Admin\Accounts\PrivateAccountComponent;
+use App\Livewire\Admin\Accounts\ProfessionalAccountComponent;
 use App\Livewire\Admin\DashboardComponent;
 use App\Livewire\Admin\Auth\LoginComponent;
+use App\Livewire\Admin\Category\CategoryComponent;
 use App\Livewire\Admin\Onboarding\CreateOnboardingComponent;
 use App\Livewire\Admin\Onboarding\EditOnboardingComponent;
 use App\Livewire\Admin\Onboarding\OnboardingComponent;
+use App\Livewire\Admin\Posts\PostComponent;
 use App\Livewire\Admin\User\AdminsComponent;
 use App\Livewire\Admin\User\UsersComponent;
 
@@ -24,10 +28,21 @@ use App\Livewire\Admin\User\UsersComponent;
 Route::get('admin/login', LoginComponent::class)->middleware('guest:admin')->name('admin.login');
 
 Route::get('admin', DashboardComponent::class)->middleware('auth:admin');
-Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(function(){
+Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(function () {
     Route::post('logout', [LogoutController::class, 'adminLogout'])->name('logout');
 
     Route::get('dashboard', DashboardComponent::class)->name('dashboard');
+
+    // Category routes
+    Route::get('categories', CategoryComponent::class)->name('categories');
+
+    // Private Account routes
+    Route::get('accounts/private', PrivateAccountComponent::class)->name('private.accounts');
+    // Professional Account routes
+    Route::get('accounts/professional', ProfessionalAccountComponent::class)->name('professional.accounts');
+
+    // Posts routes
+    Route::get('shops/posts', PostComponent::class)->name('shops.posts');
 
     // Onboarding routes
     Route::get('onboardings', OnboardingComponent::class)->name('onboardings');

@@ -69,7 +69,9 @@
                                 alt="others login icoin" />
                         </button>
                     </div>
-                    <h6 class="sub_login text-center">Continue without signing in</h6>
+                    <h6 class="sub_login text-center">
+                        <a href="{{ route('app.home') }}">Continue without signing in</a>
+                    </h6>
                 </div>
             </form>
         </div>
@@ -199,7 +201,7 @@
                                     </button>
                                 </div>
                                 <h6 class="sub_login text-center">
-                                    Continue without signing in
+                                    <a href="{{ route('app.home') }}">Continue without signing in</a>
                                 </h6>
                             </div>
                         </form>
@@ -305,7 +307,7 @@
                                     </button>
                                 </div>
                                 <h6 class="sub_login text-center">
-                                    Continue without signing in
+                                    <a href="{{ route('app.home') }}">Continue without signing in</a>
                                 </h6>
                             </div>
                         </form>
