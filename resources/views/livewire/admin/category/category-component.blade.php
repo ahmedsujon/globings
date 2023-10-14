@@ -57,7 +57,7 @@
                                     <thead>
                                         <tr>
                                             <th class="align-middle text-center">ID</th>
-                                            <th class="align-middle text-center">Name</th>
+                                            <th class="align-middle">Name</th>
                                             <th class="align-middle text-center">Slug</th>
                                             <th class="align-middle text-center">Status</th>
                                             <th class="align-middle text-center">Action</th>
@@ -72,8 +72,8 @@
                                         @foreach ($categories as $category)
                                         <tr>
                                             <td class="text-center">{{ $sl++ }}</td>
-                                            <td class="text-center">
-                                                <img src="{{ asset($category->avatar) }}" style="height: 30px;"
+                                            <td>
+                                                <img src="{{ asset('assets/images/category_icons') }}/{{ $category->avatar }}" style="height: 30px;"
                                                     class="img-fluid" alt="">
                                                 {{ $category->name }}
                                             </td>
@@ -161,7 +161,26 @@
                                                 <br>
                                                 @enderror
                                             </div>
+                                            <div class="col-md-12 mb-2">
+                                                <label for="example-number-input" class="col-form-label">Category Icon</label>
+                                                <input type="file" class="form-control" wire:model='avatar' />
+                                                @error('avatar')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                @enderror
 
+                                                <div wire:loading wire:target='avatar' wire:key='avatar'>
+                                                    <span class="spinner-border spinner-border-xs" role="status"
+                                                        aria-hidden="true"></span> <small>Uploading</small>
+                                                </div>
+                                                @if ($avatar)
+                                                <img src="{{ $avatar->temporaryUrl() }}" class="img-fluid mt-2"
+                                                    style="height: 55px; width: 55px;" />
+                                                @elseif ($uploadedAvatar)
+                                                <img src="{{ asset($uploadedAvatar) }}" class="img-fluid mt-2"
+                                                    style="height: 55px; width: 55px;" />
+                                                @endif
+                                            </div>
                                             <div class="col-md-12 text-center mb-3 mt-4">
                                                 <button type="submit"
                                                     class="btn btn-primary waves-effect waves-light w-50">
@@ -212,6 +231,26 @@
                                                     }}</span>
                                                 <br>
                                                 @enderror
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <label for="example-number-input" class="col-form-label">Category Icon</label>
+                                                <input type="file" class="form-control" wire:model='avatar' />
+                                                @error('avatar')
+                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
+                                                    }}</span>
+                                                @enderror
+
+                                                <div wire:loading wire:target='avatar' wire:key='avatar'>
+                                                    <span class="spinner-border spinner-border-xs" role="status"
+                                                        aria-hidden="true"></span> <small>Uploading</small>
+                                                </div>
+                                                @if ($avatar)
+                                                <img src="{{ $avatar->temporaryUrl() }}" class="img-fluid mt-2"
+                                                    style="height: 55px; width: 55px;" />
+                                                @elseif ($uploadedAvatar)
+                                                <img src="{{ asset($uploadedAvatar) }}" class="img-fluid mt-2"
+                                                    style="height: 55px; width: 55px;" />
+                                                @endif
                                             </div>
                                             <div class="col-md-12 text-center mb-3 mt-4">
                                                 <button type="submit"

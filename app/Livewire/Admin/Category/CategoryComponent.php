@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Category;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -13,7 +14,7 @@ class CategoryComponent extends Component
     public $sortingValue = 10, $searchTerm;
 
     public $edit_id, $delete_id;
-    public $name, $slug, $status;
+    public $name, $slug, $status, $avatar, $uploadedAvatar;
 
     public function generateSlug()
     {
@@ -25,11 +26,19 @@ class CategoryComponent extends Component
         $this->validate([
             'name' => 'required',
             'slug' => 'required',
+            'avatar' => 'required',
         ]);
 
         $data = new Category();
         $data->name = $this->name;
         $data->slug = $this->slug;
+        if ($this->avatar) {
+            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
+            $this->avatar->storeAs('category_icons', $fileName);
+            $data->avatar = 'uploads/category/' . $fileName;
+        } else {
+            $data->avatar = 'assets/images/avatar.png';
+        }
         $data->save();
 
         $this->resetInputs();
@@ -56,6 +65,13 @@ class CategoryComponent extends Component
         $data = Category::find($this->edit_id);
         $data->name = $this->name;
         $data->slug = $this->slug;
+        if ($this->avatar) {
+            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
+            $this->avatar->storeAs('category_icons', $fileName);
+            $data->avatar = 'uploads/category/' . $fileName;
+        } else {
+            $data->avatar = 'assets/images/avatar.png';
+        }
         $data->save();
 
         $this->resetInputs();
@@ -85,6 +101,7 @@ class CategoryComponent extends Component
     {
         $this->name = '';
         $this->slug = '';
+        $this->avatar = '';
         $this->edit_id = '';
     }
 
