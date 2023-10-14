@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Admin;
 use App\Models\AdminPermission;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,12 @@ function vendor()
 function user()
 {
     return Auth::guard('web')->user();
+}
+
+//Home
+function getUserProfileHome($id)
+{
+    return User::find($id)->select('name');
 }
 
 //setting
