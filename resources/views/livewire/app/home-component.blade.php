@@ -1,8 +1,4 @@
 <div>
-    <button type="button" class="mobile_menu_close" id="mobileMenuClose">
-        <img src="{{ asset('assets/app/icons/menu_close_icon.svg') }}" alt="close icon" />
-    </button>
-
     <!-- Home  Section  -->
     <header class="home_header_wrapper mt-24">
         <div class="container">

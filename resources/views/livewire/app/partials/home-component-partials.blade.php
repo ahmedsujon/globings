@@ -350,73 +350,7 @@
                     </ul>
                 </div>
             </div>
-            <!-- <svg
-            width="375"
-            height="70"
-            viewBox="0 0 375 70"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="shape_svg"
-            >
-            <path
-                d="M146.343 0H0L2.23517e-05 70H375L375 0H227.657C220.667 0 215 5.6666 215 12.6567V25C215 40.464 202.464 53 187 53C171.536 53 159 40.464 159 25V12.6567C159 5.6666 153.333 0 146.343 0Z"
-                fill="white"
-            />
-            </svg> -->
             <img src="{{ asset('assets/app/images/others/menu_shape.png') }}" alt="menu shape" class="shape_svg" />
-            <!-- <svg
-            width="375"
-            height="76"
-            viewBox="0 0 375 76"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="shape_svg"
-            >
-            <g filter="url(#filter0_d_2210_2533)">
-                <path
-                d="M146.343 6H0L2.23517e-05 76H375L375 6H227.657C220.667 6 215 11.6666 215 18.6567V31C215 46.464 202.464 59 187 59C171.536 59 159 46.464 159 31V18.6567C159 11.6666 153.333 6 146.343 6Z"
-                fill="white"
-                />
-            </g>
-            <defs>
-                <filter
-                id="filter0_d_2210_2533"
-                x="-4"
-                y="0"
-                width="383"
-                height="78"
-                filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
-                >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                />
-                <feOffset dy="-2" />
-                <feGaussianBlur stdDeviation="2" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.608333 0 0 0 0 0.557639 0 0 0 0 0.557639 0 0 0 0.25 0"
-                />
-                <feBlend
-                    mode="normal"
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow_2210_2533"
-                />
-                <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow_2210_2533"
-                    result="shape"
-                />
-                </filter>
-            </defs>
-            </svg> -->
         </section>
-        <div class="overlay" id="mobileMenuOverlay"></div>
     @endif
 </div>
