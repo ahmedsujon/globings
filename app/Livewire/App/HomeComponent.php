@@ -11,16 +11,26 @@ use App\Models\PostComment;
 use App\Models\PostLike;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
 class HomeComponent extends Component
 {
     use WithPagination;
+    use WithFileUploads;
 
-    public $categories, $pagination_value = 7, $comment, $comment_filter_by;
+    public $categories, $pagination_value = 7, $comment, $comment_filter_by, $content, $images = [];
     public function mount()
     {
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+    }
+
+    public function updated($fields)
+    {
+        $this->validateOnly($fields, [
+            'content' =>'required',
+            'images' =>'required',
+        ]);
     }
 
     public function like($post_id)
@@ -122,6 +132,21 @@ class HomeComponent extends Component
         } else {
             return redirect()->route('login');
         }
+    }
+
+    public function createPost()
+    {
+        $this->validate([
+            'content' =>'required',
+            'images' =>'required',
+        ]);
+
+        dd($this->content);
+    }
+
+    public function reInitializeSwiper()
+    {
+        $this->dispatch('reInitializeSwiper');
     }
 
     public function render()

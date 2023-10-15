@@ -73,7 +73,7 @@
   }
   .comment_wraper {
     margin-top: 20px;
-    max-height: calc(100vh - 181px);
+  height: calc(100vh - 181px);
     padding-bottom: 20px;
     @include customScrollbarInner();
   }

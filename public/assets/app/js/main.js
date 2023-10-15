@@ -21,11 +21,11 @@ $(document).ready(function () {
   // });
 
   //Preview Slider
-  $("#previewSecondPage").hide();
-  setTimeout(() => {
-    $("#previewFirstPage").slideUp();
-    $("#previewSecondPage").show();
-  }, 3000);
+  // $("#previewSecondPage").hide();
+  // setTimeout(() => {
+  //   $("#previewFirstPage").slideUp();
+  //   $("#previewSecondPage").show();
+  // }, 3000);
 
   //Counter
   // $(".count-num").rCounter({

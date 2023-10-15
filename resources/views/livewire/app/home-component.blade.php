@@ -1,20 +1,22 @@
 <div>
-    <button type="button" class="mobile_menu_close" id="mobileMenuClose">
-        <img src="{{ asset('assets/app/icons/menu_close_icon.svg') }}" alt="close icon" />
-    </button>
-
     <!-- Home  Section  -->
     <header class="home_header_wrapper mt-24">
         <div class="container">
             <div class="d-flex-between">
-                <a href="#" class="logo">
+                <a href="{{ route('app.home') }}" class="logo">
                     <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
                 </a>
                 <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
                     <li>
-                        <a href="#">
-                            <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                        </a>
+                        @auth
+                            <a href="javascript:void(0)" id="openPostCreateBtn">
+                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                            </a>
+                        @else
+                            <a href="route('login')">
+                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                            </a>
+                        @endauth
                     </li>
                     <li>
                         <a href="#">
@@ -25,7 +27,8 @@
                         <a href="#" class="header_number_area">
                             <span class="circle_shape"></span>
                             <span class="number">60</span>
-                            <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon" class="right_shape" />
+                            <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
+                                class="right_shape" />
                         </a>
                     </li>
                 </ul>
@@ -67,12 +70,14 @@
                         <div class="hash_area">
                             <div class="hash_icon">
                                 <img src="{{ asset('assets/app/icons/hash_icon.svg') }}" alt="hash icon" />
-                                <h4>Bruxelles</h4>
+                                {{-- <h4>Bruxelles</h4> --}}
                             </div>
                             <div class="middle_bar"></div>
-                            <button type="button" class="post_user_area postUserBtn">
-                                <img src="{{ asset(getUserProfileHome($post->user_id)->avatar) }}" alt="" class="user_img" />
-                            </button>
+                            <a href="{{ route('app.userProfile', ['id' => $post->user_id]) }}" type="button"
+                                class="post_user_area">
+                                <img src="{{ asset(getUserProfileHome($post->user_id)->avatar) }}" alt=""
+                                    class="user_img" />
+                            </a>
                         </div>
                         <div class="post_area">
                             <div class="swiper post_slider1" wire:ignore>
@@ -89,7 +94,9 @@
                                 <div class="swiper-pagination"></div>
                             </div>
                             <div class="action_area d-flex align-items-center flex-wrap">
-                                <button type="button" data-post_id="{{ $post->id }}" class="heart_icon add_like_btn {{ isLiked($post->id) ? 'selected_heart' : '' }}" id="heartIcon">
+                                <button type="button" data-post_id="{{ $post->id }}"
+                                    class="heart_icon add_like_btn {{ isLiked($post->id) ? 'selected_heart' : '' }}"
+                                    id="heartIcon">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -98,7 +105,8 @@
                                             stroke-linejoin="round" />
                                     </svg>
                                 </button>
-                                <button type="button" wire:click.prevent='getPostInfo({{ $post->id }})' class="coment_area postCommentBtn d-flex align-items-center flex-wrap">
+                                <button type="button" wire:click.prevent='getPostInfo({{ $post->id }})'
+                                    class="coment_area postCommentBtn d-flex align-items-center flex-wrap">
                                     <img src="{{ asset('assets/app/icons/comment_icon.svg') }}" alt="comment icon" />
                                     <h5>Comment</h5>
                                 </button>
@@ -107,7 +115,6 @@
                     </div>
                 @endforeach
             @else
-
             @endif
         </div>
     </section>
@@ -118,7 +125,8 @@
             <div class="d-flex-between">
                 <div class="like_area">
                     <button type="button" class="totalReactBtn d-flex align-items-center flex-wrap">
-                        <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                        <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon"
+                            class="heart_icon" />
                         <span>{{ $total_like }}</span>
                         <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
                     </button>
@@ -137,22 +145,29 @@
                 @if ($comments != false && $comments->count() > 0)
                     @foreach ($comments as $comment)
                         <div>
-                            <div class="comment_item {{ post_comment_replies_count($comment->id) > 0 ? 'nested_comment':'' }}">
+                            <div
+                                class="comment_item {{ post_comment_replies_count($comment->id) > 0 ? 'nested_comment' : '' }}">
                                 <div>
-                                    <img src="{{ asset( getCommentUser($comment->user_id)->avatar ) }}" alt="user " class="comment_user" />
+                                    <img src="{{ asset(getCommentUser($comment->user_id)->avatar) }}"
+                                        alt="user " class="comment_user" />
                                 </div>
                                 <div>
                                     <div class="comment">
-                                        <h4>{{ getCommentUser($comment->user_id)->first_name }} {{ getCommentUser($comment->user_id)->last_name }}</h4>
+                                        <h4>{{ getCommentUser($comment->user_id)->first_name }}
+                                            {{ getCommentUser($comment->user_id)->last_name }}</h4>
                                         <p>{{ $comment->comment }}</p>
                                     </div>
 
                                     <div class="info d-flex align-items-center flex-wrap">
-                                        <div class="time">{{ $comment->getShortTimeAgo($comment->created_at) }}</div>
-                                        <button type="button" class="likeBtn {{ isCommentLiked($comment->id) ? 'like_active' : '' }}" wire:click.prevent='likeComment({{ $comment->id }})'>
+                                        <div class="time">{{ $comment->getShortTimeAgo($comment->created_at) }}
+                                        </div>
+                                        <button type="button"
+                                            class="likeBtn {{ isCommentLiked($comment->id) ? 'like_active' : '' }}"
+                                            wire:click.prevent='likeComment({{ $comment->id }})'>
                                             Like
                                         </button>
-                                        <button type="button" wire:click.prevent='replyComment({{ $comment->id }})' class="replayBtn">Reply</button>
+                                        <button type="button" wire:click.prevent='replyComment({{ $comment->id }})'
+                                            class="replayBtn">Reply</button>
                                     </div>
                                 </div>
                             </div>
@@ -162,21 +177,27 @@
                                     @foreach (post_comment_replies($comment->id) as $reply)
                                         <div class="comment_item">
                                             <div>
-                                                <img src="{{ asset('assets/app/images/post/comment_user2.png') }}" alt="user "
-                                                    class="comment_user" />
+                                                <img src="{{ asset('assets/app/images/post/comment_user2.png') }}"
+                                                    alt="user " class="comment_user" />
                                             </div>
                                             <div>
                                                 <div class="comment">
-                                                    <h4>{{ getCommentUser($reply->user_id)->first_name }} {{ getCommentUser($reply->user_id)->last_name }}</h4>
+                                                    <h4>{{ getCommentUser($reply->user_id)->first_name }}
+                                                        {{ getCommentUser($reply->user_id)->last_name }}</h4>
                                                     <p>
                                                         {{ $reply->comment }}
                                                     </p>
                                                 </div>
 
                                                 <div class="info d-flex align-items-center flex-wrap">
-                                                    <div class="time">{{ $reply->getShortTimeAgo($reply->created_at) }}</div>
-                                                    <button type="button" class="likeBtn {{ isCommentReplyLiked($reply->id) ? 'like_active' : '' }}" wire:click.prevent='likeCommentReply({{ $reply->id }})'>Like</button>
-                                                    <button type="button" wire:click.prevent='replyComment({{ $comment->id }})' class="replayBtn">Reply</button>
+                                                    <div class="time">
+                                                        {{ $reply->getShortTimeAgo($reply->created_at) }}</div>
+                                                    <button type="button"
+                                                        class="likeBtn {{ isCommentReplyLiked($reply->id) ? 'like_active' : '' }}"
+                                                        wire:click.prevent='likeCommentReply({{ $reply->id }})'>Like</button>
+                                                    <button type="button"
+                                                        wire:click.prevent='replyComment({{ $comment->id }})'
+                                                        class="replayBtn">Reply</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,7 +219,8 @@
         </div>
         <form wire:submit.prevent='addComment' class="comment_form">
             <div class="container">
-                <input type="text" placeholder="Write a comment..." wire:model.blur='comment' class="input_filed comment_field" />
+                <input type="text" placeholder="Write a comment..." wire:model.blur='comment'
+                    class="input_filed comment_field" />
             </div>
         </form>
     </div>
@@ -216,7 +238,8 @@
 
         <div class="total_react_area d-flex align-items-center flex-wrap g-sm">
             <div class="container">
-                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon"
+                    class="heart_icon" />
                 <span class="react_title">{{ $total_like }}</span>
             </div>
         </div>
@@ -227,7 +250,8 @@
                         <div class="user_grid">
                             <div class="user_img_area">
                                 <img src="{{ asset($react->avatar) }}" alt="" class="user_img" />
-                                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon" class="heart_icon" />
+                                <img src="{{ asset('assets/app/icons/heart_comment_icon.svg') }}" alt="heart icon"
+                                    class="heart_icon" />
                             </div>
                             <h4>{{ $react->first_name }} {{ $react->last_name }}</h4>
                         </div>
@@ -237,13 +261,102 @@
         </div>
     </div>
 
+    {{-- <div class="success_modal_wrapper" id="successModalArea">
+        <div class="success_modal">
+            <img src="assets/icons/check_success_icon.svg" alt="check success icon" class="check_icon" />
+            <h4 class="preview_sub_title">Successfully posted</h4>
+        </div>
+    </div>
+    <div class="overlay z-index-502" id="successOverlay"></div> --}}
+
+    @auth
+        <div class="sing_modal_area post_modal_area" wire:ignore.self style="padding-top: 15px;" id="postCreateModalArea">
+            <div class="post_header_area">
+                <button type="button" class="close_btn" id="closeModalBtn">
+                    <img src="{{ asset('assets/app/icons/modal_close_icon.svg') }}" alt="" />
+                </button>
+                <h4 class="notification_title">Create Post</h4>
+            </div>
+            <div class="header_border"></div>
+            <form wire:submit.prevent='createPost' class="mobile_form_area post_form_area" id="postCreateFormSubmit">
+                <div class="user_grid">
+                    <img src="{{ asset(user()->avatar) }}" alt="user image" class="user_img" />
+                    <div>
+                        <h4>{{ user()->first_name }} {{ user()->last_name }}</h4>
+                        <h6>Posting Publicly</h6>
+                    </div>
+                </div>
+                <div class="input_row">
+                    <textarea class="input_field" wire:model.blur='content' cols="30" rows="5" placeholder="Share details of your own experience at this place"></textarea>
+                    @error('content')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="input_row">
+                    <label for="fileUpload" class="upload_label">
+                        <img src="{{ asset('assets/app/icons/mdi_photo-library.svg') }}" alt="photo libray" />
+                        <span>Add photos/videos</span>
+                    </label>
+                    <input type="file" wire:model.blur='images' multiple id="fileUpload" class="d-none" />
+                    @error('images')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                    <div class="uploadSlider" id="uploadSlider">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                @if ($images)
+                                    @foreach ($images as $img)
+                                        <div class="swiper-slide">
+                                            <div class="slider_img">
+                                                <img src="{{ $img->temporaryUrl() }}"
+                                                    alt="slider image" class="upload_img" />
+                                                <button type="button" class="upload_close">
+                                                    <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}"
+                                                        alt="close icon" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+
+                                {{-- <div class="swiper-slide">
+                                    <div class="slider_img">
+                                        <img src="{{ asset('assets/app/images/others/slider_img.png') }}"
+                                            alt="slider image" class="upload_img" />
+                                        <button type="button" class="upload_close">
+                                            <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}"
+                                                alt="close icon" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="slider_img">
+                                        <video src="{{ asset('assets/app/videos/featues_video.mp4') }}"
+                                            class="upload_img"></video>
+                                        <button type="button" class="upload_close">
+                                            <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}"
+                                                alt="close icon" />
+                                        </button>
+                                    </div>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="login_btn login_btn_fill mt-24">
+                    POST
+                </button>
+            </form>
+        </div>
+    @endauth
+
 
 </div>
 
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('.add_like_btn').on('click', function(){
+            $('.add_like_btn').on('click', function() {
                 var post_id = $(this).data('post_id');
                 @this.like(post_id);
             });
@@ -252,11 +365,20 @@
                 $('.comment_field').focus();
             });
 
-            $('.filter_comments').on('change', function(){
+            $('.filter_comments').on('change', function() {
                 var value = $(this).val()
 
                 @this.set('comment_filter_by', value);
             });
+
+            // $('#fileUpload').on('change', function() {
+            //     @this.reInitializeSwiper();
+            // });
+
+            // window.addEventListener('reInitializeSwiper', event => {
+            //     swipeUploadMedia.update();
+            // });
+
         });
     </script>
 @endpush
