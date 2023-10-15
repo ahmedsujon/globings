@@ -8,6 +8,7 @@ use App\Livewire\App\Pages\TermsConditionComponent;
 use App\Livewire\App\Profile\ProfileComponent;
 use App\Livewire\App\Profile\RecentPhotosComponent;
 use App\Livewire\App\Profile\RecentPostComponent;
+use App\Livewire\App\Profile\UserProfileComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/', IndexComponent::class)->name('app.index');
 Route::get('/home', HomeComponent::class)->name('app.home');
 
 // Profile routes
+Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile');
 Route::get('/profile', ProfileComponent::class)->name('app.profile');
 Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
 Route::get('/recent-photos', RecentPhotosComponent::class)->name('app.recent-photos');
