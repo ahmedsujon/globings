@@ -42,11 +42,11 @@
                             </a>
                         </li>
                         <li>
-                            <button type="button" id="recentPhotosModalBtn">
+                            <a href="{{ route('app.recent-photos') }}">
                                 <img src="{{ asset('assets/app/icons/manage_icon2.svg') }}" alt="manage icon" />
                                 <h5>Recent photos</h5>
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </button>
+                            </a>
                         </li>
                         <li>
                             <button type="button" id="placeModalBtn">
