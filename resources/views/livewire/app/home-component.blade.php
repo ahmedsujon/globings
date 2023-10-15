@@ -66,9 +66,9 @@
                                 <h4>Bruxelles</h4>
                             </div>
                             <div class="middle_bar"></div>
-                            <button type="button" class="post_user_area postUserBtn">
+                            <a href="{{ route('app.userProfile', ['id'=>$post->user_id]) }}" type="button" class="post_user_area">
                                 <img src="{{ asset(getUserProfileHome($post->user_id)->avatar) }}" alt="" class="user_img" />
-                            </button>
+                            </a>
                         </div>
                         <div class="post_area">
                             <div class="swiper post_slider1" wire:ignore>
