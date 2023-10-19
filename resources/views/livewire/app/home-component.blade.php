@@ -13,7 +13,7 @@
                                 <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                             </a>
                         @else
-                            <a href="route('login')">
+                            <a href="{{ route('login') }}">
                                 <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                             </a>
                         @endauth
