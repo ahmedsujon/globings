@@ -13,7 +13,7 @@
                                 <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                             </a>
                         @else
-                            <a href="route('login')">
+                            <a href="{{ route('login') }}">
                                 <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                             </a>
                         @endauth
@@ -148,8 +148,8 @@
                             <div
                                 class="comment_item {{ post_comment_replies_count($comment->id) > 0 ? 'nested_comment' : '' }}">
                                 <div>
-                                    <img src="{{ asset(getCommentUser($comment->user_id)->avatar) }}"
-                                        alt="user " class="comment_user" />
+                                    <img src="{{ asset(getCommentUser($comment->user_id)->avatar) }}" alt="user "
+                                        class="comment_user" />
                                 </div>
                                 <div>
                                     <div class="comment">
@@ -177,7 +177,7 @@
                                     @foreach (post_comment_replies($comment->id) as $reply)
                                         <div class="comment_item">
                                             <div>
-                                                <img src="{{ asset('assets/app/images/post/comment_user2.png') }}"
+                                                <img src="{{ asset(getCommentUser($reply->user_id)->avatar) }}"
                                                     alt="user " class="comment_user" />
                                             </div>
                                             <div>
@@ -261,16 +261,9 @@
         </div>
     </div>
 
-    {{-- <div class="success_modal_wrapper" id="successModalArea">
-        <div class="success_modal">
-            <img src="assets/icons/check_success_icon.svg" alt="check success icon" class="check_icon" />
-            <h4 class="preview_sub_title">Successfully posted</h4>
-        </div>
-    </div>
-    <div class="overlay z-index-502" id="successOverlay"></div> --}}
-
     @auth
-        <div class="sing_modal_area post_modal_area" wire:ignore.self style="padding-top: 15px;" id="postCreateModalArea">
+        <div class="sing_modal_area post_modal_area" wire:ignore.self style="padding-top: 15px;"
+            id="postCreateModalArea">
             <div class="post_header_area">
                 <button type="button" class="close_btn" id="closeModalBtn">
                     <img src="{{ asset('assets/app/icons/modal_close_icon.svg') }}" alt="" />
@@ -287,7 +280,8 @@
                     </div>
                 </div>
                 <div class="input_row">
-                    <textarea class="input_field" wire:model.blur='content' cols="30" rows="5" placeholder="Share details of your own experience at this place"></textarea>
+                    <textarea class="input_field" wire:model.blur='content' cols="30" rows="5"
+                        placeholder="Share details of your own experience at this place"></textarea>
                     @error('content')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -297,54 +291,27 @@
                         <img src="{{ asset('assets/app/icons/mdi_photo-library.svg') }}" alt="photo libray" />
                         <span>Add photos/videos</span>
                     </label>
-                    <input type="file" wire:model.blur='images' multiple id="fileUpload" class="d-none" />
+                    <input type="file" id="fileUpload" wire:model.blur='images' multiple class="d-none" />
                     @error('images')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                     <div class="uploadSlider" id="uploadSlider">
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
-                                @if ($images)
-                                    @foreach ($images as $img)
-                                        <div class="swiper-slide">
-                                            <div class="slider_img">
-                                                <img src="{{ $img->temporaryUrl() }}"
-                                                    alt="slider image" class="upload_img" />
-                                                <button type="button" class="upload_close">
-                                                    <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}"
-                                                        alt="close icon" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
-
-                                {{-- <div class="swiper-slide">
+                        <div class="upload_slider_grid">
+                            @if ($images)
+                                @foreach ($images as $key => $img)
                                     <div class="slider_img">
-                                        <img src="{{ asset('assets/app/images/others/slider_img.png') }}"
-                                            alt="slider image" class="upload_img" />
+                                        <img src="{{ $img->temporaryUrl() }}" alt="slider image" class="upload_img" />
                                         <button type="button" class="upload_close">
-                                            <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}"
-                                                alt="close icon" />
+                                            <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}" wire:click.prevent='removeImg({{ $key }})' alt="close icon" />
                                         </button>
                                     </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="slider_img">
-                                        <video src="{{ asset('assets/app/videos/featues_video.mp4') }}"
-                                            class="upload_img"></video>
-                                        <button type="button" class="upload_close">
-                                            <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}"
-                                                alt="close icon" />
-                                        </button>
-                                    </div>
-                                </div> --}}
-                            </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
                 <button type="submit" class="login_btn login_btn_fill mt-24">
-                    POST
+                    {!! loadingStateWithTextApp('createPost', 'POST') !!}
                 </button>
             </form>
         </div>
@@ -371,13 +338,15 @@
                 @this.set('comment_filter_by', value);
             });
 
-            // $('#fileUpload').on('change', function() {
-            //     @this.reInitializeSwiper();
-            // });
 
-            // window.addEventListener('reInitializeSwiper', event => {
-            //     swipeUploadMedia.update();
-            // });
+            window.addEventListener('postCreated', event => {
+                $("#postCreateModalArea").removeClass("sing_modal_active");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    html: 'Post has been created successfully'
+                });
+            });
 
         });
     </script>
