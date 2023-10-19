@@ -2,17 +2,19 @@
 
 namespace App\Livewire\App;
 
-use App\Models\Category;
-use App\Models\CommentLike;
-use App\Models\CommentReply;
-use App\Models\CommentReplyLike;
+use Carbon\Carbon;
 use App\Models\Post;
-use App\Models\PostComment;
-use App\Models\PostLike;
 use App\Models\User;
 use Livewire\Component;
-use Livewire\Features\SupportFileUploads\WithFileUploads;
+use App\Models\Category;
+use App\Models\PostLike;
+use App\Models\CommentLike;
+use App\Models\PostComment;
+use Illuminate\Support\Str;
+use App\Models\CommentReply;
 use Livewire\WithPagination;
+use App\Models\CommentReplyLike;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class HomeComponent extends Component
 {
@@ -30,6 +32,7 @@ class HomeComponent extends Component
         $this->validateOnly($fields, [
             'content' =>'required',
             'images' =>'required',
+            'images.*' =>'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
     }
 
@@ -134,14 +137,42 @@ class HomeComponent extends Component
         }
     }
 
+    public function removeImg($key)
+    {
+        unset($this->images[$key]);
+    }
+
     public function createPost()
     {
         $this->validate([
             'content' =>'required',
             'images' =>'required',
+            'images.*' =>'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
 
-        dd($this->content);
+        $post = new Post();
+        $post->category_id = 1;
+        $post->slug = Str::slug(Str::lower(Str::random(4)) .' '. Str::lower(Str::random(4)) .' '. Str::lower(Str::random(4)));
+        $post->user_id = user()->id;
+        $post->content = $this->content;
+        $post->status = 1;
+        if($this->images){
+            $postImgs = [];
+            foreach ($this->images as $key => $img) {
+                $fileName = uniqid() . Carbon::now()->timestamp. '.' .$this->images[$key]->extension();
+                $this->images[$key]->storeAs('posts', $fileName);
+
+                $name = 'uploads/posts/'.$fileName;
+                $postImgs[] = $name;
+            }
+            $post->images = $postImgs;
+        }
+        $post->save();
+
+        $this->dispatch('postCreated');
+
+        $this->content = '';
+        $this->images = '';
     }
 
     public function reInitializeSwiper()
