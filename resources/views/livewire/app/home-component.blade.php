@@ -177,7 +177,7 @@
                                     @foreach (post_comment_replies($comment->id) as $reply)
                                         <div class="comment_item">
                                             <div>
-                                                <img src="{{ asset('assets/app/images/post/comment_user2.png') }}"
+                                                <img src="{{ asset(getCommentUser($reply->user_id)->avatar) }}"
                                                     alt="user " class="comment_user" />
                                             </div>
                                             <div>
