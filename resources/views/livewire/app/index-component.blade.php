@@ -1,4 +1,4 @@
-<div>
+<div wire:ignore>
     <!-- Preview Section  -->
     <div id="previewFirstPage">
         <section class="preview_first_wrapper">
