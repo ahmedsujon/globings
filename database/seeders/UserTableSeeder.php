@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
             $user = new User();
             $user->first_name = 'Globings';
             $user->last_name = 'User';
+            $user->username = 'test_user';
             $user->email = 'user@example.com';
             $user->phone = '01700000000';
             $user->password = Hash::make('12345678');
@@ -34,6 +35,7 @@ class UserTableSeeder extends Seeder
             $shopUser = new User();
             $shopUser->first_name = 'Test Shop';
             $shopUser->last_name = 'user';
+            $shopUser->username = 'test_shop_user';
             $shopUser->email = 'shop@example.com';
             $shopUser->phone = '01700000000';
             $shopUser->password = Hash::make('12345678');
@@ -49,7 +51,7 @@ class UserTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Dhaka Metropolitan, Dhaka District, Dhaka Division, 1248, Bangladesh';
+            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->save();
 
         }
