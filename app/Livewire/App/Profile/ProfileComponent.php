@@ -2,12 +2,15 @@
 
 namespace App\Livewire\App\Profile;
 
+use App\Models\User;
 use Livewire\Component;
 
 class ProfileComponent extends Component
 {
     public function render()
     {
-        return view('livewire.app.profile.profile-component')->layout('livewire.app.layouts.base');
+        $profile = User::find(user()->id);
+
+        return view('livewire.app.profile.profile-component', ['profile'=>$profile])->layout('livewire.app.layouts.base');
     }
 }

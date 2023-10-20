@@ -27,8 +27,8 @@
                             <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" />
                         </div>
                         <div>
-                            <h4>Fouad Zaher</h4>
-                            <h5>Entrepreneur, Globings.com</h5>
+                            <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
+                            <h5>{{ '@'.$profile->username }}</h5>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="container">
                     <div class="number_area d-flex align-items-center flex-wrap g-sm">
                         <img src="{{ asset('assets/app/icons/profile_store_icon.svg') }}" alt="store icon" />
-                        <h4>150 Bings</h4>
+                        <h4>0 Bings</h4>
                     </div>
                 </div>
             </div>
