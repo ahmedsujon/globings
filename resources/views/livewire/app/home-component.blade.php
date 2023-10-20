@@ -33,8 +33,8 @@
                     </li>
                 </ul>
             </div>
-            <form action="" class="header_search">
-                <input type="text" placeholder="Search" />
+            <form action="" id="searchForm" class="header_search">
+                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
                 <button class="search_icon" type="submit">
                     <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
                 </button>
@@ -323,6 +323,14 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            $('#searchForm').on('submit', function(e){
+                e.preventDefault();
+
+                var value = $('#search_input').val();
+
+                window.location.href = "{{URL::to('/home')}}?search="+value;
+            });
+
             $('.add_like_btn').on('click', function() {
                 var post_id = $(this).data('post_id');
                 @this.like(post_id);

@@ -17,7 +17,7 @@ class UserProfileComponent extends Component
 {
     use WithPagination;
 
-    public  $shop, $user, $pagination_value = 7, $comment, $comment_filter_by, $selected_post_id;
+    public  $shop, $user, $pagination_value, $comment, $comment_filter_by, $selected_post_id;
 
     public function mount($id)
     {
@@ -126,9 +126,14 @@ class UserProfileComponent extends Component
         }
     }
 
+    public function loadMore()
+    {
+        $this->pagination_value += 5;
+    }
+
     public function render()
     {
-        $posts = Post::where('status', 1)->where('user_id', $this->user->id)->orderBy('created_at', 'DESC')->paginate($this->pagination_value);
+        $posts = Post::where('status', 1)->where('user_id', $this->user->id)->orderBy('created_at', 'DESC')->get();
 
         if($this->selected_post_id){
             $comments = PostComment::where('post_id', $this->selected_post_id);
