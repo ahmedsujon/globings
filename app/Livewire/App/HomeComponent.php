@@ -21,9 +21,10 @@ class HomeComponent extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $categories, $pagination_value = 7, $comment, $comment_filter_by, $content, $images = [];
+    public $categories, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [];
     public function mount()
     {
+        $this->search_term = request()->get('search');
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
     }
 
@@ -182,7 +183,7 @@ class HomeComponent extends Component
 
     public function render()
     {
-        $posts = Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate($this->pagination_value);
+        $posts = Post::join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
 
         if($this->selected_post_id){
             $comments = PostComment::where('post_id', $this->selected_post_id);

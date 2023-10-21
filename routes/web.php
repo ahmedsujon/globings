@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', IndexComponent::class)->name('app.index');
-Route::get('/home', HomeComponent::class)->name('app.home');
+// Route::get('/', IndexComponent::class)->name('app.index');
+Route::get('/', HomeComponent::class)->name('app.home');
 
 // Profile routes
 Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile');

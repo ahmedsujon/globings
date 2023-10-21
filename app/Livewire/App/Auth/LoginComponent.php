@@ -4,6 +4,7 @@ namespace App\Livewire\App\Auth;
 
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -66,6 +67,7 @@ class LoginComponent extends Component
             $user = new User();
             $user->first_name = $this->first_name;
             $user->last_name = $this->last_name;
+            $user->username = Str::lower($this->first_name).'-'.Str::lower(Str::random(7));
             $user->email = $this->email;
             $user->phone = $this->phone;
             $user->password = Hash::make($this->password);

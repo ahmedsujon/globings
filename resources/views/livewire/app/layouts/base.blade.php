@@ -62,38 +62,38 @@
 
     <script>
         //Toastr Notification
-        $(document).ready(function() {
-            toastr.options = {
-                "progressBar": true,
-                "positionClass": "toast-top-right"
-            };
-        });
-        window.addEventListener('success', event => {
-            toastr.success(event.detail[0].message);
-        });
-        window.addEventListener('warning', event => {
-            toastr.warning(event.detail[0].message);
-        });
-        window.addEventListener('error', event => {
-            toastr.error(event.detail[0].message);
-        });
-        @if (Session::has('success'))
-            toastr.success("{{ Session::get('success') }}");
-        @endif
+        // $(document).ready(function() {
+        //     toastr.options = {
+        //         "progressBar": true,
+        //         "positionClass": "toast-top-right"
+        //     };
+        // });
+        // window.addEventListener('success', event => {
+        //     toastr.success(event.detail[0].message);
+        // });
+        // window.addEventListener('warning', event => {
+        //     toastr.warning(event.detail[0].message);
+        // });
+        // window.addEventListener('error', event => {
+        //     toastr.error(event.detail[0].message);
+        // });
+        // @if (Session::has('success'))
+        //     toastr.success("{{ Session::get('success') }}");
+        // @endif
 
         //Delete conf.
-        window.addEventListener('show_delete_confirmation', event => {
-            $('#deleteDataModal').modal('show');
-        });
-        window.addEventListener('action_btn_click_error', event => {
-            $('.delete_btn').html('<i class="bx bx-trash font-size-13 align-middle"></i>');
-            $('#deleteDataModal').modal('hide');
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                html: 'Something went wrong! <br> Please try again.'
-            });
-        });
+        // window.addEventListener('show_delete_confirmation', event => {
+        //     $('#deleteDataModal').modal('show');
+        // });
+        // window.addEventListener('action_btn_click_error', event => {
+        //     $('.delete_btn').html('<i class="bx bx-trash font-size-13 align-middle"></i>');
+        //     $('#deleteDataModal').modal('hide');
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         html: 'Something went wrong! <br> Please try again.'
+        //     });
+        // });
     </script>
 
     @stack('scripts')
