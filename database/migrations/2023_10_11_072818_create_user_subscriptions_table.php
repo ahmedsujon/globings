@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('user_subscriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('package_id')->nullable();
             $table->unsignedBigInteger('time_plan_id')->nullable();
+            $table->double('price', 20,2)->default(0);
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->enum('payment_status', ['pending','paid'])->default('pending');

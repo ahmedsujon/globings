@@ -1,6 +1,6 @@
 <div>
     <!-- Mobile Menu  -->
-    @if (!request()->is('login')))
+    @if (!request()->is('login'))
         <section class="mobile_menu_wrapper" id="mobileMenuWrapper">
             <div class="container position-relative">
                 <ul class="top_mobile_menu_list">

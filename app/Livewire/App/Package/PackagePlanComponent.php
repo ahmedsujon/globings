@@ -28,12 +28,30 @@ class PackagePlanComponent extends Component
             'plan_id.required' => 'Select a plan first',
         ]);
 
-        $subscription = new UserSubscription();
-        $subscription->user_id = user()->id;
-        $subscription->time_plan_id = $this->plan_id;
-        $subscription->save();
+        $getPendingSub = UserSubscription::where('user_id', user()->id)->where('payment_status', 'pending')->first();
 
-        return redirect()->route('app.planPaymentViaStripe', ['subscription_id' => $subscription->id]);
+        $subscription_id = '';
+        $plan = PackageTimePlan::find($this->plan_id);
+
+        if($getPendingSub){
+            $getPendingSub->package_id = $plan->package_id;
+            $getPendingSub->time_plan_id = $this->plan_id;
+            $getPendingSub->price = $plan->price;
+            $getPendingSub->save();
+
+            $subscription_id = $getPendingSub->id;
+        } else {
+            $subscription = new UserSubscription();
+            $subscription->user_id = user()->id;
+            $subscription->package_id = $plan->package_id;
+            $subscription->time_plan_id = $this->plan_id;
+            $subscription->price = $plan->price;
+            $subscription->save();
+
+            $subscription_id = $subscription->id;
+        }
+
+        return redirect()->route('app.planPaymentViaStripe', ['subscription_id' => $subscription_id]);
     }
 
     public function render()
