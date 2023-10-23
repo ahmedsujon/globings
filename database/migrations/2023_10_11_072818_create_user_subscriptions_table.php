@@ -17,7 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('time_plan_id')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->enum('payment_status', ['pending','paid'])->default('pending');
+            $table->date('last_payment')->nullable();
+            $table->date('next_payment')->nullable();
+            $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
     }

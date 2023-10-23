@@ -32,6 +32,8 @@ class PackagePlanComponent extends Component
         $subscription->user_id = user()->id;
         $subscription->time_plan_id = $this->plan_id;
         $subscription->save();
+
+        return redirect()->route('app.planPaymentViaStripe', ['subscription_id' => $subscription->id]);
     }
 
     public function render()

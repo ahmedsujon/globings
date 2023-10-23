@@ -39,7 +39,7 @@ Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.t
 
 Route::middleware('auth')->group(function(){
     Route::get('/plans', PackagePlanComponent::class)->name('app.plans');
-    Route::get('/plans/payment/stripe', StripePaymentComponent::class)->name('app.planPaymentViaStripe');
+    Route::get('/plans/payment/stripe/{subscription_id}', StripePaymentComponent::class)->name('app.planPaymentViaStripe');
 
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
