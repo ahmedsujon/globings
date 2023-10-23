@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Auth\LoginComponent;
 use App\Livewire\App\Bings\BingComponent;
 use App\Livewire\App\HomeComponent;
@@ -40,6 +41,7 @@ Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.t
 Route::middleware('auth')->group(function(){
     Route::get('/plans', PackagePlanComponent::class)->name('app.plans');
     Route::get('/plans/payment/stripe/{subscription_id}', StripePaymentComponent::class)->name('app.planPaymentViaStripe');
+    Route::get('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe');
 
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
