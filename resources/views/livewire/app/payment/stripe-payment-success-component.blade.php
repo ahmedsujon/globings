@@ -1,3 +1,3 @@
-<div>
-    {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
+<div style="text-align: center;">
+    <h1>Payment Successful.</h1>
 </div>
