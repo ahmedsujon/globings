@@ -9,9 +9,11 @@
                 <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
                     <li>
                         @auth
-                            <a href="javascript:void(0)" id="openPostCreateBtn">
-                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                            </a>
+                            @if (user()->account_type == 'Professional')
+                                <a href="javascript:void(0)" id="openPostCreateBtn">
+                                    <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                </a>
+                            @endif
                         @else
                             <a href="{{ route('login') }}">
                                 <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
@@ -347,15 +349,23 @@
             });
 
 
-            window.addEventListener('postCreated', event => {
-                $("#postCreateModalArea").removeClass("sing_modal_active");
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    html: 'Post has been created successfully'
-                });
-            });
+            // window.addEventListener('postCreated', event => {
+            //     $("#postCreateModalArea").removeClass("sing_modal_active");
+            //     Swal.fire({
+            //         icon: 'success',
+            //         title: 'Success',
+            //         html: 'Post has been created successfully'
+            //     });
+            // });
 
         });
+
+        @if (Session::has('post_created'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                html: 'Post has been created successfully'
+            });
+        @endif
     </script>
 @endpush

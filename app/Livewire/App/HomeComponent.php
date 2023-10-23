@@ -170,7 +170,8 @@ class HomeComponent extends Component
         }
         $post->save();
 
-        $this->dispatch('postCreated');
+        session()->flash('post_created');
+        return redirect()->route('app.home');
 
         $this->content = '';
         $this->images = '';
@@ -183,7 +184,7 @@ class HomeComponent extends Component
 
     public function render()
     {
-        $posts = Post::join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
+        $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
 
         if($this->selected_post_id){
             $comments = PostComment::where('post_id', $this->selected_post_id);
