@@ -10,9 +10,15 @@
                     <li>
                         @auth
                             @if (user()->account_type == 'Professional')
-                                <a href="javascript:void(0)" id="openPostCreateBtn">
-                                    <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                </a>
+                                @if(user()->status == 1)
+                                    <a href="javascript:void(0)" id="openPostCreateBtn">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @else
+                                    <a href="{{ route('app.plans') }}">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @endif
                             @endif
                         @else
                             <a href="{{ route('login') }}">
