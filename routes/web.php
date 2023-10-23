@@ -8,6 +8,7 @@ use App\Livewire\App\IndexComponent;
 use App\Livewire\App\Package\PackagePlanComponent;
 use App\Livewire\App\Pages\TermsConditionComponent;
 use App\Livewire\App\Payment\StripePaymentComponent;
+use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 use App\Livewire\App\Profile\ProfileComponent;
 use App\Livewire\App\Profile\RecentPhotosComponent;
 use App\Livewire\App\Profile\RecentPostComponent;
@@ -42,7 +43,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/plans', PackagePlanComponent::class)->name('app.plans');
     Route::get('/plans/payment/stripe/{subscription_id}', StripePaymentComponent::class)->name('app.planPaymentViaStripe');
     Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe');
-    Route::get('/plans/payment/stripe/success', [StripePaymentController::class, 'success'])->name('app.stripePaymentSuccess');
+    Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess');
 
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');

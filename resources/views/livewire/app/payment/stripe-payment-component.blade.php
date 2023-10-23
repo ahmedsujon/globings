@@ -6,50 +6,40 @@
             </div>
         </div>
         <div class="container">
-                {{-- <form action="" wire:submit.prevent='subscribePlan'> --}}
-                    <div class="pricing_item" style="text-align: center;">
-                        <h4>Plan Details</h4>
-                        <div class="pricing_area">
-                            <table class="table-sm" style="width: 100%; font-size: 14px;">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 35%; border: 1px solid rgb(221, 221, 221); padding: 5px;"><b>Package</b></td>
-                                        <td style="width: 65%; border: 1px solid rgb(221, 221, 221); padding: 5px;">{{ $package->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 35%; border: 1px solid rgb(221, 221, 221); padding: 5px;"><b>Plan</b></td>
-                                        <td style="width: 65%; border: 1px solid rgb(221, 221, 221); padding: 5px;">{{ $plan->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 35%; border: 1px solid rgb(221, 221, 221); padding: 5px;"><b>Price</b></td>
-                                        <td style="width: 65%; border: 1px solid rgb(221, 221, 221); padding: 5px;">€{{ $plan->price }} / Month</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <div class="pricing_item" style="text-align: center;">
+                <h4>Plan Details</h4>
+                <div class="pricing_area">
+                    <table class="table-sm" style="width: 100%; font-size: 14px;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 35%; border: 1px solid rgb(221, 221, 221); padding: 5px;"><b>Package</b></td>
+                                <td style="width: 65%; border: 1px solid rgb(221, 221, 221); padding: 5px;">{{ $package->name }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%; border: 1px solid rgb(221, 221, 221); padding: 5px;"><b>Plan</b></td>
+                                <td style="width: 65%; border: 1px solid rgb(221, 221, 221); padding: 5px;">{{ $plan->name }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 35%; border: 1px solid rgb(221, 221, 221); padding: 5px;"><b>Price</b></td>
+                                <td style="width: 65%; border: 1px solid rgb(221, 221, 221); padding: 5px;">€{{ $plan->price }} / Month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-                    <div class="pricing_item" style="text-align: center; margin-top: 35px;">
-                        <h4>Pay via Stripe</h4>
-                        <div class="pricing_area" style="text-align: center; padding-top: 20px;">
-                            <form action="{{ route('app.payWithStripe') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="subscription_id" id="subscription_id" value="{{ $subscription->id }}" />
-                                <button type="submit" class="login_btn login_btn_fill">
-                                    Pay Now
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                    {{-- @error('plan_id')
-                        <div class="invalid-feedback" style="margin: -10px 0px 10px 25px;">{{ $message }}</div>
-                    @enderror --}}
-
-                    {{-- <button type="submit" class="login_btn login_btn_fill">
-                        {!! loadingStateWithTextApp('subscribePlan', 'Subscribe') !!}
-                    </button> --}}
-                {{-- </form> --}}
+            <div class="pricing_item" style="text-align: center; margin-top: 35px;">
+                <h4>Pay via Stripe</h4>
+                <div class="pricing_area" style="text-align: center; padding-top: 20px;">
+                    <form action="{{ route('app.payWithStripe') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="subscription_id" id="subscription_id" value="{{ $subscription->id }}" />
+                        <button type="submit" class="login_btn login_btn_fill">
+                            Pay Now
+                        </button>
+                    </form>
+                </div>
+            </div>
 
         </div>
     </section>

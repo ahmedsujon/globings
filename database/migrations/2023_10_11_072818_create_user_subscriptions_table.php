@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('payment_status', ['pending','paid'])->default('pending');
             $table->date('last_payment')->nullable();
             $table->date('next_payment')->nullable();
+            $table->string('stripe_transaction_id')->nullable();
             $table->tinyInteger('active')->default(0);
             $table->timestamps();
         });
