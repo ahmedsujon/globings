@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="container">
-                <form action="" wire:submit.prevent='subscribePlan'>
+                {{-- <form action="" wire:submit.prevent='subscribePlan'> --}}
                     <div class="pricing_item" style="text-align: center;">
                         <h4>Plan Details</h4>
                         <div class="pricing_area">
@@ -30,18 +30,14 @@
                     </div>
 
                     <div class="pricing_item" style="text-align: center; margin-top: 35px;">
-                        <h4>Pay now via Stripe</h4>
+                        <h4>Pay via Stripe</h4>
                         <div class="pricing_area" style="text-align: center; padding-top: 20px;">
                             <form action="{{ route('app.payWithStripe') }}" method="POST">
-                                <script
-                                  src="https://checkout.stripe.com/checkout.js"
-                                  class="stripe-button"
-                                  data-key="{{ env('STRIPE_ID') }}"
-                                  data-name="T-shirt"
-                                  data-description="Comfortable cotton t-shirt"
-                                  data-amount="5000"
-                                  data-currency="eur">
-                                </script>
+                                @csrf
+                                <input type="hidden" name="subscription_id" id="subscription_id" value="{{ $subscription->id }}" />
+                                <button type="submit" class="login_btn login_btn_fill">
+                                    Pay Now
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -53,7 +49,7 @@
                     {{-- <button type="submit" class="login_btn login_btn_fill">
                         {!! loadingStateWithTextApp('subscribePlan', 'Subscribe') !!}
                     </button> --}}
-                </form>
+                {{-- </form> --}}
 
         </div>
     </section>
