@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/plans/payment/stripe/{subscription_id}', StripePaymentComponent::class)->name('app.planPaymentViaStripe');
     Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe');
     Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess');
+    Route::get('/stripe-payment-success-component', StripePaymentSuccessComponent::class)->name('app.stripeSuccessComponent');
 
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
