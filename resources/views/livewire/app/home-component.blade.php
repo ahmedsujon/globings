@@ -10,7 +10,7 @@
                     <li>
                         @auth
                             @if (user()->account_type == 'Professional')
-                                @if(user()->status == 1)
+                                @if(userHasActiveSubscription())
                                     <a href="javascript:void(0)" id="openPostCreateBtn">
                                         <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                                     </a>
@@ -81,9 +81,9 @@
                                 {{-- <h4>Bruxelles</h4> --}}
                             </div>
                             <div class="middle_bar"></div>
-                            <a href="{{ route('app.userProfile', ['id' => $post->user_id]) }}" type="button"
+                            <a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}" type="button"
                                 class="post_user_area">
-                                <img src="{{ asset(getUserProfileHome($post->user_id)->avatar) }}" alt=""
+                                <img src="{{ asset(getShopProfileHome($post->user_id)->profile_image) }}" alt=""
                                     class="user_img" />
                             </a>
                         </div>

@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->longText('description')->nullable();
             $table->string('profile_image')->nullable();
-            $table->string('cover_photo')->nullable();
+            $table->longText('cover_photos')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->text('address')->nullable();
+            $table->integer('visited')->default(0);
             $table->timestamps();
         });
     }
