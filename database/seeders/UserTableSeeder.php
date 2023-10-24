@@ -52,6 +52,7 @@ class UserTableSeeder extends Seeder
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
+            $shop->visited = 5000;
             $shop->save();
 
         }

@@ -31,6 +31,11 @@ function user()
     return Auth::guard('web')->user();
 }
 
+function getUserByID($id)
+{
+    return User::find($id);
+}
+
 function getCommentUser($id)
 {
     return User::select('first_name', 'last_name', 'avatar')->find($id);

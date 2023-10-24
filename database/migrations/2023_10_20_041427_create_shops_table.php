@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->text('address')->nullable();
+            $table->integer('visited')->default(0);
             $table->timestamps();
         });
     }

@@ -26,17 +26,18 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
+
             <div class="post_info_list d-flex align-items-center flex-wrap g-xl">
                 <div class="list_item d-flex align-items-center flex-wrap">
-                    <h4>Posted:</h4>
-                    <h5>August 4, 2022</h5>
+                    <h4>Joined:</h4>
+                    <h5>{{ Carbon\Carbon::parse($shop->created_at)->format('F d, Y') }}</h5>
                 </div>
                 <div class="list_item d-flex align-items-center flex-wrap">
                     <h4>Views:</h4>
-                    <h5>14</h5>
+                    <h5>{{ $shop->visited }}</h5>
                 </div>
             </div>
-            <h2 class="company_title">Jean- Louis David</h2>
+            <h2 class="company_title">{{ $shop->name }}</h2>
             <ul class="star_list company_bottom_border d-flex align-items-center flex-wrap">
                 <li>
                     <img src="{{ asset('assets/app/icons/star_fill.svg') }}" alt="star icon" />
@@ -58,31 +59,24 @@
             <div class="description_area company_bottom_border">
                 <h4 class="notification_title">Description</h4>
                 <p>
-                    In publishing and graphic design, Lorem ipsum is a placeholder
-                    text commonly used to demonstrate the visual form of a document or
-                    a typeface without relying on meaningful content. Lorem ipsum may
-                    be used as a placeholder before final copy is available.
-                    <b>Read More...</b>
+                    {{ $shop->description }}
                 </p>
             </div>
             <div class="dealer_area company_bottom_border">
                 <button type="button" class="user_img_area" id="dealerProfileBtn">
-                    <img src="{{ asset('assets/app/images/post/comment_user.png') }}" alt="user image" class="user_img" />
+                    <img src="{{ asset(getUserByID($shop->user_id)->avatar) }}" alt="user image" class="user_img" />
                     <div>
                         <div class="dealer">Dealer</div>
-                        <h5 class="sub_login">Jean- Louis David</h5>
+                        <h5 class="sub_login">{{ getUserByID($shop->user_id)->first_name }} {{ getUserByID($shop->user_id)->last_name }}</h5>
                     </div>
                 </button>
             </div>
             <div class="location_area company_bottom_border">
                 <h4 class="notification_title">Location</h4>
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.9730352447!2d90.33728817432475!3d23.780818635510663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1695448421480!5m2!1sbn!2sbd"
-                    style="border: 0" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.9730352447!2d90.33728817432475!3d23.780818635510663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1695448421480!5m2!1sbn!2sbd" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="location_grid">
                     <img src="{{ asset('assets/app/icons/location.svg') }}" alt="location icon" />
-                    <h5>address : de Waterloo 730, 1180 Uccle, Belgium</h5>
+                    <h5>{{ $shop->address }}</h5>
                 </div>
             </div>
             <form action="" class="contact_form_area company_bottom_border">
