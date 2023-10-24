@@ -2,6 +2,7 @@
 
 namespace App\Livewire\App\Auth;
 
+use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -70,13 +71,28 @@ class LoginComponent extends Component
             $user->username = Str::lower($this->first_name).'-'.Str::lower(Str::random(7));
             $user->email = $this->email;
             $user->phone = $this->phone;
+            $user->avatar = 'assets/images/avatar.png';
             $user->password = Hash::make($this->password);
             $user->account_type = $this->account_type;
             if($user->save()){
+                if($this->account_type == 'Professional'){
+                    $shop = new Shop();
+                    $shop->user_id = $user->id;
+                    $shop->name = $this->first_name . "'s" . ' Shop';
+                    $shop->description = '';
+                    $shop->profile_image = 'assets/images/placeholder.jpg';
+                    $shop->cover_photos = ['assets/images/placeholder-rect.jpg'];
+                    $shop->latitude = '';
+                    $shop->longitude = '';
+                    $shop->address = '';
+                    $shop->visited = 0;
+                    $shop->save();
+                }
+
                 Auth::guard('web')->attempt(['email' => $this->email, 'password' => $this->password]);
 
                 session()->flash('success', 'Registration Successful');
-                return redirect()->route('app.index');
+                return redirect()->route('app.home');
             }
         } else {
             session()->flash('agree_error', 'Must agree to terms and conditions');
