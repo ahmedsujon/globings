@@ -2,26 +2,29 @@
 
 namespace App\Livewire\App;
 
-use App\Models\Category;
-use App\Models\CommentLike;
-use App\Models\CommentReply;
-use App\Models\CommentReplyLike;
+use Carbon\Carbon;
 use App\Models\Post;
-use App\Models\PostComment;
-use App\Models\PostLike;
 use App\Models\User;
 use Livewire\Component;
-use Livewire\Features\SupportFileUploads\WithFileUploads;
+use App\Models\Category;
+use App\Models\PostLike;
+use App\Models\CommentLike;
+use App\Models\PostComment;
+use Illuminate\Support\Str;
+use App\Models\CommentReply;
 use Livewire\WithPagination;
+use App\Models\CommentReplyLike;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class HomeComponent extends Component
 {
     use WithPagination;
     use WithFileUploads;
 
-    public $categories, $pagination_value = 7, $comment, $comment_filter_by, $content, $images = [];
+    public $categories, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [];
     public function mount()
     {
+        $this->search_term = request()->get('search');
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
     }
 
@@ -30,6 +33,7 @@ class HomeComponent extends Component
         $this->validateOnly($fields, [
             'content' =>'required',
             'images' =>'required',
+            'images.*' =>'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
     }
 
@@ -134,14 +138,43 @@ class HomeComponent extends Component
         }
     }
 
+    public function removeImg($key)
+    {
+        unset($this->images[$key]);
+    }
+
     public function createPost()
     {
         $this->validate([
             'content' =>'required',
             'images' =>'required',
+            'images.*' =>'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
 
-        dd($this->content);
+        $post = new Post();
+        $post->category_id = 1;
+        $post->slug = Str::slug(Str::lower(Str::random(4)) .' '. Str::lower(Str::random(4)) .' '. Str::lower(Str::random(4)));
+        $post->user_id = user()->id;
+        $post->content = $this->content;
+        $post->status = 1;
+        if($this->images){
+            $postImgs = [];
+            foreach ($this->images as $key => $img) {
+                $fileName = uniqid() . Carbon::now()->timestamp. '.' .$this->images[$key]->extension();
+                $this->images[$key]->storeAs('posts', $fileName);
+
+                $name = 'uploads/posts/'.$fileName;
+                $postImgs[] = $name;
+            }
+            $post->images = $postImgs;
+        }
+        $post->save();
+
+        session()->flash('post_created');
+        return redirect()->route('app.home');
+
+        $this->content = '';
+        $this->images = '';
     }
 
     public function reInitializeSwiper()
@@ -151,7 +184,7 @@ class HomeComponent extends Component
 
     public function render()
     {
-        $posts = Post::where('status', 1)->orderBy('created_at', 'DESC')->paginate($this->pagination_value);
+        $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
 
         if($this->selected_post_id){
             $comments = PostComment::where('post_id', $this->selected_post_id);

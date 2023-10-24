@@ -9,6 +9,17 @@
                         <h4 class="notification_title">Manage Profile</h4>
                         <button type="button" id="settingProfileBtn">
                             <img src="{{ asset('assets/app/icons/settings-white.svg') }}" alt="setting icon" />
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px;" class="icon icon-tabler icon-tabler-logout" width="24" height="24" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ff0000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                    <path d="M9 12h12l-3 -3" />
+                                    <path d="M18 15l3 -3" />
+                                </svg>
+                            </a>
+                            <form id="logout-form" style="display: none;" method="POST" action="{{ route('logout') }}">
+                                @csrf
+                            </form>
                         </button>
                     </div>
                     <div class="user_grid">
@@ -16,8 +27,8 @@
                             <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" />
                         </div>
                         <div>
-                            <h4>Fouad Zaher</h4>
-                            <h5>Entrepreneur, Globings.com</h5>
+                            <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
+                            <h5>{{ '@'.$profile->username }}</h5>
                         </div>
                     </div>
                 </div>
@@ -26,7 +37,7 @@
                 <div class="container">
                     <div class="number_area d-flex align-items-center flex-wrap g-sm">
                         <img src="{{ asset('assets/app/icons/profile_store_icon.svg') }}" alt="store icon" />
-                        <h4>150 Bings</h4>
+                        <h4>0 Bings</h4>
                     </div>
                 </div>
             </div>

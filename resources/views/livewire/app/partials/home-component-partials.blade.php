@@ -1,6 +1,6 @@
 <div>
     <!-- Mobile Menu  -->
-    @if (!(request()->is('/') || request()->is('login')))
+    @if (!request()->is('login'))
         <section class="mobile_menu_wrapper" id="mobileMenuWrapper">
             <div class="container position-relative">
                 <ul class="top_mobile_menu_list">
@@ -74,7 +74,7 @@
                     </ul>
                 </div>
             </div>
-            <img src="{{ asset('assets/app/images/others/menu_shape.png') }}" alt="menu shape" class="shape_svg" />
+            <img src="{{ asset('assets/app/images/others/menu_shape.png') }}" alt="" class="shape_svg" />
         </section>
     @endif
 </div>

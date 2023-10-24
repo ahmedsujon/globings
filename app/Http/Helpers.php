@@ -1,12 +1,14 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Admin;
-use App\Models\AdminPermission;
+use App\Models\PostLike;
 use App\Models\CommentLike;
 use App\Models\CommentReply;
+use App\Models\AdminPermission;
 use App\Models\CommentReplyLike;
-use App\Models\PostLike;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -29,6 +31,11 @@ function user()
     return Auth::guard('web')->user();
 }
 
+function getUserByID($id)
+{
+    return User::find($id);
+}
+
 function getCommentUser($id)
 {
     return User::select('first_name', 'last_name', 'avatar')->find($id);
@@ -38,6 +45,11 @@ function getCommentUser($id)
 function getUserProfileHome($id)
 {
     return User::select('avatar')->find($id);
+}
+
+function getShopProfileHome($id)
+{
+    return Shop::select('profile_image')->where('user_id', $id)->first();
 }
 
 function isLiked($post_id)
@@ -76,6 +88,17 @@ function isCommentReplyLiked($comment_reply_id)
 {
     if(user()){
         return CommentReplyLike::select('id')->where('user_id', user()->id)->where('comment_reply_id', $comment_reply_id)->first();
+    } else {
+        return false;
+    }
+}
+
+function userHasActiveSubscription()
+{
+    $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->first();
+
+    if($subscription){
+        return true;
     } else {
         return false;
     }

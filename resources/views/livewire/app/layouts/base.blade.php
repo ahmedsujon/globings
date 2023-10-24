@@ -8,6 +8,10 @@
     <title>Globings</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/app/images/header/logo.png') }}" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link href="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/swiper-bundle.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/modal-video.min.css') }}" />
@@ -50,8 +54,47 @@
     <script src="{{ asset('assets/app/plugins/js/percircle.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.star-rating-svg.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
+
+    <script>
+        //Toastr Notification
+        // $(document).ready(function() {
+        //     toastr.options = {
+        //         "progressBar": true,
+        //         "positionClass": "toast-top-right"
+        //     };
+        // });
+        // window.addEventListener('success', event => {
+        //     toastr.success(event.detail[0].message);
+        // });
+        // window.addEventListener('warning', event => {
+        //     toastr.warning(event.detail[0].message);
+        // });
+        // window.addEventListener('error', event => {
+        //     toastr.error(event.detail[0].message);
+        // });
+        // @if (Session::has('success'))
+        //     toastr.success("{{ Session::get('success') }}");
+        // @endif
+
+        //Delete conf.
+        // window.addEventListener('show_delete_confirmation', event => {
+        //     $('#deleteDataModal').modal('show');
+        // });
+        // window.addEventListener('action_btn_click_error', event => {
+        //     $('.delete_btn').html('<i class="bx bx-trash font-size-13 align-middle"></i>');
+        //     $('#deleteDataModal').modal('hide');
+        //     Swal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         html: 'Something went wrong! <br> Please try again.'
+        //     });
+        // });
+    </script>
 
     @stack('scripts')
 </body>
