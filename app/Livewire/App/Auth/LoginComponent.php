@@ -75,7 +75,7 @@ class LoginComponent extends Component
             $user->password = Hash::make($this->password);
             $user->account_type = $this->account_type;
             if($user->save()){
-                if($this->account_type == 'Professional'){
+                if($this->account_type == 'professional'){
                     $shop = new Shop();
                     $shop->user_id = $user->id;
                     $shop->name = $this->first_name . "'s" . ' Shop';
