@@ -61,6 +61,15 @@ function isLiked($post_id)
     }
 }
 
+function isBookmarked($post_id)
+{
+    if(user()){
+        return PostLike::select('id')->where('user_id', user()->id)->where('post_id', $post_id)->first();
+    } else {
+        return false;
+    }
+}
+
 function total_post_like($post_id)
 {
     return PostLike::where('post_id', $post_id)->count();
