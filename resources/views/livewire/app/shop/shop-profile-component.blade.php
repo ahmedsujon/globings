@@ -79,19 +79,42 @@
                     <h5>{{ $shop->address }}</h5>
                 </div>
             </div>
-            <form action="" class="contact_form_area company_bottom_border">
+            <form action="" wire:submit.prevent='sendContactMsg' class="contact_form_area company_bottom_border">
                 <h4 class="notification_title">Contact</h4>
+
                 <div class="input_row">
-                    <input type="text" class="input_item" placeholder="Name" />
+                    <input type="text" wire:model.blur='name' class="input_item" placeholder="Name" />
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input_row">
-                    <input type="email" class="input_item" placeholder="E-mail" />
+                    <input type="email" wire:model.blur='email' class="input_item" placeholder="E-mail" />
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input_row">
-                    <input type="number" class="input_item" placeholder="Phone Number" />
+                    <input type="number" wire:model.blur='phone' class="input_item" placeholder="Phone Number" />
+                    @error('phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+                <div class="input_row">
+                    <textarea class="input_item" wire:model.blur='message' placeholder="Message"></textarea>
+                    @error('message')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                @if (session()->has('success_contact'))
+                    <div class="input_row" style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 2px;">
+                        <p style="color: white;">{{ session('success_contact') }}</p>
+                    </div>
+                @endif
+
                 <button type="submit" class="login_btn login_btn_fill">
-                    Send Message
+                    {!! loadingStateWithTextApp('sendContactMsg', 'Send Message') !!}
                 </button>
             </form>
             <div class="review_area company_bottom_border">
