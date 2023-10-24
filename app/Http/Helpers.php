@@ -1,12 +1,13 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Admin;
-use App\Models\AdminPermission;
+use App\Models\PostLike;
 use App\Models\CommentLike;
 use App\Models\CommentReply;
+use App\Models\AdminPermission;
 use App\Models\CommentReplyLike;
-use App\Models\PostLike;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -76,6 +77,17 @@ function isCommentReplyLiked($comment_reply_id)
 {
     if(user()){
         return CommentReplyLike::select('id')->where('user_id', user()->id)->where('comment_reply_id', $comment_reply_id)->first();
+    } else {
+        return false;
+    }
+}
+
+function userHasActiveSubscription()
+{
+    $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->first();
+
+    if($subscription){
+        return true;
     } else {
         return false;
     }

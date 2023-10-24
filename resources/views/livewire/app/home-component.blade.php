@@ -10,7 +10,7 @@
                     <li>
                         @auth
                             @if (user()->account_type == 'Professional')
-                                @if(user()->status == 1)
+                                @if(userHasActiveSubscription())
                                     <a href="javascript:void(0)" id="openPostCreateBtn">
                                         <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                                     </a>
