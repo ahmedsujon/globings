@@ -13,6 +13,7 @@ use App\Livewire\App\Profile\ProfileComponent;
 use App\Livewire\App\Profile\RecentPhotosComponent;
 use App\Livewire\App\Profile\RecentPostComponent;
 use App\Livewire\App\Profile\UserProfileComponent;
+use App\Livewire\App\Shop\ShopProfileComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::get('/', HomeComponent::class)->name('app.home');
 
 // Profile routes
 Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile');
+Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.shopProfile');
 
 // Bings routes
 Route::get('/bings', BingComponent::class)->name('app.bings');

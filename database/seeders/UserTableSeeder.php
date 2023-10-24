@@ -48,7 +48,7 @@ class UserTableSeeder extends Seeder
             $shop->name = 'Test Shop';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
+            $shop->cover_photos = ['assets/images/placeholder-rect.jpg','assets/images/placeholder-rect.jpg','assets/images/placeholder-rect.jpg'];
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';

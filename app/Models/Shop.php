@@ -10,4 +10,8 @@ class Shop extends Model
     use HasFactory;
 
     protected $table = 'shops';
+
+    protected $casts = [
+        'cover_photos' => 'array'
+    ];
 }

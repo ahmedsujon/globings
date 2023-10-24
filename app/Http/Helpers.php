@@ -8,6 +8,7 @@ use App\Models\CommentLike;
 use App\Models\CommentReply;
 use App\Models\AdminPermission;
 use App\Models\CommentReplyLike;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -39,6 +40,11 @@ function getCommentUser($id)
 function getUserProfileHome($id)
 {
     return User::select('avatar')->find($id);
+}
+
+function getShopProfileHome($id)
+{
+    return Shop::select('profile_image')->where('user_id', $id)->first();
 }
 
 function isLiked($post_id)
