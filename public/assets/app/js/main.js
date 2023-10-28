@@ -41,6 +41,16 @@ $(document).ready(function () {
   if (document.querySelector("#citySelect")) {
     selectTwo("#citySelect", "Select City");
   }
+  if (document.querySelector("#locationSearchSelect")) {
+    selectTwo("#locationSearchSelect", "Select City");
+  }
+
+  //Header Category Active
+  $("#headerCategorySlider .category_item").click(function (e) {
+    e.preventDefault();
+    $(this).parent().siblings().children().removeClass("active_category");
+    $(this).addClass("active_category");
+  });
 
   //Add Remove Class
   function toggleClassElement(selector, className) {
@@ -322,6 +332,19 @@ $(document).ready(function () {
     }
   });
 
+  //Setting Bio Modal
+  $("#settingBioModalBtn,#settingBioCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#settingBioModalArea").toggleClass("sing_modal_active");
+
+    if ($("#settingBioModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
   //Place Modal
   $("#placeModalBtn,#placeCloseBtn").click(function (e) {
     e.preventDefault();
@@ -361,9 +384,57 @@ $(document).ready(function () {
     }
   });
 
+  //Setting Phone Edit Modal
+  $("#phoneModalBtn,#profilePhoneCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#profilePhoneModalArea").toggleClass("sing_modal_active");
+
+    if ($("#profilePhoneModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Filter Modal
+  $("#filterBtn,#filterOverlay").click(() => {
+    if ($("#searchFilterArea").hasClass("filter_active")) {
+      $("#filterOverlay").hide("slow");
+    } else {
+      $("#filterOverlay").show("slow");
+    }
+    $("#searchFilterArea").toggleClass("filter_active");
+  });
+
+  //Result Share Modal
+  $("#shareModalBtn,#resultScanCloseBtn").click(() => {
+    if ($("#resultScanModalArea").hasClass("result_scan_active")) {
+      $("#resultScanOverlay").hide("slow");
+    } else {
+      $("#resultScanOverlay").show("slow");
+    }
+    $("#resultScanModalArea").toggleClass("result_scan_active");
+  });
+
   //Badge Circle
   $(".circle_area .small").percircle({
     percent: 27,
+  });
+
+  //Book Marks
+  $(".bookmarkIcon").click(function (e) {
+    e.preventDefault();
+    $(this).toggleClass("active_bookmark");
+  });
+
+  //Map Location Category
+  $("#locationCategorySlider .category_item").click(function (e) {
+    e.preventDefault();
+    // if($(this).hasClass("location_active"))
+    $(this).hasClass("location_active")
+      ? $(this).removeClass("location_active")
+      : $(this).addClass("location_active");
   });
 });
 
@@ -468,6 +539,16 @@ function swiperSlider(
   });
 }
 
+//Free Mood Slider
+const swiperAutoSlider = (id, space = 24) => {
+  const swipeSocialSlider = new Swiper(`${id} .swiper`, {
+    slidesPerView: "auto",
+    speed: 1150,
+    spaceBetween: space,
+    freeMode: true,
+  });
+};
+
 //Category slider
 const swiperPreview = new Swiper(`#previewSlider .swiper`, {
   slidesPerView: 1,
@@ -548,13 +629,38 @@ const companySlider = new Swiper("#companySliderArea .swiper", {
 });
 
 //Upload Media slider
-const swipeMapSlider = new Swiper("#mapSliderArea .swiper", {
-  slidesPerView: "auto",
-  speed: 1150,
-  spaceBetween: 11,
-  freeMode: true,
-  centeredSlides: true,
-});
+swiperAutoSlider("#mapSliderArea", 11);
+// const swipeMapSlider = new Swiper("#mapSliderArea .swiper", {
+//   slidesPerView: "auto",
+//   speed: 1150,
+//   spaceBetween: 11,
+//   freeMode: true,
+//   centeredSlides: true,
+// });
+
+//User Share slider
+swiperAutoSlider("#userShareSlider");
+// const swipeUserSocialSlider = new Swiper("#userShareSlider .swiper", {
+//   slidesPerView: "auto",
+//   speed: 1150,
+//   spaceBetween: 24,
+//   freeMode: true,
+// });
+
+//User Share slider
+swiperAutoSlider("#socialShareSlider");
+// const swipeSocialSlider = new Swiper("#socialShareSlider .swiper", {
+//   slidesPerView: "auto",
+//   speed: 1150,
+//   spaceBetween: 24,
+//   freeMode: true,
+// });
+
+//Location Category slider
+swiperAutoSlider("#locationCategorySlider", 5);
+
+//Recent Location Slider
+swiperAutoSlider("#recentSearchSlider", 15);
 
 //Country Input
 var input = document.querySelector("#telephone");

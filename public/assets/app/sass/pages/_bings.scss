@@ -1365,15 +1365,6 @@
       }
     }
   }
-
-  //Coin Modal
-  .bing_back_area {
-    padding: 16px 0;
-    border-bottom: 1px solid #d2d5df;
-    .close_btn {
-      max-width: 24px;
-    }
-  }
 }
 
 // Scan Modal
@@ -1597,5 +1588,118 @@
       font-weight: 600;
       line-height: 20px;
     }
+  }
+}
+
+//Scan Result Modal Area
+.result_share_modal {
+  padding: 30px 0;
+  background-color: #f5f6f8;
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+  .scan_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 46px) repeat(1, minmax(0, 1fr)) minmax(
+        0,
+        30px
+      );
+    align-items: center;
+    gap: 20px 16px;
+    padding-bottom: 21px;
+    border-bottom: 1px solid #dee0e2;
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 4px;
+      background: #e3e5ed;
+    }
+    .content {
+      a {
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        text-decoration-line: underline;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .user_share_slider {
+    margin-top: 39px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dee0e2;
+    .swiper-slide {
+      width: 66px;
+    }
+    .user_img {
+      display: block;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .share_icon {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 20px;
+      height: 20px;
+    }
+    h5 {
+      color: #16181e;
+      text-align: center;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 14.4px;
+      margin-top: 6px;
+    }
+  }
+  .social_share_slider {
+    margin-top: 20px;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .copy_list {
+    border-radius: 8px;
+    background: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin-top: 40px;
+    a,
+    button {
+      width: 100%;
+      padding: 16px;
+      span {
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 19.2px;
+      }
+    }
+  }
+  .action_btn {
+    color: #1872f6;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19.2px;
+    margin-top: 16px;
   }
 }
