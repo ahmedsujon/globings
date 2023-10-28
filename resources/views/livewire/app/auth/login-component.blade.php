@@ -133,6 +133,14 @@
                                 @enderror
                             </div>
                             <div class="input_row">
+                                <label for="">Phone</label>
+                                <input type="text" placeholder="Enter phone" wire:model.blur='phone'
+                                    class="input_field" />
+                                @error('phone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="input_row">
                                 <label for="">Password</label>
                                 <input type="password" placeholder="Enter your password" wire:model.blur='password'
                                     class="input_field" id="passwordInput2" />
@@ -235,6 +243,14 @@
                                 <input type="email" placeholder="abcdef1234@gmail.com" wire:model.blur='email'
                                     class="input_field" />
                                 @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="input_row">
+                                <label for="">Phone</label>
+                                <input type="text" placeholder="Enter phone" wire:model.blur='phone'
+                                    class="input_field" />
+                                @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

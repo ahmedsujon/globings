@@ -4,6 +4,8 @@ namespace App\Livewire\App\Shop;
 
 use App\Models\Contact;
 use App\Models\Shop;
+use App\Models\ShopBookmark;
+use App\Models\ShopFavourite;
 use Livewire\Component;
 
 class ShopProfileComponent extends Component
@@ -48,6 +50,23 @@ class ShopProfileComponent extends Component
         $this->message = '';
 
         session()->flash('success_contact', 'Contact message sent successfully');
+    }
+
+    public function favorite()
+    {
+        if(user()){
+            $getFav = ShopBookmark::where('shop_id', $this->shop->id)->where('user_id', user()->id)->first();
+            if($getFav){
+                $getFav->delete();
+            } else {
+                $fav = new ShopBookmark();
+                $fav->shop_id = $this->shop->id;
+                $fav->user_id = user()->id;
+                $fav->save();
+            }
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     public function render()
