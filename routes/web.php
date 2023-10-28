@@ -14,6 +14,7 @@ use App\Livewire\App\Profile\RecentPhotosComponent;
 use App\Livewire\App\Profile\RecentPostComponent;
 use App\Livewire\App\Profile\UserProfileComponent;
 use App\Livewire\App\Shop\ShopProfileComponent;
+use App\Livewire\App\Shop\ShopsComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,8 +35,9 @@ Route::get('/', HomeComponent::class)->name('app.home');
 Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile');
 Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.shopProfile');
 
-// Bings routes
-Route::get('/bings', BingComponent::class)->name('app.bings');
+// App show menu
+Route::get('/shops', ShopsComponent::class)->name('app.shops');
+
 
 // Terms-and-conditions routes
 Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.terms-and-conditions');
@@ -47,6 +49,9 @@ Route::middleware('auth')->group(function(){
     Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe');
     Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess');
     Route::get('/stripe-payment-success-component', StripePaymentSuccessComponent::class)->name('app.stripeSuccessComponent');
+
+    // Bings routes
+    Route::get('/bings', BingComponent::class)->name('app.bings');
 
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');

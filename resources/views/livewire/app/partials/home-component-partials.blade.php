@@ -47,7 +47,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route('app.shops') }}">
                                 <img src="{{ asset('assets/app/icons/footer_icon_icon2.svg') }}" alt="menu icon" class="inactive_icon" />
                             </a>
                         </li>
