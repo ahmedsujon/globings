@@ -59,7 +59,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($categories as $category)
                         <div class="swiper-slide">
-                            <a href="#" class="category_item">
+                            <a href="{{ route('app.home') }}?category={{ $category->id }}" class="category_item {{ request()->get('category') == $category->id ? 'active_category' : ''}}">
                                 <img src="{{ asset($category->icon) }}" alt="category icon" />
                                 <h4>{{ $category->name }}</h4>
                             </a>
@@ -336,7 +336,7 @@
 
                 var value = $('#search_input').val();
 
-                window.location.href = "{{URL::to('/home')}}?search="+value;
+                window.location.href = "{{URL::to('/')}}?search="+value;
             });
 
             $('.add_like_btn').on('click', function() {
