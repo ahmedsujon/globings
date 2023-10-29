@@ -24,6 +24,24 @@
                   </button>
                 </div>
               </form>
+               <!-- Category Slider Section  -->
+            <div
+            class="category_slider_area border-0"
+            id="headerCategorySlider"
+          >
+            <div class="swiper">
+              <div class="swiper-wrapper">
+                @foreach ($categories as $category)
+                <div class="swiper-slide">
+                  <a href="#" class="category_item">
+                      <img src="{{ asset($category->icon) }}" alt="category icon" />
+                      <h4>{{ $category->name }}</h4>
+                  </a>
+              </div>
+                @endforeach
+              </div>
+            </div>
+          </div>
             </div>
           </div>
           <div class="location_area">

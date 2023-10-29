@@ -398,11 +398,13 @@ $(document).ready(function () {
   });
 
   //Filter Modal
-  $("#filterBtn,#filterOverlay").click(() => {
+  $("#filterBtn,#filterOverlay,#filterCloseBtn").click(() => {
     if ($("#searchFilterArea").hasClass("filter_active")) {
       $("#filterOverlay").hide("slow");
+      showScrollbar();
     } else {
       $("#filterOverlay").show("slow");
+      hideScrollbar();
     }
     $("#searchFilterArea").toggleClass("filter_active");
   });

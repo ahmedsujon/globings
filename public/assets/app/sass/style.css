@@ -249,7 +249,7 @@
 .filter_modal_area {
   position: fixed;
   left: 0;
-  bottom: 100%;
+  bottom: -100%;
   z-index: 1005;
   width: 100%;
   max-height: 100vh;
@@ -263,11 +263,11 @@
   /* Track */
   /* Handle */
   /* Handle on hover */
-  overflow-y: auto;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden;
 }
@@ -276,21 +276,6 @@
 }
 .filter_modal_area::-webkit-scrollbar-track {
   background: rgba(153, 153, 153, 0.2);
-  border-radius: 5px;
-}
-.filter_modal_area::-webkit-scrollbar-thumb {
-  background: #999999;
-  border-radius: 5px;
-}
-.filter_modal_area::-webkit-scrollbar-thumb:hover {
-  background: #f84f4f;
-  cursor: grab;
-}
-.filter_modal_area::-webkit-scrollbar {
-  width: 5px;
-}
-.filter_modal_area::-webkit-scrollbar-track {
-  background: #1872f6;
   border-radius: 5px;
 }
 .filter_modal_area::-webkit-scrollbar-thumb {
