@@ -244,4 +244,110 @@
     }
   }
 }
-/* Section */
+
+/* Filter Section */
+.filter_modal_area {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  z-index: 1005;
+  width: 100%;
+  max-height: 100vh;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: white;
+  border-radius: 23px 23px 0px 0px;
+  box-shadow: 0px -6px 27px 0px rgba(0, 0, 0, 0.25);
+  @include customScrollbarInner();
+  @include hover-transition();
+  opacity: 0;
+  visibility: hidden;
+  &.filter_active {
+    bottom: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+  .category_area {
+    margin-top: 30px;
+  }
+  .category_filter_grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0px 10px;
+    margin-top: 4px;
+  }
+  .form-check {
+    display: grid;
+    grid-template-columns: minmax(0, 19px) repeat(1, minmax(0, 1fr));
+    align-items: start;
+    gap: 9px;
+    padding: 0;
+    margin-top: 20px;
+  }
+  .form-check-input {
+    margin: 0;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+  }
+  .form-check-label {
+    display: grid;
+    grid-template-columns: minmax(0, 22px) repeat(1, minmax(0, 1fr));
+    align-items: center;
+    gap: 9px;
+    span {
+      color: #000;
+      font-family: $secondary-font;
+      font-size: 9.934px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+  }
+  .select_area {
+    margin-top: 46px;
+    .bring_bottom_text {
+      margin-bottom: 20px;
+    }
+  }
+  .area_list {
+    gap: 10px;
+    button,
+    a {
+      border-radius: 47px;
+      border: 1px solid #939393 !important;
+      padding: 6px 10px;
+      color: #000;
+      font-family: $secondary-font;
+      font-size: 9.934px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+    .active {
+      color: white;
+      background: #1872f6;
+    }
+  }
+  .range_area {
+    margin-top: 38px;
+  }
+  .addui-slider {
+    width: 100%;
+    margin-left: 0;
+    .addui-slider-range,
+    .addui-slider-handle::after,
+    .addui-slider-value {
+      background: #1872f6 !important;
+    }
+  }
+  .addui-slider-value {
+    span {
+      font-size: 10px !important;
+    }
+  }
+  .btn_area {
+    margin-top: 30px;
+  }
+}

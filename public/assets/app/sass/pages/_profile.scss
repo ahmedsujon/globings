@@ -9,6 +9,7 @@
 //Profile Modal
 .profile_modal_area {
   padding-top: 24px;
+  padding-bottom: 80px;
   .cover_img {
     img {
       width: 100%;
@@ -393,11 +394,13 @@
 
 //Profile Edit Modal
 .profile_edit_modal {
-  .bing_back_area{
+  .bing_back_area {
     margin-top: 20px;
     margin-bottom: 30px;
   }
   .mobile_form_area {
+    min-height: calc(100vh - 150px);
+
     .login_btn {
       margin-top: 108px;
     }
@@ -418,5 +421,27 @@
         padding-right: 0;
       }
     }
+  }
+}
+
+//Setting Bio Modal
+.setting_bio_area {
+  .contact_form_area {
+    border-bottom: none;
+    min-height: calc(100vh - 95px);
+    .input_row {
+      .input_item {
+        border-radius: 8px;
+        border: 1px solid #e2e2e2;
+        background-color: transparent;
+      }
+    }
+
+    .login_btn {
+      margin-top: 60px;
+    }
+  }
+  .location_area {
+    margin-top: 16px;
   }
 }
