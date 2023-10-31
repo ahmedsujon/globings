@@ -1380,3 +1380,40 @@ main {
     line-height: normal;
   }
 }
+
+//Skeleton
+.skeleton {
+  position: relative;
+  background-color: #e1e1e1;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  overflow: hidden;
+}
+
+.skeleton::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsla(0, 0%, 100%, 0.4),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: skeleton-glare 1.75s infinite ease-out;
+  z-index: 1;
+ 
+}
+
+@keyframes skeleton-glare {
+  to {
+    transform: translateX(100%);
+  }
+}

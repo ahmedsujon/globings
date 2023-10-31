@@ -46,7 +46,7 @@
                 <button class="search_icon" type="submit">
                     <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
                 </button>
-                <button class="filter_icon" type="button">
+                <button class="filter_icon" type="button" id="filterBtn">
                     <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
                 </button>
             </form>
@@ -126,6 +126,187 @@
             @endif
         </div>
     </section>
+    <!-- Filter Modal  -->
+    <div class="filter_modal_area" id="searchFilterArea">
+        <form action="">
+          <div class="container">
+            <div class="d-flex-between">
+              <h3 class="notification_title">Filters</h3>
+              <button type="button" id="filterCloseBtn">
+                <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
+              </button>
+            </div>
+            <div class="category_area">
+              <h4 class="bring_bottom_text">Categories Settings</h4>
+              <div class="category_filter_grid">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon1"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon1">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Hairdressing</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon2"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon2">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon2.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Grocery</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon3"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon3">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon3.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Cafe Bar</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon4"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon4">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon4.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Butcher's shop</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon5"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon5">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon5.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Fish shop</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon6"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon6">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon6.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Aesthetic</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon7"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon7">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon7.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Health & Wellness</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon8"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon8">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon8.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Restaurant</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="categoryFilterIcon9"
+                  />
+                  <label class="form-check-label" for="categoryFilterIcon9">
+                    <img
+                      src="{{ asset('assets/app/icons/category_filter_icon9.svg') }}"
+                      alt="category icon"
+                    />
+                    <span>Bakery pastry</span>
+                  </label>
+                </div>
+              </div>
+              <div class="select_area">
+                <h4 class="bring_bottom_text">Want to see area of city</h4>
+                <div class="area_list d-flex align-items-center flex-wrap">
+                  <button type="button" class="active">Sunamganj</button>
+                  <button type="button">Sylhet</button>
+                  <button type="button">Dhaka</button>
+                  <button type="button">Khulna</button>
+                  <button type="button">Rajshahi</button>
+                </div>
+              </div>
+              <div class="range_area">
+                <h4 class="bring_bottom_text">Range of area</h4>
+                <input
+                  data-addui="slider"
+                  data-range="true"
+                  data-fontsize="14"
+                  data-step="0.01"
+                  data-min="5"
+                  data-max="20"
+                  value="10"
+                  data-formatter="usd"
+                />
+              </div>
+              <div class="btn_area">
+                <button type="submit" class="login_btn login_btn_fill">
+                  Apply
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
     <!-- Comment Modal  -->
     <div class="comment_modal" wire:ignore.self id="commentModalArea">
