@@ -184,7 +184,11 @@ class HomeComponent extends Component
 
     public function render()
     {
-        $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
+        if(request()->get('category')){
+            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('posts.category_id', request()->get('category'))->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
+        } else {
+            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
+        }
 
         if($this->selected_post_id){
             $comments = PostComment::where('post_id', $this->selected_post_id);
