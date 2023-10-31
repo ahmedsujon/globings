@@ -46,11 +46,11 @@ $(document).ready(function () {
   }
 
   //Header Category Active
-  $("#headerCategorySlider .category_item").click(function (e) {
-    e.preventDefault();
-    $(this).parent().siblings().children().removeClass("active_category");
-    $(this).addClass("active_category");
-  });
+  // $("#headerCategorySlider .category_item").click(function (e) {
+  //   e.preventDefault();
+  //   $(this).parent().siblings().children().removeClass("active_category");
+  //   $(this).addClass("active_category");
+  // });
 
   //Add Remove Class
   function toggleClassElement(selector, className) {
@@ -438,6 +438,18 @@ $(document).ready(function () {
       ? $(this).removeClass("location_active")
       : $(this).addClass("location_active");
   });
+
+  //Map Details Modal
+  $("#mapSliderArea .slider_item,#mapDetailsOverlay").click(() => {
+    if ($("#mapDetailsModalArea").hasClass("bottom_active")) {
+      $("#mapDetailsOverlay").hide("slow");
+      showScrollbar();
+    } else {
+      $("#mapDetailsOverlay").show("slow");
+      hideScrollbar();
+    }
+    $("#mapDetailsModalArea").toggleClass("bottom_active");
+  });
 });
 
 //Add Class
@@ -626,6 +638,19 @@ const companySlider = new Swiper("#companySliderArea .swiper", {
   },
   pagination: {
     el: "#companySliderArea .swiper-pagination",
+    type: "fraction",
+  },
+});
+
+//Company Map Slider
+const companyMapSlider = new Swiper("#companyMapDetailsSlider .swiper", {
+  speed: 1150,
+  spaceBetween: 5,
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    el: "#companyMapDetailsSlider .swiper-pagination",
     type: "fraction",
   },
 });
