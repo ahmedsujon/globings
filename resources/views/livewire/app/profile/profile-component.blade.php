@@ -562,7 +562,7 @@
                         <button type="button" id="profileEditModalBtn">Edit Profile</button>
                       </li>
                       <li>
-                        <button type="button" id="profileEditModalBtns">Change Password</button>
+                        <button type="button" id="passwordEditModalArea">Change Password</button>
                       </li>
                     </ul>
                   </div>
@@ -596,7 +596,7 @@
                         src="{{ asset('assets/app/icons/setting_icon1.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Name</h5>
+                      <h5>{{ $profile->first_name }} {{ $profile->last_name }}</h5>
                     </button>
                   </li>
                   <li>
@@ -615,8 +615,8 @@
                         alt="manage icon"
                       />
                       <h5>
-                        <a href="mailto:fouadzaher@gmail.com"
-                          >fouadzaher@gmail.com</a
+                        <a href="#"
+                          >{{ $profile->email }}</a
                         >
                       </h5>
                     </button>
@@ -627,7 +627,7 @@
                         src="{{ asset('assets/app/icons/setting_icon5.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Date of birth</h5>
+                      <h5>{{ $profile->dob }}</h5>
                     </button>
                   </li>
                   <li>
@@ -636,7 +636,7 @@
                         src="{{ asset('assets/app/icons/setting_icon1.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Gender</h5>
+                      <h5>{{ $profile->gender }}</h5>
                     </button>
                   </li>
                   <li>
@@ -645,11 +645,11 @@
                         src="{{ asset('assets/app/icons/setting_icon6.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Language</h5>
+                      <h5>English</h5>
                     </button>
                   </li>
                   <li>
-                    <button type="button">
+                    <button type="button" id="passwordEditModalArea">
                       <img
                         src="{{ asset('assets/app/icons/setting_icon7.svg') }}"
                         alt="manage icon"
@@ -762,6 +762,64 @@
             </div>
             <button type="submit" class="login_btn login_btn_fill">
               Update Profile Details
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="sing_modal_area" id="passwordEditModalArea" wire:ignore.self>
+      <div class="profile_edit_modal">
+        <div class="bing_back_area">
+          <div class="container">
+            <div class="d-flex align-items-center flex-wrap g-xl">
+              <button type="button" class="close_btn" id="profileEditCloseBtn">
+                <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+              </button>
+              <h4 class="notification_title">Password Change</h4>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <form wire:submit.prevent='updatePassword'
+            class="mobile_form_area d-flex flex-column justify-content-between"
+          >
+            <div>
+              <div class="input_row">
+                <label for="first_name">Current Password</label>
+                <input
+                  type="text" wire:model="first_name"
+                  placeholder="Enter First Name"
+                  class="input_field"
+                />
+                @error('first_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="last_name">New Password</label>
+                <input
+                  type="text" wire:model="last_name"
+                  placeholder="New Password"
+                  class="input_field"
+                />
+                @error('last_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="last_name">Confirm Password</label>
+                <input
+                  type="text" wire:model="last_name"
+                  placeholder="Confirm Password"
+                  class="input_field"
+                />
+                @error('last_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+            </div>
+            <button type="submit" class="login_btn login_btn_fill">
+              Update Password
             </button>
           </form>
         </div>
