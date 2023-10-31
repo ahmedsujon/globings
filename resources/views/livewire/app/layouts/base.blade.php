@@ -24,9 +24,10 @@
 </head>
 
 <style>
-    .invalid-feedback{
+    .invalid-feedback {
         display: block;
     }
+
     .comment_modal .nested_comment::after {
         background-image: url("../../../assets/app/icons/comment_border.png") !important;
     }
@@ -62,23 +63,24 @@
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
 
-            <!-- For range extension show  -->
-            <script>
-                function betterParseFloat(x) {
-                  if (isNaN(parseFloat(x)) && x.length > 0)
-                    return betterParseFloat(x.substr(1));
-                  return parseFloat(x);
-                }
-                function usd(x) {
-                  x = betterParseFloat(x);
-                  if (isNaN(x)) return "$0.00";
-                  var dollars = Math.floor(x);
-                  var cents = Math.round((x - dollars) * 100) + "";
-                  if (cents.length == 1) cents = "0" + cents;
-                  return dollars + "." + cents + " KM";
-                }
-              </script>
-              
+    <!-- For range extension show  -->
+    <script>
+        function betterParseFloat(x) {
+            if (isNaN(parseFloat(x)) && x.length > 0)
+                return betterParseFloat(x.substr(1));
+            return parseFloat(x);
+        }
+
+        function usd(x) {
+            x = betterParseFloat(x);
+            if (isNaN(x)) return "$0.00";
+            var dollars = Math.floor(x);
+            var cents = Math.round((x - dollars) * 100) + "";
+            if (cents.length == 1) cents = "0" + cents;
+            return dollars + "." + cents + " KM";
+        }
+    </script>
+
     <script>
         //Toastr Notification
         // $(document).ready(function() {
