@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="header_number_area">
+                        <a href="{{ route('app.bings') }}" class="header_number_area">
                             <span class="circle_shape"></span>
                             <span class="number">60</span>
                             <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"

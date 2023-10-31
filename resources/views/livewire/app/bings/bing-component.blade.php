@@ -29,8 +29,8 @@
                             </a>
                         </div>
 
-                        <h4>Fouad Zaher</h4>
-                        <h5>@fouadzhar</h5>
+                        <h4>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
+                        <h5><span>@</span>{{ Auth::user()->username }}</h5>
                     </div>
                     <div class="reward_card_wrapper">
                         <button href="#" class="reward_card_item" id="inviteModalBtn">
