@@ -109,7 +109,7 @@
                         <form action="" wire:submit.prevent='userRegistration' class="mobile_form_area ">
                             <div class="input_row">
                                 <label for="">First Name</label>
-                                <input type="text" placeholder="Enter first name here"
+                                <input type="text" placeholder="Enter first name"
                                     wire:model.blur='first_name' class="input_field" />
                                 @error('first_name')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -118,7 +118,7 @@
                             </div>
                             <div class="input_row">
                                 <label for="">Last Name</label>
-                                <input type="text" placeholder="Enter last name here" wire:model.blur='last_name'
+                                <input type="text" placeholder="Enter last name" wire:model.blur='last_name'
                                     class="input_field" />
                                 @error('last_name')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="input_row">
                                 <label for="">Email</label>
-                                <input type="email" placeholder="abcdef1234@gmail.com" wire:model.blur='email'
+                                <input type="email" placeholder="Enter email" wire:model.blur='email'
                                     class="input_field" />
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -172,6 +172,14 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="input_row">
+                                <label for="">Referral Code</label>
+                                <input type="text" placeholder="Enter referral code" wire:model.blur='refer_code'
+                                    class="input_field" />
+                                @if(session()->has('ref_error'))
+                                    <div class="invalid-feedback">{{ session('ref_error') }}</div>
+                                @endif
+                            </div>
                             <div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox"
@@ -190,7 +198,8 @@
                             </button>
                             <div class="dont_account text-center">
                                 Already a member?
-                                <button type="button">Sign in</button>
+
+                                <a href="{{ route('login') }}" type="button">Sign in</a>
                             </div>
                             <div class="others_login_area">
                                 <h5 class="others_text">Or Log In With</h5>
@@ -286,6 +295,14 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="input_row">
+                                <label for="">Referral Code</label>
+                                <input type="text" placeholder="Enter referral code" wire:model.blur='refer_code'
+                                    class="input_field" />
+                                @if(session()->has('ref_error'))
+                                    <div class="invalid-feedback">{{ session('ref_error') }}</div>
+                                @endif
+                            </div>
                             <div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox"
@@ -304,7 +321,7 @@
                             </button>
                             <div class="dont_account text-center">
                                 Already a member?
-                                <button type="button">Sign in</button>
+                                <a href="{{ route('login') }}" type="button">Sign in</a>
                             </div>
                             <div class="others_login_area">
                                 <h5 class="others_text">Or Log In With</h5>
