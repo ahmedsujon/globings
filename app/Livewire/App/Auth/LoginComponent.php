@@ -2,6 +2,7 @@
 
 namespace App\Livewire\App\Auth;
 
+use App\Models\BingsHistory;
 use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
@@ -98,6 +99,19 @@ class LoginComponent extends Component
                         $usr->referral_code = 'GL-' . $user->id . Str::upper(Str::random(7));
                         $usr->referred_by = $ref_user->id;
                         $usr->save();
+
+                        $bings = rand(10, 15);
+                        $ref_user->total_bings += $bings;
+                        $ref_user->bings_balance += $bings;
+                        $ref_user->save();
+
+                        $bings_history = new BingsHistory();
+                        $bings_history->user_id = $ref_user->id;
+                        $bings_history->bings_for = 'Refer a friend';
+                        $bings_history->description = 'You referred your friend';
+                        $bings_history->bings = $bings;
+                        $bings_history->status = 1;
+                        $bings_history->save();
 
                         Auth::guard('web')->attempt(['email' => $this->email, 'password' => $this->password]);
 
