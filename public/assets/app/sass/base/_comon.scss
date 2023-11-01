@@ -190,6 +190,9 @@ input[type="number"] {
 .pt-24 {
   padding-top: 24px;
 }
+.pb-90 {
+  padding-bottom: 90px;
+}
 .z-index-502 {
   z-index: 502 !important;
 }
@@ -472,6 +475,16 @@ main {
   border: 1px solid #e3e5ed !important;
 }
 
+.detail_border_btn {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 9px 15px;
+  text-align: center;
+}
 /* ============ ScrollToUP Section =========== */
 .scrolltop {
   position: fixed;
@@ -695,6 +708,9 @@ main {
       padding-right: 10px;
     }
   }
+  .nice_select_row {
+    height: 56px;
+  }
   .rattingStar {
     svg {
       height: auto;
@@ -824,6 +840,10 @@ main {
         &:focus {
           border: 1px solid #e2e2e2 !important;
         }
+      }
+      .niceSelect {
+        border: 1px solid #e2e2e2;
+        margin-bottom: 20px;
       }
 
       textarea.input_field {
@@ -988,6 +1008,34 @@ main {
   @include hover-transition();
   &.sing_modal_active {
     width: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+//Bottom Modal
+.bottom_modal_area {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  z-index: 1005;
+  width: 100%;
+  max-height: 100vh;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: white;
+  border-radius: 16px 16px 0px 0px;
+  -webkit-border-radius: 16px 16px 0px 0px;
+  -moz-border-radius: 16px 16px 0px 0px;
+  -ms-border-radius: 16px 16px 0px 0px;
+  -o-border-radius: 16px 16px 0px 0px;
+  box-shadow: 0px -6px 27px 0px rgba(0, 0, 0, 0.25);
+  @include customScrollbarInner();
+  @include hover-transition();
+  opacity: 0;
+  visibility: hidden;
+  &.bottom_active {
+    bottom: 0;
     opacity: 1;
     visibility: visible;
   }
@@ -1262,5 +1310,110 @@ main {
         color: #05acac;
       }
     }
+  }
+}
+
+//Bookmark icon
+.bookmarkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background-color: #eff1f8;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  &.active_bookmark {
+    background-color: #fe7b1e;
+    path {
+      stroke: white;
+    }
+  }
+}
+
+//Map Star List
+.map_start_list {
+  gap: 8px 2px;
+  img {
+    max-width: 18px;
+  }
+  h5 {
+    color: #16181e;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  span {
+    color: #75869c;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline;
+  }
+}
+
+//Number pagination
+.number-pagination {
+  position: absolute;
+  left: auto;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 31px;
+  border-radius: 7px;
+  border: 1px solid #fff;
+  background: rgba(29, 32, 34, 0.19);
+  backdrop-filter: blur(5px);
+  font-size: 14px;
+  color: #fff;
+  span {
+    color: #fff;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+//Skeleton
+.skeleton {
+  position: relative;
+  background-color: #e1e1e1;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  overflow: hidden;
+}
+
+.skeleton::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsla(0, 0%, 100%, 0.4),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: skeleton-glare 1.75s infinite ease-out;
+  z-index: 1;
+ 
+}
+
+@keyframes skeleton-glare {
+  to {
+    transform: translateX(100%);
   }
 }

@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('shop_category')->nullable();
             $table->string('name')->nullable();
             $table->longText('description')->nullable();
             $table->string('profile_image')->nullable();
             $table->longText('cover_photos')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->string('website_url')->nullable();
             $table->text('address')->nullable();
             $table->integer('visited')->default(0);
             $table->timestamps();

@@ -19,9 +19,9 @@
                       class="arrow_icon"
                     />
                   </div>
-                  <button type="button" class="map_btn">
+                  <a href="{{ route('app.map.view') }}" class="map_btn">
                     <img src="{{ asset('assets/app/icons/map_icon.svg') }}" alt="map icon" />
-                  </button>
+                  </a>
                 </div>
               </form>
                <!-- Category Slider Section  -->

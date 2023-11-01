@@ -37,6 +37,16 @@
               <h4 class="notification_title">Other</h4>
               <ul class="manage_list">
                 <li>
+                  <a href="{{ route('app.shop.settings') }}">
+                    <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" alt="manage icon" />
+                    <h5>Business Settings</h5>
+                    <img
+                      src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                      alt="right icon"
+                    />
+                  </a>
+                </li>
+                <li>
                   <a href="{{ route('app.recent-posts') }}">
                     <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
                     <h5>Recent posts</h5>
@@ -517,80 +527,6 @@
             </form>
           </div>
         </div>
-        <!-- Company Map Area  -->
-        <section class="company_map_wrapper place_map_wrapper">
-          <div class="map_area">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.9730352447!2d90.33728817432475!3d23.780818635510663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1695448421480!5m2!1sbn!2sbd"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-          <div class="map_slider_area" id="mapSliderArea">
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div class="slider_item">
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="slider_item">
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="slider_item">
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="slider_item">
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
       <!-- Profile Setting Modal  -->
       <div class="sing_modal_area" id="settingProfileModalArea">
@@ -608,7 +544,6 @@
                     </button>
                     <h5 class="notification_title">Settings Profile</h5>
                   </div>
-  
                   <div class="dropdown">
                     <button
                       type="button"
@@ -622,12 +557,9 @@
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#" id="profileEditModalBtn">Edit Profile</a></li>
                       <li>
-                        <a class="dropdown-item" href="#">Another action</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#" id="passwordEditModalArea">Change Password</a>
                       </li>
                     </ul>
                   </div>
@@ -655,39 +587,13 @@
               <div class="container">
                 <h4 class="notification_title">Settings</h4>
                 <ul class="manage_list">
-                  {{-- <li>
-                    <button type="button" id="settingNameModal">
-                      <img
-                        src="{{ asset('assets/app/icons/setting_icon1.svg') }}"
-                        alt="manage icon"
-                      />
-                      <h5>Mohammad Khan</h5>
-                    </button>
-                  </li> --}}
                   <li>
                     <button type="button" id="settingNameModal">
                       <img
                         src="{{ asset('assets/app/icons/setting_icon1.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Name</h5>
-                      <img
-                        src="{{ asset('assets/app/icons/setting_edit_icon.svg') }}"
-                        alt="right icon"
-                      />
-                    </button>
-                  </li>
-                  <li>
-                    <button type="button" id="profileEditModalBtn">
-                      <img
-                        src="{{ asset('assets/app/icons/setting_icon2.svg') }}"
-                        alt="manage icon"
-                      />
-                      <h5>Bio</h5>
-                      <img
-                        src="{{ asset('assets/app/icons/setting_edit_icon.svg') }}"
-                        alt="right icon"
-                      />
+                      <h5>{{ $profile->first_name }} {{ $profile->last_name }}</h5>
                     </button>
                   </li>
                   <li>
@@ -696,11 +602,7 @@
                         src="{{ asset('assets/app/icons/setting_icon3.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>+32 000 00 00</h5>
-                      <img
-                        src="{{ asset('assets/app/icons/setting_edit_icon.svg') }}"
-                        alt="right icon"
-                      />
+                      <h5>{{ $profile->phone }}</h5>
                     </button>
                   </li>
                   <li>
@@ -710,14 +612,10 @@
                         alt="manage icon"
                       />
                       <h5>
-                        <a href="mailto:fouadzaher@gmail.com"
-                          >fouadzaher@gmail.com</a
+                        <a href="#"
+                          >{{ $profile->email }}</a
                         >
                       </h5>
-                      <img
-                        src="{{ asset('assets/app/icons/setting_edit_icon.svg') }}"
-                        alt="right icon"
-                      />
                     </button>
                   </li>
                   <li>
@@ -726,11 +624,7 @@
                         src="{{ asset('assets/app/icons/setting_icon5.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Date of birth</h5>
-                      <img
-                        src="{{ asset('assets/app/icons/setting_edit_icon.svg') }}"
-                        alt="right icon"
-                      />
+                      <h5>{{ $profile->dob }}</h5>
                     </button>
                   </li>
                   <li>
@@ -739,11 +633,7 @@
                         src="{{ asset('assets/app/icons/setting_icon1.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Gender</h5>
-                      <img
-                        src="{{ asset('assets/app/icons/setting_edit_icon.svg') }}"
-                        alt="right icon"
-                      />
+                      <h5>{{ $profile->gender }}</h5>
                     </button>
                   </li>
                   <li>
@@ -752,15 +642,11 @@
                         src="{{ asset('assets/app/icons/setting_icon6.svg') }}"
                         alt="manage icon"
                       />
-                      <h5>Language</h5>
-                      <img
-                        src="{{ asset('assets/app/icons/setting_edit_icon.svg') }}"
-                        alt="right icon"
-                      />
+                      <h5>English</h5>
                     </button>
                   </li>
                   <li>
-                    <button type="button">
+                    <button type="button" id="passwordEditModalArea">
                       <img
                         src="{{ asset('assets/app/icons/setting_icon7.svg') }}"
                         alt="manage icon"
@@ -774,136 +660,166 @@
           </section>
         </div>
       </div>
-      <!-- Setting Edit Modal  -->
-      <div class="sing_modal_area" id="profileEditModalArea">
-        <div class="profile_edit_modal">
-          <div class="bing_back_area">
-            <div class="container">
-              <div class="d-flex align-items-center flex-wrap g-xl">
-                <button type="button" class="close_btn" id="profileEditCloseBtn">
-                  <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
-                </button>
-                <h4 class="notification_title">Personal Details</h4>
-              </div>
+    <!-- Setting Edit Modal  -->
+    <div class="sing_modal_area" id="profileEditModalArea" wire:ignore.self>
+      <div class="profile_edit_modal">
+        <div class="bing_back_area">
+          <div class="container">
+            <div class="d-flex align-items-center flex-wrap g-xl">
+              <button type="button" class="close_btn" id="profileEditCloseBtn">
+                <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+              </button>
+              <h4 class="notification_title">Personal Details</h4>
             </div>
           </div>
-          <div class="container">
-            <form
-              action=""
-              class="mobile_form_area d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="input_row">
-                  <label for="">First Name</label>
-                  <input
-                    type="email"
-                    placeholder="Enter First Name"
-                    class="input_field"
-                  />
-                  <div class="input_error">Enter First Name</div>
-                </div>
-                <div class="input_row">
-                  <label for="">Last Name</label>
-                  <input
-                    type="email"
-                    placeholder="Enter Last Name"
-                    class="input_field"
-                  />
-                  <div class="input_error">Enter Last Name</div>
-                </div>
-                <div class="input_row">
-                  <label for="">Select your language</label>
-                  <select class="niceSelect">
-                    <option data-display="Select language">
-                      Select language
-                    </option>
-                    <option value="1">English</option>
-                    <option value="2">Bangla</option>
-                  </select>
-                </div>
+        </div>
+        <div class="container">
+          <form wire:submit.prevent='updateProfile'
+            class="mobile_form_area d-flex flex-column justify-content-between"
+          >
+            <div>
+              <div class="input_row">
+                <label for="first_name">First Name</label>
+                <input
+                  type="text" wire:model="first_name"
+                  placeholder="Enter First Name"
+                  class="input_field"
+                />
+                @error('first_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
               </div>
-  
-              <button type="submit" class="login_btn login_btn_fill">
-                Update Profile Details
-              </button>
-            </form>
-          </div>
+              <div class="input_row">
+                <label for="last_name">Last Name</label>
+                <input
+                  type="text" wire:model="last_name"
+                  placeholder="Enter Last Name"
+                  class="input_field"
+                />
+                @error('last_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="phone">Phone</label>
+                <input
+                  type="number" wire:model="phone"
+                  placeholder="Enter Your Phone"
+                  class="input_field"
+                />
+                @error('phone')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="email">Email</label>
+                <input
+                  type="email" wire:model="email"
+                  placeholder="Enter Your Email"
+                  class="input_field"
+                />
+                @error('email')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="dob">Date Of Birth</label>
+                <input
+                  type="date" wire:model="dob"
+                  placeholder="Enter Date Of Birth"
+                  class="input_field"
+                />
+                @error('dob')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="gender">Select Gender</label>
+                <select class="niceSelect" wire:model="gender">
+                  <option data-display="Select Gender">
+                    Select Gender
+                  </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                @error('gender')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              {{-- <div class="input_row" wire:model="language">
+                <label for="">Select your language</label>
+                <select class="niceSelect">
+                  <option data-display="Select language">
+                    Select language
+                  </option>
+                  <option value="English">English</option>
+                </select>
+              </div> --}}
+            </div>
+            <button type="submit" class="login_btn login_btn_fill">
+              Update Profile Details
+            </button>
+          </form>
         </div>
       </div>
-      <!-- Setting Name Modal  -->
-      <div class="sing_modal_area" id="settingNameModal">
-        <div class="profile_edit_modal">
-          <div class="bing_back_area">
-            <div class="container">
-              <div class="d-flex align-items-center flex-wrap g-xl">
-                <button type="button" class="close_btn" id="profilePhoneCloseBtn">
-                  <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
-                </button>
-                <h4 class="notification_title">Personal Details</h4>
-              </div>
+    </div>
+    <div class="sing_modal_area" id="passwordEditModalArea" wire:ignore.self>
+      <div class="profile_edit_modal">
+        <div class="bing_back_area">
+          <div class="container">
+            <div class="d-flex align-items-center flex-wrap g-xl">
+              <button type="button" class="close_btn" id="profileEditCloseBtn">
+                <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+              </button>
+              <h4 class="notification_title">Password Change</h4>
             </div>
           </div>
-          <div class="container">
-            <form
-              action=""
-              class="mobile_form_area d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="input_row">
-                  <label for="">Name</label>
-                  <input
-                    type="number"
-                    placeholder="Enter  Number"
-                    class="input_field"
-                  />
-                  <div class="input_error">Enter Number</div>
-                </div>
-              </div>
-  
-              <button type="submit" class="login_btn login_btn_fill">
-                Update Profile Details
-              </button>
-            </form>
-          </div>
         </div>
-      </div>
-      <!-- Setting Phone Modal  -->
-      <div class="sing_modal_area" id="profilePhoneModalArea">
-        <div class="profile_edit_modal">
-          <div class="bing_back_area">
-            <div class="container">
-              <div class="d-flex align-items-center flex-wrap g-xl">
-                <button type="button" class="close_btn" id="profilePhoneCloseBtn">
-                  <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
-                </button>
-                <h4 class="notification_title">Personal Details</h4>
+        <div class="container">
+          <form wire:submit.prevent='updatePassword'
+            class="mobile_form_area d-flex flex-column justify-content-between"
+          >
+            <div>
+              <div class="input_row">
+                <label for="first_name">Current Password</label>
+                <input
+                  type="text" wire:model="first_name"
+                  placeholder="Enter First Name"
+                  class="input_field"
+                />
+                @error('first_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="last_name">New Password</label>
+                <input
+                  type="text" wire:model="last_name"
+                  placeholder="New Password"
+                  class="input_field"
+                />
+                @error('last_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+              </div>
+              <div class="input_row">
+                <label for="last_name">Confirm Password</label>
+                <input
+                  type="text" wire:model="last_name"
+                  placeholder="Confirm Password"
+                  class="input_field"
+                />
+                @error('last_name')
+                  <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
               </div>
             </div>
-          </div>
-          <div class="container">
-            <form wire:submit.prevent='updatePhone'
-              class="mobile_form_area d-flex flex-column justify-content-between"
-            >
-              <div>
-                <div class="input_row">
-                  <label for="">Phone Number</label>
-                  <input
-                    type="number" wire:mode="phone"
-                    placeholder="Enter  Number"
-                    class="input_field"
-                  />
-                  @error('phone')
-                  <span class="text-danger" style="font-size: 11.5px;">{{ $message
-                      }}</span>
-                  <br>
-                  @enderror
-                </div>
-              </div>
-              <button type="submit" class="login_btn login_btn_fill">
-                {!! loadingStateWithText('updatePhone', 'Update Phone') !!}
-              </button>
-            </form>
-          </div>
+            <button type="submit" class="login_btn login_btn_fill">
+              Update Password
+            </button>
+          </form>
         </div>
       </div>
+    </div>
 </div>

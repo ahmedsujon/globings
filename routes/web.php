@@ -5,6 +5,7 @@ use App\Livewire\App\Auth\LoginComponent;
 use App\Livewire\App\Bings\BingComponent;
 use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
+use App\Livewire\App\Maps\MapViewComponent;
 use App\Livewire\App\Package\PackagePlanComponent;
 use App\Livewire\App\Pages\TermsConditionComponent;
 use App\Livewire\App\Payment\StripePaymentComponent;
@@ -15,6 +16,7 @@ use App\Livewire\App\Profile\RecentPostComponent;
 use App\Livewire\App\Profile\UserProfileComponent;
 use App\Livewire\App\Shop\ShopProfileComponent;
 use App\Livewire\App\Shop\ShopsComponent;
+use App\Livewire\App\Shop\ShopSettingsComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,7 @@ Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.sh
 
 // App show menu
 Route::get('/shops', ShopsComponent::class)->name('app.shops');
+Route::get('/map-view', MapViewComponent::class)->name('app.map.view');
 
 
 // Terms-and-conditions routes
@@ -54,6 +57,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/bings', BingComponent::class)->name('app.bings');
 
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
+    Route::get('/shop-settings', ShopSettingsComponent::class)->name('app.shop.settings');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
     Route::get('/recent-photos', RecentPhotosComponent::class)->name('app.recent-photos');
 });

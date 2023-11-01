@@ -24,9 +24,10 @@
 </head>
 
 <style>
-    .invalid-feedback{
+    .invalid-feedback {
         display: block;
     }
+
     .comment_modal .nested_comment::after {
         background-image: url("../../../assets/app/icons/comment_border.png") !important;
     }
@@ -53,12 +54,32 @@
     <script src="{{ asset('assets/app/plugins/js/jquery.segmentedInput.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/percircle.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.star-rating-svg.js') }}"></script>
+    <script src="{{ asset('assets/app/plugins/js/Obj.min.js') }}"></script>
+    <script src="{{ asset('assets/app/plugins/js/addSlider.min.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
+
+    <!-- For range extension show  -->
+    <script>
+        function betterParseFloat(x) {
+            if (isNaN(parseFloat(x)) && x.length > 0)
+                return betterParseFloat(x.substr(1));
+            return parseFloat(x);
+        }
+
+        function usd(x) {
+            x = betterParseFloat(x);
+            if (isNaN(x)) return "$0.00";
+            var dollars = Math.floor(x);
+            var cents = Math.round((x - dollars) * 100) + "";
+            if (cents.length == 1) cents = "0" + cents;
+            return dollars + "." + cents + " KM";
+        }
+    </script>
 
     <script>
         //Toastr Notification
@@ -95,7 +116,6 @@
         //     });
         // });
     </script>
-
     @stack('scripts')
 </body>
 
