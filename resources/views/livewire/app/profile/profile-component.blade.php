@@ -544,7 +544,6 @@
                     </button>
                     <h5 class="notification_title">Settings Profile</h5>
                   </div>
-  
                   <div class="dropdown">
                     <button
                       type="button"
@@ -558,11 +557,9 @@
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuButton1"
                     >
+                      <li><a class="dropdown-item" href="#" id="profileEditModalBtn">Edit Profile</a></li>
                       <li>
-                        <button type="button" id="profileEditModalBtn">Edit Profile</button>
-                      </li>
-                      <li>
-                        <button type="button" id="passwordEditModalArea">Change Password</button>
+                        <a class="dropdown-item" href="#" id="passwordEditModalArea">Change Password</a>
                       </li>
                     </ul>
                   </div>
