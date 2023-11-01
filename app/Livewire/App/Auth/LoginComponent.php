@@ -89,6 +89,16 @@ class LoginComponent extends Component
                     $shop->save();
                 }
 
+                $usr = User::find($user->id);
+                $usr->referral_code = 'GL-' . $user->id . Str::upper(Str::random(7));
+
+                if ($this->refer_code) {
+                    $ref_user = User::where('referral_code', $this->refer_code)->first();
+                    $usr->referred_by = $ref_user->id;
+                }
+
+                $usr->save();
+
                 Auth::guard('web')->attempt(['email' => $this->email, 'password' => $this->password]);
 
                 session()->flash('success', 'Registration Successful');
