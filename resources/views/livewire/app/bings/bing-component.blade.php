@@ -96,7 +96,7 @@
             <div class="coin_number_area text-center">
                 <div class="d-flex align-items-center justify-content-center flex-wrap g-smm">
                     <img src="{{ asset('assets/app/icons/coin_big.svg') }}" alt="coin icion" />
-                    <h3 class="bing_number_title">150 Bings</h3>
+                    <h3 class="bing_number_title">{{ user()->bings_balance }} Bings</h3>
                 </div>
                 <h5>Total</h5>
             </div>
@@ -111,21 +111,89 @@
                     </h4>
                     <div class="inner_content">
                         <h5>
-                            Shop and complete any offer to unlocak your invite bonus from
-                            Leigh Pomeranz
+                            Shop and complete any offer to unlock your referral bonuses
                         </h5>
-                        <h5>October 26</h5>
                     </div>
                 </div>
                 <div class="coin_number d-flex align-items-center flex-wrap g-smm">
                     <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                    <h4>10</h4>
+                    <h4>{{ $referred_bings }}</h4>
                 </div>
             </div>
-            <div class="container">
+            <div class="container" wire:poll>
                 <div class="coin_history_area">
                     <h3 class="bing_inner_title">Bings History</h3>
-                    <div class="history_item_area">
+
+                    @foreach ($histories as $history)
+                        <div class="history_item_area">
+                            <h3>{{ $history['date'] }}</h3>
+
+                            @foreach ($history['data'] as $data)
+                                <div class="coing_emoji_grid">
+                                    <div class="emoji_area Onboarding_icon_area">
+                                        @if ($data->type == 'referral')
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}" alt="bing coin icon" />
+                                        @elseif($data->type == 'validation')
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}" alt="bing coin icon" />
+                                        @else
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon1.png') }}" alt="bing coin icon" />
+                                        @endif
+
+                                    </div>
+                                    <div class="conin_content_area">
+                                        <h4>
+                                            <span>{{ $data->bings_for }}</span>
+                                            <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                                        </h4>
+                                        <h5>{{ $data->description }}</h5>
+                                        <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5>
+                                    </div>
+                                    <div class="coin_number d-flex align-items-center flex-wrap g-smm">
+                                        <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
+                                        <h4>{{ $data->bings }}</h4>
+                                    </div>
+                                </div>
+                            @endforeach
+                            {{-- <div class="coing_emoji_grid">
+                                <div class="emoji_area">
+                                    <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                        alt="bing coin icon" />
+                                </div>
+                                <div class="conin_content_area">
+                                    <h4>
+                                        <span>Validate my bings</span>
+                                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                                    </h4>
+                                    <h5>Available for search by opening the QR code</h5>
+                                    <h5>October 26</h5>
+                                </div>
+                                <div class="coin_number d-flex align-items-center flex-wrap g-smm">
+                                    <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
+                                    <h4>500</h4>
+                                </div>
+                            </div>
+                            <div class="coing_emoji_grid">
+                                <div class="emoji_area">
+                                    <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                        alt="bing coin icon" />
+                                </div>
+                                <div class="conin_content_area">
+                                    <h4>
+                                        <span>Validate my bings</span>
+                                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                                    </h4>
+                                    <h5>Available for search by opening the QR code</h5>
+                                    <h5>October 26</h5>
+                                </div>
+                                <div class="coin_number d-flex align-items-center flex-wrap g-smm">
+                                    <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
+                                    <h4>500</h4>
+                                </div>
+                            </div> --}}
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="history_item_area">
                         <h3>October 26</h3>
                         <div class="coing_emoji_grid">
                             <div class="emoji_area Onboarding_icon_area">
@@ -237,7 +305,7 @@
                                 <h4>500</h4>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -383,7 +451,7 @@
         </div>
     </div>
 
-    <!-- Bidges Invite Modal  -->
+    <!-- Binges Invite Modal  -->
     <div wire:ignore.self class="sing_modal_area" id="inviteModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">

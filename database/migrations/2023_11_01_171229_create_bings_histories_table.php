@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('bings_for')->nullable();
             $table->text('description')->nullable();
             $table->integer('bings')->default(0);
+            $table->enum('type', ['onboarding','referral','validation'])->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
