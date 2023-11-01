@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Shop;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -27,6 +28,7 @@ class UserTableSeeder extends Seeder
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
+            $user->referral_code = Str::upper(Str::random(7));
             $user->save();
         }
 
@@ -41,6 +43,7 @@ class UserTableSeeder extends Seeder
             $shopUser->password = Hash::make('12345678');
             $shopUser->avatar = 'assets/images/avatar.png';
             $shopUser->account_type = 'professional';
+            $user->referral_code = Str::upper(Str::random(7));
             $shopUser->save();
 
             $shop = new Shop();
