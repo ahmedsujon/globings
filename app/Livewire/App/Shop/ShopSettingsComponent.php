@@ -36,7 +36,7 @@ class ShopSettingsComponent extends Component
 
         $data->save();
         $this->resetInputs();
-        $this->dispatch('success', ['message' => 'Category updated successfully']);
+        $this->dispatch('success', ['message' => 'Shop updated successfully']);
     }
 
     public function resetInputs()
