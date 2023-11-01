@@ -1,14 +1,15 @@
 <?php
 
 use Carbon\Carbon;
+use App\Models\Shop;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\PostLike;
 use App\Models\CommentLike;
 use App\Models\CommentReply;
+use App\Models\ShopBookmark;
 use App\Models\AdminPermission;
 use App\Models\CommentReplyLike;
-use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -61,13 +62,9 @@ function isLiked($post_id)
     }
 }
 
-function isBookmarked($post_id)
+function shopIsBookmarked($shop_id)
 {
-    if(user()){
-        return PostLike::select('id')->where('user_id', user()->id)->where('post_id', $post_id)->first();
-    } else {
-        return false;
-    }
+    return ShopBookmark::where('shop_id', $shop_id)->where('user_id', user()->id)->first();
 }
 
 function total_post_like($post_id)

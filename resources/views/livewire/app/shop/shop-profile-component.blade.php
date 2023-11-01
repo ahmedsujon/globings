@@ -3,7 +3,7 @@
         <div class="container">
             <div class="d-flex-between">
                 <h4 class="notification_title">Preview</h4>
-                <button type="button" class="bookmarkIcon" wire:click.prevent='favorite'>
+                <button type="button" class="bookmarkIcon {{ shopIsBookmarked($shop->id) ? 'active_bookmark' : '' }}" wire:click.prevent='favorite'>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

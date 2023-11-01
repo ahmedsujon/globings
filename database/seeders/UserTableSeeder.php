@@ -6,7 +6,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 
 class UserTableSeeder extends Seeder
 {
@@ -27,6 +27,7 @@ class UserTableSeeder extends Seeder
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
             $user->save();
         }
 
@@ -41,6 +42,7 @@ class UserTableSeeder extends Seeder
             $shopUser->password = Hash::make('12345678');
             $shopUser->avatar = 'assets/images/avatar.png';
             $shopUser->account_type = 'professional';
+            $shopUser->referral_code = 'GL-' . Str::upper(Str::random(7)) . '2';
             $shopUser->save();
 
             $shop = new Shop();
@@ -48,7 +50,7 @@ class UserTableSeeder extends Seeder
             $shop->name = 'Test Shop';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg','assets/images/placeholder-rect.jpg','assets/images/placeholder-rect.jpg'];
+            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
