@@ -26,6 +26,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->enum('account_type', ['Private', 'Professional']);
             $table->tinyInteger('status')->default(0);
+            $table->integer('total_bings')->default(0);
+            $table->integer('bings_balance')->default(0);
+            $table->string('referral_code')->nullable();
+            $table->unsignedBigInteger('referred_by')->nullable();
             $table->string('verification_code')->nullable();
             $table->timestamps();
         });

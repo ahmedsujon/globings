@@ -11,7 +11,7 @@
                         class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm"
                         id="coinModalBtn">
                         <img src="{{ asset('assets/app/icons/store_green_icon.svg') }}" alt="coin" />
-                        <span>150 Bings</span>
+                        <span>{{ user()->bings_balance }} Bings</span>
                         <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
                             class="right_arrow" />
                     </button>
@@ -23,7 +23,7 @@
                         <div class="d-flex align-items-center justify-content-center">
                             <a href="bings-badge.html" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
                                 <img src="{{ asset('assets/app/icons/bookmark.png') }}" alt="book mark" />
-                                <span>150 Bings</span>
+                                <span>{{ user()->bings_balance }} Bings</span>
                                 <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
                                     class="right_arrow" />
                             </a>
@@ -35,7 +35,7 @@
                     <div class="reward_card_wrapper">
                         <button href="#" class="reward_card_item" id="inviteModalBtn">
                             <div>
-                                <h4>Get you 10+ Bings invite bonus!</h4>
+                                <h4>Get your 10+ Bings invite bonus!</h4>
                                 <h5>
                                     Just send your friend
                                     <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
@@ -79,8 +79,9 @@
             </div>
         </section>
     </main>
+
     <!-- Bings Coin History Modal  -->
-    <div class="sing_modal_area" id="coinModalArea">
+    <div wire:ignore.self class="sing_modal_area" id="coinModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -95,7 +96,7 @@
             <div class="coin_number_area text-center">
                 <div class="d-flex align-items-center justify-content-center flex-wrap g-smm">
                     <img src="{{ asset('assets/app/icons/coin_big.svg') }}" alt="coin icion" />
-                    <h3 class="bing_number_title">150 Bings</h3>
+                    <h3 class="bing_number_title">{{ user()->bings_balance }} Bings</h3>
                 </div>
                 <h5>Total</h5>
             </div>
@@ -110,21 +111,89 @@
                     </h4>
                     <div class="inner_content">
                         <h5>
-                            Shop and complete any offer to unlocak your invite bonus from
-                            Leigh Pomeranz
+                            Shop and complete any offer to unlock your referral bonuses
                         </h5>
-                        <h5>October 26</h5>
                     </div>
                 </div>
                 <div class="coin_number d-flex align-items-center flex-wrap g-smm">
                     <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                    <h4>10</h4>
+                    <h4>{{ $referred_bings }}</h4>
                 </div>
             </div>
-            <div class="container">
+            <div class="container" wire:poll>
                 <div class="coin_history_area">
                     <h3 class="bing_inner_title">Bings History</h3>
-                    <div class="history_item_area">
+
+                    @foreach ($histories as $history)
+                        <div class="history_item_area">
+                            <h3>{{ $history['date'] }}</h3>
+
+                            @foreach ($history['data'] as $data)
+                                <div class="coing_emoji_grid">
+                                    <div class="emoji_area Onboarding_icon_area">
+                                        @if ($data->type == 'referral')
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}" alt="bing coin icon" />
+                                        @elseif($data->type == 'validation')
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}" alt="bing coin icon" />
+                                        @else
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon1.png') }}" alt="bing coin icon" />
+                                        @endif
+
+                                    </div>
+                                    <div class="conin_content_area">
+                                        <h4>
+                                            <span>{{ $data->bings_for }}</span>
+                                            <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                                        </h4>
+                                        <h5>{{ $data->description }}</h5>
+                                        <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5>
+                                    </div>
+                                    <div class="coin_number d-flex align-items-center flex-wrap g-smm">
+                                        <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
+                                        <h4>{{ $data->bings }}</h4>
+                                    </div>
+                                </div>
+                            @endforeach
+                            {{-- <div class="coing_emoji_grid">
+                                <div class="emoji_area">
+                                    <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                        alt="bing coin icon" />
+                                </div>
+                                <div class="conin_content_area">
+                                    <h4>
+                                        <span>Validate my bings</span>
+                                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                                    </h4>
+                                    <h5>Available for search by opening the QR code</h5>
+                                    <h5>October 26</h5>
+                                </div>
+                                <div class="coin_number d-flex align-items-center flex-wrap g-smm">
+                                    <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
+                                    <h4>500</h4>
+                                </div>
+                            </div>
+                            <div class="coing_emoji_grid">
+                                <div class="emoji_area">
+                                    <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                        alt="bing coin icon" />
+                                </div>
+                                <div class="conin_content_area">
+                                    <h4>
+                                        <span>Validate my bings</span>
+                                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                                    </h4>
+                                    <h5>Available for search by opening the QR code</h5>
+                                    <h5>October 26</h5>
+                                </div>
+                                <div class="coin_number d-flex align-items-center flex-wrap g-smm">
+                                    <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
+                                    <h4>500</h4>
+                                </div>
+                            </div> --}}
+                        </div>
+                    @endforeach
+
+                    {{-- <div class="history_item_area">
                         <h3>October 26</h3>
                         <div class="coing_emoji_grid">
                             <div class="emoji_area Onboarding_icon_area">
@@ -145,7 +214,8 @@
                         </div>
                         <div class="coing_emoji_grid">
                             <div class="emoji_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}" alt="bing coin icon" />
+                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                    alt="bing coin icon" />
                             </div>
                             <div class="conin_content_area">
                                 <h4>
@@ -162,7 +232,8 @@
                         </div>
                         <div class="coing_emoji_grid">
                             <div class="emoji_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}" alt="bing coin icon" />
+                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                    alt="bing coin icon" />
                             </div>
                             <div class="conin_content_area">
                                 <h4>
@@ -182,7 +253,8 @@
                         <h3>October 26</h3>
                         <div class="coing_emoji_grid">
                             <div class="emoji_area Onboarding_icon_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}" alt="bing coin icon" />
+                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                    alt="bing coin icon" />
                             </div>
                             <div class="conin_content_area">
                                 <h4>
@@ -199,7 +271,8 @@
                         </div>
                         <div class="coing_emoji_grid">
                             <div class="emoji_area share_refer_icon_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}" alt="bing coin icon" />
+                                <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}"
+                                    alt="bing coin icon" />
                             </div>
                             <div class="conin_content_area">
                                 <h4>
@@ -216,7 +289,8 @@
                         </div>
                         <div class="coing_emoji_grid">
                             <div class="emoji_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}" alt="bing coin icon" />
+                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                    alt="bing coin icon" />
                             </div>
                             <div class="conin_content_area">
                                 <h4>
@@ -231,7 +305,7 @@
                                 <h4>500</h4>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -239,7 +313,7 @@
     <!-- Bings Coin History Modal  -->
 
     <!-- Badges Modal  -->
-    <div class="sing_modal_area" id="loalModalArea">
+    <div wire:ignore.self class="sing_modal_area" id="loalModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -254,10 +328,12 @@
             <div class="container">
                 <div class="local_grid">
                     <p>See your own Local Guides status Go to your contributions</p>
-                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" class="right_arrow" />
+                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
+                        class="right_arrow" />
                 </div>
                 <div class="badge_profilel_area text-center">
-                    <img src="{{ asset('assets/app/icons/badge_star_icon.png') }}" alt="badge star icon" class="badge_star_icon" />
+                    <img src="{{ asset('assets/app/icons/badge_star_icon.png') }}" alt="badge star icon"
+                        class="badge_star_icon" />
                     <div>
                         <h4 class="company_inner_title">Local Guide</h4>
                         <h5 class="bidge_sub_text bidge_leavel mt-1">Level 3</h5>
@@ -284,9 +360,10 @@
                         <div class="circle_progress_item">
                             <div class="circle_area">
                                 <div class="small" data-percent="100" data-progressBarColor="#5897F4"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape" class="badge_shape" />
-                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}" alt="badge check icon"
-                                    class="badge_check" />
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape"
+                                    class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}"
+                                    alt="badge check icon" class="badge_check" />
                                 <div class="badge_group_outer">
                                     <div class="group_inner">G1</div>
                                 </div>
@@ -298,9 +375,10 @@
                         <div class="circle_progress_item">
                             <div class="circle_area">
                                 <div class="small" data-percent="100" data-progressBarColor="#FE7B1E"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape" class="badge_shape" />
-                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}" alt="badge check icon"
-                                    class="badge_check" />
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape"
+                                    class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}"
+                                    alt="badge check icon" class="badge_check" />
                                 <div class="badge_group_outer">
                                     <div class="group_inner">G2</div>
                                 </div>
@@ -312,9 +390,10 @@
                         <div class="circle_progress_item">
                             <div class="circle_area">
                                 <div class="small" data-percent="100" data-progressBarColor="#41B631"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape" class="badge_shape" />
-                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}" alt="badge check icon"
-                                    class="badge_check" />
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape"
+                                    class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}"
+                                    alt="badge check icon" class="badge_check" />
                                 <div class="badge_group_outer">
                                     <div class="group_inner">G3</div>
                                 </div>
@@ -326,7 +405,8 @@
                         <div class="circle_progress_item">
                             <div class="circle_area">
                                 <div class="small" data-percent="50" data-progressBarColor="#5897F4"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape" class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape"
+                                    class="badge_shape" />
 
                                 <div class="badge_group_outer">
                                     <div class="group_inner">G4</div>
@@ -340,7 +420,8 @@
                         <div class="circle_progress_item">
                             <div class="circle_area">
                                 <div class="small" data-percent="10" data-progressBarColor="#FE7B1E"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape" class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape"
+                                    class="badge_shape" />
 
                                 <div class="badge_group_outer">
                                     <div class="group_inner">G5</div>
@@ -353,7 +434,8 @@
                         <div class="circle_progress_item">
                             <div class="circle_area">
                                 <div class="small" data-percent="60" data-progressBarColor="#41B631"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape" class="badge_shape" />
+                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape"
+                                    class="badge_shape" />
 
                                 <div class="badge_group_outer">
                                     <div class="group_inner">G6</div>
@@ -369,8 +451,8 @@
         </div>
     </div>
 
-      <!-- Bidges Invite Modal  -->
-      <div class="sing_modal_area" id="inviteModalArea">
+    <!-- Binges Invite Modal  -->
+    <div wire:ignore.self class="sing_modal_area" id="inviteModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -384,23 +466,32 @@
             </div>
             <div class="share_area">
                 <div class="container">
-                    <h3 class="bing_inner_title">Share you invite link</h3>
+
+
+                    <div style="width: 100%; text-align: center;">
+                        <h3 class="bing_inner_title">My Referral Code</h3>
+                        <h4 style="padding: 30px 0px;"><strong>{{ user()->referral_code }}</strong></h4>
+                    </div>
+
                     <div class="share_list d-flex align-items-center justify-content-center flex-wrap mt-4">
                         <div class="share_item">
                             <button type="button" class="share_btn message_icon">
-                                <img src="{{ asset('assets/app/icons/bing_share_icon1.svg') }}" alt="bing share icon" />
+                                <img src="{{ asset('assets/app/icons/bing_share_icon1.svg') }}"
+                                    alt="bing share icon" />
                             </button>
                             <h4 class="bring_bottom_text">Text</h4>
                         </div>
                         <div class="share_item">
                             <button type="button" class="share_btn">
-                                <img src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}" alt="bing share icon" />
+                                <img src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}"
+                                    alt="bing share icon" />
                             </button>
                             <h4 class="bring_bottom_text">Share</h4>
                         </div>
                         <div class="share_item">
                             <button type="button" class="share_btn copy_icon">
-                                <img src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}" alt="bing share icon" />
+                                <img src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}"
+                                    alt="bing share icon" />
                             </button>
                             <h4 class="bring_bottom_text">Copy</h4>
                         </div>
@@ -413,8 +504,8 @@
                     <div class="refer_grid">
                         <div class="number bing_inner_title">1</div>
                         <div>
-                            <h4 class="bring_bottom_text">Invite a friend</h4>
-                            <p>Using you invite link below</p>
+                            <h4 class="bring_bottom_text">Refer a friend</h4>
+                            <p>Using your referral code</p>
                         </div>
                     </div>
                     <div class="refer_grid">
