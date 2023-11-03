@@ -539,7 +539,7 @@
                     <div>
                         <div class="input_row">
                             <label for="first_name">First Name</label>
-                            <input type="text" wire:model="first_name" placeholder="Enter First Name"
+                            <input type="text" wire:model.blur="first_name" placeholder="Enter First Name"
                                 class="input_field" />
                             @error('first_name')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
@@ -547,7 +547,7 @@
                         </div>
                         <div class="input_row">
                             <label for="last_name">Last Name</label>
-                            <input type="text" wire:model="last_name" placeholder="Enter Last Name"
+                            <input type="text" wire:model.blur="last_name" placeholder="Enter Last Name"
                                 class="input_field" />
                             @error('last_name')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
@@ -555,7 +555,7 @@
                         </div>
                         <div class="input_row">
                             <label for="phone">Phone</label>
-                            <input type="number" wire:model="phone" placeholder="Enter Your Phone"
+                            <input type="number" wire:model.blur="phone" placeholder="Enter Your Phone"
                                 class="input_field" />
                             @error('phone')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
@@ -563,7 +563,7 @@
                         </div>
                         <div class="input_row">
                             <label for="email">Email</label>
-                            <input type="email" wire:model="email" placeholder="Enter Your Email"
+                            <input type="email" wire:model.blur="email" placeholder="Enter Your Email"
                                 class="input_field" />
                             @error('email')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
@@ -571,7 +571,7 @@
                         </div>
                         <div class="input_row">
                             <label for="dob">Date Of Birth</label>
-                            <input type="date" wire:model="dob" placeholder="Enter Date Of Birth"
+                            <input type="date" wire:model.blur="dob" placeholder="Enter Date Of Birth"
                                 class="input_field" />
                             @error('dob')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
@@ -579,7 +579,7 @@
                         </div>
                         <div class="input_row">
                             <label for="gender">Select Gender</label>
-                            <select class="niceSelect" wire:model="gender">
+                            <select class="niceSelect" wire:model.blur="gender">
                                 <option data-display="Select Gender">
                                     Select Gender
                                 </option>
@@ -591,18 +591,9 @@
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
                             @enderror
                         </div>
-                        {{-- <div class="input_row" wire:model="language">
-                <label for="">Select your language</label>
-                <select class="niceSelect">
-                  <option data-display="Select language">
-                    Select language
-                  </option>
-                  <option value="English">English</option>
-                </select>
-              </div> --}}
                     </div>
                     <button type="submit" class="login_btn login_btn_fill">
-                        Update Profile Details
+                        {!! loadingStateWithText('updateProfile', 'Save') !!}
                     </button>
                 </form>
             </div>
