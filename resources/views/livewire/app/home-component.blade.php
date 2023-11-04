@@ -32,12 +32,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('app.bings') }}" class="header_number_area">
-                            <span class="circle_shape"></span>
-                            <span class="number">{{ user()->bings_balance }}</span>
-                            <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
-                                class="right_shape" />
-                        </a>
+                        @if (user())
+                            <a href="{{ route('app.bings') }}" class="header_number_area">
+                                <span class="circle_shape"></span>
+                                <span class="number">{{ user()->bings_balance }}</span>
+                                <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
+                                    class="right_shape" />
+                            </a>
+                        @endif
                     </li>
                 </ul>
             </div>
