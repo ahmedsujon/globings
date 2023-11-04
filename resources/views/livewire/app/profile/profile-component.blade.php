@@ -665,3 +665,11 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        window.addEventListener('showEditModal', event => {
+            $("#profileEditModalArea").addClass('sing_modal_active');
+        });
+    </script>
+@endpush

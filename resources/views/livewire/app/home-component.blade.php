@@ -514,8 +514,6 @@
             </form>
         </div>
     @endauth
-
-
 </div>
 
 @push('scripts')

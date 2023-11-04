@@ -25,8 +25,19 @@ public $first_name, $last_name, $email, $phone, $gender, $dob, $avatar, $uploade
         $data->gender = $this->gender;
         $data->dob = $this->dob;
         $data->save();
-        $this->resetInputs();
         $this->dispatch('success', ['message' => 'Shop updated successfully']);
+    }
+
+    public function mount()
+    {
+        $data = User::find(user()->id);
+        $this->first_name = $data->first_name;
+        $this->last_name = $data->last_name;
+        $this->email = $data->email;
+        $this->phone = $data->phone;
+        $this->gender = $data->gender;
+        $this->dob = $data->dob;
+        $this->edit_id = $data->id;
     }
 
     public function resetInputs()
