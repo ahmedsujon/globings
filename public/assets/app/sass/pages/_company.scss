@@ -183,8 +183,8 @@
       height: calc(100vh - 170px);
     }
   }
-  .chart_map_area{
-    max-width: 90%;
+  .chart_map_area {
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -192,8 +192,7 @@
     width: 156px;
   }
   .map_slider_area {
-    position: relative;
-    top: -50px;
+    margin-top: 20px;
   }
   .slider_item {
     position: relative;

@@ -17,7 +17,7 @@ public $first_name, $last_name, $email, $phone, $gender, $dob, $avatar, $uploade
             'phone' => 'required',
             'gender' => 'required',
         ]);
-        $data = User::find($this->edit_id);
+        $data = User::where('id', user()->id)->first();
         $data->first_name = $this->first_name;
         $data->last_name = $this->last_name;
         $data->email = $this->email;
@@ -25,6 +25,19 @@ public $first_name, $last_name, $email, $phone, $gender, $dob, $avatar, $uploade
         $data->gender = $this->gender;
         $data->dob = $this->dob;
         $data->save();
+        $this->resetInputs();
+        $this->dispatch('success', ['message' => 'Shop updated successfully']);
+    }
+
+    public function resetInputs()
+    {
+        $this->first_name = '';
+        $this->last_name = '';
+        $this->email = '';
+        $this->phone = '';
+        $this->gender = '';
+        $this->dob = '';
+        $this->edit_id = '';
     }
 
     public function render()
