@@ -3,6 +3,7 @@
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Auth\LoginComponent;
 use App\Livewire\App\Bings\BingComponent;
+use App\Livewire\App\Events\EventDetailsComponent;
 use App\Livewire\App\Events\EventsComponent;
 use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
@@ -44,6 +45,7 @@ Route::get('/map-view', MapViewComponent::class)->name('app.map.view');
 
 // Events routes
 Route::get('/events', EventsComponent::class)->name('app.events');
+Route::get('/event/{id}', EventDetailsComponent::class)->name('app.event.details');
 
 
 // Terms-and-conditions routes
