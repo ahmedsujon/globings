@@ -18,8 +18,8 @@
                             <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" />
                         </div>
                         <div>
-                            <h4>Fouad Zaher</h4>
-                            <h5>Entrepreneur, Globings.com</h5>
+                            <h4>{{ $shop->name }}</h4>
+                            <h5>Entrepreneur,</h5>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <form wire:submit.prevent='updateShop' class="mobile_form_area post_form_area">
                     <h3 class="notification_title">Update Shop Details</h3>
                     <div class="input_row">
-                        <input type="text" wire:model="name" placeholder="Shop Name" class="input_field" />
+                        <input type="text" wire:model.blur="name" placeholder="Shop Name" class="input_field" />
                         @error('name')
                             <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                             <br>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="input_row nice_select_row">
-                        <select class="niceSelect" wire:model="shop_category">
+                        <select class="niceSelect" wire:model.blur="shop_category">
                             <option data-display="Shop Category">Shop Category</option>
                             @foreach ($categories as $category)
                              <option value="{{ $category->name }}">{{ $category->name }}</option>   
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="input_row">
-                        <input type="text" wire:model="website_url" placeholder="globings.com" class="input_field" />
+                        <input type="text" wire:model.blur="website_url" placeholder="globings.com" class="input_field" />
                         @error('website_url')
                             <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                             <br>
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="input_row">
-                        <textarea class="input_field" wire:model="description" cols="30" rows="4"
+                        <textarea class="input_field" wire:model.blur="description" cols="30" rows="4"
                             placeholder="Share your business details"></textarea>
                         @error('description')
                             <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>

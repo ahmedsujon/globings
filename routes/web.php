@@ -3,6 +3,7 @@
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Auth\LoginComponent;
 use App\Livewire\App\Bings\BingComponent;
+use App\Livewire\App\Events\EventsComponent;
 use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
 use App\Livewire\App\Maps\MapViewComponent;
@@ -40,6 +41,9 @@ Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.sh
 // App show menu
 Route::get('/shops', ShopsComponent::class)->name('app.shops');
 Route::get('/map-view', MapViewComponent::class)->name('app.map.view');
+
+// Events routes
+Route::get('/events', EventsComponent::class)->name('app.events');
 
 
 // Terms-and-conditions routes

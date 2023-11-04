@@ -1652,7 +1652,7 @@
   height: calc(100vh - 170px);
 }
 .company_map_wrapper .chart_map_area {
-  max-width: 90%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1660,8 +1660,7 @@
   width: 156px;
 }
 .company_map_wrapper .map_slider_area {
-  position: relative;
-  top: -50px;
+  margin-top: 20px;
 }
 .company_map_wrapper .slider_item {
   position: relative;
@@ -3819,7 +3818,6 @@ body {
   background-color: white;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
-  display: none;
   min-height: 100vh;
   overflow-y: auto;
   /* width */
