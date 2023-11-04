@@ -53,13 +53,16 @@
                 <div class="container">
                     <h4 class="notification_title">Other</h4>
                     <ul class="manage_list">
-                        <li>
+                        @if (Auth::user()->account_type == 'Professional')
+                          <li>
                             <a href="{{ route('app.shop.settings') }}">
                                 <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" alt="manage icon" />
                                 <h5>Business Settings</h5>
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
                             </a>
-                        </li>
+                        </li>  
+                        @endif
+                        @if (Auth::user()->account_type == 'Professional')
                         <li>
                             <a href="{{ route('app.recent-posts') }}">
                                 <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
@@ -67,6 +70,8 @@
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
                             </a>
                         </li>
+                        @endif
+                        @if (Auth::user()->account_type == 'Professional')
                         <li>
                             <a href="{{ route('app.recent-photos') }}">
                                 <img src="{{ asset('assets/app/icons/manage_icon2.svg') }}" alt="manage icon" />
@@ -74,6 +79,17 @@
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
                             </a>
                         </li>
+                        @endif
+                        @if (Auth::user()->account_type == 'Professional')
+                        <li>
+                            <a href="{{ route('app.recent-photos') }}">
+                                <img src="{{ asset('assets/app/icons/events.svg') }}" alt="manage icon" />
+                                <h5>Events</h5>
+                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->account_type == 'Professional')
                         <li>
                             <button type="button" id="placeModalBtn">
                                 <img src="{{ asset('assets/app/icons/manage_icon3.svg') }}" alt="manage icon" />
@@ -81,6 +97,7 @@
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
                             </button>
                         </li>
+                        @endif
                         <li>
                             <button type="button">
                                 <img src="{{ asset('assets/app/icons/manage_icon4.svg') }}" alt="manage icon" />

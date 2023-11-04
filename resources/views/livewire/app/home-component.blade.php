@@ -57,6 +57,15 @@
         <div class="container" wire:ignore>
             <div class="swiper">
                 <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="{{ route('app.events') }}" class="category_item">
+                          <img
+                            src="{{ asset('assets/app/icons/events_category.svg') }}"
+                            alt="category icon"
+                          />
+                          <h4>Events</h4>
+                        </a>
+                      </div>
                     @foreach ($categories as $category)
                         <div class="swiper-slide">
                             <a href="{{ route('app.home') }}?category={{ $category->id }}" class="category_item {{ request()->get('category') == $category->id ? 'active_category' : ''}}">
