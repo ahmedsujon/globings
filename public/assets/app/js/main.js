@@ -280,6 +280,19 @@ $(document).ready(function () {
     }
   });
 
+    //QR Code Modal
+    $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
+      e.preventDefault();
+  
+      $("#qrCodeModalArea").toggleClass("sing_modal_active");
+  
+      if ($("#qrCodeModalArea").hasClass("sing_modal_active")) {
+        hideScrollbar();
+      } else {
+        showScrollbar();
+      }
+    });
+
   //Terms Modal
   $("#termsModalBtn,#termsCloseBtn").click(function (e) {
     e.preventDefault();

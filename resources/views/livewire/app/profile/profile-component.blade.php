@@ -63,6 +63,15 @@
                         </li>  
                         @endif
                         @if (Auth::user()->account_type == 'Professional')
+                          <li>
+                            <button id="qrCodeModalBtn">
+                                <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
+                                <h5>QR-Code</h5>
+                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
+                            </button>
+                        </li>  
+                        @endif
+                        @if (Auth::user()->account_type == 'Professional')
                         <li>
                             <a href="{{ route('app.recent-posts') }}">
                                 <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
@@ -99,7 +108,7 @@
                         </li>
                         @endif
                         <li>
-                            <button type="button">
+                            <button type="button" id="inviteModalBtn">
                                 <img src="{{ asset('assets/app/icons/manage_icon4.svg') }}" alt="manage icon" />
                                 <div>
                                     <h5>Share my profile</h5>
@@ -661,6 +670,142 @@
                         Update Password
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+      <!-- Binges Invite Modal  -->
+      <div wire:ignore.self class="sing_modal_area" id="inviteModalArea">
+        <div class="bings_wrapper pb-0">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-xl">
+                        <button type="button" class="close_btn" id="inviteCloseBtn">
+                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+                        </button>
+                        <h6 class="notification_title">Refer a friend</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="share_area">
+                <div class="container">
+                    <div style="width: 100%; text-align: center;">
+                        <h3 class="bing_inner_title">My Referral Code</h3>
+                        <h4 style="padding: 30px 0px;"><strong>{{ user()->referral_code }}</strong></h4>
+                    </div>
+
+                    <div class="share_list d-flex align-items-center justify-content-center flex-wrap mt-4">
+                        <div class="share_item">
+                            <button type="button" class="share_btn message_icon">
+                                <img src="{{ asset('assets/app/icons/bing_share_icon1.svg') }}"
+                                    alt="bing share icon" />
+                            </button>
+                            <h4 class="bring_bottom_text">Text</h4>
+                        </div>
+                        <div class="share_item">
+                            <button type="button" class="share_btn">
+                                <img src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}"
+                                    alt="bing share icon" />
+                            </button>
+                            <h4 class="bring_bottom_text">Share</h4>
+                        </div>
+                        <div class="share_item">
+                            <button type="button" class="share_btn copy_icon">
+                                <img src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}"
+                                    alt="bing share icon" />
+                            </button>
+                            <h4 class="bring_bottom_text">Copy</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="refer_invite_area">
+                    <h3 class="bing_inner_title">How to get a referral bonus</h3>
+                    <div class="refer_grid">
+                        <div class="number bing_inner_title">1</div>
+                        <div>
+                            <h4 class="bring_bottom_text">Refer a friend</h4>
+                            <p>Using your referral code</p>
+                        </div>
+                    </div>
+                    <div class="refer_grid">
+                        <div class="number bing_inner_title">2</div>
+                        <div>
+                            <h4 class="bring_bottom_text">They sign up and shop</h4>
+                            <p>Any shop offer QR Code to get bings</p>
+                        </div>
+                    </div>
+                    <div class="refer_grid">
+                        <div class="number bing_inner_title">3</div>
+                        <div>
+                            <h4 class="bring_bottom_text">Get bonus bings</h4>
+                            <p>Earn you referral bonus</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="terms_area">
+                    <a href="{{ route('app.terms-and-conditions') }}" class="terms_text">
+                        Terms and Conditions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Qr Code Modal  -->
+    <div wire:ignore.self class="sing_modal_area" id="qrCodeModalArea">
+        <div class="bings_wrapper pb-0">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-xl">
+                        <button type="button" class="close_btn" id="qrCloseBtn">
+                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+                        </button>
+                        <h6 class="notification_title">Refer a friend</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="share_area">
+                <div class="container">
+                    <div style="width: 100%; text-align: center;">
+                        <h3 class="bing_inner_title">My QR Code</h3>
+                        <h4 style="padding: 30px 0px;" class="text-center">
+                            {{-- {!! DNS2D::getBarcodeHTML("user()->username", 'QRCODE'); !!} --}}
+                            {!! DNS2D::getBarcodeHTML("user()->username", 'QRCODE' ,10,10); !!}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="refer_invite_area">
+                    <h3 class="bing_inner_title">How to get discount by QR code scan</h3>
+                    <div class="refer_grid">
+                        <div class="number bing_inner_title">1</div>
+                        <div>
+                            <h4 class="bring_bottom_text">Refer a friend</h4>
+                            <p>Using your referral code</p>
+                        </div>
+                    </div>
+                    <div class="refer_grid">
+                        <div class="number bing_inner_title">2</div>
+                        <div>
+                            <h4 class="bring_bottom_text">They sign up and shop</h4>
+                            <p>Any shop offer QR Code to get bings</p>
+                        </div>
+                    </div>
+                    <div class="refer_grid">
+                        <div class="number bing_inner_title">3</div>
+                        <div>
+                            <h4 class="bring_bottom_text">Get bonus bings</h4>
+                            <p>Earn you referral bonus</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="terms_area">
+                    <a href="{{ route('app.terms-and-conditions') }}" class="terms_text">
+                        Terms and Conditions
+                    </a>
+                </div>
             </div>
         </div>
     </div>

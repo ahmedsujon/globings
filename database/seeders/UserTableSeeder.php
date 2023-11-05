@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         $userOne = User::where('email', 'user@example.com')->first();
-        $userTwo = User::where('email', 'usertwo@example.com')->first();
+        $userTwo = User::where('email', 'shop@example.com')->first();
         $userThree = User::where('email', 'userthree@example.com')->first();
         $userFour = User::where('email', 'userfour@example.com')->first();
         $userFive = User::where('email', 'userfive@example.com')->first();
@@ -43,11 +43,11 @@ class UserTableSeeder extends Seeder
             $user->first_name = 'User';
             $user->last_name = 'Two';
             $user->username = 'user2';
-            $user->email = 'user2@example.com';
+            $user->email = 'shop@example.com';
             $user->phone = '01700000000';
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';
-            $user->account_type = 'private';
+            $user->account_type = 'Professional';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
             $user->save();
         }
