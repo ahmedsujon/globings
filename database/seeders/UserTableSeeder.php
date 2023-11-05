@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -15,9 +14,18 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $getUser = User::where('email', 'user@example.com')->first();
+        $userOne = User::where('email', 'user@example.com')->first();
+        $userTwo = User::where('email', 'usertwo@example.com')->first();
+        $userThree = User::where('email', 'userthree@example.com')->first();
+        $userFour = User::where('email', 'userfour@example.com')->first();
+        $userFive = User::where('email', 'userfive@example.com')->first();
+        $userSix = User::where('email', 'usersix@example.com')->first();
+        $userSeven = User::where('email', 'userseven@example.com')->first();
+        $userEight = User::where('email', 'usereight@example.com')->first();
+        $userNine = User::where('email', 'usernine@example.com')->first();
+        $userTen = User::where('email', 'userten@example.com')->first();
 
-        if (!$getUser) {
+        if (!$userOne) {
             $user = new User();
             $user->first_name = 'Globings';
             $user->last_name = 'User';
@@ -30,33 +38,122 @@ class UserTableSeeder extends Seeder
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
             $user->save();
         }
-
-        $getShopUser = User::where('email', 'shop@example.com')->first();
-        if (!$getShopUser) {
-            $shopUser = new User();
-            $shopUser->first_name = 'Test Shop';
-            $shopUser->last_name = 'user';
-            $shopUser->username = 'test_shop_user';
-            $shopUser->email = 'shop@example.com';
-            $shopUser->phone = '01700000000';
-            $shopUser->password = Hash::make('12345678');
-            $shopUser->avatar = 'assets/images/avatar.png';
-            $shopUser->account_type = 'professional';
-            $shopUser->referral_code = 'GL-' . Str::upper(Str::random(7)) . '2';
-            $shopUser->save();
-
-            $shop = new Shop();
-            $shop->user_id = $shopUser->id;
-            $shop->name = 'Test Shop';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-
+        if (!$userTwo) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Two';
+            $user->username = 'user2';
+            $user->email = 'user2@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userThree) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Three';
+            $user->username = 'user3';
+            $user->email = 'user3@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userFour) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Four';
+            $user->username = 'user4';
+            $user->email = 'user4@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userFive) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Five';
+            $user->username = 'user5';
+            $user->email = 'user5@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userSix) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Six';
+            $user->username = 'user6';
+            $user->email = 'user6@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userSeven) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Seven';
+            $user->username = 'user7';
+            $user->email = 'user7@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userEight) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Eight';
+            $user->username = 'user8';
+            $user->email = 'user8@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userNine) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Nine';
+            $user->username = 'user9';
+            $user->email = 'user9@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
+        }
+        if (!$userTen) {
+            $user = new User();
+            $user->first_name = 'User';
+            $user->last_name = 'Ten';
+            $user->username = 'user10';
+            $user->email = 'user10@example.com';
+            $user->phone = '01700000000';
+            $user->password = Hash::make('12345678');
+            $user->avatar = 'assets/images/avatar.png';
+            $user->account_type = 'private';
+            $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->save();
         }
     }
 }

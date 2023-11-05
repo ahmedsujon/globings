@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Livewire\App\Shop;
-use App\Models\Category;
+use App\Models\Post;
+use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
+use App\Models\Category;
 
 class ShopsComponent extends Component
 {
@@ -29,6 +31,7 @@ class ShopsComponent extends Component
 
     public function render()
     {
-        return view('livewire.app.shop.shops-component')->layout('livewire.app.layouts.base');
+        $shops = Shop::orderBy('id', 'DESC')->get();
+        return view('livewire.app.shop.shops-component', ['shops'=>$shops])->layout('livewire.app.layouts.base');
     }
 }

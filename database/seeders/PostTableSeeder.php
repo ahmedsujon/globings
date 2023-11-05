@@ -30,7 +30,6 @@ class PostTableSeeder extends Seeder
             $post->images = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
             $post->status = 1;
             $post->save();
-
         }
     }
 }
