@@ -280,7 +280,7 @@ $(document).ready(function () {
     }
   });
 
-    //QR Code Modal
+    // QR Code Modal
     $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
       e.preventDefault();
   
@@ -292,6 +292,19 @@ $(document).ready(function () {
         showScrollbar();
       }
     });
+
+        // Change Password Modal
+        $("#passwordChangeModalBtn,#passwordEditCloseBtn").click(function (e) {
+          e.preventDefault();
+      
+          $("#passwordEditModalArea").toggleClass("sing_modal_active");
+      
+          if ($("#passwordEditModalArea").hasClass("sing_modal_active")) {
+            hideScrollbar();
+          } else {
+            showScrollbar();
+          }
+        });
 
   //Terms Modal
   $("#termsModalBtn,#termsCloseBtn").click(function (e) {
