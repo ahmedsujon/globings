@@ -54,58 +54,64 @@
                     <h4 class="notification_title">Other</h4>
                     <ul class="manage_list">
                         @if (Auth::user()->account_type == 'Professional')
-                          <li>
-                            <a href="{{ route('app.shop.settings') }}">
-                                <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" alt="manage icon" />
-                                <h5>Business Settings</h5>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </a>
-                        </li>  
+                            <li>
+                                <a href="{{ route('app.shop.settings') }}">
+                                    <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" alt="manage icon" />
+                                    <h5>Business Settings</h5>
+                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                                        alt="right icon" />
+                                </a>
+                            </li>
                         @endif
                         @if (Auth::user()->account_type == 'Professional')
-                          <li>
-                            <button id="qrCodeModalBtn">
-                                <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
-                                <h5>QR-Code</h5>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </button>
-                        </li>  
+                            <li>
+                                <button id="qrCodeModalBtn">
+                                    <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
+                                    <h5>QR-Code</h5>
+                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                                        alt="right icon" />
+                                </button>
+                            </li>
                         @endif
                         @if (Auth::user()->account_type == 'Professional')
-                        <li>
-                            <a href="{{ route('app.recent-posts') }}">
-                                <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
-                                <h5>Recent posts</h5>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('app.recent-posts') }}">
+                                    <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
+                                    <h5>Recent posts</h5>
+                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                                        alt="right icon" />
+                                </a>
+                            </li>
                         @endif
                         @if (Auth::user()->account_type == 'Professional')
-                        <li>
-                            <a href="{{ route('app.recent-photos') }}">
-                                <img src="{{ asset('assets/app/icons/manage_icon2.svg') }}" alt="manage icon" />
-                                <h5>Recent photos</h5>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('app.recent-photos') }}">
+                                    <img src="{{ asset('assets/app/icons/manage_icon2.svg') }}" alt="manage icon" />
+                                    <h5>Recent photos</h5>
+                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                                        alt="right icon" />
+                                </a>
+                            </li>
                         @endif
                         @if (Auth::user()->account_type == 'Professional')
-                        <li>
-                            <a href="{{ route('app.my.events') }}">
-                                <img src="{{ asset('assets/app/icons/events.svg') }}" alt="manage icon" />
-                                <h5>Events</h5>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('app.my.events') }}">
+                                    <img src="{{ asset('assets/app/icons/events.svg') }}" alt="manage icon" />
+                                    <h5>Events</h5>
+                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                                        alt="right icon" />
+                                </a>
+                            </li>
                         @endif
                         @if (Auth::user()->account_type == 'Professional')
-                        <li>
-                            <button type="button" id="placeModalBtn">
-                                <img src="{{ asset('assets/app/icons/manage_icon3.svg') }}" alt="manage icon" />
-                                <h5>My places</h5>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </button>
-                        </li>
+                            <li>
+                                <button type="button" id="placeModalBtn">
+                                    <img src="{{ asset('assets/app/icons/manage_icon3.svg') }}" alt="manage icon" />
+                                    <h5>My places</h5>
+                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                                        alt="right icon" />
+                                </button>
+                            </li>
                         @endif
                         <li>
                             <button type="button" id="inviteModalBtn">
@@ -470,8 +476,8 @@
                                     <li><a class="dropdown-item" href="#" id="profileEditModalBtn">Edit
                                             Profile</a></li>
                                     <li>
-                                        <a class="dropdown-item" href="#" id="passwordEditModalArea">Change
-                                            Password</a>
+                                        <button class="dropdown-item" id="passwordChangeModalBtn">Change
+                                            Password</button>
                                     </li>
                                 </ul>
                             </div>
@@ -532,12 +538,6 @@
                                 <button type="button">
                                     <img src="{{ asset('assets/app/icons/setting_icon6.svg') }}" alt="manage icon" />
                                     <h5>English</h5>
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" id="passwordEditModalArea">
-                                    <img src="{{ asset('assets/app/icons/setting_icon7.svg') }}" alt="manage icon" />
-                                    <h5>Password Change</h5>
                                 </button>
                             </li>
                         </ul>
@@ -625,12 +625,13 @@
             </div>
         </div>
     </div>
+    <!-- Password Change Modal  -->
     <div class="sing_modal_area" id="passwordEditModalArea" wire:ignore.self>
         <div class="profile_edit_modal">
             <div class="bing_back_area">
                 <div class="container">
                     <div class="d-flex align-items-center flex-wrap g-xl">
-                        <button type="button" class="close_btn" id="profileEditCloseBtn">
+                        <button type="button" class="close_btn" id="passwordEditCloseBtn">
                             <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
                         </button>
                         <h4 class="notification_title">Password Change</h4>
@@ -638,43 +639,45 @@
                 </div>
             </div>
             <div class="container">
-                <form wire:submit.prevent='updatePassword'
+                @if (session()->has('message'))
+                    <div>{{ session('message') }}</div>
+                @endif
+
+                <form wire:submit.prevent='changePassword'
                     class="mobile_form_area d-flex flex-column justify-content-between">
                     <div>
                         <div class="input_row">
                             <label for="first_name">Current Password</label>
-                            <input type="text" wire:model="first_name" placeholder="Enter First Name"
-                                class="input_field" />
-                            @error('first_name')
+                            <input type="password" wire:model="currentPassword" class="input_field" />
+                            @error('currentPassword')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
                             @enderror
                         </div>
                         <div class="input_row">
                             <label for="last_name">New Password</label>
-                            <input type="text" wire:model="last_name" placeholder="New Password"
-                                class="input_field" />
-                            @error('last_name')
+                            <input type="password" wire:model="newPassword" class="input_field" />
+                            @error('newPassword')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
                             @enderror
                         </div>
                         <div class="input_row">
                             <label for="last_name">Confirm Password</label>
-                            <input type="text" wire:model="last_name" placeholder="Confirm Password"
-                                class="input_field" />
-                            @error('last_name')
+                            <input type="password" wire:model="confirmPassword" class="input_field" />
+                            @error('confirmPassword')
                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
                             @enderror
                         </div>
                     </div>
                     <button type="submit" class="login_btn login_btn_fill">
-                        Update Password
+                        {!! loadingStateWithText('changePassword', 'Update Password') !!}
                     </button>
                 </form>
             </div>
         </div>
     </div>
-      <!-- Binges Invite Modal  -->
-      <div wire:ignore.self class="sing_modal_area" id="inviteModalArea">
+
+    <!-- Binges Invite Modal  -->
+    <div wire:ignore.self class="sing_modal_area" id="inviteModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -771,7 +774,7 @@
                         <h3 class="bing_inner_title">My QR Code</h3>
                         <h4 style="padding: 30px 0px;" class="text-center">
                             {{-- {!! DNS2D::getBarcodeHTML("user()->username", 'QRCODE'); !!} --}}
-                            {!! DNS2D::getBarcodeHTML("user()->username", 'QRCODE' ,10,10); !!}
+                            {!! DNS2D::getBarcodeHTML('user()->username', 'QRCODE', 10, 10) !!}
                         </h4>
                     </div>
                 </div>
