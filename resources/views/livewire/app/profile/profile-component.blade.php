@@ -91,7 +91,7 @@
                         @endif
                         @if (Auth::user()->account_type == 'Professional')
                         <li>
-                            <a href="{{ route('app.recent-photos') }}">
+                            <a href="{{ route('app.my.events') }}">
                                 <img src="{{ asset('assets/app/icons/events.svg') }}" alt="manage icon" />
                                 <h5>Events</h5>
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
