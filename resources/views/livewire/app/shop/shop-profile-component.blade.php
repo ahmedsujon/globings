@@ -128,6 +128,19 @@
             </div>
             <form action="" wire:submit.prevent='addReview' class="contact_form_area company_bottom_border">
 
+                @if (session()->has('success_review'))
+                    <div class="input_row"
+                        style="margin-bottom: 10px; text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 2px;">
+                        <p style="color: white;">{{ session('success_review') }}</p>
+                    </div>
+                @endif
+                @if (session()->has('error_review'))
+                    <div class="input_row"
+                        style="margin-bottom: 10px; text-align: center; background: rgb(236, 71, 71); padding: 10px; border-radius: 2px;">
+                        <p style="color: white;">{{ session('error_review') }}</p>
+                    </div>
+                @endif
+
                 <h4 class="sub_login">Rating</h4>
                 <div class="select_area">
                     <div class="input_row">

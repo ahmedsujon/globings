@@ -6,11 +6,12 @@ use App\Models\Contact;
 use App\Models\Shop;
 use App\Models\ShopBookmark;
 use App\Models\ShopFavourite;
+use App\Models\ShopReview;
 use Livewire\Component;
 
 class ShopProfileComponent extends Component
 {
-    public $shop, $name, $email, $phone, $message;
+    public $shop, $name, $email, $phone, $message, $rating, $comment;
     public function mount($user_id)
     {
         $shop = Shop::where('user_id', $user_id)->first();
@@ -24,6 +25,8 @@ class ShopProfileComponent extends Component
             'email' => 'required|email',
             'phone' => 'required',
             'message' => 'required',
+            'rating' => 'required',
+            'comment' => 'required',
         ]);
     }
 
@@ -71,7 +74,28 @@ class ShopProfileComponent extends Component
 
     public function addReview()
     {
-        
+        $this->validate([
+            'rating' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $getReview = ShopReview::where('shop_id', $this->shop->id)->where('user_id', user()->id)->first();
+
+        if(!$getReview){
+            $msg = new ShopReview();
+            $msg->shop_id = $this->shop->id;
+            $msg->user_id = user()->id;
+            $msg->rating = $this->rating;
+            $msg->comment = $this->comment;
+            $msg->save();
+
+            $this->rating = '';
+            $this->comment = '';
+
+            session()->flash('success_review', 'Review added successfully');
+        } else {
+            session()->flash('error_review', 'Already reviewed');
+        }
     }
 
     public function render()
