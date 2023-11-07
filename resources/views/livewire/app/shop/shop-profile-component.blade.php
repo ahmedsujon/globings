@@ -3,6 +3,7 @@
         .active_stars {
             color: #000;
         }
+
         .inactive_stars {
             color: #fff;
         }
@@ -149,7 +150,8 @@
                 </div>
                 <h4 class="sub_login" style="margin-top: 25px;">Comment</h4>
                 <div class="input_row">
-                    <textarea name="" id="" wire:model.blur='comment' cols="30" rows="5" placeholder="your comment...." class="input_item"></textarea>
+                    <textarea name="" id="" wire:model.blur='comment' cols="30" rows="5"
+                        placeholder="your comment...." class="input_item"></textarea>
                     @error('comment')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -161,10 +163,140 @@
             </form>
         </div>
     </section>
+
+
+    <div class="sing_modal_area dealer_profile_modal" id="dealerProfileModalArea">
+        <div class="dealer_header">
+            <div class="container">
+                <div class="d-flex align-items-center flex-wrap g-xl">
+                    <button type="button" id="dealerCloseBtn">
+                        <img src="{{ asset('assets/app/icons/profile_back.svg') }}" alt="back icon" />
+                    </button>
+                    <h5 class="notification_title">Dealer Contact</h5>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="dealer_info_area">
+                <div class="user_img">
+                    <img src="{{ asset('assets/app/images/post/user_img3.png') }}" alt="user image" />
+                </div>
+                <h4 class="dealer_name">Jean- Louis David</h4>
+                <ul class="archive_area">
+                    <li>
+                        <img src="{{ asset('assets/app/icons/archive_icon1.svg') }}" alt="archive icon" />
+                        <h5>Identity Verified</h5>
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/app/icons/archive_icon2.svg') }}" alt="archive icon" />
+                        <h5>123 Reviews</h5>
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/app/icons/archive_icon3.svg') }}" alt="archive icon" />
+                        <h5>Email address</h5>
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/app/icons/archive_icon4.svg') }}" alt="archive icon" />
+                        <h5>Phone number</h5>
+                    </li>
+                </ul>
+                <div class="dealer_btn_area company_bottom_border">
+                    <button type="button" class="call_btn">
+                        <img src="{{ asset('assets/app/icons/calll_green.svg') }}" alt="call green" />
+                        <span class="phone">Phone:</span> <span>Login to view</span>
+                    </button>
+                    <a href="#" class="wp_btn">
+                        <img src="{{ asset('assets/app/icons/whatsapp_white.svg') }}" alt="call green" />
+                        <span>WhatsApp Message</span>
+                    </a>
+                </div>
+                <form action="" class="contact_form_area company_bottom_border">
+                    <h4 class="sub_login">Send Messages</h4>
+                    <div class="input_row">
+                        <textarea name="" id="" cols="30" rows="5" placeholder="typing..." class="input_item"></textarea>
+                    </div>
+
+                    <button type="submit" class="login_btn login_btn_fill">
+                        Send Message
+                    </button>
+                </form>
+                <div class="review_comment_area">
+                    <h3 class="notification_title">123 Revews</h3>
+                    <div class="comment_list_wrapper">
+                        <div class="review_comment_item">
+                            <div class="user_grid">
+                                <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
+                                <div>
+                                    <h4>Borkat</h4>
+                                    <h5>01 October</h5>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <p>
+                                    The apartment is in a different location from their office
+                                    address. The person who met us there was very busy and could
+                                    not leave fast enough. The apartment was clean but needed
+                                    some dusting.... <button type="button">Read more</button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="nested_comment_area">
+                            <div class="review_comment_item">
+                                <div class="user_grid">
+                                    <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
+                                    <div>
+                                        <h4>Response frome kazi mahbub</h4>
+                                        <h5>01 October</h5>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <p>Thanks Borkat for the revew.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment_list_wrapper">
+                        <div class="review_comment_item">
+                            <div class="user_grid">
+                                <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
+                                <div>
+                                    <h4>Borkat</h4>
+                                    <h5>01 October</h5>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <p>
+                                    The apartment is in a different location from their office
+                                    address. The person who met us there was very busy and could
+                                    not leave fast enough. The apartment was clean but needed
+                                    some dusting.... <button type="button">Read more</button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="nested_comment_area">
+                            <div class="review_comment_item">
+                                <div class="user_grid">
+                                    <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
+                                    <div>
+                                        <h4>Response frome kazi mahbub</h4>
+                                        <h5>01 October</h5>
+                                    </div>
+                                </div>
+                                <div class="comment">
+                                    <p>Thanks Borkat for the revew.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="see_all_btn"> Show all review </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @push('scripts')
-
     <script>
         $(".rattingStar").starRating({
             totalStars: 5,
@@ -177,10 +309,9 @@
             useFullStars: true,
             disableAfterRate: false,
             useGradient: false,
-            callback: function(currentRating){
+            callback: function(currentRating) {
                 @this.set('rating', currentRating);
             }
         });
-
     </script>
 @endpush
