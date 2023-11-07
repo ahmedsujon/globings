@@ -1,4 +1,12 @@
 <div>
+    <style>
+        .active_stars {
+            color: #000;
+        }
+        .inactive_stars {
+            color: #fff;
+        }
+    </style>
     <section class="company_preview_wrapper mt-24">
         <div class="container">
             <div class="d-flex-between">
@@ -40,22 +48,8 @@
             </div>
             <h2 class="company_title">{{ $shop->name }}</h2>
             <ul class="star_list company_bottom_border d-flex align-items-center flex-wrap">
-                <li>
-                    <img src="{{ asset('assets/app/icons/star_fill.svg') }}" alt="star icon" />
-                </li>
-                <li>
-                    <img src="{{ asset('assets/app/icons/star_fill.svg') }}" alt="star icon" />
-                </li>
-                <li>
-                    <img src="{{ asset('assets/app/icons/star_fill.svg') }}" alt="star icon" />
-                </li>
-                <li>
-                    <img src="{{ asset('assets/app/icons/star_blank.svg') }}" alt="star icon" />
-                </li>
-                <li>
-                    <img src="{{ asset('assets/app/icons/star_blank.svg') }}" alt="star icon" />
-                </li>
-                <li class="review_text">3.0 <span>(123 reviews)</span></li>
+                {!! shop_star_review($shop->id) !!}
+                <li class="review_text">{{ avgShopReview($shop->id) }} <span>({{ $total_reviews }} reviews)</span></li>
             </ul>
             <div class="description_area company_bottom_border">
                 <h4 class="notification_title">Description</h4>
@@ -180,6 +174,7 @@
             ratedColor: "#1872F6",
             strokeWidth: 10,
             starSize: 30,
+            useFullStars: true,
             disableAfterRate: false,
             useGradient: false,
             callback: function(currentRating){
