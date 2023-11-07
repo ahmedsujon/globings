@@ -10,6 +10,7 @@ use App\Models\CommentReply;
 use App\Models\ShopBookmark;
 use App\Models\AdminPermission;
 use App\Models\CommentReplyLike;
+use App\Models\ShopReview;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -108,6 +109,42 @@ function userHasActiveSubscription()
     } else {
         return false;
     }
+}
+
+function shop_total_review($id)
+{
+    $reviews = ShopReview::where('shop_id', $id)->count();
+    return $reviews;
+}
+
+function shop_star_review($shop_id)
+{
+    $reviews = ShopReview::where('shop_id', $shop_id)->get();
+
+    $total_star = $reviews->sum('rating');
+    $total_review = $reviews->count();
+    $avg_star = round(($total_star / $total_review), 1);
+
+    $rem_star = (5 - $avg_star);
+
+    $active_star = '<li><img src="'.asset('assets/app/icons/star_fill.svg').'" alt="star icon" /></li>';
+    $inactive_star = '<li><img src="'.asset('assets/app/icons/star_blank.svg').'" alt="star icon" /></li>';
+
+    $html = str_repeat($active_star, $avg_star);
+    $html .= str_repeat($inactive_star, $rem_star);
+
+    return $html;
+}
+
+function avgShopReview($shop_id)
+{
+    $reviews = ShopReview::where('shop_id', $shop_id)->get();
+
+    $total_star = $reviews->sum('rating');
+    $total_review = $reviews->count();
+    $avg_star = round(($total_star / $total_review), 1);
+
+    return $avg_star;
 }
 
 
