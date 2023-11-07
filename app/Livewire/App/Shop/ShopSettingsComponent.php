@@ -11,15 +11,15 @@ class ShopSettingsComponent extends Component
     public $edit_id, $delete_id, $user_id;
     public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar;
 
-    // public function mount($id)
-    // {
-    //     $data = Shop::where('user_id', user()->id)->first();
-    //     $this->name = $data->name;
-    //     $this->shop_category = $data->shop_category;
-    //     $this->website_url = $data->website_url;
-    //     $this->description = $data->description;
-    //     $this->edit_id = $data->id;
-    // }
+    public function mount()
+    {
+        $data = Shop::where('user_id', user()->id)->first();
+        $this->name = $data->name;
+        $this->shop_category = $data->shop_category;
+        $this->website_url = $data->website_url;
+        $this->description = $data->description;
+        $this->edit_id = $data->id;
+    }
 
     public function editData($id)
     {
@@ -54,7 +54,6 @@ class ShopSettingsComponent extends Component
         // }
 
         $data->save();
-        $this->resetInputs();
         $this->dispatch('success', ['message' => 'Shop updated successfully']);
     }
 

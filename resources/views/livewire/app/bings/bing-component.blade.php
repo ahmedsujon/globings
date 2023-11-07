@@ -466,8 +466,6 @@
             </div>
             <div class="share_area">
                 <div class="container">
-
-
                     <div style="width: 100%; text-align: center;">
                         <h3 class="bing_inner_title">My Referral Code</h3>
                         <h4 style="padding: 30px 0px;"><strong>{{ user()->referral_code }}</strong></h4>

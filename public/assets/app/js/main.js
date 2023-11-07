@@ -280,6 +280,32 @@ $(document).ready(function () {
     }
   });
 
+    // QR Code Modal
+    $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
+      e.preventDefault();
+  
+      $("#qrCodeModalArea").toggleClass("sing_modal_active");
+  
+      if ($("#qrCodeModalArea").hasClass("sing_modal_active")) {
+        hideScrollbar();
+      } else {
+        showScrollbar();
+      }
+    });
+
+        // Change Password Modal
+        $("#passwordChangeModalBtn,#passwordEditCloseBtn").click(function (e) {
+          e.preventDefault();
+      
+          $("#passwordEditModalArea").toggleClass("sing_modal_active");
+      
+          if ($("#passwordEditModalArea").hasClass("sing_modal_active")) {
+            hideScrollbar();
+          } else {
+            showScrollbar();
+          }
+        });
+
   //Terms Modal
   $("#termsModalBtn,#termsCloseBtn").click(function (e) {
     e.preventDefault();
