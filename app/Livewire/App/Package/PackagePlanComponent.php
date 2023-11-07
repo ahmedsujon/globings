@@ -51,7 +51,7 @@ class PackagePlanComponent extends Component
             $subscription_id = $subscription->id;
         }
 
-        return redirect()->route('app.planPaymentViaStripe', ['subscription_id' => $subscription_id]);
+        return redirect()->route('app.planPayment', ['subscription_id' => $subscription_id]);
     }
 
     public function render()

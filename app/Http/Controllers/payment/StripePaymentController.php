@@ -37,7 +37,7 @@ class StripePaymentController extends Controller
             ],
             'mode'        => 'payment',
             'success_url' => route('app.stripePaymentSuccess').'?subscription_id='.$sub_id.'&&session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url'  => route('app.planPaymentViaStripe', ['subscription_id'=>$sub_id]),
+            'cancel_url'  => route('app.planPayment', ['subscription_id'=>$sub_id]),
         ]);
 
         return redirect()->away($session->url);
@@ -63,7 +63,7 @@ class StripePaymentController extends Controller
             $subscription->active = 1;
             $subscription->save();
 
-            return redirect()->route('app.stripeSuccessComponent');
+            return redirect()->route('app.paymentSuccessComponent');
 
         } catch (\Exception $e) {
             return "Error: " . $e->getMessage();
