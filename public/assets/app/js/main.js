@@ -144,22 +144,6 @@ $(document).ready(function () {
     $(this).toggleClass("selected_heart");
   });
 
-  //Ratting start
-  $(".rattingStar").starRating({
-    // initialRating: 4,
-    totalStars: 5,
-    strokeColor: "#D9D9D9",
-    emptyColor: "#D9D9D9",
-    activeColor: "cornflowerblue",
-    ratedColor: "#1872F6",
-    strokeWidth: 10,
-    starSize: 25,
-    disableAfterRate: false,
-    useGradient: false,
-    // callback: function(currentRating){
-    //     alert('rated ', currentRating);
-    // }
-  });
 
   //Comment Modal
   $(".postCommentBtn,#commentModalClose").click(function (e) {
@@ -280,31 +264,31 @@ $(document).ready(function () {
     }
   });
 
-    // QR Code Modal
-    $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
-      e.preventDefault();
-  
-      $("#qrCodeModalArea").toggleClass("sing_modal_active");
-  
-      if ($("#qrCodeModalArea").hasClass("sing_modal_active")) {
-        hideScrollbar();
-      } else {
-        showScrollbar();
-      }
-    });
+      //QR Code Modal
+      $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
+        e.preventDefault();
 
-        // Change Password Modal
-        $("#passwordChangeModalBtn,#passwordEditCloseBtn").click(function (e) {
-          e.preventDefault();
-      
-          $("#passwordEditModalArea").toggleClass("sing_modal_active");
-      
-          if ($("#passwordEditModalArea").hasClass("sing_modal_active")) {
-            hideScrollbar();
-          } else {
-            showScrollbar();
-          }
-        });
+        $("#qrCodeModalArea").toggleClass("sing_modal_active");
+
+        if ($("#qrCodeModalArea").hasClass("sing_modal_active")) {
+          hideScrollbar();
+        } else {
+          showScrollbar();
+        }
+      });
+
+              // Change Password Modal
+              $("#passwordChangeModalBtn,#passwordEditCloseBtn").click(function (e) {
+                e.preventDefault();
+
+                $("#passwordEditModalArea").toggleClass("sing_modal_active");
+
+                if ($("#passwordEditModalArea").hasClass("sing_modal_active")) {
+                  hideScrollbar();
+                } else {
+                  showScrollbar();
+                }
+              });
 
   //Terms Modal
   $("#termsModalBtn,#termsCloseBtn").click(function (e) {

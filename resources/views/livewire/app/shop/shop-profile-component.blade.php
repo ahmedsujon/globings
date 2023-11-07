@@ -3,7 +3,8 @@
         <div class="container">
             <div class="d-flex-between">
                 <h4 class="notification_title">Preview</h4>
-                <button type="button" class="bookmarkIcon {{ shopIsBookmarked($shop->id) ? 'active_bookmark' : '' }}" wire:click.prevent='favorite'>
+                <button type="button" class="bookmarkIcon {{ shopIsBookmarked($shop->id) ? 'active_bookmark' : '' }}"
+                    wire:click.prevent='favorite'>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -67,13 +68,17 @@
                     <img src="{{ asset(getUserByID($shop->user_id)->avatar) }}" alt="user image" class="user_img" />
                     <div>
                         <div class="dealer">Dealer</div>
-                        <h5 class="sub_login">{{ getUserByID($shop->user_id)->first_name }} {{ getUserByID($shop->user_id)->last_name }}</h5>
+                        <h5 class="sub_login">{{ getUserByID($shop->user_id)->first_name }}
+                            {{ getUserByID($shop->user_id)->last_name }}</h5>
                     </div>
                 </button>
             </div>
             <div class="location_area company_bottom_border">
                 <h4 class="notification_title">Location</h4>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.9730352447!2d90.33728817432475!3d23.780818635510663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1695448421480!5m2!1sbn!2sbd" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.9730352447!2d90.33728817432475!3d23.780818635510663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1695448421480!5m2!1sbn!2sbd"
+                    style="border: 0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="location_grid">
                     <img src="{{ asset('assets/app/icons/location.svg') }}" alt="location icon" />
                     <h5>{{ $shop->address }}</h5>
@@ -108,7 +113,8 @@
                 </div>
 
                 @if (session()->has('success_contact'))
-                    <div class="input_row" style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 2px;">
+                    <div class="input_row"
+                        style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 2px;">
                         <p style="color: white;">{{ session('success_contact') }}</p>
                     </div>
                 @endif
@@ -119,60 +125,54 @@
             </form>
             <div class="review_area company_bottom_border">
                 <h4>Write a Review</h4>
-                <div class="review_list_area">
-                    <div class="list_item d-flex-between">
-                        <h5>On time</h5>
-                        <div class="start_list d-flex align-items-center flex-wrap">
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_blank.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_blank.svg') }}" alt="star icon" />
+            </div>
+            <form action="" wire:submit.prevent='addReview' class="contact_form_area company_bottom_border">
+
+                <h4 class="sub_login">Rating</h4>
+                <div class="select_area">
+                    <div class="input_row">
+                        <div class="ratting_star_area" wire:ignore>
+                            <div class="rattingStar d-flex align-items-center flex-wrap g-sm">
+                            </div>
                         </div>
-                    </div>
-                    <div class="list_item d-flex-between">
-                        <h5>Amenities</h5>
-                        <div class="start_list d-flex align-items-center flex-wrap">
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_blank.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_blank.svg') }}" alt="star icon" />
-                        </div>
-                    </div>
-                    <div class="list_item d-flex-between">
-                        <h5>Cleanliness</h5>
-                        <div class="start_list d-flex align-items-center flex-wrap">
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_blank.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_blank.svg') }}" alt="star icon" />
-                        </div>
-                    </div>
-                    <div class="list_item d-flex-between">
-                        <h5>Overall experience</h5>
-                        <div class="start_list d-flex align-items-center flex-wrap">
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                            <img src="{{ asset('assets/app/icons/star_orange_fill.svg') }}" alt="star icon" />
-                        </div>
+                        @error('rating')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
-            </div>
-            <form action="" class="contact_form_area company_bottom_border">
-                <h4 class="sub_login">Comments *</h4>
+                <h4 class="sub_login" style="margin-top: 25px;">Comment</h4>
                 <div class="input_row">
-                    <textarea name="" id="" cols="30" rows="5" placeholder="your comment...."
-                        class="input_item"></textarea>
+                    <textarea name="" id="" wire:model.blur='comment' cols="30" rows="5" placeholder="your comment...." class="input_item"></textarea>
+                    @error('comment')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <button type="submit" class="login_btn login_btn_fill">
-                    Submit Review
+                    {!! loadingStateWithTextApp('addReview', 'Submit Review') !!}
                 </button>
             </form>
         </div>
     </section>
 </div>
+
+@push('scripts')
+
+    <script>
+        $(".rattingStar").starRating({
+            totalStars: 5,
+            strokeColor: "#D9D9D9",
+            emptyColor: "#D9D9D9",
+            activeColor: "cornflowerblue",
+            ratedColor: "#1872F6",
+            strokeWidth: 10,
+            starSize: 30,
+            disableAfterRate: false,
+            useGradient: false,
+            callback: function(currentRating){
+                @this.set('rating', currentRating);
+            }
+        });
+
+    </script>
+@endpush

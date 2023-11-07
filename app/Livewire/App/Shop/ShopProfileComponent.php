@@ -69,6 +69,11 @@ class ShopProfileComponent extends Component
         }
     }
 
+    public function addReview()
+    {
+        
+    }
+
     public function render()
     {
         return view('livewire.app.shop.shop-profile-component')->layout('livewire.app.layouts.base');
