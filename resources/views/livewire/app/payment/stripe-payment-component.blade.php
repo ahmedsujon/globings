@@ -2,11 +2,11 @@
     <section class="pricing_wrapper">
         <div class="price_text_area">
             <div class="container" style="text-align: center;">
-                <h4 class="notification_title">Make Payment</h4>
+                <h4 class="notification_title">Plan Payment</h4>
             </div>
         </div>
         <div class="container">
-            <div class="pricing_item" style="text-align: center;">
+            <div class="pricing_item" style="text-align: center; margin-top: 20px;">
                 <h4>Plan Details</h4>
                 <div class="pricing_area">
                     <table class="table-sm" style="width: 100%; font-size: 14px;">
@@ -28,14 +28,27 @@
                 </div>
             </div>
 
-            <div class="pricing_item" style="text-align: center; margin-top: 35px;">
-                <h4>Pay via Stripe</h4>
-                <div class="pricing_area" style="text-align: center; padding-top: 20px;">
+            <div class="pricing_item" style="text-align: center; margin-top: 50px;">
+                <h4>Make Payment With</h4>
+                @if (session()->has('error'))
+                    <div style="background: rgb(224, 96, 96); width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 10px;">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                <div class="pricing_area" style="text-align: center; padding-top: 20px; display: flex; align-items: center; justify-content: center;">
                     <form action="{{ route('app.payWithStripe') }}" method="POST">
                         @csrf
                         <input type="hidden" name="subscription_id" id="subscription_id" value="{{ $subscription->id }}" />
-                        <button type="submit" class="login_btn login_btn_fill">
-                            Pay Now
+                        <button type="submit" style="border: 1px solid #1872F6 !important; padding: 0px 30px; border-radius: 10px; margin-right: 10px;">
+                            <img src="{{ asset('assets/images/stripe.png') }}" style="height: 70px; width: auto;" alt="">
+                        </button>
+                    </form>
+
+                    <form action="{{ route('app.payWithPaypal') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="sub_id" id="sub_id" value="{{ $subscription->id }}" />
+                        <button type="submit" style="border: 1px solid #1872F6 !important; padding: 0px 30px; border-radius: 10px;">
+                            <img src="{{ asset('assets/images/paypal.png') }}" style="height: 70px; width: auto;" alt="">
                         </button>
                     </form>
                 </div>

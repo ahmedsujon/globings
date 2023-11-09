@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\payment\PayPalPaymentController;
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Auth\LoginComponent;
 use App\Livewire\App\Bings\BingComponent;
@@ -56,10 +57,20 @@ Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.t
 
 Route::middleware('auth')->group(function(){
     Route::get('/plans', PackagePlanComponent::class)->name('app.plans');
-    Route::get('/plans/payment/stripe/{subscription_id}', StripePaymentComponent::class)->name('app.planPaymentViaStripe');
+    Route::get('/plans/payment/{subscription_id}', StripePaymentComponent::class)->name('app.planPayment');
+
+
+    //Stripe Payment
     Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe');
     Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess');
-    Route::get('/stripe-payment-success-component', StripePaymentSuccessComponent::class)->name('app.stripeSuccessComponent');
+
+    //Paypal Payment
+    Route::post('/plans/payment/paypal/pay', [PayPalPaymentController::class, 'makePayment'])->name('app.payWithPaypal');
+    Route::get('/paypal-payment-success', [PayPalPaymentController::class, 'paymentSuccess'])->name('app.paypalPaymentSuccess');
+
+    Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->name('app.paymentSuccessComponent');
+
+
 
     // Bings routes
     Route::get('/bings', BingComponent::class)->name('app.bings');
