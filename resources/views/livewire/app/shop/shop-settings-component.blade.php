@@ -104,7 +104,7 @@
                 </div>
 
                 <button type="submit" class="login_btn login_btn_fill">
-                    {!! loadingStateWithText('updateShop', 'Save') !!}
+                    {!! loadingStateWithTextApp('updateShop', 'Save') !!}
                 </button>
             </form>
         </div>
