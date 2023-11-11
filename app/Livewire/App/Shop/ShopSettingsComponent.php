@@ -13,7 +13,7 @@ class ShopSettingsComponent extends Component
     use WithFileUploads;
 
     public $edit_id, $delete_id, $user_id;
-    public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar, $coverImage;
+    public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, $longitude, $city, $address;
 
     public function mount()
     {
@@ -61,15 +61,10 @@ class ShopSettingsComponent extends Component
         $data->shop_category = $this->shop_category;
         $data->description = $this->description;
         $data->website_url = $this->website_url;
-
-        // if ($this->avatar) {
-        //     $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-        //     $this->avatar->storeAs('category', $fileName);
-        //     $data->icon = 'uploads/category/' . $fileName;
-        // } else {
-        //     $data->icon = 'assets/images/avatar.png';
-        // }
-
+        $data->latitude = $this->latitude;
+        $data->longitude = $this->longitude;
+        $data->city = $this->city;
+        $data->address = $this->address;
         $data->save();
         $this->dispatch('success', ['message' => 'Shop updated successfully']);
     }
