@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/number-input/intlTelInput.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/percircle.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/star-rating-svg.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 
     <link rel="stylesheet" href="{{ asset('assets/app/sass/style.css') }}" />
 </head>
@@ -62,6 +63,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>

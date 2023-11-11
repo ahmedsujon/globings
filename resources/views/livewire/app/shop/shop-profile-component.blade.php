@@ -25,15 +25,13 @@
             <div class="slider_area" wire:ignore id="companySliderArea">
                 <div class="swiper">
                     <div class="swiper-wrapper">
-                        @foreach ($shop->cover_photos as $cover_photo)
-                            <div class="swiper-slide">
-                                <div class="slider_img">
-                                    <img src="{{ asset($cover_photo) }}" alt="" />
-                                </div>
+                        <div class="swiper-slide">
+                            <div class="slider_img">
+                                <img src="{{ asset($shop->cover_photo) }}" alt="" />
                             </div>
-                        @endforeach
+                        </div>
                     </div>
-                    <div class="swiper-pagination"></div>
+                    {{-- <div class="swiper-pagination"></div> --}}
                 </div>
             </div>
 
