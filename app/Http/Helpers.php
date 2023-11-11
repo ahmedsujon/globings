@@ -122,7 +122,7 @@ function shop_star_review($shop_id)
     $reviews = ShopReview::where('shop_id', $shop_id)->get();
 
     $total_star = $reviews->sum('rating');
-    $total_review = $reviews->count();
+    $total_review = $reviews->count() > 0 ? $reviews->count() : 1;
     $avg_star = round(($total_star / $total_review), 1);
 
     $rem_star = (5 - $avg_star);
@@ -141,7 +141,8 @@ function avgShopReview($shop_id)
     $reviews = ShopReview::where('shop_id', $shop_id)->get();
 
     $total_star = $reviews->sum('rating');
-    $total_review = $reviews->count();
+    $total_review = $reviews->count() > 0 ? $reviews->count() : 1;
+
     $avg_star = round(($total_star / $total_review), 1);
 
     return $avg_star;
