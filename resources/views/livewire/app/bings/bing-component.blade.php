@@ -65,11 +65,11 @@
                     <div class="bing_category_wrapper mb-5">
                         <h4 class="bing_inner_title">Explore Bings by category</h4>
                         <div class="category_grid">
-                            <a href="bings-reward.html" class="bing_category_item">
+                            <a href="#" class="bing_category_item">
                                 <img src="{{ asset('assets/app/icons/reward_icon.png') }}" alt="reward icon" />
                                 <h4>Rewards by shop</h4>
                             </a>
-                            <a href="bings-challange.html" class="bing_category_item">
+                            <a href="#" class="bing_category_item">
                                 <img src="{{ asset('assets/app/icons/bouns_icon.png') }}" alt="bonus icon" />
                                 <h4>Bonus & challenges</h4>
                             </a>
@@ -345,8 +345,8 @@
                                 aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="progress_number_area d-flex-between">
-                            <h4>1,500</h4>
-                            <h4><span>1965/</span> 20,000</h4>
+                            <h4>{{ user()->bings_balance }}</h4>
+                            <h4><span>{{ user()->total_bings }} /</span> 20,000</h4>
                         </div>
                         <h5 class="bidge_sub_text text-start">
                             As you help other people, you earn points for each contribution
