@@ -19,11 +19,12 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->longText('description')->nullable();
             $table->string('profile_image')->nullable();
-            $table->longText('cover_photos')->nullable();
+            $table->longText('cover_photo')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->string('website_url')->nullable();
+            $table->string('city')->nullable();
             $table->text('address')->nullable();
+            $table->string('website_url')->nullable();
             $table->integer('visited')->default(0);
             $table->timestamps();
         });
