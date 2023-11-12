@@ -88,7 +88,7 @@
 
     <!-- Post Home Section  -->
     <section class="post_home_wrapper" id="homePostArea">
-        <div class="container post_seceleton_container">
+        <div class="container post_seceleton_container" wire:ignore>
             <div class="post_grid">
                 <div class="hash_area">
                     <div class="hash_icon">
@@ -210,7 +210,7 @@
                 </div>
             </div>
         </div>
-        <div class="container post_container d-none">
+        <div class="container post_container d-none" wire:ignore.self>
             @if ($posts->count() > 0)
                 @foreach ($posts as $post)
                     <div class="post_grid">
