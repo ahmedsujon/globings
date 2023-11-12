@@ -10,7 +10,7 @@
                     <li>
                         @auth
                             @if (user()->account_type == 'Professional')
-                                @if(userHasActiveSubscription())
+                                @if (userHasActiveSubscription())
                                     <a href="javascript:void(0)" id="openPostCreateBtn">
                                         <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                                     </a>
@@ -57,20 +57,25 @@
     <!-- Category Slider Section  -->
     <section class="category_slider_area" id="headerCategorySlider">
         <div class="container" wire:ignore>
-            <div class="swiper">
+            <div class="d-flex align-items-center g-sm category_sceleton">
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+            </div>
+            <div class="swiper category_swiper_container d-none">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="{{ route('app.events') }}" class="category_item">
-                          <img
-                            src="{{ asset('assets/app/icons/events_category.svg') }}"
-                            alt="category icon"
-                          />
-                          <h4>Events</h4>
+                            <img src="{{ asset('assets/app/icons/events_category.svg') }}" alt="category icon" />
+                            <h4>Events</h4>
                         </a>
-                      </div>
+                    </div>
                     @foreach ($categories as $category)
                         <div class="swiper-slide">
-                            <a href="{{ route('app.home') }}?category={{ $category->id }}" class="category_item {{ request()->get('category') == $category->id ? 'active_category' : ''}}">
+                            <a href="{{ route('app.home') }}?category={{ $category->id }}"
+                                class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
                                 <img src="{{ asset($category->icon) }}" alt="category icon" />
                                 <h4>{{ $category->name }}</h4>
                             </a>
@@ -80,9 +85,132 @@
             </div>
         </div>
     </section>
+
     <!-- Post Home Section  -->
     <section class="post_home_wrapper" id="homePostArea">
-        <div class="container">
+        <div class="container post_seceleton_container">
+            <div class="post_grid">
+                <div class="hash_area">
+                    <div class="hash_icon">
+                        <div class="skeleton"
+                            style="
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        margin-left: auto;
+                        margin-right: auto;
+                      ">
+                        </div>
+                        <div class="skeleton"
+                            style="
+                        width: 30px;
+                        height: 10px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                      ">
+                        </div>
+                    </div>
+                    <div class="middle_bar"></div>
+                    <button type="button" class="post_user_area postUserBtn">
+                        <div class="skeleton"
+                            style="
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 7px;
+                        margin-left: auto;
+                        margin-right: auto;
+                      ">
+                        </div>
+                        <div class="skeleton"
+                            style="
+                        width: 30px;
+                        height: 10px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                      ">
+                        </div>
+                    </button>
+                </div>
+                <div class="post_area">
+                    <div class="skeleton"
+                        style="
+                      width: 100%;
+                      height: 199px;
+                      border-radius: 8px;
+                      margin-left: auto;
+                      margin-right: auto;
+                    ">
+                    </div>
+                    {{-- <div class="d-flex align-items-center g-sm mt-2">
+                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
+                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
+                    </div> --}}
+                </div>
+            </div>
+            <div class="post_grid">
+                <div class="hash_area">
+                    <div class="hash_icon">
+                        <div class="skeleton"
+                            style="
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        margin-left: auto;
+                        margin-right: auto;
+                      ">
+                        </div>
+                        <div class="skeleton"
+                            style="
+                        width: 30px;
+                        height: 10px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                      ">
+                        </div>
+                    </div>
+                    <div class="middle_bar"></div>
+                    <button type="button" class="post_user_area postUserBtn">
+                        <div class="skeleton"
+                            style="
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 7px;
+                        margin-left: auto;
+                        margin-right: auto;
+                      ">
+                        </div>
+                        <div class="skeleton"
+                            style="
+                        width: 30px;
+                        height: 10px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                      ">
+                        </div>
+                    </button>
+                </div>
+                <div class="post_area">
+                    <div class="skeleton"
+                        style="
+                      width: 100%;
+                      height: 199px;
+                      border-radius: 8px;
+                      margin-left: auto;
+                      margin-right: auto;
+                    ">
+                    </div>
+                    <div class="d-flex align-items-center g-sm mt-2">
+                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
+                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container post_container d-none">
             @if ($posts->count() > 0)
                 @foreach ($posts as $post)
                     <div class="post_grid">
@@ -94,8 +222,8 @@
                             <div class="middle_bar"></div>
                             <a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}" type="button"
                                 class="post_user_area">
-                                <img src="{{ asset(getShopProfileHome($post->user_id)->profile_image) }}" alt=""
-                                    class="user_img" />
+                                <img src="{{ asset(getShopProfileHome($post->user_id)->profile_image) }}"
+                                    alt="" class="user_img" />
                             </a>
                         </div>
                         <div class="post_area">
@@ -140,184 +268,122 @@
     <!-- Filter Modal  -->
     <div class="filter_modal_area" id="searchFilterArea">
         <form action="">
-          <div class="container">
-            <div class="d-flex-between">
-              <h3 class="notification_title">Filters</h3>
-              <button type="button" id="filterCloseBtn">
-                <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
-              </button>
+            <div class="container">
+                <div class="d-flex-between">
+                    <h3 class="notification_title">Filters</h3>
+                    <button type="button" id="filterCloseBtn">
+                        <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
+                    </button>
+                </div>
+                <div class="category_area">
+                    <h4 class="bring_bottom_text">Categories Settings</h4>
+                    <div class="category_filter_grid">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon1" />
+                            <label class="form-check-label" for="categoryFilterIcon1">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
+                                    alt="category icon" />
+                                <span>Hairdressing</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon2" />
+                            <label class="form-check-label" for="categoryFilterIcon2">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon2.svg') }}"
+                                    alt="category icon" />
+                                <span>Grocery</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon3" />
+                            <label class="form-check-label" for="categoryFilterIcon3">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon3.svg') }}"
+                                    alt="category icon" />
+                                <span>Cafe Bar</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon4" />
+                            <label class="form-check-label" for="categoryFilterIcon4">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon4.svg') }}"
+                                    alt="category icon" />
+                                <span>Butcher's shop</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon5" />
+                            <label class="form-check-label" for="categoryFilterIcon5">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon5.svg') }}"
+                                    alt="category icon" />
+                                <span>Fish shop</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon6" />
+                            <label class="form-check-label" for="categoryFilterIcon6">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon6.svg') }}"
+                                    alt="category icon" />
+                                <span>Aesthetic</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon7" />
+                            <label class="form-check-label" for="categoryFilterIcon7">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon7.svg') }}"
+                                    alt="category icon" />
+                                <span>Health & Wellness</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon8" />
+                            <label class="form-check-label" for="categoryFilterIcon8">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon8.svg') }}"
+                                    alt="category icon" />
+                                <span>Restaurant</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value=""
+                                id="categoryFilterIcon9" />
+                            <label class="form-check-label" for="categoryFilterIcon9">
+                                <img src="{{ asset('assets/app/icons/category_filter_icon9.svg') }}"
+                                    alt="category icon" />
+                                <span>Bakery pastry</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="select_area">
+                        <h4 class="bring_bottom_text">Want to see area of city</h4>
+                        <div class="area_list d-flex align-items-center flex-wrap">
+                            <button type="button" class="active">Sunamganj</button>
+                            <button type="button">Sylhet</button>
+                            <button type="button">Dhaka</button>
+                            <button type="button">Khulna</button>
+                            <button type="button">Rajshahi</button>
+                        </div>
+                    </div>
+                    <div class="range_area">
+                        <h4 class="bring_bottom_text">Range of area</h4>
+                        <input data-addui="slider" data-range="true" data-fontsize="14" data-step="0.01"
+                            data-min="5" data-max="20" value="10" data-formatter="usd" />
+                    </div>
+                    <div class="btn_area">
+                        <button type="submit" class="login_btn login_btn_fill">
+                            Apply
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="category_area">
-              <h4 class="bring_bottom_text">Categories Settings</h4>
-              <div class="category_filter_grid">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon1"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon1">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Hairdressing</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon2"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon2">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon2.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Grocery</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon3"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon3">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon3.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Cafe Bar</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon4"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon4">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon4.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Butcher's shop</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon5"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon5">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon5.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Fish shop</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon6"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon6">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon6.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Aesthetic</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon7"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon7">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon7.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Health & Wellness</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon8"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon8">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon8.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Restaurant</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="categoryFilterIcon9"
-                  />
-                  <label class="form-check-label" for="categoryFilterIcon9">
-                    <img
-                      src="{{ asset('assets/app/icons/category_filter_icon9.svg') }}"
-                      alt="category icon"
-                    />
-                    <span>Bakery pastry</span>
-                  </label>
-                </div>
-              </div>
-              <div class="select_area">
-                <h4 class="bring_bottom_text">Want to see area of city</h4>
-                <div class="area_list d-flex align-items-center flex-wrap">
-                  <button type="button" class="active">Sunamganj</button>
-                  <button type="button">Sylhet</button>
-                  <button type="button">Dhaka</button>
-                  <button type="button">Khulna</button>
-                  <button type="button">Rajshahi</button>
-                </div>
-              </div>
-              <div class="range_area">
-                <h4 class="bring_bottom_text">Range of area</h4>
-                <input
-                  data-addui="slider"
-                  data-range="true"
-                  data-fontsize="14"
-                  data-step="0.01"
-                  data-min="5"
-                  data-max="20"
-                  value="10"
-                  data-formatter="usd"
-                />
-              </div>
-              <div class="btn_area">
-                <button type="submit" class="login_btn login_btn_fill">
-                  Apply
-                </button>
-              </div>
-            </div>
-          </div>
         </form>
-      </div>
+    </div>
 
     <!-- Comment Modal  -->
     <div class="comment_modal" wire:ignore.self id="commentModalArea">
@@ -502,7 +568,8 @@
                                     <div class="slider_img">
                                         <img src="{{ $img->temporaryUrl() }}" alt="slider image" class="upload_img" />
                                         <button type="button" class="upload_close">
-                                            <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}" wire:click.prevent='removeImg({{ $key }})' alt="close icon" />
+                                            <img src="{{ asset('assets/app/icons/upload_close_icon.svg') }}"
+                                                wire:click.prevent='removeImg({{ $key }})' alt="close icon" />
                                         </button>
                                     </div>
                                 @endforeach
@@ -521,12 +588,21 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#searchForm').on('submit', function(e){
+            setTimeout(function() {
+                $('.category_sceleton').addClass('d-none');
+                $('.category_swiper_container').removeClass('d-none');
+
+                $('.post_seceleton_container').addClass('d-none');
+                $('.post_container').removeClass('d-none');
+
+            }, 2000);
+
+            $('#searchForm').on('submit', function(e) {
                 e.preventDefault();
 
                 var value = $('#search_input').val();
 
-                window.location.href = "{{URL::to('/')}}?search="+value;
+                window.location.href = "{{ URL::to('/') }}?search=" + value;
             });
 
             $('.add_like_btn').on('click', function() {
