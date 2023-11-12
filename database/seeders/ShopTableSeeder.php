@@ -28,13 +28,13 @@ class ShopTableSeeder extends Seeder
 
         if (!$shopOne) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 1;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Bookshop';
             $shop->shop_category = 'Bookstore';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -43,13 +43,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopTwo) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 2;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Grocery';
             $shop->shop_category = 'Grocery Store';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -58,13 +58,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopThree) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 3;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Electronics';
             $shop->shop_category = 'Electronics Store';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -73,13 +73,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopFour) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 4;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Boutique';
             $shop->shop_category = 'Clothing Store';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -88,13 +88,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopFive) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 5;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Nursery';
             $shop->shop_category = 'Garden Center';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -103,13 +103,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopSix) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 6;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Deli';
             $shop->shop_category = 'Food Store';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -118,13 +118,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopSeven) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 7;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Sports';
             $shop->shop_category = 'Sporting Goods';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -133,13 +133,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopEight) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 8;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Art';
             $shop->shop_category = 'Art Supplies';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -148,13 +148,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopNine) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 9;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Pet';
             $shop->shop_category = 'Pet Store';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
@@ -163,13 +163,13 @@ class ShopTableSeeder extends Seeder
         }
         if (!$shopTen) {
             $shop = new Shop();
-            $shop->user_id = rand(1, 10);
+            $shop->user_id = 10;
             $shop->category_id = rand(1, 10);
             $shop->name = 'Wellness';
             $shop->shop_category = 'Health Store';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photos = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';

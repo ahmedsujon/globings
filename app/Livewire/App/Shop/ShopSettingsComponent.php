@@ -2,14 +2,18 @@
 
 namespace App\Livewire\App\Shop;
 
-use App\Models\Category;
+use Carbon\Carbon;
 use App\Models\Shop;
 use Livewire\Component;
+use App\Models\Category;
+use Livewire\WithFileUploads;
 
 class ShopSettingsComponent extends Component
 {
+    use WithFileUploads;
+
     public $edit_id, $delete_id, $user_id;
-    public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar;
+    public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, $longitude, $city, $address;
 
     public function mount()
     {
@@ -19,6 +23,19 @@ class ShopSettingsComponent extends Component
         $this->website_url = $data->website_url;
         $this->description = $data->description;
         $this->edit_id = $data->id;
+    }
+
+    public function updatedCoverImage()
+    {
+        if ($this->coverImage) {
+            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->coverImage->extension();
+            $this->coverImage->storeAs('category', $fileName);
+            $image_path = 'uploads/category/' . $fileName;
+
+            $shop = Shop::where('user_id', user()->id)->first();
+            $shop->cover_photo = $image_path;
+            $shop->save();
+        }
     }
 
     public function editData($id)
@@ -44,15 +61,10 @@ class ShopSettingsComponent extends Component
         $data->shop_category = $this->shop_category;
         $data->description = $this->description;
         $data->website_url = $this->website_url;
-
-        // if ($this->avatar) {
-        //     $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-        //     $this->avatar->storeAs('category', $fileName);
-        //     $data->icon = 'uploads/category/' . $fileName;
-        // } else {
-        //     $data->icon = 'assets/images/avatar.png';
-        // }
-
+        $data->latitude = $this->latitude;
+        $data->longitude = $this->longitude;
+        $data->city = $this->city;
+        $data->address = $this->address;
         $data->save();
         $this->dispatch('success', ['message' => 'Shop updated successfully']);
     }

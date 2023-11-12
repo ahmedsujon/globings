@@ -7,19 +7,21 @@
                     <div class="d-flex align-items-center flex-wrap g-xl">
                         <h4 class="notification_title">Recent Photos</h4>
                     </div>
-                </div>
-                @foreach ($random_one as $post)
-                    <button type="button" class="top_img recentPhotoBtn">
-                        <img src="{{ asset('assets/app/images/others/image_gallery1.png') }}" alt="gallery image" />
-                    </button>
-                @endforeach
-
-                <div class="gallery_grid mt-24">
-                    @foreach ($posts as $post)
-                        <button type="button" class="gallery_img recentPhotoBtn">
-                            <img src="{{ asset('assets/app/images/others/image_gallery3.png') }}" alt="gallery image" />
+                    @if (isset($allImages[0]))
+                        <button type="button" class="top_img recentPhotoBtn">
+                            <img src="{{ asset($allImages[0]) }}" alt="gallery image" />
                         </button>
-                    @endforeach
+                    @endif
+
+                    <div class="gallery_grid mt-24">
+                        @foreach ($allImages as $key => $img)
+                            @if ($key != 0)
+                                <button type="button" class="gallery_img recentPhotoBtn">
+                                    <img src="{{ asset($img) }}" alt="gallery image" />
+                                </button>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
