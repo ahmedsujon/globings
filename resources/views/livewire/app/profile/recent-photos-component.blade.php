@@ -1,13 +1,11 @@
 <div>
-    <main>
-        <!-- Recent Photos Modal  -->
-        <div class="pb-100">
-            <div class="container">
-                <div class="recent_photos_modal">
-                    <div class="bing_back_area">
-                        <div class="d-flex align-items-center flex-wrap g-xl">
-                            <h4 class="notification_title">Recent Photos</h4>
-                        </div>
+    <!-- Recent Photos Modal  -->
+    <div class="pb-100">
+        <div class="container">
+            <div class="recent_photos_modal">
+                <div class="bing_back_area">
+                    <div class="d-flex align-items-center flex-wrap g-xl">
+                        <h4 class="notification_title">Recent Photos</h4>
                     </div>
                     @if (isset($allImages[0]))
                         <button type="button" class="top_img recentPhotoBtn">
@@ -27,5 +25,5 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 </div>
