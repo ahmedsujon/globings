@@ -37,6 +37,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'New York City';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -52,6 +53,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Tokyo';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -67,6 +69,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'London';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -82,6 +85,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Paris';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -97,6 +101,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Sydney';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -112,6 +117,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Rio de Janeiro';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -127,6 +133,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Cairo';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -142,6 +149,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Mumbai';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -157,6 +165,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Toronto';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
@@ -172,6 +181,7 @@ class ShopTableSeeder extends Seeder
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
             $shop->longitude = '90.40795872491326';
+            $shop->city = 'Los Angeles';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
             $shop->save();
