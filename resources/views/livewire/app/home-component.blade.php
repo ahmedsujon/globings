@@ -262,6 +262,9 @@
                     </div>
                 @endforeach
             @else
+            <div style="text-align: center; margin-top: 100px;">
+                <small>No posts available</small>
+            </div>
             @endif
         </div>
     </section>
@@ -547,7 +550,7 @@
                 });
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/') }}?city=" + city + "&categories=" + allCats;
+                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + allCats;
             });
 
             $('#searchForm').on('submit', function(e) {

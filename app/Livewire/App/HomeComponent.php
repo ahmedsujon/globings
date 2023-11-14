@@ -2,20 +2,20 @@
 
 namespace App\Livewire\App;
 
-use Carbon\Carbon;
-use App\Models\Post;
-use App\Models\User;
-use Livewire\Component;
 use App\Models\Category;
-use App\Models\PostLike;
 use App\Models\CommentLike;
-use App\Models\PostComment;
-use Illuminate\Support\Str;
 use App\Models\CommentReply;
-use Livewire\WithPagination;
 use App\Models\CommentReplyLike;
+use App\Models\Post;
+use App\Models\PostComment;
+use App\Models\PostLike;
 use App\Models\Shop;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\WithPagination;
 
 class HomeComponent extends Component
 {
@@ -33,17 +33,17 @@ class HomeComponent extends Component
     public function updated($fields)
     {
         $this->validateOnly($fields, [
-            'content' =>'required',
-            'images' =>'required',
-            'images.*' =>'mimes:png,jpg,jpeg,gif|image|max:2048',
+            'content' => 'required',
+            'images' => 'required',
+            'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
     }
 
     public function like($post_id)
     {
-        if(user()){
+        if (user()) {
             $getLike = PostLike::where('user_id', user()->id)->where('post_id', $post_id)->first();
-            if($getLike){
+            if ($getLike) {
                 $getLike->delete();
             } else {
                 $like = new PostLike();
@@ -76,12 +76,12 @@ class HomeComponent extends Component
 
     public function addComment()
     {
-        if(user()){
+        if (user()) {
             $this->validate([
-                'comment' => 'required'
+                'comment' => 'required',
             ]);
 
-            if($this->comment_id){
+            if ($this->comment_id) {
                 $comment = new CommentReply();
                 $comment->user_id = user()->id;
                 $comment->comment_id = $this->comment_id;
@@ -106,9 +106,9 @@ class HomeComponent extends Component
 
     public function likeComment($comment_id)
     {
-        if(user()){
+        if (user()) {
             $getLike = CommentLike::where('user_id', user()->id)->where('comment_id', $comment_id)->first();
-            if($getLike){
+            if ($getLike) {
                 $getLike->delete();
             } else {
                 $like = new CommentLike();
@@ -124,9 +124,9 @@ class HomeComponent extends Component
 
     public function likeCommentReply($comment_reply_id)
     {
-        if(user()){
+        if (user()) {
             $getLike = CommentReplyLike::where('user_id', user()->id)->where('comment_reply_id', $comment_reply_id)->first();
-            if($getLike){
+            if ($getLike) {
                 $getLike->delete();
             } else {
                 $like = new CommentReplyLike();
@@ -148,24 +148,24 @@ class HomeComponent extends Component
     public function createPost()
     {
         $this->validate([
-            'content' =>'required',
-            'images' =>'required',
-            'images.*' =>'mimes:png,jpg,jpeg,gif|image|max:2048',
+            'content' => 'required',
+            'images' => 'required',
+            'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
 
         $post = new Post();
         $post->category_id = 1;
-        $post->slug = Str::slug(Str::lower(Str::random(4)) .' '. Str::lower(Str::random(4)) .' '. Str::lower(Str::random(4)));
+        $post->slug = Str::slug(Str::lower(Str::random(4)) . ' ' . Str::lower(Str::random(4)) . ' ' . Str::lower(Str::random(4)));
         $post->user_id = user()->id;
         $post->content = $this->content;
         $post->status = 1;
-        if($this->images){
+        if ($this->images) {
             $postImgs = [];
             foreach ($this->images as $key => $img) {
-                $fileName = uniqid() . Carbon::now()->timestamp. '.' .$this->images[$key]->extension();
+                $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
                 $this->images[$key]->storeAs('posts', $fileName);
 
-                $name = 'uploads/posts/'.$fileName;
+                $name = 'uploads/posts/' . $fileName;
                 $postImgs[] = $name;
             }
             $post->images = $postImgs;
@@ -186,26 +186,33 @@ class HomeComponent extends Component
 
     public function render()
     {
-        if(request()->get('category')){
-            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('posts.category_id', request()->get('category'))->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
+        if (request()->get('category')) {
+            $categories = explode(',', request()->get('category'));
+
+            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->whereIn('posts.category_id', $categories)->where('shops.name', 'like', '%' . $this->search_term . '%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
         } else {
-            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%'.$this->search_term.'%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC')->paginate($this->pagination_value);
+            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%' . $this->search_term . '%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
         }
 
-        if($this->selected_post_id){
+        if (request()->get('city')) {
+            $posts = $posts->where('shops.city', request()->get('city'));
+        }
+
+
+        $posts = $posts->paginate($this->pagination_value);
+
+        if ($this->selected_post_id) {
             $comments = PostComment::where('post_id', $this->selected_post_id);
 
-            if($this->comment_filter_by){
-                if($this->comment_filter_by == 'recent'){
+            if ($this->comment_filter_by) {
+                if ($this->comment_filter_by == 'recent') {
                     $comments = $comments->orderBy('created_at', 'DESC');
                 }
 
-                if($this->comment_filter_by == 'oldest'){
+                if ($this->comment_filter_by == 'oldest') {
                     $comments = $comments->orderBy('created_at', 'ASC');
                 }
-            }
-
-            else {
+            } else {
                 $comments = $comments->orderBy('created_at', 'DESC');
             }
 
