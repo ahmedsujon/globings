@@ -11,13 +11,14 @@ use Livewire\Component;
 
 class ShopProfileComponent extends Component
 {
-    public $shop, $name, $email, $phone, $message, $rating, $comment, $total_reviews;
+    public $shop, $name, $email, $phone, $message, $rating, $comment, $total_reviews, $reviews;
     public function mount($user_id)
     {
         $shop = Shop::where('user_id', $user_id)->first();
         $this->shop = $shop;
 
         $this->total_reviews = ShopReview::where('shop_id', $shop->id)->count();
+        $this->reviews = ShopReview::where('shop_id', $shop->id)->get();
     }
 
     public function updated($fields)
