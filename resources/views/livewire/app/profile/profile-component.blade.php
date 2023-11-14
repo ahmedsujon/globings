@@ -97,7 +97,7 @@
                             <li>
                                 <a href="{{ route('app.my.events') }}">
                                     <img src="{{ asset('assets/app/icons/events.svg') }}" alt="manage icon" />
-                                    <h5>Events</h5>
+                                    <h5>My Events</h5>
                                     <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
                                         alt="right icon" />
                                 </a>
@@ -454,7 +454,7 @@
         </div>
     </div>
     <!-- Profile Setting Modal  -->
-    <div class="sing_modal_area" id="settingProfileModalArea">
+    <div class="sing_modal_area" id="settingProfileModalArea" wire:ignore.self>
         <div class="profile_setting_modal">
             <section class="profile_manage_wrapper">
                 <div class="profile_top_area">
@@ -484,17 +484,32 @@
                         </div>
                         <div class="user_grid">
                             <label for="uploadUserImage" class="img_area">
-                                <img src="{{ asset('assets/app/icons/user_icon.svg') }}" alt="user image" />
-                                <!-- <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" /> -->
-                                <img src="{{ asset('assets/app/icons/edit_icon.svg') }}" alt="edit icon"
-                                    class="edit_icon" />
+                                @if ($avatar)
+                                    <img src="{{ asset($avatar->temporaryUrl()) }}" alt="post image"
+                                        class="cover_img" />
+                                @else
+                                    @if ($profile->profile_photo)
+                                        <img src="{{ asset($profile->profile_photo) }}" alt="post image"
+                                            class="cover_img" />
+                                    @else
+                                        <img src="{{ asset('assets/app/icons/user_icon.svg') }}" alt="user image" />
+                                    @endif
+                                @endif
+                                <div wire:loading wire:target='avatar' wire:key='avatar'>
+                                    <span class="spinner-border spinner-border" role="status"
+                                        aria-hidden="true"></span>
+                                </div>
+                                <div wire:loading.remove wire:target='avatar' wire:key='avatar'>
+                                    <img src="{{ asset('assets/app/icons/edit_icon.svg') }}" alt="edit icon"
+                                        class="edit_icon" />
+                                </div>
                             </label>
                             <div>
                                 <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
                                 <h5>{{ '@' . $profile->username }}</h5>
                             </div>
                         </div>
-                        <input type="file" id="uploadUserImage" class="d-none" />
+                        <input type="file" wire:model='avatar' id="uploadUserImage" class="d-none" />
                     </div>
                 </div>
 
