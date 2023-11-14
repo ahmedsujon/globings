@@ -32,7 +32,11 @@
                     </div>
                     <div class="user_grid">
                         <div class="img_area">
-                            <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" />
+                            @if (getUserByID($profile->id)->avatar)
+                                <img src="{{ asset(getUserByID($profile->id)->avatar) }}" alt="user image" />
+                            @else
+                                <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" />
+                            @endif
                         </div>
                         <div>
                             <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>

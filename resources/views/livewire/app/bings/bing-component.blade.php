@@ -18,8 +18,12 @@
                 </div>
                 <div class="bing_profile_wrapper">
                     <div class="profile_area text-center">
-                        <img src="{{ asset('assets/app/images/bings/bing_user.png') }}" alt="bing user image"
-                            class="bing_user_img" />
+                        @if (Auth::user()->avatar)
+                            <img src="{{ asset(Auth::user()->avatar) }}" alt="user image"
+                                class="bing_user_img" />
+                        @else
+                            <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" class="bing_user_img" />
+                        @endif
                         <div class="d-flex align-items-center justify-content-center">
                             <a href="bings-badge.html" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
                                 <img src="{{ asset('assets/app/icons/bookmark.png') }}" alt="book mark" />
@@ -132,18 +136,22 @@
                                 <div class="coing_emoji_grid">
                                     <div class="emoji_area Onboarding_icon_area">
                                         @if ($data->type == 'referral')
-                                            <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}" alt="bing coin icon" />
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}"
+                                                alt="bing coin icon" />
                                         @elseif($data->type == 'validation')
-                                            <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}" alt="bing coin icon" />
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
+                                                alt="bing coin icon" />
                                         @else
-                                            <img src="{{ asset('assets/app/icons/bing_coin_icon1.png') }}" alt="bing coin icon" />
+                                            <img src="{{ asset('assets/app/icons/bing_coin_icon1.png') }}"
+                                                alt="bing coin icon" />
                                         @endif
 
                                     </div>
                                     <div class="conin_content_area">
                                         <h4>
                                             <span>{{ $data->bings_for }}</span>
-                                            <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
+                                            <img src="{{ asset('assets/app/icons/chevron-right.svg') }}"
+                                                alt="right arrow" />
                                         </h4>
                                         <h5>{{ $data->description }}</h5>
                                         <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5>
