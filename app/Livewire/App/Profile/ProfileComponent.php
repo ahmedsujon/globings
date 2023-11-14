@@ -2,15 +2,19 @@
 
 namespace App\Livewire\App\Profile;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileComponent extends Component
 {
-public $first_name, $last_name, $email, $phone, $gender, $dob, $avatar, $uploadedAvatar, $edit_id;
-public $currentPassword, $newPassword, $confirmPassword;
+    use WithFileUploads;
+
+    public $first_name, $last_name, $email, $phone, $gender, $dob, $avatar, $uploadedAvatar, $edit_id;
+    public $currentPassword, $newPassword, $confirmPassword;
 
     public function updateProfile()
     {
@@ -28,7 +32,7 @@ public $currentPassword, $newPassword, $confirmPassword;
         $data->gender = $this->gender;
         $data->dob = $this->dob;
         $data->save();
-        $this->dispatch('success', ['message' => 'Shop updated successfully']);
+        $this->dispatch('success', ['message' => 'User updated successfully']);
     }
 
     public function mount()
@@ -41,6 +45,19 @@ public $currentPassword, $newPassword, $confirmPassword;
         $this->gender = $data->gender;
         $this->dob = $data->dob;
         $this->edit_id = $data->id;
+    }
+
+    public function updatedProfileImage()
+    {
+        if ($this->avatar) {
+            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
+            $this->avatar->storeAs('profiles', $fileName);
+            $image_path = 'uploads/profiles/' . $fileName;
+
+            $profile = User::where('id', user()->id)->first();
+            $profile->profile_photo = $image_path;
+            $profile->save();
+        }
     }
 
     public function changePassword()
@@ -66,7 +83,7 @@ public $currentPassword, $newPassword, $confirmPassword;
 
         session()->flash('message', 'Password changed successfully.');
     }
-    
+
     public function resetInputs()
     {
         $this->first_name = '';
@@ -81,6 +98,6 @@ public $currentPassword, $newPassword, $confirmPassword;
     public function render()
     {
         $profile = User::find(user()->id);
-        return view('livewire.app.profile.profile-component', ['profile'=>$profile])->layout('livewire.app.layouts.base');
+        return view('livewire.app.profile.profile-component', ['profile' => $profile])->layout('livewire.app.layouts.base');
     }
 }
