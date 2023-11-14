@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use App\Models\CommentReply;
 use Livewire\WithPagination;
 use App\Models\CommentReplyLike;
+use App\Models\Shop;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class HomeComponent extends Component
@@ -21,11 +22,12 @@ class HomeComponent extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $categories, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [];
+    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [];
     public function mount()
     {
         $this->search_term = request()->get('search');
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        $this->cities = Shop::where('city', '!=', '')->pluck('city')->toArray();
     }
 
     public function updated($fields)
