@@ -483,18 +483,36 @@
                             </div>
                         </div>
                         <div class="user_grid">
+
                             <label for="uploadUserImage" class="img_area">
-                                <img src="{{ asset('assets/app/icons/user_icon.svg') }}" alt="user image" />
-                                <!-- <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" /> -->
-                                <img src="{{ asset('assets/app/icons/edit_icon.svg') }}" alt="edit icon"
-                                    class="edit_icon" />
+                                <div wire:loading wire:target='coverImage' wire:key='coverImage'>
+                                    <span class="spinner-border spinner-border" role="status"
+                                        aria-hidden="true"></span>
+                                </div>
+
+                                @if ($coverImage)
+                                    <img src="{{ asset($coverImage->temporaryUrl()) }}" alt="post image"
+                                        class="cover_img" />
+                                @else
+                                    @if ($shop->cover_photo)
+                                        <img src="{{ asset($shop->cover_photo) }}" alt="post image"
+                                            class="cover_img" />
+                                    @else
+                                        <img src="{{ asset('assets/app/icons/user_icon.svg') }}" alt="user image" />
+                                    @endif
+                                @endif
+
+                                <div wire:loading.remove wire:target='coverImage' wire:key='coverImage'>
+                                    <img src="{{ asset('assets/app/icons/edit_icon.svg') }}" alt="edit icon" />
+                                </div>
                             </label>
+
                             <div>
                                 <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
                                 <h5>{{ '@' . $profile->username }}</h5>
                             </div>
                         </div>
-                        <input type="file" id="uploadUserImage" class="d-none" />
+                        <input type="file"  wire:model='coverImage' id="uploadUserImage" class="d-none" />
                     </div>
                 </div>
 
