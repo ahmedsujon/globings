@@ -28,13 +28,89 @@
                     </li>
                 </ul>
             </div>
-            <form action="" id="searchForm" class="header_search">
-                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
-                <button class="search_icon" type="submit">
-                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
-                </button>
-            </form>
         </div>
     </header>
-    
+    <div class="post_modal_area pt-24 pb-90">
+        <div class="post_header_area">
+            <h4 class="notification_title">Create Post</h4>
+        </div>
+        <div class="header_border"></div>
+        <form wire:submit.prevent='storeEvent' class="mobile_form_area post_form_area" id="postCreateFormSubmit">
+            <div class="user_grid">
+                @if (getUserByID($profile->id)->avatar)
+                    <img src="{{ asset(getUserByID($profile->id)->avatar) }}" alt="user image" />
+                @else
+                    <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" />
+                @endif
+                <div>
+                    <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
+                    <h6>{{ '@' . $profile->username }}</h6>
+                </div>
+            </div>
+
+            <div class="input_row">
+                <input type="text" wire:model.blur='name' placeholder="Event Name" class="input_field" />
+                @error('name')
+                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+            </div>
+
+            <div class="input_row">
+                <input type="date" wire:model.blur='date' placeholder="Date" class="input_field" />
+                @error('date')
+                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+            </div>
+
+            <div class="input_row">
+                <input type="text" wire:model.blur='location' placeholder="Location" class="input_field" />
+                @error('location')
+                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+            </div>
+
+            <div class="input_row">
+                <textarea class="input_field" wire:model.blur='description' cols="30" rows="5"
+                    placeholder="Share event details"></textarea>
+                @error('description')
+                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+            </div>
+
+            <div class="input_row">
+                <label for="fileUpload" class="upload_label">
+                    <img src="{{ asset('assets/app/icons/mdi_photo-library.svg') }}" alt="photo libray" />
+                    <span>Add photos/videos</span>
+                </label>
+                <input type="file" wire:model.blur='banner' id="fileUpload" class="d-none" />
+                @error('banner')
+                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                @enderror
+                <div class="uploadSlider" id="uploadSlider">
+                    <div class="upload_slider_grid">
+                        <div class="slider_img">
+                            <div wire:loading wire:target='banner' wire:key='banner'>
+                                <span class="spinner-border spinner-border-xs" role="status" aria-hidden="true"></span>
+                                <small>Uploading</small>
+                            </div>
+                            @if ($banner)
+                                <img src="{{ $banner->temporaryUrl() }}" class="img-fluid mt-2"
+                                    style="height: 55px; width: 55px;" />
+                            @elseif ($updatedBanner)
+                                <img src="{{ asset($updatedBanner) }}" class="img-fluid mt-2"
+                                    style="height: 55px; width: 55px;" />
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="login_btn login_btn_fill mt-24">
+                POST
+            </button>
+        </form>
+    </div>
+
+    @push('scripts')
+    @endpush
+
 </div>

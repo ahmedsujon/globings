@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('date')->nullable();
             $table->string('location')->nullable();
             $table->longText('description')->nullable();
+            $table->string('extension')->nullable();
             $table->string('banner')->nullable();
             $table->timestamps();
         });

@@ -46,14 +46,26 @@
                         <div class="location_item">
                             <div class="position-relative">
                                 <a href="{{ route('app.event.details', ['id' => $event->id]) }}">
-                                    <img src="{{ asset('assets/app/images/post/location_img.png') }}" alt="post image"
-                                        class="post_img" />
+
+                                    @if ($event->extension = 'mp4' || 'avi' || 'mov')
+                                        <video class="roundeds post_img" alt="200x200" width="200" height="120"
+                                            width="100%" controls>
+                                            <source src="{{ asset($event->banner) }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    @elseif ($event->extension = 'jpg' || 'jpeg' || 'png' || 'gif')
+                                        <img class="roundeds" alt="200x200" width="200" height="120"
+                                            src="{{ asset($event->banner) }}" alt="Image" class="post_img">
+                                    @else
+                                        <p>This file type is not supported.</p>
+                                    @endif
+
                                 </a>
                                 <div class="info_area">
                                     <div class="container">
                                         <div class="d-flex-between">
                                             {{-- <h4><a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}">Barber shop</a></h4> --}}
-                                            <h4><a href="#">Barber shop</a></h4>
+                                            {{-- <h4><a href="#">Barber shop</a></h4> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -62,14 +74,14 @@
                                 <h3><a
                                         href="{{ route('app.event.details', ['id' => $event->id]) }}">{{ $event->name }}</a>
                                 </h3>
-                                <h5><img src="{{ asset('assets/app/icons/clock.svg') }}"></img>
+                                <h5><img src="{{ asset('assets/app/icons/clock.svg') }}">
                                     @if (Carbon\Carbon::parse($event->date)->isToday())
                                         {{ $event->date }} <span>Open now</span>
                                     @else
-                                        {{ $event->date }}
+                                        {{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}
                                     @endif
                                 </h5>
-                                <h5><img src="{{ asset('assets/app/icons/location.svg') }}"></img>
+                                <h5><img src="{{ asset('assets/app/icons/location.svg') }}">
                                     {{ $event->location }}</h5>
                             </div>
                         </div>
