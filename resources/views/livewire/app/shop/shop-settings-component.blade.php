@@ -133,10 +133,10 @@
                         <input type="text" placeholder="Search your address" id="location_address"
                             name="location_address" class="form-control" oninput="onTyping(this)"
                             autocomplete="off" />
-                        <a href="javascript:void(0)" onclick="getCurrentLocation();" class="input-group-text"
+                        {{-- <a href="javascript:void(0)" onclick="getCurrentLocation();" class="input-group-text"
                             id="basic-addon2">
                             <i class="fas fa-map-marker-alt"></i>
-                        </a>
+                        </a> --}}
                     </div>
                     <ul id="search-result"></ul>
 
