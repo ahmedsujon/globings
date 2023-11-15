@@ -3,11 +3,12 @@
         .scanner {
             text-align: center;
             font-size: 15px;
+            height: 70vh;
         }
     </style>
 
     <div class="scanner">
-        <video id="preview" style="width: 100%; height: 50%;"></video>
+        <video id="preview" style="width: 100%;"></video>
 
         <div class="scaning_loader" style="margin-top: 25px;"></div>
     </div>
