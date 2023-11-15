@@ -2,14 +2,14 @@
     <style>
         .scanner {
             text-align: center;
-            font-size: 13px;
+            font-size: 15px;
         }
     </style>
 
     <div class="scanner">
         <video id="preview" style="width: 100%;"></video>
 
-        <div class="scaning_loader"></div>
+        <div class="scaning_loader" style="margin-top: 25px;"></div>
     </div>
 
 </div>
@@ -45,6 +45,10 @@
                     }
                     if(data['message'] == 'error_self_scan'){
                         toast_msg('Can not scan self code!', 'error');
+                        $(".scaning_loader").html('');
+                    }
+                    if(data['message'] == 'invalid_qr_code'){
+                        toast_msg('Invalid QrCode', 'error');
                         $(".scaning_loader").html('');
                     }
                     if(data['message'] == 'scan_successful'){

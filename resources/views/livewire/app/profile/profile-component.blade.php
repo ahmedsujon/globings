@@ -792,10 +792,7 @@
                     <div style="width: 100%; text-align: center;">
                         <h3 class="bing_inner_title">My QR Code</h3>
                         <span style="padding: 50px 0px;">
-                            @php
-                                $qr_data = user()->id . ',' . user()->username;
-                            @endphp
-                            {!! DNS2D::getBarcodeHTML($qr_data, 'QRCODE', 10, 10) !!}
+                            {!! DNS2D::getBarcodeHTML(''.user()->id.'', 'QRCODE', 10, 10) !!}
                         </span>
                     </div>
                 </div>
