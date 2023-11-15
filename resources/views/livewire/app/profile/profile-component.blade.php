@@ -791,9 +791,9 @@
                 <div class="container">
                     <div style="width: 100%; text-align: center;">
                         <h3 class="bing_inner_title">My QR Code</h3>
-                        <h4 style="padding: 35px 55px;" class="text-center">
-                            {!! DNS2D::getBarcodeHTML(user()->username, 'QRCODE', 10, 10) !!}
-                        </h4>
+                        <span style="padding: 50px 0px;">
+                            {!! DNS2D::getBarcodeHTML(''.user()->id.'', 'QRCODE', 10, 10) !!}
+                        </span>
                     </div>
                 </div>
             </div>
