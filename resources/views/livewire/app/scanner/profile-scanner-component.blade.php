@@ -7,7 +7,7 @@
     </style>
 
     <div class="scanner">
-        <video id="preview" style="width: 100%;"></video>
+        <video id="preview" style="width: 100%; height: 50%;"></video>
 
         <div class="scaning_loader" style="margin-top: 25px;"></div>
     </div>
