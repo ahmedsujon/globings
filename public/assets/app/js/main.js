@@ -144,6 +144,22 @@ $(document).ready(function () {
     $(this).toggleClass("selected_heart");
   });
 
+  //Ratting start
+  // $(".rattingStar").starRating({
+  //   // initialRating: 4,
+  //   totalStars: 5,
+  //   strokeColor: "#D9D9D9",
+  //   emptyColor: "#D9D9D9",
+  //   activeColor: "cornflowerblue",
+  //   ratedColor: "#1872F6",
+  //   strokeWidth: 10,
+  //   starSize: 25,
+  //   disableAfterRate: false,
+  //   useGradient: false,
+  //   // callback: function(currentRating){
+  //   //     alert('rated ', currentRating);
+  //   // }
+  // });
 
   //Comment Modal
   $(".postCommentBtn,#commentModalClose").click(function (e) {
@@ -264,31 +280,31 @@ $(document).ready(function () {
     }
   });
 
-      //QR Code Modal
-      $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
-        e.preventDefault();
+  //QR Code Modal
+  $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
+    e.preventDefault();
 
-        $("#qrCodeModalArea").toggleClass("sing_modal_active");
+    $("#qrCodeModalArea").toggleClass("sing_modal_active");
 
-        if ($("#qrCodeModalArea").hasClass("sing_modal_active")) {
-          hideScrollbar();
-        } else {
-          showScrollbar();
-        }
-      });
+    if ($("#qrCodeModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
 
-              // Change Password Modal
-              $("#passwordChangeModalBtn,#passwordEditCloseBtn").click(function (e) {
-                e.preventDefault();
+  // Change Password Modal
+  $("#passwordChangeModalBtn,#passwordEditCloseBtn").click(function (e) {
+    e.preventDefault();
 
-                $("#passwordEditModalArea").toggleClass("sing_modal_active");
+    $("#passwordEditModalArea").toggleClass("sing_modal_active");
 
-                if ($("#passwordEditModalArea").hasClass("sing_modal_active")) {
-                  hideScrollbar();
-                } else {
-                  showScrollbar();
-                }
-              });
+    if ($("#passwordEditModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
 
   //Terms Modal
   $("#termsModalBtn,#termsCloseBtn").click(function (e) {
@@ -459,6 +475,63 @@ $(document).ready(function () {
       hideScrollbar();
     }
     $("#mapDetailsModalArea").toggleClass("bottom_active");
+  });
+
+  //Header Category Filter
+  $("#locationFilterArea button").click(function (e) {
+    e.preventDefault();
+    if ($(this).hasClass("active")) {
+      $(this).removeClass("active");
+    } else {
+      $(this).addClass("active");
+    }
+  });
+
+  //Toast Open
+  $(".toastOpen").click(function (e) {
+    e.preventDefault();
+    $.toast({
+      heading: "Success",
+      // text: "And these were just the basic demos! Scroll down to check further details on how to customize the output.",
+      showHideTransition: "slide", //plain,fade
+      icon: "error", //success,warning,error,info
+      position: "bottom-center",
+      hideAfter: 3000,
+      loader: true,
+      //   position: {
+      //     left: 120,
+      //     top: 120
+      // },
+      // bgColor: '#FF1356',
+      // textColor: 'white'
+      // loaderBg: '#9EC600'
+    });
+  });
+
+  //Select edit
+  $("#locationSearchSelect2").editableSelect({
+    // enable filter
+    filter: true,
+
+    // default, fade or slide
+    effects: "slide",
+
+    // fast, slow or [0-9]+
+    duration: "fast",
+
+    // Where to append the dropdown list.
+    // appendTo: 'body',
+
+    // "focus" or "manual"
+    // trigger: 'focus',
+
+    // callback events
+    onCreate: function () {},
+    onShow: function () {},
+    onHide: function () {},
+    onSelect: function (element) {
+      // $('#afterSelect').html($(this).val());
+    },
   });
 });
 
