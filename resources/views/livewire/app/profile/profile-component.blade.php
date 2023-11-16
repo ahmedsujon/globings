@@ -493,36 +493,17 @@
                         <div class="user_grid">
 
                             <label for="uploadUserImage" class="img_area">
-<<<<<<< HEAD
-                                <div wire:loading wire:target='coverImage' wire:key='coverImage'>
-                                    <span class="spinner-border spinner-border" role="status"
-                                        aria-hidden="true"></span>
-                                </div>
-
-                                @if ($coverImage)
-                                    <img src="{{ asset($coverImage->temporaryUrl()) }}" alt="post image"
-                                        class="cover_img" />
-                                @else
-                                    @if ($shop->cover_photo)
-                                        <img src="{{ asset($shop->cover_photo) }}" alt="post image"
-=======
                                 @if ($avatar)
                                     <img src="{{ asset($avatar->temporaryUrl()) }}" alt="post image"
                                         class="cover_img" />
                                 @else
                                     @if ($profile->profile_photo)
                                         <img src="{{ asset($profile->profile_photo) }}" alt="post image"
->>>>>>> ed79aafb7776a5fc5b8c32ac1710ec3e727b10b2
                                             class="cover_img" />
                                     @else
                                         <img src="{{ asset('assets/app/icons/user_icon.svg') }}" alt="user image" />
                                     @endif
                                 @endif
-<<<<<<< HEAD
-
-                                <div wire:loading.remove wire:target='coverImage' wire:key='coverImage'>
-                                    <img src="{{ asset('assets/app/icons/edit_icon.svg') }}" alt="edit icon" />
-=======
                                 <div wire:loading wire:target='avatar' wire:key='avatar'>
                                     <span class="spinner-border spinner-border" role="status"
                                         aria-hidden="true"></span>
@@ -530,7 +511,6 @@
                                 <div wire:loading.remove wire:target='avatar' wire:key='avatar'>
                                     <img src="{{ asset('assets/app/icons/edit_icon.svg') }}" alt="edit icon"
                                         class="edit_icon" />
->>>>>>> ed79aafb7776a5fc5b8c32ac1710ec3e727b10b2
                                 </div>
                             </label>
 
@@ -539,11 +519,7 @@
                                 <h5>{{ '@' . $profile->username }}</h5>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <input type="file"  wire:model='coverImage' id="uploadUserImage" class="d-none" />
-=======
                         <input type="file" wire:model='avatar' id="uploadUserImage" class="d-none" />
->>>>>>> ed79aafb7776a5fc5b8c32ac1710ec3e727b10b2
                     </div>
                 </div>
 
