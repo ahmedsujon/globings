@@ -19,8 +19,7 @@
                 <div class="bing_profile_wrapper">
                     <div class="profile_area text-center">
                         @if (Auth::user()->avatar)
-                            <img src="{{ asset(Auth::user()->avatar) }}" alt="user image"
-                                class="bing_user_img" />
+                            <img src="{{ asset(Auth::user()->avatar) }}" alt="user image" class="bing_user_img" />
                         @else
                             <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" class="bing_user_img" />
                         @endif
@@ -162,158 +161,8 @@
                                     </div>
                                 </div>
                             @endforeach
-                            {{-- <div class="coing_emoji_grid">
-                                <div class="emoji_area">
-                                    <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
-                                        alt="bing coin icon" />
-                                </div>
-                                <div class="conin_content_area">
-                                    <h4>
-                                        <span>Validate my bings</span>
-                                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                    </h4>
-                                    <h5>Available for search by opening the QR code</h5>
-                                    <h5>October 26</h5>
-                                </div>
-                                <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                    <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                    <h4>500</h4>
-                                </div>
-                            </div>
-                            <div class="coing_emoji_grid">
-                                <div class="emoji_area">
-                                    <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
-                                        alt="bing coin icon" />
-                                </div>
-                                <div class="conin_content_area">
-                                    <h4>
-                                        <span>Validate my bings</span>
-                                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                    </h4>
-                                    <h5>Available for search by opening the QR code</h5>
-                                    <h5>October 26</h5>
-                                </div>
-                                <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                    <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                    <h4>500</h4>
-                                </div>
-                            </div> --}}
                         </div>
                     @endforeach
-
-                    {{-- <div class="history_item_area">
-                        <h3>October 26</h3>
-                        <div class="coing_emoji_grid">
-                            <div class="emoji_area Onboarding_icon_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon1.png') }}" alt="bing coin icon" />
-                            </div>
-                            <div class="conin_content_area">
-                                <h4>
-                                    <span>Onboarding Bonus</span>
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                </h4>
-                                <h5>You earned Bings for creating your account</h5>
-                                <h5>October 26</h5>
-                            </div>
-                            <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                <h4>200</h4>
-                            </div>
-                        </div>
-                        <div class="coing_emoji_grid">
-                            <div class="emoji_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
-                                    alt="bing coin icon" />
-                            </div>
-                            <div class="conin_content_area">
-                                <h4>
-                                    <span>Validate my bings</span>
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                </h4>
-                                <h5>Available for search by opening the QR code</h5>
-                                <h5>October 26</h5>
-                            </div>
-                            <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                <h4>500</h4>
-                            </div>
-                        </div>
-                        <div class="coing_emoji_grid">
-                            <div class="emoji_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
-                                    alt="bing coin icon" />
-                            </div>
-                            <div class="conin_content_area">
-                                <h4>
-                                    <span>Validate my bings</span>
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                </h4>
-                                <h5>Available for search by opening the QR code</h5>
-                                <h5>October 26</h5>
-                            </div>
-                            <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                <h4>500</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="history_item_area">
-                        <h3>October 26</h3>
-                        <div class="coing_emoji_grid">
-                            <div class="emoji_area Onboarding_icon_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
-                                    alt="bing coin icon" />
-                            </div>
-                            <div class="conin_content_area">
-                                <h4>
-                                    <span>Onboarding Bonus</span>
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                </h4>
-                                <h5>You earned Bings for creating your account</h5>
-                                <h5>October 26</h5>
-                            </div>
-                            <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                <h4>200</h4>
-                            </div>
-                        </div>
-                        <div class="coing_emoji_grid">
-                            <div class="emoji_area share_refer_icon_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}"
-                                    alt="bing coin icon" />
-                            </div>
-                            <div class="conin_content_area">
-                                <h4>
-                                    <span>Share refer friend</span>
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                </h4>
-                                <h5>You referred your friend</h5>
-                                <h5>October 26</h5>
-                            </div>
-                            <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                <h4>500</h4>
-                            </div>
-                        </div>
-                        <div class="coing_emoji_grid">
-                            <div class="emoji_area">
-                                <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
-                                    alt="bing coin icon" />
-                            </div>
-                            <div class="conin_content_area">
-                                <h4>
-                                    <span>Validate my bings</span>
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                                </h4>
-                                <h5>Available for search by opening the QR code</h5>
-                                <h5>October 26</h5>
-                            </div>
-                            <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                <h4>500</h4>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -321,7 +170,7 @@
     <!-- Bings Coin History Modal  -->
 
     <!-- Badges Modal  -->
-    <div wire:ignore.self class="sing_modal_area" id="loalModalArea">
+    <div class="sing_modal_area" id="loalModalArea" wire:ignore.self>
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -366,91 +215,109 @@
                     <h4 class="bing_inner_title">Badges</h4>
                     <div class="progress_grid">
                         <div class="circle_progress_item">
-                            <div class="circle_area">
-                                <div class="small" data-percent="100" data-progressBarColor="#5897F4"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape"
-                                    class="badge_shape" />
-                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}"
-                                    alt="badge check icon" class="badge_check" />
-                                <div class="badge_group_outer">
-                                    <div class="group_inner">G1</div>
-                                </div>
+                            <div class="badge_img_area">
+                                @if (user()->total_bings >= 250)
+                                    <img src="{{ asset('assets/app/icons/badges/active-badge-1.png') }}"
+                                        alt="badge check icon" class="badge_img" />
+                                @else
+                                    <img src="{{ asset('assets/app/icons/badges/badge-1.png') }}"
+                                        alt="badge check icon" class="badge_img" />
+                                @endif
+
                             </div>
                             <div class="progres_text_area">
                                 <h5>Silver Reviewer</h5>
+                                @if (user()->total_bings < 250)
+                                   <div class="badge_status_btn">Upcoming</div> 
+                                @endif
                             </div>
                         </div>
                         <div class="circle_progress_item">
-                            <div class="circle_area">
-                                <div class="small" data-percent="100" data-progressBarColor="#FE7B1E"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape"
-                                    class="badge_shape" />
-                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}"
-                                    alt="badge check icon" class="badge_check" />
-                                <div class="badge_group_outer">
-                                    <div class="group_inner">G2</div>
-                                </div>
+                            <div class="badge_img_area">
+                                @if (user()->total_bings >= 500)
+                                <img src="{{ asset('assets/app/icons/badges/active-badge-2.png') }}"
+                                alt="badge check icon" class="badge_img" />
+                                @else
+                                    <img src="{{ asset('assets/app/icons/badges/badge-2.png') }}"
+                                    alt="badge check icon" class="badge_img" />
+                                @endif
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Photographer</h5>
+                                @if (user()->total_bings < 500)
+                                   <div class="badge_status_btn">Upcoming</div> 
+                                @endif
                             </div>
                         </div>
                         <div class="circle_progress_item">
-                            <div class="circle_area">
-                                <div class="small" data-percent="100" data-progressBarColor="#41B631"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape"
-                                    class="badge_shape" />
-                                <img src="{{ asset('assets/app/icons/badge_check_icon.png') }}"
-                                    alt="badge check icon" class="badge_check" />
-                                <div class="badge_group_outer">
-                                    <div class="group_inner">G3</div>
-                                </div>
+                            <div class="badge_img_area">
+                                @if (user()->total_bings >= 750)
+                                <img src="{{ asset('assets/app/icons/badges/active-badge-3.png') }}"
+                                alt="badge check icon" class="badge_img" />
+                                @else
+                                    <img src="{{ asset('assets/app/icons/badges/badge-3.png') }}"
+                                    alt="badge check icon" class="badge_img" />
+                                @endif
+                                
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
+                                @if (user()->total_bings < 750)
+                                   <div class="badge_status_btn">Upcoming</div> 
+                                @endif
                             </div>
                         </div>
                         <div class="circle_progress_item">
-                            <div class="circle_area">
-                                <div class="small" data-percent="50" data-progressBarColor="#5897F4"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon1.png') }}" alt="badge shape"
-                                    class="badge_shape" />
-
-                                <div class="badge_group_outer">
-                                    <div class="group_inner">G4</div>
-                                </div>
+                            <div class="badge_img_area">
+                                @if (user()->total_bings >= 1000)
+                                <img src="{{ asset('assets/app/icons/badges/active-badge-4.png') }}"
+                                alt="badge check icon" class="badge_img" />
+                                @else
+                                   <img src="{{ asset('assets/app/icons/badges/badge-4.png') }}"
+                                    alt="badge check icon" class="badge_img" /> 
+                                @endif
+                                
                             </div>
                             <div class="progres_text_area">
                                 <h5>Silver Reviewer</h5>
-                                <div class="badge_status_btn">Upcoming</div>
+                                @if (user()->total_bings < 1000)
+                                   <div class="badge_status_btn">Upcoming</div> 
+                                @endif
                             </div>
                         </div>
                         <div class="circle_progress_item">
-                            <div class="circle_area">
-                                <div class="small" data-percent="10" data-progressBarColor="#FE7B1E"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon12.png') }}" alt="badge shape"
-                                    class="badge_shape" />
-
-                                <div class="badge_group_outer">
-                                    <div class="group_inner">G5</div>
-                                </div>
-                            </div>
-                            <div class="progres_text_area">
-                                <h5>Bronze Photographer</h5>
-                            </div>
-                        </div>
-                        <div class="circle_progress_item">
-                            <div class="circle_area">
-                                <div class="small" data-percent="60" data-progressBarColor="#41B631"></div>
-                                <img src="{{ asset('assets/app/icons/badge_shape_icon13.png') }}" alt="badge shape"
-                                    class="badge_shape" />
-
-                                <div class="badge_group_outer">
-                                    <div class="group_inner">G6</div>
-                                </div>
+                            <div class="badge_img_area">
+                                @if (user()->total_bings >= 1250)
+                                    <img src="{{ asset('assets/app/icons/badges/active-badge-5.png') }}"
+                                    alt="badge check icon" class="badge_img" />
+                                @else
+                                <img src="{{ asset('assets/app/icons/badges/badge-5.png') }}"
+                                alt="badge check icon" class="badge_img" />
+                                @endif
+                                
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
+                                @if (user()->total_bings < 1250)
+                                   <div class="badge_status_btn">Upcoming</div> 
+                                @endif
+                            </div>
+                        </div>
+                        <div class="circle_progress_item">
+                            <div class="badge_img_area">
+                                @if (user()->total_bings >= 1500)
+                                    <img src="{{ asset('assets/app/icons/badges/active-badge-6.png') }}"
+                                    alt="badge check icon" class="badge_img" />
+                                @else
+                                <img src="{{ asset('assets/app/icons/badges/badge-6.png') }}"
+                                alt="badge check icon" class="badge_img" />
+                                @endif
+                            </div>
+                            <div class="progres_text_area">
+                                <h5>Bronze Traiblazer</h5>
+                                @if (user()->total_bings < 1500)
+                                   <div class="badge_status_btn">Upcoming</div> 
+                                @endif
                             </div>
                         </div>
                     </div>
