@@ -79,7 +79,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/my-events', MyEventsComponent::class)->name('app.my.events');
     Route::get('/create-events', CreateEventComponent::class)->name('app.events.create');
 
-
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
     Route::get('/shop-settings', ShopSettingsComponent::class)->name('app.shop.settings');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
