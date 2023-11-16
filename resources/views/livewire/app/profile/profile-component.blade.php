@@ -49,7 +49,7 @@
                 <div class="container">
                     <div class="number_area d-flex align-items-center flex-wrap g-sm">
                         <img src="{{ asset('assets/app/icons/profile_store_icon.svg') }}" alt="store icon" />
-                        <h4>150 Bings</h4>
+                        <h4>{{ user()->bings_balance }} Bings</h4>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                         </li>
                         @endif
                         <li>
-                            <button type="button" id="inviteModalBtn">
+                            <a href="{{ route('app.profile.share') }}" type="button">
                                 <img src="{{ asset('assets/app/icons/manage_icon4.svg') }}" alt="manage icon" />
                                 <div>
                                     <h5>Share my profile</h5>
@@ -137,7 +137,7 @@
                                     </h6>
                                 </div>
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </button>
+                            </a>
                         </li>
                     </ul>
                 </div>
