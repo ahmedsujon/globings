@@ -117,6 +117,21 @@ function shop_total_review($id)
     return $reviews;
 }
 
+function star_review($star)
+{
+    $avg_star = $star;
+
+    $rem_star = (5 - $avg_star);
+
+    $active_star = '<li><img src="'.asset('assets/app/icons/star_fill.svg').'" alt="star icon" /></li>';
+    $inactive_star = '<li><img src="'.asset('assets/app/icons/star_blank.svg').'" alt="star icon" /></li>';
+
+    $html = str_repeat($active_star, $avg_star);
+    $html .= str_repeat($inactive_star, $rem_star);
+
+    return $html;
+}
+
 function shop_star_review($shop_id)
 {
     $reviews = ShopReview::where('shop_id', $shop_id)->get();

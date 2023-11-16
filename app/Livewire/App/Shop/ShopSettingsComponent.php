@@ -66,6 +66,7 @@ class ShopSettingsComponent extends Component
         $data->city = $this->city;
         $data->address = $this->address;
         $data->save();
+        
         $this->dispatch('success', ['message' => 'Shop updated successfully']);
     }
 

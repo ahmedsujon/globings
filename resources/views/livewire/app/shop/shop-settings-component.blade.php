@@ -131,12 +131,11 @@
 
                     <div class="input-group">
                         <input type="text" placeholder="Search your address" id="location_address"
-                            name="location_address" class="form-control" oninput="onTyping(this)"
-                            autocomplete="off" />
-                        <a href="javascript:void(0)" onclick="getCurrentLocation();" class="input-group-text"
+                            name="location_address" class="form-control" oninput="onTyping(this)" autocomplete="off" />
+                        {{-- <a href="javascript:void(0)" onclick="getCurrentLocation();" class="input-group-text"
                             id="basic-addon2">
                             <i class="fas fa-map-marker-alt"></i>
-                        </a>
+                        </a> --}}
                     </div>
                     <ul id="search-result"></ul>
 
@@ -165,8 +164,22 @@
 
 @push('scripts')
     <script>
+        window.addEventListener('success', event => {
+            $.toast({
+                heading: "",
+                text: event.detail[0].message,
+                showHideTransition: "slide", //plain,fade
+                icon: "success", //success,warning,error,info
+                position: "bottom-center",
+                hideAfter: 3000,
+                loader: true,
+            });
+        });
 
 
+    </script>
+
+    <script>
         $(document).ready(function() {
             @if ($shop->latitude && $shop->longitude)
                 reverseGeocode({{ $shop->latitude }}, {{ $shop->longitude }});
@@ -351,7 +364,5 @@
                     console.error('Error fetching data: ', error);
                 });
         }
-
-
     </script>
 @endpush

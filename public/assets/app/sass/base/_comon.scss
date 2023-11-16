@@ -1409,11 +1409,76 @@ main {
   transform: translateX(-100%);
   animation: skeleton-glare 1.75s infinite ease-out;
   z-index: 1;
- 
+  -webkit-animation: skeleton-glare 1.75s infinite ease-out;
 }
 
 @keyframes skeleton-glare {
   to {
     transform: translateX(100%);
+  }
+}
+
+//Toast
+.jq-toast-wrap {
+  width: 210px;
+  .jq-toast-single {
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    overflow: hidden;
+  }
+  .close-jq-toast-single {
+    display: none;
+  }
+  .jq-icon-success {
+    background-color: #2faf2e;
+    .jq-toast-loader {
+      background-color: #d03772 !important;
+    }
+  }
+  .jq-icon-error {
+    background-color: #ef233c;
+    .jq-toast-loader {
+      background-color: #eefa04 !important;
+    }
+  }
+  .jq-icon-warning {
+    background-color: #cdbc39;
+    .jq-toast-loader {
+      background-color: #fa0462 !important;
+    }
+  }
+}
+.jq-has-icon {
+  background-size: 13px;
+  background-position: 16px;
+  padding-left: 42px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.jq-toast-wrap.top-right {
+  right: 0;
+}
+
+//Progress animation
+.pace-running {
+  .mainContentArea {
+    opacity: 0.5;
+  }
+}
+
+//Location Select
+.edit_select_area {
+  .es-input {
+    border: none !important;
+    border-bottom: 1.5px solid #e8e8e8 !important;
+    height: 32px;
+    width: 100%;
+    background: none;
+    &::selection{
+      background-color: transparent;
+    }
   }
 }

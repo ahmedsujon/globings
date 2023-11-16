@@ -66,8 +66,6 @@
                                         alt="right icon" />
                                 </a>
                             </li>
-                        @endif
-                        @if (Auth::user()->account_type == 'Professional')
                             <li>
                                 <button id="qrCodeModalBtn">
                                     <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
@@ -76,8 +74,6 @@
                                         alt="right icon" />
                                 </button>
                             </li>
-                        @endif
-                        @if (Auth::user()->account_type == 'Professional')
                             <li>
                                 <a href="{{ route('app.recent-posts') }}">
                                     <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
@@ -86,8 +82,6 @@
                                         alt="right icon" />
                                 </a>
                             </li>
-                        @endif
-                        @if (Auth::user()->account_type == 'Professional')
                             <li>
                                 <a href="{{ route('app.recent-photos') }}">
                                     <img src="{{ asset('assets/app/icons/manage_icon2.svg') }}" alt="manage icon" />
@@ -96,8 +90,6 @@
                                         alt="right icon" />
                                 </a>
                             </li>
-                        @endif
-                        @if (Auth::user()->account_type == 'Professional')
                             <li>
                                 <a href="{{ route('app.my.events') }}">
                                     <img src="{{ asset('assets/app/icons/events.svg') }}" alt="manage icon" />
@@ -106,8 +98,6 @@
                                         alt="right icon" />
                                 </a>
                             </li>
-                        @endif
-                        @if (Auth::user()->account_type == 'Professional')
                             <li>
                                 <button type="button" id="placeModalBtn">
                                     <img src="{{ asset('assets/app/icons/manage_icon3.svg') }}" alt="manage icon" />
@@ -116,6 +106,20 @@
                                         alt="right icon" />
                                 </button>
                             </li>
+                        @endif
+                        @if (Auth::user()->account_type == 'Private')
+                        <li>
+                            <a href="{{ route('app.scanner') }}">
+                                <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
+                                <div>
+                                    <h5>Scan QrCode</h5>
+                                    <h6>
+                                        Get special discount from shops!
+                                    </h6>
+                                </div>
+                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
+                            </a>
+                        </li>
                         @endif
                         <li>
                             <button type="button" id="inviteModalBtn">
@@ -817,9 +821,9 @@
                 <div class="container">
                     <div style="width: 100%; text-align: center;">
                         <h3 class="bing_inner_title">My QR Code</h3>
-                        <h4 style="padding: 35px 55px;" class="text-center">
-                            {!! DNS2D::getBarcodeHTML(user()->username, 'QRCODE', 10, 10) !!}
-                        </h4>
+                        <span style="padding: 50px 0px;">
+                            {!! DNS2D::getBarcodeHTML(''.user()->id.'', 'QRCODE', 10, 10) !!}
+                        </span>
                     </div>
                 </div>
             </div>

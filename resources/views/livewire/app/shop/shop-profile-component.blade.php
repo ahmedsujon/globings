@@ -176,10 +176,13 @@
         </div>
         <div class="container">
             <div class="dealer_info_area">
+                @php
+                    $dealer = App\Models\User::find($shop->user_id);
+                @endphp
                 <div class="user_img">
                     <img src="{{ asset('assets/app/images/post/user_img3.png') }}" alt="user image" />
                 </div>
-                <h4 class="dealer_name">Jean- Louis David</h4>
+                <h4 class="dealer_name">{{ $dealer->first_name }} {{ $dealer->last_name }}</h4>
                 <ul class="archive_area">
                     <li>
                         <img src="{{ asset('assets/app/icons/archive_icon1.svg') }}" alt="archive icon" />
@@ -187,28 +190,29 @@
                     </li>
                     <li>
                         <img src="{{ asset('assets/app/icons/archive_icon2.svg') }}" alt="archive icon" />
-                        <h5>123 Reviews</h5>
+                        <h5>{{ $total_reviews }} Reviews</h5>
                     </li>
                     <li>
                         <img src="{{ asset('assets/app/icons/archive_icon3.svg') }}" alt="archive icon" />
-                        <h5>Email address</h5>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/app/icons/archive_icon4.svg') }}" alt="archive icon" />
-                        <h5>Phone number</h5>
+                        <h5>{{ $dealer->email }}</h5>
                     </li>
                 </ul>
                 <div class="dealer_btn_area company_bottom_border">
                     <button type="button" class="call_btn">
                         <img src="{{ asset('assets/app/icons/calll_green.svg') }}" alt="call green" />
-                        <span class="phone">Phone:</span> <span>Login to view</span>
+                        <span class="phone">Phone:</span>
+                        @if (user())
+                            <span>{{ $dealer->phone }}</span>
+                        @else
+                            <a href="{{ route('login') }}"></a>
+                        @endif
                     </button>
-                    <a href="#" class="wp_btn">
+                    <a href="{{ $dealer->whatsapp }}" class="wp_btn">
                         <img src="{{ asset('assets/app/icons/whatsapp_white.svg') }}" alt="call green" />
                         <span>WhatsApp Message</span>
                     </a>
                 </div>
-                <form action="" class="contact_form_area company_bottom_border">
+                {{-- <form action="" class="contact_form_area company_bottom_border">
                     <h4 class="sub_login">Send Messages</h4>
                     <div class="input_row">
                         <textarea name="" id="" cols="30" rows="5" placeholder="typing..." class="input_item"></textarea>
@@ -217,28 +221,31 @@
                     <button type="submit" class="login_btn login_btn_fill">
                         Send Message
                     </button>
-                </form>
+                </form> --}}
                 <div class="review_comment_area">
-                    <h3 class="notification_title">123 Revews</h3>
+                    <h3 class="notification_title">{{ $total_reviews }} Revews</h3>
+
                     <div class="comment_list_wrapper">
-                        <div class="review_comment_item">
-                            <div class="user_grid">
-                                <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
-                                <div>
-                                    <h4>Borkat</h4>
-                                    <h5>01 October</h5>
+                        @foreach ($reviews as $review)
+                            <div class="review_comment_item">
+                                <div class="user_grid">
+                                    <img src="{{ asset(getUserByID($review->user_id)->avatar) }}" alt="user image" />
+                                    <div>
+                                        <h4>{{ getUserByID($review->user_id)->first_name }} {{ getUserByID($review->user_id)->last_name }}</h4>
+                                        <h5>{{ Carbon\Carbon::parse($review->created_at)->format('d F') }}</h5>
+                                    </div>
+                                </div>
+                                <ul class="star_list d-flex align-items-center flex-wrap" style="padding-bottom: 0px;">
+                                    {!! star_review($review->rating) !!}
+                                </ul>
+                                <div class="comment">
+                                    <p>{{ $review->comment }}</p>
                                 </div>
                             </div>
-                            <div class="comment">
-                                <p>
-                                    The apartment is in a different location from their office
-                                    address. The person who met us there was very busy and could
-                                    not leave fast enough. The apartment was clean but needed
-                                    some dusting.... <button type="button">Read more</button>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="nested_comment_area">
+                        @endforeach
+
+
+                        {{-- <div class="nested_comment_area">
                             <div class="review_comment_item">
                                 <div class="user_grid">
                                     <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
@@ -251,42 +258,9 @@
                                     <p>Thanks Borkat for the revew.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="comment_list_wrapper">
-                        <div class="review_comment_item">
-                            <div class="user_grid">
-                                <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
-                                <div>
-                                    <h4>Borkat</h4>
-                                    <h5>01 October</h5>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>
-                                    The apartment is in a different location from their office
-                                    address. The person who met us there was very busy and could
-                                    not leave fast enough. The apartment was clean but needed
-                                    some dusting.... <button type="button">Read more</button>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="nested_comment_area">
-                            <div class="review_comment_item">
-                                <div class="user_grid">
-                                    <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
-                                    <div>
-                                        <h4>Response frome kazi mahbub</h4>
-                                        <h5>01 October</h5>
-                                    </div>
-                                </div>
-                                <div class="comment">
-                                    <p>Thanks Borkat for the revew.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="see_all_btn"> Show all review </a>
+                    {{-- <a href="#" class="see_all_btn"> Show all review </a> --}}
                 </div>
             </div>
         </div>
