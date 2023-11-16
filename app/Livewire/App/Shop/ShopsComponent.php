@@ -13,7 +13,6 @@ class ShopsComponent extends Component
     public $phone, $edit_id;
     public function mount()
     {
-        $this->searchTerm = request()->get('search');
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
     }
 

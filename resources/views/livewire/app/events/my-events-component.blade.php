@@ -46,20 +46,18 @@
                         <div class="location_item">
                             <div class="position-relative">
                                 <a href="{{ route('app.event.details', ['id' => $event->id]) }}">
-
-                                    @if ($event->extension = 'mp4' || 'avi' || 'mov')
+                                    @if ($event->extension == 'mp4' || $event->extension =='avi' || $event->extension =='mov')
                                         <video class="roundeds post_img" alt="200x200" width="200" height="120"
                                             width="100%" controls>
                                             <source src="{{ asset($event->banner) }}" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
-                                    @elseif ($event->extension = 'jpg' || 'jpeg' || 'png' || 'gif')
-                                        <img class="roundeds" alt="200x200" width="200" height="120"
+                                    @elseif ($event->extension == 'jpg' || $event->extension =='jpeg' || $event->extension =='png' || $event->extension =='gif')
+                                        <img class="roundeds" alt="200x200" width="100%" height="100%"
                                             src="{{ asset($event->banner) }}" alt="Image" class="post_img">
                                     @else
                                         <p>This file type is not supported.</p>
                                     @endif
-
                                 </a>
                                 <div class="info_area">
                                     <div class="container">
