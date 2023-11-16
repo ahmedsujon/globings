@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/star-rating-svg.css') }}" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 
+    <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/addSlider.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/jquery.toast.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/pace-theme-flash.css') }}" />
+
     <link rel="stylesheet" href="{{ asset('assets/app/sass/style.css') }}" />
 </head>
 
@@ -37,11 +41,11 @@
 </style>
 
 <body>
-
-    <main>
-        {{ $slot }}
-    </main>
-
+    {{-- <div class="mainContentArea"> --}}
+        <main>
+            {{ $slot }}
+        </main>
+    {{-- </div> --}}
     @livewire('app.partials.home-component-partials')
 
 
@@ -61,7 +65,9 @@
     <script src="{{ asset('assets/app/plugins/js/addSlider.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.star-rating-svg.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('assets/app/plugins/js/jquery.toast.min.js') }}"></script>
+    <script data-pace-options='{ "ajax": false }' src="{{ asset('assets/app/plugins/js/pace.min.js') }}"></script>
+
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 

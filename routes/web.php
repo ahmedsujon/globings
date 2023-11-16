@@ -19,6 +19,8 @@ use App\Livewire\App\Profile\ProfileComponent;
 use App\Livewire\App\Profile\RecentPhotosComponent;
 use App\Livewire\App\Profile\RecentPostComponent;
 use App\Livewire\App\Profile\UserProfileComponent;
+use App\Livewire\App\Scanner\ProfileScannerComponent;
+use App\Livewire\App\Scanner\ScanSuccessComponent;
 use App\Livewire\App\Shop\ShopProfileComponent;
 use App\Livewire\App\Shop\ShopsComponent;
 use App\Livewire\App\Shop\ShopSettingsComponent;
@@ -83,6 +85,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/shop-settings', ShopSettingsComponent::class)->name('app.shop.settings');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
     Route::get('/recent-photos', RecentPhotosComponent::class)->name('app.recent-photos');
+
+    Route::get('/scanner', ProfileScannerComponent::class)->name('app.scanner');
+    Route::post('/scanner/scan', [ProfileScannerComponent::class, 'scan'])->name('app.scannerScan');
+    Route::get('/scanner/scan-success', ScanSuccessComponent::class)->name('app.scannerScanSuccess');
 });
 
 
