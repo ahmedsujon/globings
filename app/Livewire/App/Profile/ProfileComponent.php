@@ -47,7 +47,7 @@ class ProfileComponent extends Component
         $this->edit_id = $data->id;
     }
 
-    public function updatedProfileImage()
+    public function updatedavatar()
     {
         if ($this->avatar) {
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
@@ -55,7 +55,7 @@ class ProfileComponent extends Component
             $image_path = 'uploads/profiles/' . $fileName;
 
             $profile = User::where('id', user()->id)->first();
-            $profile->profile_photo = $image_path;
+            $profile->avatar = $image_path;
             $profile->save();
         }
     }

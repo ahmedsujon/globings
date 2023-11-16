@@ -497,8 +497,8 @@
                                     <img src="{{ asset($avatar->temporaryUrl()) }}" alt="post image"
                                         class="cover_img" />
                                 @else
-                                    @if ($profile->profile_photo)
-                                        <img src="{{ asset($profile->profile_photo) }}" alt="post image"
+                                    @if ($profile->avatar)
+                                        <img src="{{ asset($profile->avatar) }}" alt="post image"
                                             class="cover_img" />
                                     @else
                                         <img src="{{ asset('assets/app/icons/user_icon.svg') }}" alt="user image" />
