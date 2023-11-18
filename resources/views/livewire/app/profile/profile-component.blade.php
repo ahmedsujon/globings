@@ -49,7 +49,7 @@
                 <div class="container">
                     <div class="number_area d-flex align-items-center flex-wrap g-sm">
                         <img src="{{ asset('assets/app/icons/profile_store_icon.svg') }}" alt="store icon" />
-                        <h4>150 Bings</h4>
+                        <h4>{{ user()->bings_balance }} Bings</h4>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                         </li>
                         @endif
                         <li>
-                            <button type="button" id="inviteModalBtn">
+                            <a href="{{ route('app.profile.share') }}" type="button">
                                 <img src="{{ asset('assets/app/icons/manage_icon4.svg') }}" alt="manage icon" />
                                 <div>
                                     <h5>Share my profile</h5>
@@ -137,7 +137,7 @@
                                     </h6>
                                 </div>
                                 <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </button>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -491,13 +491,14 @@
                             </div>
                         </div>
                         <div class="user_grid">
+
                             <label for="uploadUserImage" class="img_area">
                                 @if ($avatar)
                                     <img src="{{ asset($avatar->temporaryUrl()) }}" alt="post image"
                                         class="cover_img" />
                                 @else
-                                    @if ($profile->profile_photo)
-                                        <img src="{{ asset($profile->profile_photo) }}" alt="post image"
+                                    @if ($profile->avatar)
+                                        <img src="{{ asset($profile->avatar) }}" alt="post image"
                                             class="cover_img" />
                                     @else
                                         <img src="{{ asset('assets/app/icons/user_icon.svg') }}" alt="user image" />
@@ -512,6 +513,7 @@
                                         class="edit_icon" />
                                 </div>
                             </label>
+
                             <div>
                                 <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
                                 <h5>{{ '@' . $profile->username }}</h5>

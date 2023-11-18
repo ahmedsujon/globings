@@ -1,30 +1,31 @@
 <?php
 
-use App\Http\Controllers\payment\PayPalPaymentController;
-use App\Http\Controllers\payment\StripePaymentController;
-use App\Livewire\App\Auth\LoginComponent;
-use App\Livewire\App\Bings\BingComponent;
-use App\Livewire\App\Events\CreateEventComponent;
-use App\Livewire\App\Events\EventDetailsComponent;
-use App\Livewire\App\Events\EventsComponent;
-use App\Livewire\App\Events\MyEventsComponent;
 use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
-use App\Livewire\App\Maps\MapViewComponent;
-use App\Livewire\App\Package\PackagePlanComponent;
-use App\Livewire\App\Pages\TermsConditionComponent;
-use App\Livewire\App\Payment\StripePaymentComponent;
-use App\Livewire\App\Payment\StripePaymentSuccessComponent;
-use App\Livewire\App\Profile\ProfileComponent;
-use App\Livewire\App\Profile\RecentPhotosComponent;
-use App\Livewire\App\Profile\RecentPostComponent;
-use App\Livewire\App\Profile\UserProfileComponent;
-use App\Livewire\App\Scanner\ProfileScannerComponent;
-use App\Livewire\App\Scanner\ScanSuccessComponent;
-use App\Livewire\App\Shop\ShopProfileComponent;
-use App\Livewire\App\Shop\ShopsComponent;
-use App\Livewire\App\Shop\ShopSettingsComponent;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\App\Auth\LoginComponent;
+use App\Livewire\App\Bings\BingComponent;
+use App\Livewire\App\Shop\ShopsComponent;
+use App\Livewire\App\Maps\MapViewComponent;
+use App\Livewire\App\Events\EventsComponent;
+use App\Livewire\App\Events\MyEventsComponent;
+use App\Livewire\App\Profile\ProfileComponent;
+use App\Livewire\App\Shop\ShopProfileComponent;
+use App\Livewire\App\Shop\ShopSettingsComponent;
+use App\Livewire\App\Events\CreateEventComponent;
+use App\Livewire\App\Pages\ShareProfileComponent;
+use App\Livewire\App\Profile\RecentPostComponent;
+use App\Livewire\App\Events\EventDetailsComponent;
+use App\Livewire\App\Package\PackagePlanComponent;
+use App\Livewire\App\Profile\UserProfileComponent;
+use App\Livewire\App\Scanner\ScanSuccessComponent;
+use App\Livewire\App\Pages\TermsConditionComponent;
+use App\Livewire\App\Profile\RecentPhotosComponent;
+use App\Livewire\App\Payment\StripePaymentComponent;
+use App\Livewire\App\Scanner\ProfileScannerComponent;
+use App\Http\Controllers\payment\PayPalPaymentController;
+use App\Http\Controllers\payment\StripePaymentController;
+use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->name('app.paymentSuccessComponent');
 
-
+    // Profile share routes
+    Route::get('/share-my-profile', ShareProfileComponent::class)->name('app.profile.share');
 
     // Bings routes
     Route::get('/bings', BingComponent::class)->name('app.bings');
