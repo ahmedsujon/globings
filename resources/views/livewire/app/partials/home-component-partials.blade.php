@@ -45,7 +45,8 @@
                 <div class="container">
                     <ul class="menu_list">
                         <li>
-                            <a href="{{ route('app.home') }}" class="active_mobile_menu">
+                            <a href="{{ route('app.home') }}"
+                                class="{{ request()->is('/') ? 'active_mobile_menu' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_2482_1984)">
@@ -62,14 +63,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('app.shops') }}">
+                            <a href="{{ route('app.shops') }}"
+                                class="{{ request()->is('shops') ? 'active_mobile_menu' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M15 21V15.6C15 15.0399 15 14.7599 14.891 14.546C14.7951 14.3578 14.6422 14.2049 14.454 14.109C14.2401 14 13.9601 14 13.4 14H10.6C10.0399 14 9.75992 14 9.54601 14.109C9.35785 14.2049 9.20487 14.3578 9.10899 14.546C9 14.7599 9 15.0399 9 15.6V21M3 7C3 8.65685 4.34315 10 6 10C7.65685 10 9 8.65685 9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7C15 8.65685 16.3431 10 18 10C19.6569 10 21 8.65685 21 7M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V6.2C21 5.0799 21 4.51984 20.782 4.09202C20.5903 3.71569 20.2843 3.40973 19.908 3.21799C19.4802 3 18.9201 3 17.8 3H6.2C5.0799 3 4.51984 3 4.09202 3.21799C3.71569 3.40973 3.40973 3.71569 3.21799 4.09202C3 4.51984 3 5.07989 3 6.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-
                             </a>
                         </li>
                         <li>
@@ -83,7 +84,8 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{{ route('app.bings') }}">
+                            <a href="{{ route('app.bings') }}"
+                                class="{{ request()->is('bings') ? 'active_mobile_menu' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -92,18 +94,17 @@
                                     <path d="M7 9H13.25M7 13H17" stroke-width="1.5" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
-
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('app.profile') }}">
+                            <a href="{{ route('app.profile') }}"
+                                class="{{ request()->is('profile') ? 'active_mobile_menu' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-
                             </a>
                         </li>
                     </ul>
