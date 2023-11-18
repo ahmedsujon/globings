@@ -1,6 +1,5 @@
 <div>
-     <!-- Home  Section  -->
-     <header class="home_header_wrapper mt-24">
+    <header class="home_header_wrapper mt-24">
         <div class="container">
             <div class="d-flex-between">
                 <a href="{{ route('app.home') }}" class="logo">
@@ -10,7 +9,7 @@
                     <li>
                         @auth
                             @if (user()->account_type == 'Professional')
-                                @if(userHasActiveSubscription())
+                                @if (userHasActiveSubscription())
                                     <a href="javascript:void(0)" id="openPostCreateBtn">
                                         <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                                     </a>
@@ -49,80 +48,161 @@
             </form>
         </div>
     </header>
-    <main>
-        <!-- Company Map Area  -->
-        <section class="company_map_wrapper">
-          <div class="map_area">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116833.9730352447!2d90.33728817432475!3d23.780818635510663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2z4Kai4Ka-4KaV4Ka-!5e0!3m2!1sbn!2sbd!4v1695448421480!5m2!1sbn!2sbd"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-          <div class="map_slider_area" id="mapSliderArea">
+
+    <section class="company_map_wrapper">
+        <div class="map_area chart_map_area">
+            <!-- HTML -->
+            <div class="map_item" id="mapItem"></div>
+        </div>
+        <div class="map_slider_area" id="mapSliderArea">
             <div class="swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <div class="slider_item" >
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
+                <div class="swiper-wrapper">
+                    <div class="sw iper-slide">
+                        <div class="slider_item">
+                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image" class="slider_img" />
+                            <h4>Hair Cut - Barber</h4>
+                            <div class="star_area">
+                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
+                                <span>4.5</span>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="slider_item">
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
+                    <div class="swiper-slide">
+                        <div class="slider_item">
+                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image" class="slider_img" />
+                            <h4>Hair Cut - Barber</h4>
+                            <div class="star_area">
+                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
+                                <span>4.5</span>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="slider_item">
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
+                    <div class="swiper-slide">
+                        <div class="slider_item">
+                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image" class="slider_img" />
+                            <h4>Hair Cut - Barber</h4>
+                            <div class="star_area">
+                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
+                                <span>4.5</span>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="slider_item">
-                    <img
-                      src="{{ asset('assets/app/images/post/post_img1.png') }}"
-                      alt="slidr image"
-                      class="slider_img"
-                    />
-                    <h4>Hair Cut - Barber</h4>
-                    <div class="star_area">
-                      <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                      <span>4.5</span>
+                    <div class="swiper-slide">
+                        <div class="slider_item">
+                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image" class="slider_img" />
+                            <h4>Hair Cut - Barber</h4>
+                            <div class="star_area">
+                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
+                                <span>4.5</span>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </section>
-      </main>
+        </div>
+    </section>
 </div>
+
+@push('scripts')
+    <script>
+        (g => {
+            var h, a, k, p = "The Google Maps JavaScript API",
+                c = "google",
+                l = "importLibrary",
+                q = "__ib__",
+                m = document,
+                b = window;
+            b = b[c] || (b[c] = {});
+            var d = b.maps || (b.maps = {}),
+                r = new Set,
+                e = new URLSearchParams,
+                u = () => h || (h = new Promise(async (f, n) => {
+                    await (a = m.createElement("script"));
+                    e.set("libraries", [...r] + "");
+                    for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
+                    e.set("callback", c + ".maps." + q);
+                    a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+                    d[q] = f;
+                    a.onerror = () => h = n(Error(p + " could not load."));
+                    a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+                    m.head.append(a)
+                }));
+            d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() =>
+                d[l](f, ...n))
+        })
+        ({
+            key: "AIzaSyCZnWMhN9HzTZtpRqvtY3pFrDXW0Zvunpo",
+            v: "weekly"
+        });
+    </script>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Sj5vCXxKzL6WUq58i_qcubPGFVbY4Lg&callback=initMap&v=weekly" defer></script> -->
+
+
+    <script>
+        let map, infoWindow;
+
+        async function initMap() {
+            const {
+                Map
+            } = await google.maps.importLibrary("maps");
+            infoWindow = new google.maps.InfoWindow();
+            const {
+                AdvancedMarkerElement,
+                PinElement
+            } =
+            await google.maps.importLibrary("marker");
+            const {
+                Place
+            } = await google.maps.importLibrary("places");
+            //Initial show map
+            map = new Map(document.getElementById("mapItem"), {
+                center: {
+                    lat: 39.21587946892194,
+                    lng: 35.29780273277126
+                },
+                zoom: 8,
+                mapId: "globings",
+            });
+
+
+            //Add location
+            // Marker with image  .
+            // const beachFlagImg = document.createElement("img");
+
+            // beachFlagImg.src = "assets/app/icons/map_marker.png";
+
+            // const beachFlagMarkerView = new AdvancedMarkerElement({
+            //     map,
+            //     position: {
+            //         lat: 39.21587946892194,
+            //         lng: 35.29780273277126
+            //     },
+            //     content: beachFlagImg,
+            //     title: "A marker using a custom PNG Image",
+            // });
+
+            //default marker
+            const marker = new AdvancedMarkerElement({
+                map,
+                position: {
+                    lat: 39.184660480337456,
+                    lng: 35.35519860981352
+                },
+            });
+        }
+
+        //Show error message
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(
+                browserHasGeolocation ?
+                "Error: The Geolocation service failed." :
+                "Error: Your browser doesn't support geolocation."
+            );
+            infoWindow.open(map);
+        }
+
+        initMap();
+    </script>
+@endpush
