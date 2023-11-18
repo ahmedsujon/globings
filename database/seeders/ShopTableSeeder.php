@@ -51,8 +51,8 @@ class ShopTableSeeder extends Seeder
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->latitude = '24.751597323202727';
+            $shop->longitude = '89.40795872491326';
             $shop->city = 'Tokyo';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -67,8 +67,8 @@ class ShopTableSeeder extends Seeder
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->latitude = '22.751597323202727';
+            $shop->longitude = '91.40795872491326';
             $shop->city = 'London';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -83,8 +83,8 @@ class ShopTableSeeder extends Seeder
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->latitude = '20.751597323202727';
+            $shop->longitude = '94.40795872491326';
             $shop->city = 'Paris';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -99,8 +99,8 @@ class ShopTableSeeder extends Seeder
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->latitude = '21.751597323202727';
+            $shop->longitude = '91.40795872491326';
             $shop->city = 'Sydney';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -115,8 +115,8 @@ class ShopTableSeeder extends Seeder
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->latitude = '22.751597323202727';
+            $shop->longitude = '92.40795872491326';
             $shop->city = 'Rio de Janeiro';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -132,7 +132,7 @@ class ShopTableSeeder extends Seeder
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->longitude = '93.40795872491326';
             $shop->city = 'Cairo';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -147,8 +147,8 @@ class ShopTableSeeder extends Seeder
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->latitude = '24.751597323202727';
+            $shop->longitude = '94.40795872491326';
             $shop->city = 'Mumbai';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -164,7 +164,7 @@ class ShopTableSeeder extends Seeder
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
             $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->longitude = '95.40795872491326';
             $shop->city = 'Toronto';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
@@ -179,8 +179,8 @@ class ShopTableSeeder extends Seeder
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/avatar.png';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
+            $shop->latitude = '28.751597323202727';
+            $shop->longitude = '91.40795872491326';
             $shop->city = 'Los Angeles';
             $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
             $shop->visited = 5000;
