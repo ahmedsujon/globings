@@ -26,6 +26,7 @@ use App\Livewire\App\Scanner\ProfileScannerComponent;
 use App\Http\Controllers\payment\PayPalPaymentController;
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Payment\StripePaymentSuccessComponent;
+use App\Livewire\App\Shop\FavoriteShopComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,9 @@ Route::middleware('auth')->group(function(){
 
     // Bings routes
     Route::get('/bings', BingComponent::class)->name('app.bings');
+
+    // Favorites shop routes
+    Route::get('/my-favorite-shop', FavoriteShopComponent::class)->name('app.my-favorite-shop');
 
     // Events routes
     Route::get('/my-events', MyEventsComponent::class)->name('app.my.events');

@@ -38,9 +38,9 @@
         <form wire:submit.prevent='storeEvent' class="mobile_form_area post_form_area" id="postCreateFormSubmit">
             <div class="user_grid">
                 @if (getUserByID($profile->id)->avatar)
-                    <img src="{{ asset(getUserByID($profile->id)->avatar) }}" alt="user image" />
+                    <img src="{{ asset(getUserByID($profile->id)->avatar) }}" class="user_img" alt="user image" />
                 @else
-                    <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" />
+                    <img src="{{ asset('assets/images/avatar.png') }}" class="user_img" alt="user image" />
                 @endif
                 <div>
                     <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
@@ -86,6 +86,7 @@
                 @error('banner')
                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
                 @enderror
+
                 <div class="uploadSlider" id="uploadSlider">
                     <div class="upload_slider_grid">
                         <div class="slider_img">
@@ -94,23 +95,35 @@
                                 <small>Uploading</small>
                             </div>
                             @if ($banner)
-                                <img src="{{ $banner->temporaryUrl() }}" class="img-fluid mt-2"
+                                <img src="{{ $banner->temporaryUrl() }}" class="upload_img w-auto"
                                     style="height: 55px; width: 55px;" />
                             @elseif ($updatedBanner)
-                                <img src="{{ asset($updatedBanner) }}" class="img-fluid mt-2"
+                                <img src="{{ asset($updatedBanner) }}" class="upload_img w-auto"
                                     style="height: 55px; width: 55px;" />
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="login_btn login_btn_fill mt-24">
-                POST
+            <button type="submit" class="login_btn login_btn_fill">
+                {!! loadingStateWithTextApp('storeEvent', 'Post Event') !!}
             </button>
         </form>
     </div>
 
     @push('scripts')
+        <script>
+            window.addEventListener('success', event => {
+                $.toast({
+                    heading: "",
+                    text: event.detail[0].message,
+                    showHideTransition: "slide", //plain,fade
+                    icon: "success", //success,warning,error,info
+                    position: "bottom-center",
+                    hideAfter: 3000,
+                    loader: true,
+                });
+            });
+        </script>
     @endpush
-
 </div>

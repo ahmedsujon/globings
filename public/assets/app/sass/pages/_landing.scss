@@ -150,6 +150,15 @@
     margin-top: 24px;
     padding-left: 20px;
     padding-right: 20px;
+    min-height: calc(100vh - 141px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+  }
+  .login_btn {
+    font-weight: 400;
+    min-height: 50px;
   }
   .user_grid {
     display: grid;
@@ -157,6 +166,15 @@
     align-items: start;
     gap: 12px;
     margin-bottom: 24px;
+    .user_img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
     h4 {
       color: #1c293e;
       font-size: 16px;
