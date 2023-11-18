@@ -11,7 +11,7 @@ body {
   background-color: $body-bg;
   font-family: $body-font-family;
   font-size: $font-size-base;
-  display: none;
+  // display: none;
   min-height: 100vh;
   @include customScrollbar();
   @include max-media-width(991) {

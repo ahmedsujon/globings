@@ -129,6 +129,9 @@
 .mobile_menu_wrapper .menu_list .active_icon {
   display: none;
 }
+.mobile_menu_wrapper .menu_list svg {
+  color: #b7bac9;
+}
 .mobile_menu_wrapper .list_area {
   background-color: white;
   margin-top: 3px;
@@ -154,6 +157,9 @@
 .mobile_menu_wrapper .active_mobile_menu {
   position: relative;
   top: 4px;
+}
+.mobile_menu_wrapper .active_mobile_menu svg {
+  color: #1872f6 !important;
 }
 .mobile_menu_wrapper .active_mobile_menu .active_icon {
   display: block;
@@ -3822,7 +3828,6 @@ body {
   background-color: white;
   font-family: "Poppins", sans-serif;
   font-size: 16px;
-  display: none;
   min-height: 100vh;
   overflow-y: auto;
   /* width */
