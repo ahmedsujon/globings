@@ -45,7 +45,8 @@
                 <div class="container">
                     <ul class="menu_list">
                         <li>
-                            <a href="{{ route('app.home') }}" class="active_mobile_menu">
+                            <a href="{{ route('app.home') }}"
+                                class="{{ request()->is('/') ? 'active_mobile_menu' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_2482_1984)">
@@ -62,14 +63,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('app.shops') }}">
+                            <a href="{{ route('app.shops') }}"
+                                class="{{ request()->is('shops') ? 'active_mobile_menu' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M15 21V15.6C15 15.0399 15 14.7599 14.891 14.546C14.7951 14.3578 14.6422 14.2049 14.454 14.109C14.2401 14 13.9601 14 13.4 14H10.6C10.0399 14 9.75992 14 9.54601 14.109C9.35785 14.2049 9.20487 14.3578 9.10899 14.546C9 14.7599 9 15.0399 9 15.6V21M3 7C3 8.65685 4.34315 10 6 10C7.65685 10 9 8.65685 9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7C15 8.65685 16.3431 10 18 10C19.6569 10 21 8.65685 21 7M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V6.2C21 5.0799 21 4.51984 20.782 4.09202C20.5903 3.71569 20.2843 3.40973 19.908 3.21799C19.4802 3 18.9201 3 17.8 3H6.2C5.0799 3 4.51984 3 4.09202 3.21799C3.71569 3.40973 3.40973 3.71569 3.21799 4.09202C3 4.51984 3 5.07989 3 6.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-
                             </a>
                         </li>
                         <li>
@@ -83,27 +84,27 @@
                             </div>
                         </li>
                         <li>
-                            <a href="{{ route('app.bings') }}">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <a href="{{ route('app.bings') }}"
+                                class="{{ request()->is('bings') ? 'active_mobile_menu' : '' }}">
+                                <svg width="22" height="22" viewBox="0 0 22 22" stroke="currentColor"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
-                                        d="M3 7.8C3 6.11984 3 5.27976 3.32698 4.63803C3.6146 4.07354 4.07354 3.6146 4.63803 3.32698C5.27976 3 6.11984 3 7.8 3H16.2C17.8802 3 18.7202 3 19.362 3.32698C19.9265 3.6146 20.3854 4.07354 20.673 4.63803C21 5.27976 21 6.11984 21 7.8V13.5C21 14.8978 21 15.5967 20.7716 16.1481C20.4672 16.8831 19.8831 17.4672 19.1481 17.7716C18.5967 18 17.8978 18 16.5 18C16.0114 18 15.7671 18 15.5405 18.0535C15.2383 18.1248 14.9569 18.2656 14.7185 18.4645C14.5397 18.6137 14.3931 18.8091 14.1 19.2L12.64 21.1467C12.4229 21.4362 12.3143 21.5809 12.1812 21.6327C12.0647 21.678 11.9353 21.678 11.8188 21.6327C11.6857 21.5809 11.5771 21.4362 11.36 21.1467L9.9 19.2C9.60685 18.8091 9.46028 18.6137 9.2815 18.4645C9.04312 18.2656 8.76169 18.1248 8.45951 18.0535C8.23287 18 7.98858 18 7.5 18C6.10218 18 5.40326 18 4.85195 17.7716C4.11687 17.4672 3.53284 16.8831 3.22836 16.1481C3 15.5967 3 14.8978 3 13.5V7.8Z"
-                                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M7 9H13.25M7 13H17" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
+                                        d="M7 11H11.9231C13.2825 11 14.3846 9.88071 14.3846 8.5C14.3846 7.11929 13.2825 6 11.9231 6H7V11ZM7 11H12.5385C13.8979 11 15 12.1193 15 13.5C15 14.8807 13.8979 16 12.5385 16H7V11Z"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <rect x="1" y="1" width="20" height="20" rx="4" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('app.profile') }}">
+                            <a href="{{ route('app.profile') }}"
+                                class="{{ request()->is('profile') ? 'active_mobile_menu' : '' }}">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-
                             </a>
                         </li>
                     </ul>

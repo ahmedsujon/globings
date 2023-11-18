@@ -21,6 +21,7 @@ class CreateEventComponent extends Component
             'name' => 'required',
             'date' => 'required',
             'location' => 'required',
+            'banner' => 'required',
             'banner.*' => 'mimes:jpeg,png,gif,pdf,mp4,avi,mov',
         ]);
 
@@ -44,7 +45,7 @@ class CreateEventComponent extends Component
         $data->save();
 
         $this->resetInputs();
-        $this->dispatch('success', ['message' => 'New event posted successfully']);
+        $this->dispatch('success', ['message' => 'Event Created successfully']);
     }
 
     public function resetInputs()
