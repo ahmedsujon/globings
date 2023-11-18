@@ -131,7 +131,7 @@
                                         <span class="number_area">
                                             <img src="{{ asset('assets/app/icons/store_green_icon.svg') }}"
                                                 alt="store icon" />
-                                            <span>150 Bings</span>
+                                            <span>50 Bings</span>
                                         </span>
                                         invite bonus!
                                     </h6>
