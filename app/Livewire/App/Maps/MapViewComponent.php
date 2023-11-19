@@ -8,15 +8,15 @@ use PhpParser\Node\Expr\Cast\Double;
 
 class MapViewComponent extends Component
 {
-    public $value = 'Hello from Livewire!';
-
     public function mount(){
 
     }
 
     public function render()
     {
-        $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('latitude', '!=', '')->where('longitude', '!=', '')->get();
+        $search_value = request()->get('search');
+
+        $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('name', 'like', '%'. $search_value .'%')->where('latitude', '!=', '')->where('longitude', '!=', '')->get();
 
         $cords = [];
 

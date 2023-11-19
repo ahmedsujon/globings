@@ -81,6 +81,15 @@
 
 @push('scripts')
     <script>
+        $('#searchForm').on('submit', function(e) {
+            e.preventDefault();
+
+            var value = $('#search_input').val();
+
+            window.location.href = "{{ URL::to('/map-view') }}?search=" + value;
+        });
+    </script>
+    <script>
         (g => {
             var h, a, k, p = "The Google Maps JavaScript API",
                 c = "google",
