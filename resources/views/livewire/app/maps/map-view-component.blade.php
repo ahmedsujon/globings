@@ -57,50 +57,19 @@
         <div class="map_slider_area" id="mapSliderArea">
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    <div class="sw iper-slide">
-                        <div class="slider_item">
-                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image"
-                                class="slider_img" />
-                            <h4>Hair Cut - Barber</h4>
-                            <div class="star_area">
-                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                                <span>4.5</span>
+                    @foreach ($shops as $shop)
+                        <div class="swiper-slide">
+                            <div class="slider_item">
+                                <img src="{{ asset($shop->cover_photo) }}" alt=""
+                                    class="slider_img" />
+                                <h4>{{ $shop->name }}</h4>
+                                <div class="star_area">
+                                    <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
+                                    <span>{{ avgShopReview($shop->id) }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider_item">
-                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image"
-                                class="slider_img" />
-                            <h4>Hair Cut - Barber</h4>
-                            <div class="star_area">
-                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                                <span>4.5</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider_item">
-                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image"
-                                class="slider_img" />
-                            <h4>Hair Cut - Barber</h4>
-                            <div class="star_area">
-                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                                <span>4.5</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="slider_item">
-                            <img src="{{ asset('assets/app/images/post/post_img1.png') }}" alt="slidr image"
-                                class="slider_img" />
-                            <h4>Hair Cut - Barber</h4>
-                            <div class="star_area">
-                                <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                                <span>4.5</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

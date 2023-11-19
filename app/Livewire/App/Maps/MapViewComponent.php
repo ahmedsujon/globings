@@ -16,7 +16,7 @@ class MapViewComponent extends Component
 
     public function render()
     {
-        $shops = Shop::select('id', 'name', 'latitude', 'longitude')->where('latitude', '!=', '')->where('longitude', '!=', '')->get();
+        $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('latitude', '!=', '')->where('longitude', '!=', '')->get();
 
         $cords = [];
 
