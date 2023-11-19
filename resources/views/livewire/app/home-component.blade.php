@@ -27,7 +27,7 @@
                         @endauth
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('app.my-favorite-shop') }}">
                             <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
                         </a>
                     </li>

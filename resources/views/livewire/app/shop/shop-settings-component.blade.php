@@ -175,8 +175,6 @@
                 loader: true,
             });
         });
-
-
     </script>
 
     <script>
