@@ -11,7 +11,7 @@ body {
   background-color: $body-bg;
   font-family: $body-font-family;
   font-size: $font-size-base;
-  // display: none;
+  display: none;
   min-height: 100vh;
   @include customScrollbar();
   @include max-media-width(991) {
@@ -1433,9 +1433,9 @@ main {
     display: none;
   }
   .jq-icon-success {
-    background-color: #2faf2e;
+    background-color: #1872f6;
     .jq-toast-loader {
-      background-color: #d03772 !important;
+      background-color: #2fafe2 !important;
     }
   }
   .jq-icon-error {

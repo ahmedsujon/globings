@@ -11,11 +11,6 @@
                             <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="#">
-                            <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
-                        </a>
-                    </li> --}}
                     <li>
                         @if (user())
                             <a href="{{ route('app.bings') }}" class="header_number_area">
@@ -32,7 +27,7 @@
     </header>
     <div class="post_modal_area pt-24 pb-90">
         <div class="post_header_area">
-            <h4 class="notification_title">Create Post</h4>
+            <h4 class="notification_title">Create New Event</h4>
         </div>
         <div class="header_border"></div>
         <form wire:submit.prevent='storeEvent' class="mobile_form_area post_form_area" id="postCreateFormSubmit">

@@ -12,6 +12,14 @@
             margin-top: 10px;
         }
 
+        .company_location_wrapper .location_header {
+            padding-bottom: 0px !important;
+        }
+
+        .company_location_wrapper .location_area {
+            margin-top: 24px !important;
+        }
+
         .select2-dropdown .select2-search__field {
             border-radius: 4px;
             height: 34px;
@@ -27,10 +35,6 @@
             color: black !important;
         }
 
-        .select2-container--default .select2-selection--single {
-            background-color: none !important;
-        }
-
         .select2-dropdown .select2-results__option--highlighted::after {
             position: absolute;
             right: 14px;
@@ -44,7 +48,6 @@
         }
 
         .select2-container--default .select2-selection--single {
-            /* background-color: #fff; */
             border: 1px solid #aaa;
             border-radius: 4px;
         }
