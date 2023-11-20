@@ -1,11 +1,52 @@
 <div>
-    <main>
+    <header class="home_header_wrapper mt-24">
+        <div class="container">
+            <div class="d-flex-between">
+                <a href="{{ route('app.home') }}" class="logo">
+                    <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
+                </a>
+                <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
+                    <li>
+                        @auth
+                            @if (user()->account_type == 'Professional')
+                                @if (userHasActiveSubscription())
+                                    <a href="javascript:void(0)" id="openPostCreateBtn">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @else
+                                    <a href="{{ route('app.plans') }}">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @endif
+                            @endif
+                        @else
+                            <a href="{{ route('login') }}">
+                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                            </a>
+                        @endauth
+                    </li>
+                    <li>
+                        <a href="{{ route('app.my-favorite-shop') }}">
+                            <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
+                        </a>
+                    </li>
+                    <li>
+                        @if (user())
+                            <a href="{{ route('app.bings') }}" class="header_number_area">
+                                <span class="circle_shape"></span>
+                                <span class="number">{{ user()->bings_balance }}</span>
+                                <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
+                                    class="right_shape" />
+                            </a>
+                        @endif
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
         <!-- Company Preview  Section  -->
         <section class="company_preview_wrapper mt-24">
             <div class="container">
-                <div class="d-flex-between">
-                    <h4 class="notification_title">Preview</h4>
-                </div>
                 <div class="slider_area" id="companySliderArea">
                     <div class="swiper">
                         <div class="swiper-wrapper">
@@ -41,5 +82,4 @@
                 </div>
             </div>
         </section>
-    </main>
 </div>
