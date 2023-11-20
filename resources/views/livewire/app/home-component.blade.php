@@ -143,6 +143,10 @@
                       margin-right: auto;
                     ">
                     </div>
+                    <div class="d-flex align-items-center g-sm mt-2">
+                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
+                        <div class="skeleton" style="width: 100px; height: 24px;"></div>
+                    </div>
                 </div>
             </div>
             <div class="post_grid">
@@ -201,7 +205,7 @@
                     </div>
                     <div class="d-flex align-items-center g-sm mt-2">
                         <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
-                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
+                        <div class="skeleton" style="width: 100px; height: 24px;"></div>
                     </div>
                 </div>
             </div>
