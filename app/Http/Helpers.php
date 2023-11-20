@@ -65,7 +65,12 @@ function isLiked($post_id)
 
 function shopIsBookmarked($shop_id)
 {
-    return ShopBookmark::where('shop_id', $shop_id)->where('user_id', user()->id)->first();
+    if (user()) {
+        return ShopBookmark::where('shop_id', $shop_id)->where('user_id', user()->id)->first();
+    } else {
+        return false;
+    }
+
 }
 
 function total_post_like($post_id)
