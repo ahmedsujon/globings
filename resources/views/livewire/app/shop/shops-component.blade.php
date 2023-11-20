@@ -36,11 +36,13 @@
             border-bottom: 2px solid #1872f6;
             border-right: 2px solid #1872f6;
         }
+
         .select2-container--default .select2-selection--single {
             background-color: #fff;
             border: 1px solid #aaa;
             border-radius: 4px;
         }
+
         .select2-container {
             box-sizing: border-box;
             display: inline-block;
@@ -52,11 +54,13 @@
             padding-left: 7px;
             border-radius: 49px;
         }
+
         .select2-container--default .select2-selection--single .select2-selection__placeholder {
             color: #999;
             font-size: 15px;
             padding-bottom: 2px;
         }
+
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             color: #999;
             font-size: 15px;
@@ -73,12 +77,13 @@
                         <div class="position-relative" id="cirt_select">
                             <select id="locationSearchSelect">
                                 <option value=""></option>
-                                @foreach ($shops as $shop)
-                                    <option value="{{ $shop->city }}">{{ $shop->city }}</option>
+                                <option value="all" {{ 'all' == request()->get('city') || !request()->get('city') ? 'selected':'' }}>Select city</option>
+                                @foreach ($filter_cities as $city)
+                                    <option value="{{ $city->city }}" {{ $city->city == request()->get('city') ? 'selected':'' }}>{{ $city->city }}</option>
                                 @endforeach
                             </select>
-                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}" style="padding-top: 3px; padding-right: 5px;" alt="select arrow"
-                                class="arrow_icon" />
+                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}"
+                                style="padding-top: 3px; padding-right: 5px;" alt="select arrow" class="arrow_icon" />
                         </div>
                         <a href="{{ route('app.map.view') }}" class="map_btn">
                             <img src="{{ asset('assets/app/icons/map_icon.svg') }}" alt="map icon" />
@@ -105,75 +110,35 @@
 
         <div class="location_area location_all_shop_area" style="margin-top: -7px;">
             <div class="container">
-                <div class="location_item">
-                    <div class="position-relative">
-                        <img src="{{ asset('assets/app/images/post/location_img.png') }}" alt="post image"
-                            class="post_img" />
-                        <div class="info_area">
-                            <div class="container">
-                                <div class="d-flex-between">
-                                    <h4>Barber shop</h4>
-                                    <div class="ratting_area">
-                                        <img src="{{ asset('assets/app/icons/star_small_icon.svg') }}"
-                                            alt="star small icon" />
-                                        <span>4.5</span>
+                @if ($shops->count() > 0)
+                    @foreach ($shops as $shop)
+                        <div class="location_item">
+                            <div class="position-relative">
+                                <img src="{{ asset($shop->cover_photo) }}" alt="post image" class="post_img" />
+                                <div class="info_area">
+                                    <div class="container">
+                                        <div class="d-flex-between">
+                                            <h4>{{ $shop->shop_category }}</h4>
+                                            <div class="ratting_area">
+                                                <img src="{{ asset('assets/app/icons/star_small_icon.svg') }}"
+                                                    alt="star small icon" />
+                                                <span>{{ avgShopReview($shop->id) }}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="content">
-                        <h3>Hair Cut - Belgium, Brussels</h3>
-                        <h5>324 ft <span>. Open now</span></h5>
-                    </div>
-                </div>
-                <div class="location_item">
-                    <div class="position-relative">
-                        <img src="{{ asset('assets/app/images/post/location_img.png') }}" alt="post image"
-                            class="post_img" />
-                        <div class="info_area">
-                            <div class="container">
-                                <div class="d-flex-between">
-                                    <h4>Barber shop</h4>
-                                    <div class="ratting_area">
-                                        <img src="{{ asset('assets/app/icons/star_small_icon.svg') }}"
-                                            alt="star small icon" />
-                                        <span>4.5</span>
-                                    </div>
-                                </div>
+                            <div class="content">
+                                <a href="{{ route('app.shopProfile', ['user_id' => $shop->user_id]) }}">
+                                    <h3>{{ $shop->name }}</h3>
+                                </a>
+                                <h5>{{ $shop->address }} <span> . Open now</span></h5>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="content">
-                        <h3>Hair Cut - Belgium, Brussels</h3>
-                        <h5>324 ft <span>. Open now</span></h5>
-                    </div>
-                </div>
-                <div class="location_item">
-                    <div class="position-relative">
-                        <img src="{{ asset('assets/app/images/post/location_img.png') }}" alt="post image"
-                            class="post_img" />
-                        <div class="info_area">
-                            <div class="container">
-                                <div class="d-flex-between">
-                                    <h4>Barber shop</h4>
-                                    <div class="ratting_area">
-                                        <img src="{{ asset('assets/app/icons/star_small_icon.svg') }}"
-                                            alt="star small icon" />
-                                        <span>4.5</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <h3>Hair Cut - Belgium, Brussels</h3>
-                        <h5>324 ft <span>. Open now</span></h5>
-                    </div>
-                </div>
+                    @endforeach
+                @else
+                @endif
             </div>
         </div>
 
@@ -215,10 +180,10 @@
 </div>
 @push('scripts')
     <script>
-        $('#locationSearchSelect').on('select2:select', function (e) {
+        $('#locationSearchSelect').on('select2:select', function(e) {
             var data = e.params.data;
 
-            var value = data['text'];
+            var value = data['id'];
             var category = $('#category').val();
 
             window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category;
