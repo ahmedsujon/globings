@@ -249,7 +249,7 @@
                             </div>
                             <div class="input_row">
                                 <label for="">Email</label>
-                                <input type="email" placeholder="abcdef1234@gmail.com" wire:model.blur='email'
+                                <input type="email" placeholder="Enter email" wire:model.blur='email'
                                     class="input_field" />
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
