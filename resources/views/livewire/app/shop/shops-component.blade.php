@@ -64,7 +64,7 @@
                             <h3><a
                                     href="{{ route('app.shopProfile', ['user_id' => $shop->user_id]) }}">{{ $shop->name }}</a>
                             </h3>
-                            <h5>324 ft <span>. Open now</span></h5>
+                            <h5>{{ $shop->city }} <span>. Open now</span></h5>
                         </div>
                     </div>
                 </div>
