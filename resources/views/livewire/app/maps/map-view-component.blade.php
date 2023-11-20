@@ -1,60 +1,115 @@
 <div>
-    <header class="home_header_wrapper mt-24">
-        <div class="container">
-            <div class="d-flex-between">
-                <a href="{{ route('app.home') }}" class="logo">
-                    <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
-                </a>
-                <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
-                    <li>
-                        @auth
-                            @if (user()->account_type == 'Professional')
-                                @if (userHasActiveSubscription())
-                                    <a href="javascript:void(0)" id="openPostCreateBtn">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
-                                @else
-                                    <a href="{{ route('app.plans') }}">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
-                                @endif
-                            @endif
-                        @else
-                            <a href="{{ route('login') }}">
-                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                            </a>
-                        @endauth
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="header_number_area">
-                            <span class="circle_shape"></span>
-                            <span class="number">60</span>
-                            <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
-                                class="right_shape" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <form action="" id="searchForm" class="header_search">
-                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
-                <button class="search_icon" type="submit">
-                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
-                </button>
-            </form>
-        </div>
-    </header>
+    <style>
+        .select2-dropdown {
+            border: 1px solid #d7d7d7 !important;
+            border-radius: 8px;
+            background-color: white;
+        }
 
-    <section class="company_map_wrapper">
+        .select2-dropdown .select2-results__options {
+            margin-top: 10px;
+        }
+
+        .select2-dropdown .select2-search__field {
+            border-radius: 4px;
+            height: 34px;
+        }
+
+        .select2-dropdown .select2-results__option {
+            position: relative;
+            font-size: 14px;
+        }
+
+        .select2-dropdown .select2-results__option--highlighted {
+            background-color: transparent !important;
+            color: black !important;
+        }
+
+        .select2-dropdown .select2-results__option--highlighted::after {
+            position: absolute;
+            right: 14px;
+            content: "";
+            display: inline-block;
+            transform: rotate(45deg);
+            height: 13px;
+            width: 7px;
+            border-bottom: 2px solid #1872f6;
+            border-right: 2px solid #1872f6;
+        }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+        .select2-container {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+            border: 1px solid #ECECEC;
+            padding-top: 5px;
+            padding-left: 7px;
+            border-radius: 49px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            color: #999;
+            font-size: 15px;
+            padding-bottom: 2px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #999;
+            font-size: 15px;
+            padding-bottom: 2px;
+        }
+    </style>
+    <section class="company_location_wrapper">
+        <div class="location_header" style="margin-top: -20px;">
+            <div class="container">
+                <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
+                <form action="" class="location_form_area" wire:ignore>
+                    <div class="search_grid">
+                        <div class="position-relative" id="cirt_select">
+                            <select id="locationSearchSelect">
+                                <option value=""></option>
+                                <option value="all" {{ 'all' == request()->get('city') || !request()->get('city') ? 'selected':'' }}>Select city</option>
+                                @foreach ($filter_cities as $city)
+                                    <option value="{{ $city->city }}" {{ $city->city == request()->get('city') ? 'selected':'' }}>{{ $city->city }}</option>
+                                @endforeach
+                            </select>
+                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}"
+                                style="padding-top: 3px; padding-right: 5px;" alt="select arrow" class="arrow_icon" />
+                        </div>
+                        <a href="{{ route('app.shops') }}" class="map_btn">
+                            <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" />
+                        </a>
+                    </div>
+                </form>
+                <div class="category_slider_area border-0" id="headerCategorySlider">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            @foreach ($categories as $category)
+                                <div class="swiper-slide">
+                                    <a href="{{ route('app.map.view') }}?category={{ $category->id }}"
+                                        class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
+                                        <img src="{{ asset($category->icon) }}" alt="category icon" />
+                                        <h4>{{ $category->name }}</h4>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="company_map_wrapper" style="margin-top: -80px;">
         <div class="map_area chart_map_area">
             <!-- HTML -->
-            <div class="map_item" id="mapItem"></div>
+            <div class="map_item" id="mapItem" style="height: 73vh;"></div>
         </div>
-        <div class="map_slider_area" id="mapSliderArea">
+        {{-- <div class="map_slider_area" id="mapSliderArea">
             <div class="swiper">
                 <div class="swiper-wrapper">
                     @foreach ($shops as $shop)
@@ -72,7 +127,7 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 
     <input type="hidden" name="" id="shop_cords" value="{{ $shop_cords }}">
@@ -81,12 +136,13 @@
 
 @push('scripts')
     <script>
-        $('#searchForm').on('submit', function(e) {
-            e.preventDefault();
+        $('#locationSearchSelect').on('select2:select', function (e) {
+            var data = e.params.data;
 
-            var value = $('#search_input').val();
+            var value = data['id'];
+            var category = $('#category').val();
 
-            window.location.href = "{{ URL::to('/map-view') }}?search=" + value;
+            window.location.href = "{{ URL::to('/map-view') }}?city=" + value + '&category=' + category;
         });
     </script>
     <script>

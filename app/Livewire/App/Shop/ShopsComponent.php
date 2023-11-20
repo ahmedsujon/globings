@@ -9,11 +9,12 @@ use App\Models\Category;
 
 class ShopsComponent extends Component
 {
-    public $categories, $pagination_value = 50, $searchTerm;
+    public $categories, $pagination_value = 50, $filter_cities;
     public $phone, $edit_id;
     public function mount()
     {
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        $this->filter_cities = Shop::groupBy('city')->orderBy('city', 'ASC')->get();
     }
 
     public function updatePhone()
@@ -29,9 +30,21 @@ class ShopsComponent extends Component
 
     public function render()
     {
-        $shops = Shop::orderBy('id', 'DESC')
-        ->where('city', 'like', '%' . $this->searchTerm . '%')
-        ->paginate($this->pagination_value);
+        $city = request()->get('city');
+        $category = request()->get('category');
+
+        $shops = Shop::orderBy('id', 'DESC');
+
+        if($city){
+            $shops = $shops->where('city', 'like', '%' . $city . '%');
+        }
+
+        if($category){
+            $shops = $shops->where('category_id', $category);
+        }
+
+        $shops = $shops->paginate($this->pagination_value);
+
         return view('livewire.app.shop.shops-component', ['shops'=>$shops])->layout('livewire.app.layouts.base');
     }
 }

@@ -123,20 +123,7 @@
     flex-wrap: wrap;
     gap: 8px 3px;
     min-height: 76px;
-    li {
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
-      }
-    }
+
     .active_icon {
       display: none;
     }
@@ -172,8 +159,7 @@
   }
   .active_mobile_menu {
     position: relative;
-    // top: 4px;
-    background: rgb(230, 231, 231);
+    top: 4px;
     svg {
       color: #1872f6 !important;
     }

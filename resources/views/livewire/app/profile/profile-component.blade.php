@@ -98,14 +98,14 @@
                                         alt="right icon" />
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <button type="button" id="placeModalBtn">
                                     <img src="{{ asset('assets/app/icons/manage_icon3.svg') }}" alt="manage icon" />
                                     <h5>My places</h5>
                                     <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
                                         alt="right icon" />
                                 </button>
-                            </li>
+                            </li> --}}
                         @endif
                         @if (Auth::user()->account_type == 'Private')
                         <li>
