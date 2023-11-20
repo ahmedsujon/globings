@@ -1,4 +1,12 @@
 <div>
+    <style>
+        .company_preview_wrapper .slider_img video,.company_preview_wrapper .slider_img iframe{
+            width: 100%;
+    height: 230px;
+    object-fit: cover;
+        }
+    </style>
+    <main>
     <header class="home_header_wrapper mt-24">
         <div class="container">
             <div class="d-flex-between">
@@ -48,7 +56,7 @@
         <section class="company_preview_wrapper mt-24">
             <div class="container">
                 <div class="slider_area" id="companySliderArea">
-                    <div class="swiper">
+                    <!-- <div class="swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="slider_img">
@@ -56,7 +64,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+                    <div class="slider_img">
+                    <a href="{{ route('app.event.details', ['id' => $event->id]) }}" class="w-100">
+                                        @if ($event->extension == 'mp4' || $event->extension == 'avi' || $event->extension == 'mov')
+                                            <video class="roundeds post_img" alt="200x200" width="200"
+                                                height="120" width="100%" controls>
+                                                <source src="{{ asset($event->banner) }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        @elseif (
+                                            $event->extension == 'jpg' ||
+                                                $event->extension == 'jpeg' ||
+                                                $event->extension == 'png' ||
+                                                $event->extension == 'gif')
+                                            <img class="roundeds" alt="200x200" width="100%" height="100%"
+                                                src="{{ asset($event->banner) }}" alt="Image" class="post_img">
+                                        @else
+                                            <p>This file type is not supported.</p>
+                                        @endif
+                                    </a>
+                                </div>
                 </div>
                 <div class="post_info_list d-flex align-items-center flex-wrap g-xl">
                     <div class="list_item d-flex align-items-center flex-wrap">
