@@ -1,57 +1,58 @@
 <div>
     <style>
-        .company_preview_wrapper .slider_img video,.company_preview_wrapper .slider_img iframe{
+        .company_preview_wrapper .slider_img video,
+        .company_preview_wrapper .slider_img iframe {
             width: 100%;
-    height: 230px;
-    object-fit: cover;
+            height: 230px;
+            object-fit: cover;
         }
     </style>
     <main>
-    <header class="home_header_wrapper mt-24">
-        <div class="container">
-            <div class="d-flex-between">
-                <a href="{{ route('app.home') }}" class="logo">
-                    <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
-                </a>
-                <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
-                    <li>
-                        @auth
-                            @if (user()->account_type == 'Professional')
-                                @if (userHasActiveSubscription())
-                                    <a href="javascript:void(0)" id="openPostCreateBtn">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
-                                @else
-                                    <a href="{{ route('app.plans') }}">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
+        <header class="home_header_wrapper mt-24">
+            <div class="container">
+                <div class="d-flex-between">
+                    <a href="{{ route('app.home') }}" class="logo">
+                        <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
+                    </a>
+                    <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
+                        <li>
+                            @auth
+                                @if (user()->account_type == 'Professional')
+                                    @if (userHasActiveSubscription())
+                                        <a href="javascript:void(0)" id="openPostCreateBtn">
+                                            <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                        </a>
+                                    @else
+                                        <a href="{{ route('app.plans') }}">
+                                            <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                        </a>
+                                    @endif
                                 @endif
+                            @else
+                                <a href="{{ route('login') }}">
+                                    <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                </a>
+                            @endauth
+                        </li>
+                        <li>
+                            <a href="{{ route('app.my-favorite-shop') }}">
+                                <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
+                            </a>
+                        </li>
+                        <li>
+                            @if (user())
+                                <a href="{{ route('app.bings') }}" class="header_number_area">
+                                    <span class="circle_shape"></span>
+                                    <span class="number">{{ user()->bings_balance }}</span>
+                                    <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}"
+                                        alt="plus icon" class="right_shape" />
+                                </a>
                             @endif
-                        @else
-                            <a href="{{ route('login') }}">
-                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                            </a>
-                        @endauth
-                    </li>
-                    <li>
-                        <a href="{{ route('app.my-favorite-shop') }}">
-                            <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
-                        </a>
-                    </li>
-                    <li>
-                        @if (user())
-                            <a href="{{ route('app.bings') }}" class="header_number_area">
-                                <span class="circle_shape"></span>
-                                <span class="number">{{ user()->bings_balance }}</span>
-                                <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
-                                    class="right_shape" />
-                            </a>
-                        @endif
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
         <!-- Company Preview  Section  -->
         <section class="company_preview_wrapper mt-24">
             <div class="container">
@@ -66,25 +67,25 @@
                         </div>
                     </div> -->
                     <div class="slider_img">
-                    <a href="{{ route('app.event.details', ['id' => $event->id]) }}" class="w-100">
-                                        @if ($event->extension == 'mp4' || $event->extension == 'avi' || $event->extension == 'mov')
-                                            <video class="roundeds post_img" alt="200x200" width="200"
-                                                height="120" width="100%" controls>
-                                                <source src="{{ asset($event->banner) }}" type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        @elseif (
-                                            $event->extension == 'jpg' ||
-                                                $event->extension == 'jpeg' ||
-                                                $event->extension == 'png' ||
-                                                $event->extension == 'gif')
-                                            <img class="roundeds" alt="200x200" width="100%" height="100%"
-                                                src="{{ asset($event->banner) }}" alt="Image" class="post_img">
-                                        @else
-                                            <p>This file type is not supported.</p>
-                                        @endif
-                                    </a>
-                                </div>
+                        <a href="{{ route('app.event.details', ['id' => $event->id]) }}" class="w-100">
+                            @if ($event->extension == 'mp4' || $event->extension == 'avi' || $event->extension == 'mov')
+                                <video class="roundeds post_img" alt="200x200" width="200" height="120"
+                                    width="100%" controls>
+                                    <source src="{{ asset($event->banner) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            @elseif (
+                                $event->extension == 'jpg' ||
+                                    $event->extension == 'jpeg' ||
+                                    $event->extension == 'png' ||
+                                    $event->extension == 'gif')
+                                <img class="roundeds" alt="200x200" width="100%" height="100%"
+                                    src="{{ asset($event->banner) }}" alt="Image" class="post_img">
+                            @else
+                                <p>This file type is not supported.</p>
+                            @endif
+                        </a>
+                    </div>
                 </div>
                 <div class="post_info_list d-flex align-items-center flex-wrap g-xl">
                     <div class="list_item d-flex align-items-center flex-wrap">
@@ -104,7 +105,8 @@
                         <img src="{{ asset(user($event->id)->avatar) }}" alt="user image" class="user_img" />
                         <div>
                             <div class="dealer">Author</div>
-                            <h5 class="sub_login">{{ user($event->id)->first_name }} {{ user($event->id)->last_name }}</h5>
+                            <h5 class="sub_login">{{ user($event->id)->first_name }} {{ user($event->id)->last_name }}
+                            </h5>
                         </div>
                     </button>
                 </div>
