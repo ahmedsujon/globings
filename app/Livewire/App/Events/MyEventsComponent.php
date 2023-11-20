@@ -8,9 +8,11 @@ use Livewire\Component;
 
 class MyEventsComponent extends Component
 {
+    public $searchTerm;
+
     public function render()
     {
-        $events = Event::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->get();
+        $events = Event::where('name', 'like', '%' . $this->searchTerm . '%')->where('user_id', Auth::user()->id)->orderBy('id', 'asc')->get();
         return view('livewire.app.events.my-events-component', ['events'=>$events])->layout('livewire.app.layouts.base');
     }
 }

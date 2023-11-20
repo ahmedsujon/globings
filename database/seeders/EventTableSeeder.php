@@ -26,6 +26,7 @@ class EventTableSeeder extends Seeder
             $event->description = $faker->text(500);
             $event->description = $faker->text(500);
             $event->banner = 'assets/images/placeholder-rect.jpg';
+            $event->extension = 'jpg';
             $event->save();
         }
 

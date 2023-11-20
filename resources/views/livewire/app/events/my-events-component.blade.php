@@ -29,7 +29,8 @@
                 </ul>
             </div>
             <form action="" id="searchForm" class="header_search">
-                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
+                <input type="text" placeholder="Search" id="search_input" wire:model.live='searchTerm'
+                    autocomplete="off" />
                 <button class="search_icon" type="submit">
                     <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
                 </button>
@@ -42,48 +43,58 @@
             <div class="location_area location_all_shop_area">
                 <div class="container">
                     <h4 class="notification_title">My Events</h4>
-                    @foreach ($events as $event)
-                        <div class="location_item">
-                            <div class="position-relative">
-                                <a href="{{ route('app.event.details', ['id' => $event->id]) }}">
-                                    @if ($event->extension == 'mp4' || $event->extension =='avi' || $event->extension =='mov')
-                                        <video class="roundeds post_img" alt="200x200" width="200" height="120"
-                                            width="100%" controls>
-                                            <source src="{{ asset($event->banner) }}" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    @elseif ($event->extension == 'jpg' || $event->extension =='jpeg' || $event->extension =='png' || $event->extension =='gif')
-                                        <img class="roundeds" alt="200x200" width="100%" height="100%"
-                                            src="{{ asset($event->banner) }}" alt="Image" class="post_img">
-                                    @else
-                                        <p>This file type is not supported.</p>
-                                    @endif
-                                </a>
-                                <div class="info_area">
-                                    <div class="container">
-                                        <div class="d-flex-between">
-                                            {{-- <h4><a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}">Barber shop</a></h4> --}}
-                                            {{-- <h4><a href="#">Barber shop</a></h4> --}}
+                    @if ($events->count() > 0)
+                        @foreach ($events as $event)
+                            <div class="location_item">
+                                <div class="position-relative">
+                                    <a href="{{ route('app.event.details', ['id' => $event->id]) }}">
+                                        @if ($event->extension == 'mp4' || $event->extension == 'avi' || $event->extension == 'mov')
+                                            <video class="roundeds post_img" alt="200x200" width="200"
+                                                height="120" width="100%" controls>
+                                                <source src="{{ asset($event->banner) }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        @elseif (
+                                            $event->extension == 'jpg' ||
+                                                $event->extension == 'jpeg' ||
+                                                $event->extension == 'png' ||
+                                                $event->extension == 'gif')
+                                            <img class="roundeds" alt="200x200" width="100%" height="100%"
+                                                src="{{ asset($event->banner) }}" alt="Image" class="post_img">
+                                        @else
+                                            <p>This file type is not supported.</p>
+                                        @endif
+                                    </a>
+                                    <div class="info_area">
+                                        <div class="container">
+                                            <div class="d-flex-between">
+                                                {{-- <h4><a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}">Barber shop</a></h4> --}}
+                                                {{-- <h4><a href="#">Barber shop</a></h4> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="content">
+                                    <h3><a
+                                            href="{{ route('app.event.details', ['id' => $event->id]) }}">{{ $event->name }}</a>
+                                    </h3>
+                                    <h5><img src="{{ asset('assets/app/icons/clock.svg') }}">
+                                        @if (Carbon\Carbon::parse($event->date)->isToday())
+                                            {{ $event->date }} <span>Open now</span>
+                                        @else
+                                            {{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}
+                                        @endif
+                                    </h5>
+                                    <h5><img src="{{ asset('assets/app/icons/location.svg') }}">
+                                        {{ $event->location }}</h5>
+                                </div>
                             </div>
-                            <div class="content">
-                                <h3><a
-                                        href="{{ route('app.event.details', ['id' => $event->id]) }}">{{ $event->name }}</a>
-                                </h3>
-                                <h5><img src="{{ asset('assets/app/icons/clock.svg') }}">
-                                    @if (Carbon\Carbon::parse($event->date)->isToday())
-                                        {{ $event->date }} <span>Open now</span>
-                                    @else
-                                        {{ \Carbon\Carbon::parse($event->date)->format('F j, Y') }}
-                                    @endif
-                                </h5>
-                                <h5><img src="{{ asset('assets/app/icons/location.svg') }}">
-                                    {{ $event->location }}</h5>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <div class="location_item" style="text-align: center;">
+                        <p style="font-size: 15px">No event found!</p>
+                    </div>
+                    @endif
                 </div>
             </div>
         </section>
