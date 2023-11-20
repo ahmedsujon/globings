@@ -4846,7 +4846,7 @@ main {
 }
 .location_form_area .select2 .select2-selection {
   border: none !important;
-  border-bottom: 1.5px solid #e8e8e8 !important;
+  /* border-bottom: 1.5px solid #e8e8e8 !important; */
   height: 32px;
 }
 .location_form_area .select2-selection__arrow b {

@@ -57,7 +57,7 @@
     <!-- Category Slider Section  -->
     <section class="category_slider_area" id="headerCategorySlider">
         <div class="container" wire:ignore>
-            <div class="d-flex align-items-center g-sm category_sceleton">
+            <div class="d-flex align-items-center g-sm category_sceleton" style="margin-bottom: 10px;">
                 <div class="skeleton" style="width: 64px; height: 45px"></div>
                 <div class="skeleton" style="width: 64px; height: 45px"></div>
                 <div class="skeleton" style="width: 64px; height: 45px"></div>
@@ -258,9 +258,9 @@
                     </div>
                 @endforeach
             @else
-            <div style="text-align: center; margin-top: 100px;">
-                <small>No posts available</small>
-            </div>
+                <div style="text-align: center; margin-top: 100px;">
+                    <small>No posts available</small>
+                </div>
             @endif
         </div>
     </section>
@@ -279,11 +279,10 @@
                     <div class="category_filter_grid">
                         @foreach ($categories as $f_category)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="filter_category" value="{{ $f_category->id }}"
-                                    id="categoryFilterIcon_{{ $f_category->id }}" />
+                                <input class="form-check-input" type="checkbox" name="filter_category"
+                                    value="{{ $f_category->id }}" id="categoryFilterIcon_{{ $f_category->id }}" />
                                 <label class="form-check-label" for="categoryFilterIcon_{{ $f_category->id }}">
-                                    <img src="{{ asset($f_category->icon) }}"
-                                        alt="category icon" />
+                                    <img src="{{ asset($f_category->icon) }}" alt="category icon" />
                                     <span>{{ $f_category->name }}</span>
                                 </label>
                             </div>
@@ -294,7 +293,8 @@
                             <h4 class="bring_bottom_text">Want to see area of city</h4>
                             <div class="area_list d-flex align-items-center flex-wrap">
                                 @foreach ($cities as $city)
-                                    <button type="button" class="filter_city" data-city="{{ $city }}">{{ $city }}</button>
+                                    <button type="button" class="filter_city"
+                                        data-city="{{ $city }}">{{ $city }}</button>
                                 @endforeach
                                 <input type="hidden" id="filter_city_val" />
                             </div>
@@ -528,7 +528,7 @@
 
             }, 2000);
 
-            $('.filter_city').on('click', function(){
+            $('.filter_city').on('click', function() {
                 $(".filter_city").each(function() {
                     $(this).removeClass('active');
                 });
@@ -537,11 +537,11 @@
                 $('#filter_city_val').val($(this).data('city'));
             });
 
-            $('#filter_form').on('submit', function(e){
+            $('#filter_form').on('submit', function(e) {
                 e.preventDefault();
 
                 var allCats = [];
-                $('input:checkbox[name=filter_category]:checked').each(function(){
+                $('input:checkbox[name=filter_category]:checked').each(function() {
                     allCats.push($(this).val());
                 });
                 var city = $('#filter_city_val').val();

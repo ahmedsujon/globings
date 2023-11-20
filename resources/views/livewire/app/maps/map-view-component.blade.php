@@ -55,12 +55,12 @@
         .select2-container--default .select2-selection--single .select2-selection__placeholder {
             color: #999;
             font-size: 15px;
-            padding-bottom: 2px;
+            /* padding-bottom: 2px; */
         }
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             color: #999;
             font-size: 15px;
-            padding-bottom: 2px;
+            /* padding-bottom: 2px; */
         }
     </style>
     <section class="company_location_wrapper">
