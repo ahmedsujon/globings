@@ -11,11 +11,11 @@
                             <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#">
                             <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         @if (user())
                             <a href="{{ route('app.bings') }}" class="header_number_area">
