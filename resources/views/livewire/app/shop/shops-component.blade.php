@@ -1,19 +1,82 @@
 <div>
+    <style>
+        .select2-dropdown {
+            border: 1px solid #d7d7d7 !important;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+        .select2-dropdown .select2-results__options {
+            margin-top: 10px;
+        }
+
+        .select2-dropdown .select2-search__field {
+            border-radius: 4px;
+            height: 34px;
+        }
+
+        .select2-dropdown .select2-results__option {
+            position: relative;
+            font-size: 14px;
+        }
+
+        .select2-dropdown .select2-results__option--highlighted {
+            background-color: transparent !important;
+            color: black !important;
+        }
+
+        .select2-dropdown .select2-results__option--highlighted::after {
+            position: absolute;
+            right: 14px;
+            content: "";
+            display: inline-block;
+            transform: rotate(45deg);
+            height: 13px;
+            width: 7px;
+            border-bottom: 2px solid #1872f6;
+            border-right: 2px solid #1872f6;
+        }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+        .select2-container {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+            border: 1px solid #ECECEC;
+            padding-top: 5px;
+            padding-left: 7px;
+            border-radius: 49px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            color: #999;
+            font-size: 15px;
+            padding-bottom: 2px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #999;
+            font-size: 15px;
+            padding-bottom: 2px;
+        }
+    </style>
     <!-- Company Location Section  -->
     <section class="company_location_wrapper">
-        <div class="location_header">
+        <div class="location_header" style="margin-top: -20px;">
             <div class="container">
-                <form action="" class="location_form_area">
-                    <h4>Your Location</h4>
+                <form action="" class="location_form_area" wire:ignore>
                     <div class="search_grid">
-                        <div class="position-relative">
-                            <select id="locationSearchSelect" wire:model="searchTerm">
+                        <div class="position-relative" id="cirt_select">
+                            <select id="locationSearchSelect">
                                 <option value=""></option>
                                 @foreach ($shops as $shop)
                                     <option value="{{ $shop->city }}">{{ $shop->city }}</option>
                                 @endforeach
                             </select>
-                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}" alt="select arrow"
+                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}" style="padding-top: 3px; padding-right: 5px;" alt="select arrow"
                                 class="arrow_icon" />
                         </div>
                         <a href="{{ route('app.map.view') }}" class="map_btn">
@@ -38,7 +101,82 @@
                 </div>
             </div>
         </div>
-        <div class="location_area">
+
+        <div class="location_area location_all_shop_area" style="margin-top: -7px;">
+            <div class="container">
+                <div class="location_item">
+                    <div class="position-relative">
+                        <img src="{{ asset('assets/app/images/post/location_img.png') }}" alt="post image"
+                            class="post_img" />
+                        <div class="info_area">
+                            <div class="container">
+                                <div class="d-flex-between">
+                                    <h4>Barber shop</h4>
+                                    <div class="ratting_area">
+                                        <img src="{{ asset('assets/app/icons/star_small_icon.svg') }}"
+                                            alt="star small icon" />
+                                        <span>4.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <h3>Hair Cut - Belgium, Brussels</h3>
+                        <h5>324 ft <span>. Open now</span></h5>
+                    </div>
+                </div>
+                <div class="location_item">
+                    <div class="position-relative">
+                        <img src="{{ asset('assets/app/images/post/location_img.png') }}" alt="post image"
+                            class="post_img" />
+                        <div class="info_area">
+                            <div class="container">
+                                <div class="d-flex-between">
+                                    <h4>Barber shop</h4>
+                                    <div class="ratting_area">
+                                        <img src="{{ asset('assets/app/icons/star_small_icon.svg') }}"
+                                            alt="star small icon" />
+                                        <span>4.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <h3>Hair Cut - Belgium, Brussels</h3>
+                        <h5>324 ft <span>. Open now</span></h5>
+                    </div>
+                </div>
+                <div class="location_item">
+                    <div class="position-relative">
+                        <img src="{{ asset('assets/app/images/post/location_img.png') }}" alt="post image"
+                            class="post_img" />
+                        <div class="info_area">
+                            <div class="container">
+                                <div class="d-flex-between">
+                                    <h4>Barber shop</h4>
+                                    <div class="ratting_area">
+                                        <img src="{{ asset('assets/app/icons/star_small_icon.svg') }}"
+                                            alt="star small icon" />
+                                        <span>4.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <h3>Hair Cut - Belgium, Brussels</h3>
+                        <h5>324 ft <span>. Open now</span></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="location_area">
             @foreach ($shops as $shop)
                 <div class="location_item">
                     <div class="position-relative">
@@ -69,6 +207,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
     </section>
 </div>
