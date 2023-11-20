@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Shop;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,176 +15,26 @@ class ShopTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $shopOne = Shop::where('name', 'Bookshop')->first();
-        $shopTwo = Shop::where('name', 'Grocery')->first();
-        $shopThree = Shop::where('name', 'Electronics')->first();
-        $shopFour = Shop::where('name', 'Boutique')->first();
-        $shopFive = Shop::where('name', 'Nursery')->first();
-        $shopSix = Shop::where('name', 'Deli')->first();
-        $shopSeven = Shop::where('name', 'Sports')->first();
-        $shopEight = Shop::where('name', 'Art')->first();
-        $shopNine = Shop::where('name', 'Pet')->first();
-        $shopTen = Shop::where('name', 'Wellness')->first();
+        $shops_array = ["Bookshop", "Grocery", "Electronics", "Boutique", "Nursery", "Deli", "Sports", "Art", "Pet", "Wellness"];
 
+        $cords = ["25.090281, 90.195419", "25.087653, 90.190419", "25.088663, 90.186468", "25.085865, 90.187842", "25.097058, 90.185437", "25.091617, 90.199952", "25.102499, 90.177983", "25.084466, 90.181848", "25.086543, 90.189930", "25.086621, 90.190918", "25.091902, 90.191529", "25.092869, 90.191985"];
 
-        if (!$shopOne) {
+        foreach ($shops_array as $key => $shop_ar) {
+            $category = Category::inRandomOrder()->first();
+
             $shop = new Shop();
-            $shop->user_id = 1;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Bookshop';
-            $shop->shop_category = 'Bookstore';
+            $shop->user_id = $key + 1;
+            $shop->category_id = $category->id;
+            $shop->name = $shop_ar;
+            $shop->shop_category = $category->name;
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
+            $shop->profile_image = 'assets/images/placeholder.jpg';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'New York City';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopTwo) {
-            $shop = new Shop();
-            $shop->user_id = 2;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Grocery';
-            $shop->shop_category = 'Grocery Store';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Tokyo';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopThree) {
-            $shop = new Shop();
-            $shop->user_id = 3;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Electronics';
-            $shop->shop_category = 'Electronics Store';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'London';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopFour) {
-            $shop = new Shop();
-            $shop->user_id = 4;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Boutique';
-            $shop->shop_category = 'Clothing Store';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Paris';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopFive) {
-            $shop = new Shop();
-            $shop->user_id = 5;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Nursery';
-            $shop->shop_category = 'Garden Center';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Sydney';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopSix) {
-            $shop = new Shop();
-            $shop->user_id = 6;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Deli';
-            $shop->shop_category = 'Food Store';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Rio de Janeiro';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopSeven) {
-            $shop = new Shop();
-            $shop->user_id = 7;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Sports';
-            $shop->shop_category = 'Sporting Goods';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Cairo';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopEight) {
-            $shop = new Shop();
-            $shop->user_id = 8;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Art';
-            $shop->shop_category = 'Art Supplies';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Mumbai';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopNine) {
-            $shop = new Shop();
-            $shop->user_id = 9;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Pet';
-            $shop->shop_category = 'Pet Store';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Toronto';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
-            $shop->save();
-        }
-        if (!$shopTen) {
-            $shop = new Shop();
-            $shop->user_id = 10;
-            $shop->category_id = rand(1, 10);
-            $shop->name = 'Wellness';
-            $shop->shop_category = 'Health Store';
-            $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
-            $shop->profile_image = 'assets/images/avatar.png';
-            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
-            $shop->latitude = '23.751597323202727';
-            $shop->longitude = '90.40795872491326';
-            $shop->city = 'Los Angeles';
-            $shop->address = '452/1, Greenway Road, Peyarabag, Mogbazar, Dhaka, Bangladesh';
-            $shop->visited = 5000;
+            $shop->latitude = (explode(',', $cords[$key]))[0];
+            $shop->longitude = (explode(',', $cords[$key]))[1];
+            $shop->city = 'Nalitabari';
+            $shop->address = 'Nalitabari 2110, Dhaka, Bangladesh';
+            $shop->visited = 0;
             $shop->save();
         }
     }
