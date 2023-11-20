@@ -67,6 +67,7 @@
     <section class="company_location_wrapper">
         <div class="location_header" style="margin-top: -20px;">
             <div class="container">
+                <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
                 <form action="" class="location_form_area" wire:ignore>
                     <div class="search_grid">
                         <div class="position-relative" id="cirt_select">
@@ -89,7 +90,7 @@
                         <div class="swiper-wrapper">
                             @foreach ($categories as $category)
                                 <div class="swiper-slide">
-                                    <a href="{{ route('app.home') }}?category={{ $category->id }}"
+                                    <a href="{{ route('app.shops') }}?category={{ $category->id }}"
                                         class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
                                         <img src="{{ asset($category->icon) }}" alt="category icon" />
                                         <h4>{{ $category->name }}</h4>
@@ -209,4 +210,18 @@
             @endforeach
         </div> --}}
     </section>
+
+
 </div>
+@push('scripts')
+    <script>
+        $('#locationSearchSelect').on('select2:select', function (e) {
+            var data = e.params.data;
+
+            var value = data['text'];
+            var category = $('#category').val();
+
+            window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category;
+        });
+    </script>
+@endpush
