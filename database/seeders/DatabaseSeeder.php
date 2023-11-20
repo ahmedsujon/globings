@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Event::factory(10)->create();
         $this->call(AdminPermissionTableSeeder::class);
         $this->call(AdminTableSeeder::class);
         $this->call(UserTableSeeder::class);
@@ -22,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(PostTableSeeder::class);
         $this->call(ShopTableSeeder::class);
+        $this->call(EventTableSeeder::class);
     }
 }
