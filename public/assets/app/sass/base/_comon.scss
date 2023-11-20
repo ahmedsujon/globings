@@ -931,7 +931,7 @@ main {
     }
     .select2-selection {
       border: none !important;
-      border-bottom: 1.5px solid #e8e8e8 !important;
+      // border-bottom: 1.5px solid #e8e8e8 !important;
       height: 32px;
     }
   }
@@ -1477,8 +1477,13 @@ main {
     height: 32px;
     width: 100%;
     background: none;
-    &::selection{
+    &::selection {
       background-color: transparent;
     }
   }
+}
+
+//Select 2
+.select2-container--default .select2-selection--single {
+  background-color: transparent !important;
 }
