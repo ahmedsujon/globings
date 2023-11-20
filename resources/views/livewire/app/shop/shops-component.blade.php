@@ -35,10 +35,6 @@
             color: black !important;
         }
 
-        .select2-container--default .select2-selection--single {
-            background-color: none !important;
-        }
-
         .select2-dropdown .select2-results__option--highlighted::after {
             position: absolute;
             right: 14px;
@@ -52,7 +48,6 @@
         }
 
         .select2-container--default .select2-selection--single {
-            /* background-color: #fff; */
             border: 1px solid #aaa;
             border-radius: 4px;
         }
