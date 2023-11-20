@@ -133,7 +133,9 @@
                                 <a href="{{ route('app.shopProfile', ['user_id' => $shop->user_id]) }}">
                                     <h3>{{ $shop->name }}</h3>
                                 </a>
-                                <h5>{{ $shop->address }} <span> . Open now</span></h5>
+                                <h5>{{ $shop->address }} @if ($shop->is_open == 1)
+                                    <span> . Open now</span> @else <span style="color: red;"> . Closed Now</span>
+                                @endif</h5>
                             </div>
                         </div>
                     @endforeach
