@@ -12,6 +12,14 @@
             margin-top: 10px;
         }
 
+        .company_location_wrapper .location_header {
+            padding-bottom: 0px !important;
+        }
+
+        .company_location_wrapper .location_area {
+            margin-top: 24px !important;
+        }
+
         .select2-dropdown .select2-search__field {
             border-radius: 4px;
             height: 34px;
