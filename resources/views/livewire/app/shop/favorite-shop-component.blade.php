@@ -30,7 +30,9 @@
                         </div>
                     @endforeach
                 @else
-
+                <div class="location_item" style="text-align: center;">
+                    <p style="font-size: 15px;">No shop in bookmarks</p>
+                </div>
                 @endif
             </div>
         </div>
