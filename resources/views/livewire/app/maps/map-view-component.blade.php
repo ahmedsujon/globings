@@ -72,14 +72,16 @@
                         <div class="position-relative" id="cirt_select">
                             <select id="locationSearchSelect">
                                 <option value=""></option>
-                                @foreach ($shops as $shop)
-                                    <option value="{{ $shop->city }}">{{ $shop->city }}</option>
+                                <option value="all" {{ 'all' == request()->get('city') || !request()->get('city') ? 'selected':'' }}>Select city</option>
+                                @foreach ($filter_cities as $city)
+                                    <option value="{{ $city->city }}" {{ $city->city == request()->get('city') ? 'selected':'' }}>{{ $city->city }}</option>
                                 @endforeach
                             </select>
-                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}" style="padding-top: 3px; padding-right: 5px;" alt="select arrow" class="arrow_icon" />
+                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}"
+                                style="padding-top: 3px; padding-right: 5px;" alt="select arrow" class="arrow_icon" />
                         </div>
                         <a href="{{ route('app.shops') }}" class="map_btn">
-                            <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" alt="map icon" />
+                            <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" />
                         </a>
                     </div>
                 </form>
@@ -137,7 +139,7 @@
         $('#locationSearchSelect').on('select2:select', function (e) {
             var data = e.params.data;
 
-            var value = data['text'];
+            var value = data['id'];
             var category = $('#category').val();
 
             window.location.href = "{{ URL::to('/map-view') }}?city=" + value + '&category=' + category;

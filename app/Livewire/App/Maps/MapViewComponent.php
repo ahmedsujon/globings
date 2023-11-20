@@ -15,9 +15,20 @@ class MapViewComponent extends Component
 
     public function render()
     {
-        $search_value = request()->get('search');
+        $city = request()->get('city');
+        $category = request()->get('category');
 
-        $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('name', 'like', '%' . $search_value . '%')->where('latitude', '!=', '')->where('longitude', '!=', '')->get();
+        $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('latitude', '!=', '')->where('longitude', '!=', '');
+
+        if ($city) {
+            $shops = $shops->where('city', 'like', '%' . $city . '%');
+        }
+
+        if ($category) {
+            $shops = $shops->where('category_id', $category);
+        }
+
+        $shops = $shops->get();
 
         $cords = [];
 
@@ -27,7 +38,8 @@ class MapViewComponent extends Component
         $shop_cords = $cords;
 
         $categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        $filter_cities = Shop::groupBy('city')->orderBy('city', 'ASC')->get();
 
-        return view('livewire.app.maps.map-view-component', ['shop_cords' => json_encode($shop_cords), 'shops' => $shops, 'categories' => $categories])->layout('livewire.app.layouts.base');
+        return view('livewire.app.maps.map-view-component', ['shop_cords' => json_encode($shop_cords), 'shops' => $shops, 'categories' => $categories, 'filter_cities' => $filter_cities])->layout('livewire.app.layouts.base');
     }
 }

@@ -31,7 +31,7 @@ class ShopsComponent extends Component
     public function render()
     {
         $city = request()->get('city');
-        $category = request()->get('city');
+        $category = request()->get('category');
 
         $shops = Shop::orderBy('id', 'DESC');
 
@@ -39,7 +39,7 @@ class ShopsComponent extends Component
             $shops = $shops->where('city', 'like', '%' . $city . '%');
         }
 
-        if($city){
+        if($category){
             $shops = $shops->where('category_id', $category);
         }
 
