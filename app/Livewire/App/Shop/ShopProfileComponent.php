@@ -19,6 +19,14 @@ class ShopProfileComponent extends Component
 
         $this->total_reviews = ShopReview::where('shop_id', $shop->id)->count();
         $this->reviews = ShopReview::where('shop_id', $shop->id)->get();
+
+        if (!session()->has('shop_visited')){
+            $shop = Shop::where('id', $shop->id)->first();
+            $shop->visited += 1;
+            $shop->save();
+
+            session()->put('shop_visited', 'true');
+        }
     }
 
     public function updated($fields)

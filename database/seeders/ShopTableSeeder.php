@@ -35,6 +35,7 @@ class ShopTableSeeder extends Seeder
             $shop->city = 'Nalitabari';
             $shop->address = 'Nalitabari 2110, Dhaka, Bangladesh';
             $shop->visited = 0;
+            $shop->is_open = rand(0,1);
             $shop->save();
         }
     }

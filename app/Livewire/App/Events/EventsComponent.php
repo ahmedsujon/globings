@@ -8,13 +8,11 @@ use Livewire\WithPagination;
 
 class EventsComponent extends Component
 {
-    public function placeholder(){
-        return view('placeholder');
-    }
+    public $searchTerm;
 
     public function render()
     {
-        $events = Event::orderBy('id', 'asc')->get();
+        $events = Event::where('name', 'like', '%' . $this->searchTerm . '%')->orderBy('id', 'DESC')->get();
         return view('livewire.app.events.events-component', ['events'=>$events])->layout('livewire.app.layouts.base');
     }
 }
