@@ -143,10 +143,6 @@
                       margin-right: auto;
                     ">
                     </div>
-                    {{-- <div class="d-flex align-items-center g-sm mt-2">
-                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
-                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
-                    </div> --}}
                 </div>
             </div>
             <div class="post_grid">
