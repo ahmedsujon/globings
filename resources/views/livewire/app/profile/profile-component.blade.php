@@ -797,8 +797,53 @@
                 <div class="container">
                     <div style="width: 100%; text-align: center;">
                         <h3 class="bing_inner_title">My QR Code</h3>
-                        <span style="padding: 50px 0px;">
-                            {!! DNS2D::getBarcodeHTML(''.user()->id.'', 'QRCODE', 10, 10) !!}
+
+                        <style>
+                            .qr_tab_cont {
+                                width: 100%;
+                                text-align: center;
+                                margin-top: 30px;
+                            }
+                            .qr_tab_btn, .qr_tab_btn:focus, .qr_tab_btn:hover{
+                                padding: 3px 10px;
+                                background: #fff;
+                                color: black;
+                                border: 1px solid #5897F4 !important;
+                                margin: 0px 3px;
+                                width: 35%;
+                            }
+
+                            .active_qr_tab_btn, .active_qr_tab_btn:focus, .active_qr_tab_btn:hover {
+                                padding: 3px 10px;
+                                background: #5897F4;
+                                border: 1px solid #5897F4 !important;
+                                color: white;
+                                margin: 0px 3px;
+                                width: 35%;
+                            }
+                        </style>
+
+                        <div class="qr_tab_cont">
+                            <button class="btn qr_type_btn active_qr_tab_btn" data-type="discount">Discount</button>
+                            <button class="btn qr_type_btn qr_tab_btn" data-type="visit">Shop Visitor</button>
+                        </div>
+
+                        <span id="discount_qr" style="padding: 50px 0px;">
+                            @php
+                                $data_1 = user()->id.','.'discount';
+                                $data_2 = user()->id.','.'visit';
+                            @endphp
+
+                            {!! DNS2D::getBarcodeHTML($data_1, 'QRCODE', 10, 10) !!}
+
+                            <br>
+                            <small>Discount QrCode</small>
+                        </span>
+                        <span id="visit_qr" class="d-none" style="padding: 50px 0px;">
+                            {!! DNS2D::getBarcodeHTML($data_2, 'QRCODE', 10, 10) !!}
+
+                            <br>
+                            <small>Visitor QrCode</small>
                         </span>
                     </div>
                 </div>
@@ -840,6 +885,26 @@
 
 @push('scripts')
     <script>
+        $(document).ready(function() {
+            $('.qr_type_btn').on('click', function() {
+                $('.qr_type_btn').each(function() {
+                    $(this).removeClass('active_qr_tab_btn');
+                    $(this).addClass('qr_tab_btn');
+                });
+                $(this).addClass('active_qr_tab_btn');
+
+                var type = $(this).data('type');
+
+                if (type == 'discount') {
+                    $('#discount_qr').removeClass('d-none');
+                    $('#visit_qr').addClass('d-none');
+                } else {
+                    $('#visit_qr').removeClass('d-none');
+                    $('#discount_qr').addClass('d-none');
+                }
+            });
+        });
+
         window.addEventListener('showEditModal', event => {
             $("#profileEditModalArea").addClass('sing_modal_active');
         });
