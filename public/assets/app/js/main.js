@@ -494,7 +494,7 @@ $(document).ready(function () {
       heading: "Success",
       // text: "And these were just the basic demos! Scroll down to check further details on how to customize the output.",
       showHideTransition: "slide", //plain,fade
-      icon: "error", //success,warning,error,info
+      icon: "success", //success,warning,error,info
       position: "bottom-center",
       hideAfter: 3000,
       loader: true,

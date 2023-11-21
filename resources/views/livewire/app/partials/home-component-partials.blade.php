@@ -12,7 +12,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('app.map.view') }}">
                             <img src="{{ asset('assets/app/icons/footer_top_menu_icon2.svg') }}"
                                 alt="footer menu icon " />
                             <span class="text">Explorer</span>

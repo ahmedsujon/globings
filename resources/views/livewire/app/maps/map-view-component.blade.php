@@ -36,11 +36,13 @@
             border-bottom: 2px solid #1872f6;
             border-right: 2px solid #1872f6;
         }
+
         .select2-container--default .select2-selection--single {
             background-color: #fff;
             border: 1px solid #aaa;
             border-radius: 4px;
         }
+
         .select2-container {
             box-sizing: border-box;
             display: inline-block;
@@ -52,29 +54,84 @@
             padding-left: 7px;
             border-radius: 49px;
         }
+
         .select2-container--default .select2-selection--single .select2-selection__placeholder {
             color: #999;
             font-size: 15px;
-            padding-bottom: 2px;
+            /* padding-bottom: 2px; */
         }
+
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             color: #999;
             font-size: 15px;
-            padding-bottom: 2px;
+            /* padding-bottom: 2px; */
         }
     </style>
+       <header class="home_header_wrapper mt-24">
+        <div class="container">
+            <div class="d-flex-between">
+                <a href="{{ route('app.home') }}" class="logo">
+                    <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
+                </a>
+                <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
+                    <li>
+                        @auth
+                            @if (user()->account_type == 'Professional')
+                                @if (userHasActiveSubscription())
+                                    <a href="javascript:void(0)" id="openPostCreateBtn">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @else
+                                    <a href="{{ route('app.plans') }}">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @endif
+                            @endif
+                        @else
+                            <a href="{{ route('login') }}">
+                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                            </a>
+                        @endauth
+                    </li>
+                    <li>
+                        <a href="{{ route('app.my-favorite-shop') }}">
+                            <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
+                        </a>
+                    </li>
+                    <li>
+                        @if (user())
+                            <a href="{{ route('app.bings') }}" class="header_number_area">
+                                <span class="circle_shape"></span>
+                                <span class="number">{{ user()->bings_balance }}</span>
+                                <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
+                                    class="right_shape" />
+                            </a>
+                        @endif
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
     <section class="company_location_wrapper">
         <div class="location_header" style="margin-top: -20px;">
             <div class="container">
                 <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
                 <form action="" class="location_form_area" wire:ignore>
-                    <div class="search_grid">
+                    <div class="d-flex align-items-center g-sm search_sceleton">
+                        <div class="skeleton" style="width: 100%; height: 41px; border-radius: 40px;"></div>
+                        <div class="skeleton" style=" width: 80px; height: 41px; border-radius: 40px;"></div>
+                    </div>
+                    <div class="search_grid search_grid_skeleton d-none">
                         <div class="position-relative" id="cirt_select">
                             <select id="locationSearchSelect">
                                 <option value=""></option>
-                                <option value="all" {{ 'all' == request()->get('city') || !request()->get('city') ? 'selected':'' }}>Select city</option>
+                                <option value="all"
+                                    {{ 'all' == request()->get('city') || !request()->get('city') ? 'selected' : '' }}>
+                                    Select city</option>
                                 @foreach ($filter_cities as $city)
-                                    <option value="{{ $city->city }}" {{ $city->city == request()->get('city') ? 'selected':'' }}>{{ $city->city }}</option>
+                                    <option value="{{ $city->city }}"
+                                        {{ $city->city == request()->get('city') ? 'selected' : '' }}>{{ $city->city }}
+                                    </option>
                                 @endforeach
                             </select>
                             <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}"
@@ -86,7 +143,14 @@
                     </div>
                 </form>
                 <div class="category_slider_area border-0" id="headerCategorySlider">
-                    <div class="swiper">
+                    <div class="d-flex align-items-center g-sm category_sceleton">
+                        <div class="skeleton" style="width: 64px; height: 45px"></div>
+                        <div class="skeleton" style="width: 64px; height: 45px"></div>
+                        <div class="skeleton" style="width: 64px; height: 45px"></div>
+                        <div class="skeleton" style="width: 64px; height: 45px"></div>
+                        <div class="skeleton" style="width: 64px; height: 45px"></div>
+                    </div>
+                    <div class="swiper category_swiper_container d-none">
                         <div class="swiper-wrapper">
                             @foreach ($categories as $category)
                                 <div class="swiper-slide">
@@ -109,25 +173,6 @@
             <!-- HTML -->
             <div class="map_item" id="mapItem" style="height: 73vh;"></div>
         </div>
-        {{-- <div class="map_slider_area" id="mapSliderArea">
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    @foreach ($shops as $shop)
-                        <div class="swiper-slide">
-                            <div class="slider_item">
-                                <img src="{{ asset($shop->cover_photo) }}" alt=""
-                                    class="slider_img" />
-                                <h4>{{ $shop->name }}</h4>
-                                <div class="star_area">
-                                    <img src="{{ asset('assets/app/icons/star_black.svg') }}" alt="star black" />
-                                    <span>{{ avgShopReview($shop->id) }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div> --}}
     </section>
 
     <input type="hidden" name="" id="shop_cords" value="{{ $shop_cords }}">
@@ -136,7 +181,18 @@
 
 @push('scripts')
     <script>
-        $('#locationSearchSelect').on('select2:select', function (e) {
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.search_sceleton').addClass('d-none');
+                $('.search_grid_skeleton').removeClass('d-none');
+
+                $('.category_sceleton').addClass('d-none');
+                $('.category_swiper_container').removeClass('d-none');
+            }, 2000);
+        });
+    </script>
+    <script>
+        $('#locationSearchSelect').on('select2:select', function(e) {
             var data = e.params.data;
 
             var value = data['id'];
@@ -380,10 +436,6 @@
                     // If the event has a placeId, use it.
                     if (isIconMouseEvent(event)) {
                         console.log("You clicked on place:" + event.placeId);
-                        // Calling e.stop() on the event prevents the default info window from
-                        // showing.
-                        // If you call stop here when there is no placeId you will prevent some
-                        // other map click event handlers from receiving the event.
                         event.stop();
                         if (event.placeId) {
                             this.calculateAndDisplayRoute(event.placeId);

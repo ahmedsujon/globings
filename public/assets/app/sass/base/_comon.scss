@@ -11,7 +11,7 @@ body {
   background-color: $body-bg;
   font-family: $body-font-family;
   font-size: $font-size-base;
-  // display: none;
+  display: none;
   min-height: 100vh;
   @include customScrollbar();
   @include max-media-width(991) {
@@ -931,7 +931,7 @@ main {
     }
     .select2-selection {
       border: none !important;
-      border-bottom: 1.5px solid #e8e8e8 !important;
+      // border-bottom: 1.5px solid #e8e8e8 !important;
       height: 32px;
     }
   }
@@ -1433,9 +1433,9 @@ main {
     display: none;
   }
   .jq-icon-success {
-    background-color: #2faf2e;
+    background-color: #1872f6;
     .jq-toast-loader {
-      background-color: #d03772 !important;
+      background-color: #2fafe2 !important;
     }
   }
   .jq-icon-error {
@@ -1477,8 +1477,13 @@ main {
     height: 32px;
     width: 100%;
     background: none;
-    &::selection{
+    &::selection {
       background-color: transparent;
     }
   }
+}
+
+//Select 2
+.select2-container--default .select2-selection--single {
+  background-color: transparent !important;
 }
