@@ -32,7 +32,7 @@ class ProfileComponent extends Component
         $data->gender = $this->gender;
         $data->dob = $this->dob;
         $data->save();
-        $this->dispatch('success', ['message' => 'User updated successfully']);
+        $this->dispatch('success', ['message' => 'Profile updated successfully']);
     }
 
     public function mount()
@@ -57,6 +57,7 @@ class ProfileComponent extends Component
             $profile = User::where('id', user()->id)->first();
             $profile->avatar = $image_path;
             $profile->save();
+            $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }
     }
 
@@ -80,8 +81,7 @@ class ProfileComponent extends Component
         $this->currentPassword = '';
         $this->newPassword = '';
         $this->confirmPassword = '';
-
-        session()->flash('message', 'Password changed successfully.');
+        $this->dispatch('success', ['message' => 'Password changed successfully.']);
     }
 
     public function resetInputs()

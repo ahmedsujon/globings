@@ -35,6 +35,7 @@ class ShopSettingsComponent extends Component
             $shop = Shop::where('user_id', user()->id)->first();
             $shop->cover_photo = $image_path;
             $shop->save();
+            $this->dispatch('success', ['message' => 'Cover photo updated successfully']);
         }
     }
 
