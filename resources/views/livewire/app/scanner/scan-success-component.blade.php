@@ -7,8 +7,11 @@
                     <img src="{{ asset('assets/app/icons/done_check.svg') }}" alt="done check" class="done_check_icon" />
                     <h4 style="font-size: 22px;">Congratulations!</h4>
 
-                    <p style="margin-top: 7px; font-size: 13px;">You have got 5% discount on <b>{{ $shop->name }}</b></p>
-
+                    @if ($scan_history->type == 'discount')
+                        <p style="margin-top: 7px; font-size: 13px;">You have got {{ $scan_history->discount }}% discount on <b>{{ $shop->name }}</b></p>
+                    @else
+                        <p style="margin-top: 7px; font-size: 13px;">You have got 5 bings for visiting <b>{{ $shop->name }}</b></p>
+                    @endif
                     <p style="margin-top: 20px;">
                         <small><a href="{{ route('app.home') }}">Back to Home</a></small>
                     </p>

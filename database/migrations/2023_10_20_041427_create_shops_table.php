@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->text('address')->nullable();
             $table->string('website_url')->nullable();
+            $table->integer('bings_discount')->default(3);
             $table->tinyInteger('is_open')->default(1);
             $table->integer('visited')->default(0);
             $table->timestamps();
