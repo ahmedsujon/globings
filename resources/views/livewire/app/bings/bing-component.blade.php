@@ -153,7 +153,7 @@
                                                 alt="right arrow" />
                                         </h4>
                                         <h5>{{ $data->description }}</h5>
-                                        <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5>
+                                        {{-- <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5> --}}
                                     </div>
                                     <div class="coin_number d-flex align-items-center flex-wrap g-smm">
                                         <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
@@ -228,7 +228,7 @@
                             <div class="progres_text_area">
                                 <h5>Silver Reviewer</h5>
                                 @if (user()->total_bings < 250)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                   <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                             <div class="progres_text_area">
                                 <h5>Bronze Photographer</h5>
                                 @if (user()->total_bings < 500)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                   <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
@@ -258,12 +258,12 @@
                                     <img src="{{ asset('assets/app/icons/badges/badge-3.png') }}"
                                     alt="badge check icon" class="badge_img" />
                                 @endif
-                                
+
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
                                 @if (user()->total_bings < 750)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                   <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
@@ -274,14 +274,14 @@
                                 alt="badge check icon" class="badge_img" />
                                 @else
                                    <img src="{{ asset('assets/app/icons/badges/badge-4.png') }}"
-                                    alt="badge check icon" class="badge_img" /> 
+                                    alt="badge check icon" class="badge_img" />
                                 @endif
-                                
+
                             </div>
                             <div class="progres_text_area">
                                 <h5>Silver Reviewer</h5>
                                 @if (user()->total_bings < 1000)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                   <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
@@ -294,12 +294,12 @@
                                 <img src="{{ asset('assets/app/icons/badges/badge-5.png') }}"
                                 alt="badge check icon" class="badge_img" />
                                 @endif
-                                
+
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
                                 @if (user()->total_bings < 1250)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                   <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
@@ -316,7 +316,7 @@
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
                                 @if (user()->total_bings < 1500)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                   <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
