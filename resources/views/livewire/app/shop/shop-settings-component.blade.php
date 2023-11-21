@@ -65,7 +65,7 @@
                 </div>
                 <div class="user_grid">
                     <div class="img_area">
-                        <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" />
+                        <img src="{{ asset(getUserByID($shop->user_id)->avatar) }}" alt="user image" />
                     </div>
                     <div>
                         <h4>{{ $shop->name }}</h4>

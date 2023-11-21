@@ -108,18 +108,19 @@
                             </li> --}}
                         @endif
                         @if (Auth::user()->account_type == 'Private')
-                        <li>
-                            <a href="{{ route('app.scanner') }}">
-                                <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
-                                <div>
-                                    <h5>Scan QrCode</h5>
-                                    <h6>
-                                        Get special discount from shops!
-                                    </h6>
-                                </div>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{ route('app.scanner') }}">
+                                    <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
+                                    <div>
+                                        <h5>Scan QrCode</h5>
+                                        <h6>
+                                            Get special discount from shops!
+                                        </h6>
+                                    </div>
+                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
+                                        alt="right icon" />
+                                </a>
+                            </li>
                         @endif
                         <li>
                             <a href="{{ route('app.profile.share') }}" type="button">
@@ -664,10 +665,6 @@
                 </div>
             </div>
             <div class="container">
-                @if (session()->has('message'))
-                    <div>{{ session('message') }}</div>
-                @endif
-
                 <form wire:submit.prevent='changePassword'
                     class="mobile_form_area d-flex flex-column justify-content-between">
                     <div>
@@ -884,6 +881,19 @@
 </div>
 
 @push('scripts')
+    <script>
+        window.addEventListener('success', event => {
+            $.toast({
+                heading: "",
+                text: event.detail[0].message,
+                showHideTransition: "slide", //plain,fade
+                icon: "success", //success,warning,error,info
+                position: "bottom-center",
+                hideAfter: 3000,
+                loader: true,
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('.qr_type_btn').on('click', function() {
