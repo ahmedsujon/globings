@@ -22,7 +22,7 @@ class CreateEventComponent extends Component
             'date' => 'required',
             'location' => 'required',
             'banner' => 'required',
-            'banner.*' => 'mimes:jpeg,png,gif,pdf,mp4,avi,mov',
+            'banner.*' => 'mimes:jpeg,jpg,webp,png,mp4,avi,mov',
         ]);
 
         $data = new Event();

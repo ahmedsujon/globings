@@ -130,7 +130,11 @@
             <div class="container">
                 <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
                 <form action="" class="location_form_area" wire:ignore>
-                    <div class="search_grid">
+                    <div class="d-flex align-items-center g-sm search_sceleton">
+                        <div class="skeleton" style="width: 100%; height: 41px; border-radius: 40px;"></div>
+                        <div class="skeleton" style=" width: 80px; height: 41px; border-radius: 40px;"></div>
+                    </div>
+                    <div class="search_grid search_grid_skeleton d-none">
                         <div class="position-relative" id="cirt_select">
                             <select id="locationSearchSelect">
                                 <option value=""></option>
@@ -304,6 +308,9 @@
 
                 $('.shop_seceleton_container').addClass('d-none');
                 $('.shop_container').removeClass('d-none');
+
+                $('.search_sceleton').addClass('d-none');
+                $('.search_grid_skeleton').removeClass('d-none');
 
             }, 2000);
         });
