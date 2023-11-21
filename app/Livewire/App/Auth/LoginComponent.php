@@ -110,6 +110,7 @@ class LoginComponent extends Component
                         $bings_history->bings_for = 'Refer a friend';
                         $bings_history->description = 'You referred your friend';
                         $bings_history->bings = $bings;
+                        $bings_history->type = 'referral';
                         $bings_history->status = 1;
                         $bings_history->save();
 
