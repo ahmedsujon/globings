@@ -56,6 +56,7 @@
                                         @elseif (
                                             $event->extension == 'jpg' ||
                                                 $event->extension == 'jpeg' ||
+                                                $event->extension == 'webp' ||
                                                 $event->extension == 'png' ||
                                                 $event->extension == 'gif')
                                             <img class="roundeds" alt="200x200" width="100%" height="100%"
@@ -67,8 +68,6 @@
                                     <div class="info_area">
                                         <div class="container">
                                             <div class="d-flex-between">
-                                                {{-- <h4><a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}">Barber shop</a></h4> --}}
-                                                {{-- <h4><a href="#">Barber shop</a></h4> --}}
                                             </div>
                                         </div>
                                     </div>
