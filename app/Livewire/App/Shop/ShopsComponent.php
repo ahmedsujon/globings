@@ -6,11 +6,14 @@ use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Category;
+use Livewire\WithPagination;
 
 class ShopsComponent extends Component
 {
     public $categories, $pagination_value = 50, $filter_cities;
     public $phone, $edit_id;
+    use WithPagination;
+    
     public function mount()
     {
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
