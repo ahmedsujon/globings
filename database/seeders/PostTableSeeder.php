@@ -27,7 +27,7 @@ class PostTableSeeder extends Seeder
             $post->title = $title;
             $post->slug = $slug;
             $post->content = $faker->paragraph;
-            $post->images = ['assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg', 'assets/images/placeholder-rect.jpg'];
+            $post->images = ['assets/app/images/post/post_img1.png', 'assets/app/images/post/post_img2.png', 'assets/app/images/post/post_img3.png'];
             $post->status = 1;
             $post->save();
         }

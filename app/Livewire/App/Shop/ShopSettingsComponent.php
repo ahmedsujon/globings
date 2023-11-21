@@ -13,7 +13,7 @@ class ShopSettingsComponent extends Component
     use WithFileUploads;
 
     public $edit_id, $delete_id, $user_id;
-    public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, $longitude, $city, $address;
+    public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, $longitude, $city, $address, $bings_discount;
 
     public function mount()
     {
@@ -22,6 +22,7 @@ class ShopSettingsComponent extends Component
         $this->shop_category = $data->shop_category;
         $this->website_url = $data->website_url;
         $this->description = $data->description;
+        $this->bings_discount = $data->bings_discount;
         $this->edit_id = $data->id;
     }
 
@@ -46,6 +47,7 @@ class ShopSettingsComponent extends Component
         $this->shop_category = $data->shop_category;
         $this->website_url = $data->website_url;
         $this->description = $data->description;
+        $this->bings_discount = $data->bings_discount;
         $this->edit_id = $data->id;
     }
 
@@ -55,6 +57,7 @@ class ShopSettingsComponent extends Component
             'name' => 'required',
             'shop_category' => 'required',
             'description' => 'required',
+            'bings_discount' => 'required',
         ]);
 
         $data = Shop::where('user_id', user()->id)->first();
@@ -66,8 +69,9 @@ class ShopSettingsComponent extends Component
         $data->longitude = $this->longitude;
         $data->city = $this->city;
         $data->address = $this->address;
+        $data->bings_discount = $this->bings_discount;
         $data->save();
-        
+
         $this->dispatch('success', ['message' => 'Shop updated successfully']);
     }
 
