@@ -171,7 +171,7 @@
     <section class="company_map_wrapper" style="margin-top: -80px;">
         <div class="map_area chart_map_area">
             <!-- HTML -->
-            <div class="map_item" id="mapItem" style="height: 73vh;"></div>
+            <div class="map_item" id="mapItem" style="height: 67vh;"></div>
         </div>
     </section>
 
