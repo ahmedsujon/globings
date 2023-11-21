@@ -118,6 +118,23 @@
                 </div>
 
                 <div class="input_row">
+                    <select wire:model.blur="bings_discount" class="input_field">
+                        <option value="">Bings discount</option>
+                        <option value="3">3% (25 Bings)</option>
+                        <option value="5">5% (50 Bings)</option>
+                        <option value="7">7% (75 Bings)</option>
+                        <option value="10">10% (100 Bings)</option>
+                        <option value="15">15% (150 Bings)</option>
+                        <option value="20">20% (250 Bings)</option>
+                        <option value="30">30% (300 Bings)</option>
+                    </select>
+                    @error('bings_discount')
+                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                        <br>
+                    @enderror
+                </div>
+
+                <div class="input_row">
                     <textarea class="input_field" wire:model.blur="description" cols="30" rows="4"
                         placeholder="Share your business details"></textarea>
                     @error('description')
