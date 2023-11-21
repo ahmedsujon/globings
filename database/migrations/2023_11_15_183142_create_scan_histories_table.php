@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->integer('discount')->default(0);
             $table->double('bings', 20,2)->default(0);
+            $table->enum('type', ['discount', 'visit'])->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
