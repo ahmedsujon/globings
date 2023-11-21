@@ -2,11 +2,12 @@
 
 namespace App\Livewire\App\Scanner;
 
-use App\Models\BingsHistory;
-use App\Models\ScanHistory;
+use Carbon\Carbon;
 use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
+use App\Models\ScanHistory;
+use App\Models\BingsHistory;
 use Illuminate\Http\Request;
 
 class ProfileScannerComponent extends Component
@@ -25,7 +26,7 @@ class ProfileScannerComponent extends Component
         if($shop){
             if($user_id != $scanned_by){
                 if($type == 'discount'){
-                    $scan_status = ScanHistory::where('shop_id', $shop->id)->where('type', 'discount')->where('user_id', user()->id)->first();
+                    $scan_status = ScanHistory::where('shop_id', $shop->id)->where('type', 'discount')->where('user_id', user()->id)->where('valid_till', '>', now())->orderBy('id', 'DESC')->first();
                     if($scan_status){
                         return response()->json(['message' => 'second_scan', 'scan_id' => 0]);
                     } else {
@@ -68,6 +69,7 @@ class ProfileScannerComponent extends Component
                             $history->discount = $shop->bings_discount;
                             $history->bings = $amount;
                             $history->type = 'discount';
+                            $history->valid_till = Carbon::parse(now())->addHours(12);
                             $history->status = 1;
                             $history->save();
 
@@ -77,7 +79,7 @@ class ProfileScannerComponent extends Component
                         }
                     }
                 } else {
-                    $visit_scan_status = ScanHistory::where('shop_id', $shop->id)->where('type', 'visit')->where('user_id', user()->id)->first();
+                    $visit_scan_status = ScanHistory::where('shop_id', $shop->id)->where('type', 'visit')->where('user_id', user()->id)->where('valid_till', '>', now())->orderBy('id', 'DESC')->first();
 
                     if($visit_scan_status){
                         return response()->json(['message' => 'second_scan', 'scan_id' => 0]);
@@ -95,6 +97,7 @@ class ProfileScannerComponent extends Component
                         $bings_history->bings_for = 'Visiting a shop';
                         $bings_history->description = 'You visited a shop';
                         $bings_history->bings = 5;
+                        $bings_history->type = 'validation';
                         $bings_history->status = 1;
                         $bings_history->save();
 
@@ -104,6 +107,7 @@ class ProfileScannerComponent extends Component
                         $history->discount = 0;
                         $history->bings = 5;
                         $history->type = 'visit';
+                        $history->valid_till = Carbon::parse(now())->addHours(12);
                         $history->status = 1;
                         $history->save();
 
