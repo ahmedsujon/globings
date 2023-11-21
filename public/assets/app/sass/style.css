@@ -1114,6 +1114,8 @@
   position: absolute;
   right: -11px;
   bottom: 0;
+  width: auto !important;
+  height: auto !important;
 }
 
 .profile_edit_modal .bing_back_area {
@@ -4882,7 +4884,6 @@ main {
 }
 .location_form_area .select2 .select2-selection {
   border: none !important;
-  /* border-bottom: 1.5px solid #e8e8e8 !important; */
   height: 32px;
 }
 .location_form_area .select2-selection__arrow b {
@@ -5459,4 +5460,8 @@ main {
 }
 .edit_select_area .es-input::selection {
   background-color: transparent;
+}
+
+.select2-container--default .select2-selection--single {
+  background-color: transparent !important;
 }/*# sourceMappingURL=style.css.map */
