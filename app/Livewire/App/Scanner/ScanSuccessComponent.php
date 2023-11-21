@@ -8,12 +8,12 @@ use Livewire\Component;
 
 class ScanSuccessComponent extends Component
 {
-    public $shop;
+    public $shop, $scan_history;
     public function mount()
     {
         if(request()->get('scan_id')){
-            $scan_history = ScanHistory::find(request()->get('scan_id'));
-            $this->shop = Shop::find($scan_history->shop_id);
+            $this->scan_history = ScanHistory::find(request()->get('scan_id'));
+            $this->shop = Shop::find($this->scan_history->shop_id);
         } else {
             abort(404);
         }

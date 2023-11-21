@@ -106,6 +106,8 @@ class ProfileScannerComponent extends Component
                         $history->type = 'visit';
                         $history->status = 1;
                         $history->save();
+
+                        return response()->json(['message' => 'scan_successful', 'scan_id' => $history->id]);
                     }
                 }
 
