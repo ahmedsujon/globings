@@ -155,6 +155,18 @@
                         </a>
                     </div>
                 </form>
+                <form action="" class="location_search_form" wire:ignore>
+                    <div class="d-flex align-items-center g-sm search_sceleton">
+                        <div class="skeleton" style="width: 100%; height: 41px; border-radius: 40px;"></div>
+                    </div>
+                    <div class="position-relative search_grid_skeleton d-none">
+                        <input type="search" name="search_value" id="search_value" placeholder="Search your shop"
+                            class="search_input" value="{{ request()->get('search_value') }}"
+                            style="background: transparent;" />
+                        <img src="{{ asset('assets/app/icons/location_search_icon.svg') }}" alt="location search"
+                            class="search_icon" />
+                    </div>
+                </form>
                 <div class="category_slider_area border-0 pb-2" id="headerCategorySlider">
                     <div class="d-flex align-items-center g-sm category_sceleton">
                         <div class="skeleton" style="width: 64px; height: 45px"></div>
@@ -167,7 +179,7 @@
                         <div class="swiper-wrapper">
                             @foreach ($categories as $category)
                                 <div class="swiper-slide">
-                                    <a href="{{ route('app.shops') }}?category={{ $category->id }}"
+                                    <a href="{{ route('app.shops') }}?category={{ $category->id }}&city={{ request()->get('city') }}&search_value={{ request()->get('search_value') }}"
                                         class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
                                         <img src="{{ asset($category->icon) }}" alt="category icon" />
                                         <h4>{{ $category->name }}</h4>
@@ -264,7 +276,9 @@
                         @foreach ($shops as $shop)
                             <div class="location_item">
                                 <div class="position-relative">
-                                    <img src="{{ asset($shop->cover_photo) }}" alt="post image" class="post_img" />
+                                    <a href="{{ route('app.shopProfile', ['user_id' => $shop->user_id]) }}">
+                                        <img src="{{ asset($shop->cover_photo) }}" alt="post image" class="post_img" />
+                                    </a>
                                     <div class="info_area">
                                         <div class="container">
                                             <div class="d-flex-between">
@@ -322,8 +336,22 @@
 
             var value = data['id'];
             var category = $('#category').val();
+            var search_value = $('#search_value').val();
 
-            window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category;
+            window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category +
+                '&search_value=' + search_value;
+        });
+
+        $('.location_search_form').on('submit', function(e) {
+
+            e.preventDefault();
+
+            var value = $('#locationSearchSelect').val();
+            var category = $('#category').val();
+            var search_value = $('#search_value').val();
+
+            window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category +
+                '&search_value=' + search_value;
         });
     </script>
 @endpush
