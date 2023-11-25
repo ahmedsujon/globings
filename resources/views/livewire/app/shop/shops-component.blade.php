@@ -161,7 +161,8 @@
                     </div>
                     <div class="position-relative search_grid_skeleton d-none">
                         <input type="search" name="search_value" id="search_value" placeholder="Search your shop"
-                            class="search_input" value="{{ request()->get('search_value') }}" style="background: transparent;" />
+                            class="search_input" value="{{ request()->get('search_value') }}"
+                            style="background: transparent;" />
                         <img src="{{ asset('assets/app/icons/location_search_icon.svg') }}" alt="location search"
                             class="search_icon" />
                     </div>
@@ -275,7 +276,9 @@
                         @foreach ($shops as $shop)
                             <div class="location_item">
                                 <div class="position-relative">
-                                    <img src="{{ asset($shop->cover_photo) }}" alt="post image" class="post_img" />
+                                    <a href="{{ route('app.shopProfile', ['user_id' => $shop->user_id]) }}">
+                                        <img src="{{ asset($shop->cover_photo) }}" alt="post image" class="post_img" />
+                                    </a>
                                     <div class="info_area">
                                         <div class="container">
                                             <div class="d-flex-between">
