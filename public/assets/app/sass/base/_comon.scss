@@ -1487,3 +1487,17 @@ main {
 .select2-container--default .select2-selection--single {
   background-color: transparent !important;
 }
+
+//Post tag list
+.post_tag_list {
+  gap: 10px 15px;
+  margin-bottom: 10px;
+  li,
+  a {
+    color: #929292;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}

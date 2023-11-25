@@ -21,6 +21,8 @@ return new class extends Migration
             $table->longText('images')->nullable();
             $table->integer('total_likes')->default(0);
             $table->integer('total_comments')->default(0);
+            $table->longText('tags')->nullable();
+            $table->longText('searchable_tags')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

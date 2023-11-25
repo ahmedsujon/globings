@@ -68,7 +68,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="{{ route('app.events') }}" class="category_item">
-                            <img src="{{ asset('assets/app/icons/events_category.svg') }}" alt="category icon" />
+                            <img src="{{ asset('assets/app/icons/home_category_icon1.svg') }}" alt="category icon" />
                             <h4>Events</h4>
                         </a>
                     </div>
@@ -227,6 +227,14 @@
                             </a>
                         </div>
                         <div class="post_area">
+                            @if ($post->tags)
+                                <ul class="post_tag_list d-flex align-items-center flex-wrap">
+                                    @foreach (tagify_array($post->tags) as $tag)
+                                        <li><a href="{{ route('app.home') }}?tag={{ $tag }}">#{{ $tag }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
                             <div class="swiper post_slider1" wire:ignore>
                                 <div class="swiper-wrapper">
                                     @foreach ($post->images as $image)
@@ -240,6 +248,9 @@
                                 <!-- Add Pagination -->
                                 <div class="swiper-pagination"></div>
                             </div>
+                            <p class="post_description">
+                                {!! $post->content !!}
+                            </p>
                             <div class="action_area d-flex align-items-center flex-wrap">
                                 <button type="button" data-post_id="{{ $post->id }}"
                                     class="heart_icon add_like_btn {{ isLiked($post->id) ? 'selected_heart' : '' }}"
@@ -472,7 +483,7 @@
                 <h4 class="notification_title">Create Post</h4>
             </div>
             <div class="header_border"></div>
-            <form wire:submit.prevent='createPost' class="mobile_form_area post_form_area" id="postCreateFormSubmit">
+            <form wire:submit.prevent='createPost' class="mobile_form_area post_form_area" style="justify-content: normal !important;" id="postCreateFormSubmit">
                 <div class="user_grid">
                     <img src="{{ asset(user()->avatar) }}" alt="user image" class="user_img" />
                     <div>
@@ -484,6 +495,14 @@
                     <textarea class="input_field" wire:model.blur='content' cols="30" rows="5"
                         placeholder="Share details of your own experience at this place"></textarea>
                     @error('content')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="input_row">
+                    <div wire:ignore>
+                        <input type="text" name="keywords" id="keyWords" class="input_field" placeholder="Enter your tags" />
+                    </div>
+                    @error('tags')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -521,6 +540,14 @@
 </div>
 
 @push('scripts')
+    <script>
+        var input = document.querySelector('input[name=keywords]');
+        new Tagify(input);
+        $('#keyWords').on('change', function(){
+            var val = $(this).val();
+            @this.set('tags', val);
+        });
+    </script>
     <script>
         $(document).ready(function() {
             setTimeout(function() {
