@@ -13,7 +13,7 @@ class ShopsComponent extends Component
     public $categories, $pagination_value = 50, $filter_cities;
     public $phone, $edit_id;
     use WithPagination;
-    
+
     public function mount()
     {
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
@@ -38,7 +38,7 @@ class ShopsComponent extends Component
 
         $shops = Shop::orderBy('id', 'DESC');
 
-        if($city){
+        if($city && $city != 'all'){
             $shops = $shops->where('city', 'like', '%' . $city . '%');
         }
 
