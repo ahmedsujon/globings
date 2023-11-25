@@ -15,15 +15,15 @@ class CategoryTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['Hairdressing', 'Grocery', 'Cafe Bar', "Butcher's shop", 'Fish Shop', 'Vegitables Shop'];
+        $categories = ['Food Sales', 'Restaurants', 'Beauty and Wellness', 'Culture and Leisure', 'Home and DIY', 'Jewelry and Watches', 'Automotive', 'Animals', 'Fitness and Sports', 'Clothing Shopping', 'Real Estate', 'Childcare Centers', 'Textile and Shoe Treatment', 'Parks and Gardens'];
 
-        foreach ($categories as $category) {
+        foreach ($categories as $key => $category) {
             $faker = Faker::create();
 
             $cat = new Category();
             $cat->name = $category;
             $cat->slug = Str::slug($category);
-            $cat->icon = 'assets/images/category_icons/icon_' . $faker->unique(true)->numberBetween(1, 5).'.png';
+            $cat->icon = 'assets/app/icons/home_category_icon'. $key + 2 .'.svg';
             $cat->status = 1;
             $cat->save();
         }

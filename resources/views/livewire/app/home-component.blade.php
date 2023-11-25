@@ -68,7 +68,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="{{ route('app.events') }}" class="category_item">
-                            <img src="{{ asset('assets/app/icons/events_category.svg') }}" alt="category icon" />
+                            <img src="{{ asset('assets/app/icons/home_category_icon1.svg') }}" alt="category icon" />
                             <h4>Events</h4>
                         </a>
                     </div>
