@@ -483,7 +483,7 @@
                 <h4 class="notification_title">Create Post</h4>
             </div>
             <div class="header_border"></div>
-            <form wire:submit.prevent='createPost' class="mobile_form_area post_form_area" id="postCreateFormSubmit">
+            <form wire:submit.prevent='createPost' class="mobile_form_area post_form_area" style="justify-content: normal !important;" id="postCreateFormSubmit">
                 <div class="user_grid">
                     <img src="{{ asset(user()->avatar) }}" alt="user image" class="user_img" />
                     <div>
@@ -495,6 +495,14 @@
                     <textarea class="input_field" wire:model.blur='content' cols="30" rows="5"
                         placeholder="Share details of your own experience at this place"></textarea>
                     @error('content')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="input_row">
+                    <div wire:ignore>
+                        <input type="text" name="keywords" id="keyWords" class="input_field" placeholder="Enter your tags" />
+                    </div>
+                    @error('tags')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -532,6 +540,14 @@
 </div>
 
 @push('scripts')
+    <script>
+        var input = document.querySelector('input[name=keywords]');
+        new Tagify(input);
+        $('#keyWords').on('change', function(){
+            var val = $(this).val();
+            @this.set('tags', val);
+        });
+    </script>
     <script>
         $(document).ready(function() {
             setTimeout(function() {

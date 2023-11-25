@@ -22,18 +22,23 @@ class HomeComponent extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [];
+    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [], $tags, $sort_category, $sort_city, $sort_tag;
     public function mount()
     {
         $this->search_term = request()->get('search');
         $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
         $this->cities = Shop::where('city', '!=', '')->pluck('city')->toArray();
+
+        $this->sort_category = request()->get('category');
+        $this->sort_city = request()->get('city');
+        $this->sort_tag = request()->get('tag');
     }
 
     public function updated($fields)
     {
         $this->validateOnly($fields, [
             'content' => 'required',
+            'tags' => 'required',
             'images' => 'required',
             'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
@@ -149,6 +154,7 @@ class HomeComponent extends Component
     {
         $this->validate([
             'content' => 'required',
+            'tags' => 'required',
             'images' => 'required',
             'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
@@ -158,6 +164,8 @@ class HomeComponent extends Component
         $post->slug = Str::slug(Str::lower(Str::random(4)) . ' ' . Str::lower(Str::random(4)) . ' ' . Str::lower(Str::random(4)));
         $post->user_id = user()->id;
         $post->content = $this->content;
+        $post->tags = $this->tags;
+        $post->searchable_tags = tagify_array($this->tags);
         $post->status = 1;
         if ($this->images) {
             $postImgs = [];
@@ -186,22 +194,21 @@ class HomeComponent extends Component
 
     public function render()
     {
-        if (request()->get('category')) {
-            $categories = explode(',', request()->get('category'));
+        $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%' . $this->search_term . '%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
 
-            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->whereIn('posts.category_id', $categories)->where('shops.name', 'like', '%' . $this->search_term . '%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
-        } else {
-            $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where('shops.name', 'like', '%' . $this->search_term . '%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
+        if ($this->sort_category) {
+            $categories = explode(',', $this->sort_category);
+
+            $posts = $posts->whereIn('posts.category_id', $categories);
         }
 
-        if (request()->get('city')) {
-            $posts = $posts->where('shops.city', request()->get('city'));
+        if ($this->sort_city) {
+            $posts = $posts->where('shops.city', $this->sort_city);
         }
 
-        if (request()->get('tag')) {
-            $posts = $posts->where('posts.searchable_tags', 'like', '%'.request()->get('tag').'%');
+        if ($this->sort_tag) {
+            $posts = $posts->where('posts.searchable_tags', 'like', '%'.$this->sort_tag.'%');
         }
-
 
         $posts = $posts->paginate($this->pagination_value);
 

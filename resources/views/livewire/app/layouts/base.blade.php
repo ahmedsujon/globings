@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/jquery.toast.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/pace-theme-flash.css') }}" />
 
+    {{-- tagify --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.12.0/tagify.min.css" />
+
     <link rel="stylesheet" href="{{ asset('assets/app/sass/style.css') }}" />
 </head>
 
@@ -70,6 +73,9 @@
 
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    
+    {{-- tagify --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.12.0/tagify.min.js"></script>
 
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
