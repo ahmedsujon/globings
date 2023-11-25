@@ -198,6 +198,10 @@ class HomeComponent extends Component
             $posts = $posts->where('shops.city', request()->get('city'));
         }
 
+        if (request()->get('tag')) {
+            $posts = $posts->where('posts.searchable_tags', 'like', '%'.request()->get('tag').'%');
+        }
+
 
         $posts = $posts->paginate($this->pagination_value);
 

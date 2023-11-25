@@ -227,11 +227,14 @@
                             </a>
                         </div>
                         <div class="post_area">
-                            <ul class="post_tag_list d-flex align-items-center flex-wrap">
-                                <li><a href="#">#Popular</a></li>
-                                <li><a href="#">#Shop</a></li>
-                                <li><a href="#">#sojunshop</a></li>
-                            </ul>
+                            @if ($post->tags)
+                                <ul class="post_tag_list d-flex align-items-center flex-wrap">
+                                    @foreach (tagify_array($post->tags) as $tag)
+                                        <li><a href="{{ route('app.home') }}?tag={{ $tag }}">#{{ $tag }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
                             <div class="swiper post_slider1" wire:ignore>
                                 <div class="swiper-wrapper">
                                     @foreach ($post->images as $image)

@@ -255,3 +255,57 @@ function showErrorMessage($message, $file, $line){
     }
 }
 
+function tagify_array( $value ) {
+
+    // Because the $value is an array of json objects
+    // we need this helper function.
+
+    // First check if is not empty
+    if( empty( $value ) ) {
+
+        return $output = array();
+
+    } else {
+
+        // Remove squarebrackets
+        $value = str_replace( array('[',']') , '' , $value );
+
+        // Fix escaped double quotes
+        $value = str_replace( '\"', "\"" , $value );
+
+        // Create an array of json objects
+        $value = explode(',', $value);
+
+        // Let's transform into an array of inputed values
+        // Create an array
+        $value_array = array();
+
+        // Check if is array and not empty
+        if ( is_array($value) && 0 !== count($value) ) {
+
+            foreach ($value as $value_inner) {
+                $value_array[] = json_decode( $value_inner );
+            }
+
+            // Convert object to array
+            // Note: function (array) not working.
+            // This is the trick: create a json of the values
+            // and then transform back to an array
+            $value_array = json_decode(json_encode($value_array), true);
+
+            // Create an array only with the values of the child array
+            $output = array();
+
+            foreach($value_array as $value_array_inner) {
+                foreach ($value_array_inner as $key=>$val) {
+                    $output[] = $val;
+                }
+            }
+
+        }
+
+        return $output;
+
+    }
+
+}

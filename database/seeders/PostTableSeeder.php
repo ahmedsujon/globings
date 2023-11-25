@@ -33,6 +33,8 @@ class PostTableSeeder extends Seeder
             $post->slug = $slug;
             $post->content = $faker->paragraph;
             $post->images = ['assets/app/images/post/post_img'.$values[0].'.png', 'assets/app/images/post/post_img'.$values[1].'.png', 'assets/app/images/post/post_img'.$values[2].'.png'];
+            $post->tags = '[{"value":"Tag 1"},{"value":"Tag 2"}]';
+            $post->searchable_tags = '["Tag 1","Tag 2"]';
             $post->status = 1;
             $post->save();
         }
