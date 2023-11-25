@@ -227,6 +227,11 @@
                             </a>
                         </div>
                         <div class="post_area">
+                            <ul class="post_tag_list d-flex align-items-center flex-wrap">
+                                <li><a href="#">#Popular</a></li>
+                                <li><a href="#">#Shop</a></li>
+                                <li><a href="#">#sojunshop</a></li>
+                            </ul>
                             <div class="swiper post_slider1" wire:ignore>
                                 <div class="swiper-wrapper">
                                     @foreach ($post->images as $image)
@@ -240,6 +245,11 @@
                                 <!-- Add Pagination -->
                                 <div class="swiper-pagination"></div>
                             </div>
+                            <p class="post_description">
+                                Panshi Restaurant. It is located along the road at Sunamganj
+                                Bus Stand. Rose Garden Restaurant is next to it. Panshi
+                                Restaurant has both non AC rooms and AC rooms.
+                            </p>
                             <div class="action_area d-flex align-items-center flex-wrap">
                                 <button type="button" data-post_id="{{ $post->id }}"
                                     class="heart_icon add_like_btn {{ isLiked($post->id) ? 'selected_heart' : '' }}"

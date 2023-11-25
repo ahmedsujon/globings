@@ -46,7 +46,7 @@
 
 /* Category Slider Section */
 .category_slider_area {
-  margin-top: 21px;
+  margin-top: 16px;
   border-bottom: 1px solid #f7f7f9;
 }
 .category_slider_area .swiper {
@@ -54,6 +54,7 @@
 }
 .category_slider_area .swiper-slide {
   width: auto;
+  max-width: 63px;
 }
 .category_slider_area .category_item {
   position: relative;
@@ -81,17 +82,30 @@
   -o-transition: transform 0.3s ease;
 }
 .category_slider_area .category_item img {
-  max-width: 22px;
-  max-height: 22px;
+  max-width: 36px;
+  max-height: 36px;
 }
 .category_slider_area .category_item h4 {
-  color: #626262;
   font-family: "Inter", sans-serif;
+  color: #626262;
+  text-align: center;
   font-size: 9.934px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-top: 7px;
+  margin-top: 8px;
+}
+.category_slider_area .event_category_item::before {
+  content: "";
+  position: absolute;
+  right: -11px;
+  top: 6px;
+  width: 1px;
+  height: 40px;
+  background: #8f8f8f;
+}
+.category_slider_area .event_category_item h4 {
+  color: #1872f6;
 }
 .category_slider_area .active_category::after {
   transform: translateX(-50%) scaleX(1);
@@ -484,6 +498,18 @@
 .post_home_wrapper .post_area {
   position: relative;
 }
+.post_home_wrapper .post_area .post_description {
+  color: #000;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 7px;
+}
 .post_home_wrapper .coment_area {
   gap: 4px;
 }
@@ -511,14 +537,14 @@
   min-height: 16px;
   border-radius: 4px;
   font-size: 8px;
-  color: #fff;
-  background: rgba(0, 6, 16, 0.66);
+  color: #020100;
+  background: #fff;
   -webkit-backdrop-filter: blur(16.5px);
           backdrop-filter: blur(16.5px);
 }
 .post_home_wrapper .swiper-pagination .swiper-pagination-current,
 .post_home_wrapper .swiper-pagination .swiper-pagination-total {
-  color: #fff;
+  color: #020100;
   text-align: center;
   font-size: 8px;
   font-style: normal;
@@ -5464,4 +5490,17 @@ main {
 
 .select2-container--default .select2-selection--single {
   background-color: transparent !important;
+}
+
+.post_tag_list {
+  gap: 10px 15px;
+  margin-bottom: 10px;
+}
+.post_tag_list li,
+.post_tag_list a {
+  color: #929292;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }/*# sourceMappingURL=style.css.map */

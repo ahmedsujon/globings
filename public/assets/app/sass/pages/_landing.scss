@@ -83,6 +83,18 @@
   }
   .post_area {
     position: relative;
+    .post_description {
+      color: #000;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 13px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-top: 7px;
+    }
   }
 
   .coment_area {
@@ -112,14 +124,13 @@
     min-height: 16px;
     border-radius: 4px;
     font-size: 8px;
-    color: #fff;
-    background: rgba(0, 6, 16, 0.66);
+    color: #020100;
+    background: #fff;
     backdrop-filter: blur(16.5px);
     .swiper-pagination-current,
     .swiper-pagination-total {
-      color: #fff;
+      color: #020100;
       text-align: center;
-
       font-size: 8px;
       font-style: normal;
       font-weight: 500;
