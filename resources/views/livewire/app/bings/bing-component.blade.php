@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="d-flex-between">
                     <a href="#" class="bing_setting_icion">
-                        <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" />
+                        {{-- <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" /> --}}
                     </a>
                     <button type="button"
                         class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm"
@@ -24,7 +24,7 @@
                             <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" class="bing_user_img" />
                         @endif
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="bings-badge.html" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
+                            <a href="#" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
                                 <img src="{{ asset('assets/app/icons/bookmark.png') }}" alt="book mark" />
                                 <span>{{ user()->bings_balance }} Bings</span>
                                 <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
@@ -36,7 +36,7 @@
                         <h5><span>@</span>{{ Auth::user()->username }}</h5>
                     </div>
                     <div class="reward_card_wrapper">
-                        <button href="#" class="reward_card_item" id="inviteModalBtn">
+                        <a href="{{ route('app.profile.share') }}" class="reward_card_item" id="">
                             <div>
                                 <h4>Get your 10+ Bings invite bonus!</h4>
                                 <h5>
@@ -49,12 +49,12 @@
                                 <img src="{{ asset('assets/app/icons/bings_invite_icon.svg') }}" alt="invite icon"
                                     class="invite_icon" />
                             </div>
-                        </button>
+                        </a>
                         <button type="button" class="reward_card_item" id="localModalBtn">
                             <div>
-                                <h4>Status Bings</h4>
+                                <h4>Bings Badges</h4>
                                 <h5>
-                                    Rewards by shop Bonus & challenges
+                                    Rewards by challenges and shop visits
                                     <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
                                         class="right_arrow" />
                                 </h5>
@@ -65,7 +65,7 @@
                             </div>
                         </button>
                     </div>
-                    <div class="bing_category_wrapper mb-5">
+                    {{-- <div class="bing_category_wrapper mb-5">
                         <h4 class="bing_inner_title">Explore Bings by category</h4>
                         <div class="category_grid">
                             <a href="#" class="bing_category_item">
@@ -77,7 +77,7 @@
                                 <h4>Bonus & challenges</h4>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
@@ -123,7 +123,7 @@
                     <h4>{{ $referred_bings }}</h4>
                 </div>
             </div>
-            <div class="container" wire:poll>
+            <div class="container">
                 <div class="coin_history_area">
                     <h3 class="bing_inner_title">Bings History</h3>
 
