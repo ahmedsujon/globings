@@ -246,9 +246,7 @@
                                 <div class="swiper-pagination"></div>
                             </div>
                             <p class="post_description">
-                                Panshi Restaurant. It is located along the road at Sunamganj
-                                Bus Stand. Rose Garden Restaurant is next to it. Panshi
-                                Restaurant has both non AC rooms and AC rooms.
+                                {!! $post->content !!}
                             </p>
                             <div class="action_area d-flex align-items-center flex-wrap">
                                 <button type="button" data-post_id="{{ $post->id }}"
