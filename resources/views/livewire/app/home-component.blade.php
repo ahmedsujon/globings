@@ -316,11 +316,11 @@
                         </div>
                     @endif
 
-                    {{-- <div class="range_area" wire:ignore>
+                    <div class="range_area" wire:ignore>
                         <h4 class="bring_bottom_text">Range of area</h4>
-                        <input data-addui="slider" data-range="true" data-fontsize="14" data-step="0.01"
-                            data-min="5" data-max="20" value="10" data-formatter="usd" />
-                    </div> --}}
+                        <input data-addui="slider" data-range="false" data-fontsize="14" data-step="1"
+                            data-min="5" data-max="50" value="20" data-formatter="usd" />
+                    </div>
                     <div class="btn_area">
                         <button type="submit" class="login_btn login_btn_fill">
                             Apply
