@@ -5,10 +5,10 @@
             <div class="container position-relative">
                 <ul class="top_mobile_menu_list">
                     <li>
-                        <a href="{{ route('app.bings') }}">
+                        <a href="{{ route('app.events') }}">
                             <img src="{{ asset('assets/app/icons/footer_top_menu_icon1.svg') }}"
                                 alt="footer menu icon " />
-                            <span class="text">Bings</span>
+                            <span class="text">Events</span>
                         </a>
                     </li>
                     <li>
@@ -26,10 +26,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('app.profile.share') }}">
                             <img src="{{ asset('assets/app/icons/footer_top_menu_icon4.svg') }}"
                                 alt="footer menu icon " />
-                            <span class="text">Friend</span>
+                            <span class="text">Invite</span>
                         </a>
                     </li>
                     <li>
