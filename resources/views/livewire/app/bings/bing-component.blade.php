@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="d-flex-between">
                     <a href="#" class="bing_setting_icion">
-                        <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" />
+                        {{-- <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" /> --}}
                     </a>
                     <button type="button"
                         class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm"
@@ -24,7 +24,7 @@
                             <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" class="bing_user_img" />
                         @endif
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="bings-badge.html" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
+                            <a href="#" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
                                 <img src="{{ asset('assets/app/icons/bookmark.png') }}" alt="book mark" />
                                 <span>{{ user()->bings_balance }} Bings</span>
                                 <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
@@ -36,7 +36,7 @@
                         <h5><span>@</span>{{ Auth::user()->username }}</h5>
                     </div>
                     <div class="reward_card_wrapper">
-                        <button href="#" class="reward_card_item" id="inviteModalBtn">
+                        <a href="{{ route('app.profile.share') }}" class="reward_card_item" id="">
                             <div>
                                 <h4>Get your 10+ Bings invite bonus!</h4>
                                 <h5>
@@ -49,12 +49,12 @@
                                 <img src="{{ asset('assets/app/icons/bings_invite_icon.svg') }}" alt="invite icon"
                                     class="invite_icon" />
                             </div>
-                        </button>
+                        </a>
                         <button type="button" class="reward_card_item" id="localModalBtn">
                             <div>
-                                <h4>Status Bings</h4>
+                                <h4>Bings Badges</h4>
                                 <h5>
-                                    Rewards by shop Bonus & challenges
+                                    Rewards by challenges and shop visits
                                     <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
                                         class="right_arrow" />
                                 </h5>
@@ -65,7 +65,7 @@
                             </div>
                         </button>
                     </div>
-                    <div class="bing_category_wrapper mb-5">
+                    {{-- <div class="bing_category_wrapper mb-5">
                         <h4 class="bing_inner_title">Explore Bings by category</h4>
                         <div class="category_grid">
                             <a href="#" class="bing_category_item">
@@ -77,7 +77,7 @@
                                 <h4>Bonus & challenges</h4>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </section>
@@ -123,7 +123,7 @@
                     <h4>{{ $referred_bings }}</h4>
                 </div>
             </div>
-            <div class="container" wire:poll>
+            <div class="container">
                 <div class="coin_history_area">
                     <h3 class="bing_inner_title">Bings History</h3>
 
@@ -153,7 +153,7 @@
                                                 alt="right arrow" />
                                         </h4>
                                         <h5>{{ $data->description }}</h5>
-                                        <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5>
+                                        {{-- <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5> --}}
                                     </div>
                                     <div class="coin_number d-flex align-items-center flex-wrap g-smm">
                                         <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
@@ -183,27 +183,98 @@
                 </div>
             </div>
             <div class="container">
-                <div class="local_grid">
+                {{-- <div class="local_grid">
                     <p>See your own Local Guides status Go to your contributions</p>
                     <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
                         class="right_arrow" />
-                </div>
+                </div> --}}
                 <div class="badge_profilel_area text-center">
                     <img src="{{ asset('assets/app/icons/badge_star_icon.png') }}" alt="badge star icon"
                         class="badge_star_icon" />
                     <div>
                         <h4 class="company_inner_title">Local Guide</h4>
-                        <h5 class="bidge_sub_text bidge_leavel mt-1">Level 3</h5>
+                        <h5 class="bidge_sub_text bidge_leavel mt-1">Level
+                            @if (user()->total_bings < 250)
+                                0
+                            @elseif (user()->total_bings >= 250)
+                                1
+                            @elseif (user()->total_bings >= 500)
+                                2
+                            @elseif (user()->total_bings >= 750)
+                                3
+                            @elseif (user()->total_bings >= 1000)
+                                4
+                            @elseif (user()->total_bings >= 1250)
+                                5
+                            @elseif (user()->total_bings >= 1500)
+                                6
+                            @elseif (user()->total_bings >= 1500)
+                                Top
+                            @endif
+                        </h5>
                     </div>
 
                     <div class="progress_area">
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
+                            @if (user()->total_bings < 250)
+                                @php
+                                    $percentage = (user()->total_bings / 250) * 100;
+                                @endphp
+                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
                                 aria-valuemin="0" aria-valuemax="100"></div>
+                            @elseif (user()->total_bings >= 250)
+                                @php
+                                    $percentage = (user()->total_bings / 500) * 100;
+                                @endphp
+                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                            @elseif (user()->total_bings >= 500)
+                                @php
+                                    $percentage = (user()->total_bings / 750) * 100;
+                                @endphp
+                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                            @elseif (user()->total_bings >= 750)
+                                @php
+                                    $percentage = (user()->total_bings / 1000) * 100;
+                                @endphp
+                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                            @elseif (user()->total_bings >= 1000)
+                                @php
+                                    $percentage = (user()->total_bings / 1250) * 100;
+                                @endphp
+                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                            @elseif (user()->total_bings >= 1250)
+                                @php
+                                    $percentage = (user()->total_bings / 1500) * 100;
+                                @endphp
+                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                            @elseif (user()->total_bings >= 1500)
+                                <div class="progress-bar" role="progressbar" style="width: 100%"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                            @endif
                         </div>
                         <div class="progress_number_area d-flex-between">
                             <h4>{{ user()->bings_balance }}</h4>
-                            <h4><span>{{ user()->total_bings }} /</span> 20,000</h4>
+                            <h4><span>{{ user()->total_bings }} /</span>
+                            @if (user()->total_bings < 250)
+                                250
+                            @elseif (user()->total_bings >= 250)
+                                500
+                            @elseif (user()->total_bings >= 500)
+                                750
+                            @elseif (user()->total_bings >= 750)
+                                1000
+                            @elseif (user()->total_bings >= 1000)
+                                1250
+                            @elseif (user()->total_bings >= 1250)
+                                1500
+                            @elseif (user()->total_bings >= 1500)
+                                No-Limit
+                            @endif</h4>
                         </div>
                         <h5 class="bidge_sub_text text-start">
                             As you help other people, you earn points for each contribution
@@ -228,60 +299,60 @@
                             <div class="progres_text_area">
                                 <h5>Silver Reviewer</h5>
                                 @if (user()->total_bings < 250)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                    <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
                         <div class="circle_progress_item">
                             <div class="badge_img_area">
                                 @if (user()->total_bings >= 500)
-                                <img src="{{ asset('assets/app/icons/badges/active-badge-2.png') }}"
-                                alt="badge check icon" class="badge_img" />
+                                    <img src="{{ asset('assets/app/icons/badges/active-badge-2.png') }}"
+                                        alt="badge check icon" class="badge_img" />
                                 @else
                                     <img src="{{ asset('assets/app/icons/badges/badge-2.png') }}"
-                                    alt="badge check icon" class="badge_img" />
+                                        alt="badge check icon" class="badge_img" />
                                 @endif
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Photographer</h5>
                                 @if (user()->total_bings < 500)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                    <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
                         <div class="circle_progress_item">
                             <div class="badge_img_area">
                                 @if (user()->total_bings >= 750)
-                                <img src="{{ asset('assets/app/icons/badges/active-badge-3.png') }}"
-                                alt="badge check icon" class="badge_img" />
+                                    <img src="{{ asset('assets/app/icons/badges/active-badge-3.png') }}"
+                                        alt="badge check icon" class="badge_img" />
                                 @else
                                     <img src="{{ asset('assets/app/icons/badges/badge-3.png') }}"
-                                    alt="badge check icon" class="badge_img" />
+                                        alt="badge check icon" class="badge_img" />
                                 @endif
-                                
+
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
                                 @if (user()->total_bings < 750)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                    <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
                         <div class="circle_progress_item">
                             <div class="badge_img_area">
                                 @if (user()->total_bings >= 1000)
-                                <img src="{{ asset('assets/app/icons/badges/active-badge-4.png') }}"
-                                alt="badge check icon" class="badge_img" />
+                                    <img src="{{ asset('assets/app/icons/badges/active-badge-4.png') }}"
+                                        alt="badge check icon" class="badge_img" />
                                 @else
-                                   <img src="{{ asset('assets/app/icons/badges/badge-4.png') }}"
-                                    alt="badge check icon" class="badge_img" /> 
+                                    <img src="{{ asset('assets/app/icons/badges/badge-4.png') }}"
+                                        alt="badge check icon" class="badge_img" />
                                 @endif
-                                
+
                             </div>
                             <div class="progres_text_area">
                                 <h5>Silver Reviewer</h5>
                                 @if (user()->total_bings < 1000)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                    <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
@@ -289,17 +360,17 @@
                             <div class="badge_img_area">
                                 @if (user()->total_bings >= 1250)
                                     <img src="{{ asset('assets/app/icons/badges/active-badge-5.png') }}"
-                                    alt="badge check icon" class="badge_img" />
+                                        alt="badge check icon" class="badge_img" />
                                 @else
-                                <img src="{{ asset('assets/app/icons/badges/badge-5.png') }}"
-                                alt="badge check icon" class="badge_img" />
+                                    <img src="{{ asset('assets/app/icons/badges/badge-5.png') }}"
+                                        alt="badge check icon" class="badge_img" />
                                 @endif
-                                
+
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
                                 @if (user()->total_bings < 1250)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                    <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>
@@ -307,16 +378,16 @@
                             <div class="badge_img_area">
                                 @if (user()->total_bings >= 1500)
                                     <img src="{{ asset('assets/app/icons/badges/active-badge-6.png') }}"
-                                    alt="badge check icon" class="badge_img" />
+                                        alt="badge check icon" class="badge_img" />
                                 @else
-                                <img src="{{ asset('assets/app/icons/badges/badge-6.png') }}"
-                                alt="badge check icon" class="badge_img" />
+                                    <img src="{{ asset('assets/app/icons/badges/badge-6.png') }}"
+                                        alt="badge check icon" class="badge_img" />
                                 @endif
                             </div>
                             <div class="progres_text_area">
                                 <h5>Bronze Traiblazer</h5>
                                 @if (user()->total_bings < 1500)
-                                   <div class="badge_status_btn">Upcoming</div> 
+                                    <div class="badge_status_btn">Upcoming</div>
                                 @endif
                             </div>
                         </div>

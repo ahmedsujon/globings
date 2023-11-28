@@ -19,7 +19,7 @@ class BingComponent extends Component
             $his = BingsHistory::where('user_id', user()->id)->whereDay('created_at', Carbon::parse($date->created_at)->format('d'))->whereMonth('created_at', Carbon::parse($date->created_at)->format('m'))->whereYear('created_at', Carbon::parse($date->created_at)->format('Y'))->get();
 
             $all_histories[] = [
-                'date' => Carbon::parse($date->created_at)->format('F Y'),
+                'date' => Carbon::parse($date->created_at)->format('d F, Y'),
                 'data' => $his
             ];
         }

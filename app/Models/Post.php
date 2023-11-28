@@ -13,5 +13,7 @@ class Post extends Model
 
     protected $casts = [
         'images' => 'array',
+        'tags' => 'array',
+        'searchable_tags' => 'array',
     ];
 }
