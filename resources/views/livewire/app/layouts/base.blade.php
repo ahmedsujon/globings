@@ -59,7 +59,6 @@
     <script src="{{ asset('assets/app/plugins/js/jquery.rcounter.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('assets/app/plugins/js/intlTelInput.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/jquery.segmentedInput.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/percircle.js') }}"></script>
@@ -73,7 +72,7 @@
 
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-    
+
     {{-- tagify --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.12.0/tagify.min.js"></script>
 
