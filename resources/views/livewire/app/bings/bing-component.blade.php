@@ -38,7 +38,7 @@
                     <div class="reward_card_wrapper">
                         <a href="{{ route('app.profile.share') }}" class="reward_card_item" id="">
                             <div>
-                                <h4>Get your 10+ Bings invite bonus!</h4>
+                                <h4>Get your 50+ Bings invite bonus!</h4>
                                 <h5>
                                     Just send your friend
                                     <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
