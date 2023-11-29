@@ -79,94 +79,64 @@
             /* padding-bottom: 2px; */
         }
     </style>
-    <header class="home_header_wrapper mt-24">
-        <div class="container">
-            <div class="d-flex-between">
-                <a href="{{ route('app.home') }}" class="logo">
-                    <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
-                </a>
-                <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
-                    <li>
-                        @auth
-                            @if (user()->account_type == 'Professional')
-                                @if (userHasActiveSubscription())
-                                    <a href="javascript:void(0)" id="openPostCreateBtn">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
-                                @else
-                                    <a href="{{ route('app.plans') }}">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
-                                @endif
+<header class="home_header_wrapper mt-24">
+    <div class="container">
+        <div class="d-flex-between">
+            <a href="{{ route('app.home') }}" class="logo">
+                <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
+            </a>
+            <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
+                <li>
+                    @auth
+                        @if (user()->account_type == 'Professional')
+                            @if (userHasActiveSubscription())
+                                <a href="javascript:void(0)" id="openPostCreateBtn">
+                                    <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                </a>
+                            @else
+                                <a href="{{ route('app.plans') }}">
+                                    <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                </a>
                             @endif
-                        @else
-                            <a href="{{ route('login') }}">
-                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                            </a>
-                        @endauth
-                    </li>
-                    <li>
-                        <a href="{{ route('app.my-favorite-shop') }}">
-                            <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
-                        </a>
-                    </li>
-                    <li>
-                        @if (user())
-                            <a href="{{ route('app.bings') }}" class="header_number_area">
-                                <span class="circle_shape"></span>
-                                <span class="number">{{ user()->bings_balance }}</span>
-                                <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
-                                    class="right_shape" />
-                            </a>
                         @endif
-                    </li>
-                </ul>
-            </div>
+                    @else
+                        <a href="{{ route('login') }}">
+                            <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                        </a>
+                    @endauth
+                </li>
+                <li>
+                    <a href="{{ route('app.my-favorite-shop') }}">
+                        <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
+                    </a>
+                </li>
+                <li>
+                    @if (user())
+                        <a href="{{ route('app.bings') }}" class="header_number_area">
+                            <span class="circle_shape"></span>
+                            <span class="number">{{ user()->bings_balance }}</span>
+                            <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
+                                class="right_shape" />
+                        </a>
+                    @endif
+                </li>
+            </ul>
         </div>
-    </header>
+        <form action="" id="searchForm" class="header_search">
+            <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
+            <button class="search_icon" type="submit">
+                <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+            </button>
+            <button class="filter_icon" type="button" id="filterBtn">
+                <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
+            </button>
+        </form>
+    </div>
+</header>
     <!-- Company Location Section  -->
     <section class="company_location_wrapper">
         <div class="location_header" style="margin-top: -20px;">
             <div class="container">
-                <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
-                <form action="" class="location_form_area" wire:ignore>
-                    <div class="d-flex align-items-center g-sm search_sceleton">
-                        <div class="skeleton" style="width: 100%; height: 41px; border-radius: 40px;"></div>
-                        <div class="skeleton" style=" width: 80px; height: 41px; border-radius: 40px;"></div>
-                    </div>
-                    <div class="search_grid search_grid_skeleton d-none">
-                        <div class="position-relative" id="cirt_select">
-                            <select id="locationSearchSelect">
-                                <option value=""></option>
-                                <option value="all"
-                                    {{ 'all' == request()->get('city') || !request()->get('city') ? 'selected' : '' }}>
-                                    Select city</option>
-                                @foreach ($filter_cities as $city)
-                                    <option value="{{ $city->city }}"
-                                        {{ $city->city == request()->get('city') ? 'selected' : '' }}>
-                                        {{ $city->city }}</option>
-                                @endforeach
-                            </select>
-                            <img src="{{ asset('assets/app/icons/select_arrow_icon.svg') }}"
-                                style="padding-top: 3px; padding-right: 5px;" alt="select arrow" class="arrow_icon" />
-                        </div>
-                        <a href="{{ route('app.map.view') }}" class="map_btn">
-                            <img src="{{ asset('assets/app/icons/map_icon.svg') }}" alt="map icon" />
-                        </a>
-                    </div>
-                </form>
-                <form action="" class="location_search_form" wire:ignore>
-                    <div class="d-flex align-items-center g-sm search_sceleton">
-                        <div class="skeleton" style="width: 100%; height: 41px; border-radius: 40px;"></div>
-                    </div>
-                    <div class="position-relative search_grid_skeleton d-none">
-                        <input type="search" name="search_value" id="search_value" placeholder="Search your shop"
-                            class="search_input" value="{{ request()->get('search_value') }}"
-                            style="background: transparent;" />
-                        <img src="{{ asset('assets/app/icons/location_search_icon.svg') }}" alt="location search"
-                            class="search_icon" />
-                    </div>
-                </form>
                 <div class="category_slider_area border-0 pb-2" id="headerCategorySlider">
                     <div class="d-flex align-items-center g-sm category_sceleton">
                         <div class="skeleton" style="width: 64px; height: 45px"></div>

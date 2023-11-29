@@ -9,16 +9,16 @@
                             <img src="{{ asset('assets/images/') }}" alt="" height="22">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="35">
+                            <img src="{{ asset('assets/images/logo.svg') }}" alt="" height="35">
                         </span>
                     </a>
 
                     <a href="{{ route('admin.dashboard') }}" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="30">
+                            <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" height="30">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="35">
+                            <img src="{{ asset('assets/images/logo.svg') }}" alt="" height="35">
                         </span>
                     </a>
                 </div>
