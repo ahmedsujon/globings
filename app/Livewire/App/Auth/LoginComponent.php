@@ -171,10 +171,10 @@ class LoginComponent extends Component
     public function forgetPassword()
     {
         $this->validate([
-            'phone' => 'required',
+            'email' => 'required|email',
         ]);
 
-        $getUser = User::where('phone', $this->phone)->first();
+        $getUser = User::where('email', $this->email)->first();
 
         if($getUser){
             $otp = rand(10000,99999);
@@ -188,7 +188,7 @@ class LoginComponent extends Component
             $this->dispatch('code_sent');
 
         } else {
-            session()->flash('phone_user_error', 'Invalid phone number');
+            session()->flash('phone_user_error', 'Invalid email address');
         }
     }
 
@@ -200,7 +200,7 @@ class LoginComponent extends Component
 
         dd($this->otp);
 
-        $getUser = User::where('phone', $this->phone)->first();
+        $getUser = User::where('email', $this->email)->first();
 
         if($getUser->verification_code == $this->otp){
             session()->flash('otp_success', 'Otp Verified. redirecting to update password page...');
