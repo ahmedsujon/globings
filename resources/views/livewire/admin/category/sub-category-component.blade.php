@@ -5,11 +5,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Category</h4>
+                        <h4 class="mb-sm-0 font-size-18">Sub Category</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Category</li>
+                                <li class="breadcrumb-item active">Sub Category</li>
                             </ol>
                         </div>
                     </div>
@@ -20,10 +20,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-white" style="border-bottom: 1px solid #e2e2e7;">
-                            <h4 class="card-title" style="float: left;">All Category</h4>
+                            <h4 class="card-title" style="float: left;">All Sub Category</h4>
                             <button class="btn btn-sm btn-dark waves-effect waves-light" data-bs-toggle="modal"
                                 data-bs-target="#addDataModal" style="float: right;"><i class="bx bx-plus"></i> Add New
-                                Category</button>
+                                Sub Category</button>
                         </div>
                         <div class="card-body">
                             <div class="row mb-2">
@@ -64,45 +64,41 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($categories->count() > 0)
+                                        @if ($sub_categories->count() > 0)
                                         @php
-                                        $sl = $categories->perPage() * $categories->currentPage() -
-                                        ($categories->perPage() - 1);
+                                        $sl = $sub_categories->perPage() * $sub_categories->currentPage() -
+                                        ($sub_categories->perPage() - 1);
                                         @endphp
-                                        @foreach ($categories as $category)
+                                        @foreach ($sub_categories as $sub_category)
                                         <tr>
                                             <td class="text-center">{{ $sl++ }}</td>
-                                            <td>
-                                                <img src="{{ asset($category->icon) }}" style="height: 30px;"
-                                                    class="img-fluid" alt="">
-                                                {{ $category->name }}
-                                            </td>
-                                            <td class="text-center">{{ $category->slug }}</td>
+                                            <td>{{ $sub_category->name }}</td>
+                                            <td class="text-center">{{ $sub_category->slug }}</td>
                                             <td class="text-center" style="width: 15%;">
-                                                @if ($category->status == 0)
+                                                @if ($sub_category->status == 0)
                                                 <button class="btn btn-xs btn-danger"
-                                                    wire:click.prevent='changeStatus({{ $category->id }})'
+                                                    wire:click.prevent='changeStatus({{ $sub_category->id }})'
                                                     style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $category->id . ')', 'In-Active')
+                                                    loadingStateStatus('changeStatus(' . $sub_category->id . ')', 'In-Active')
                                                     !!}</button>
                                                 @else
                                                 <button class="btn btn-xs btn-success"
-                                                    wire:click.prevent='changeStatus({{ $category->id }})'
+                                                    wire:click.prevent='changeStatus({{ $sub_category->id }})'
                                                     style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $category->id . ')', 'Active') !!}</button>
+                                                    loadingStateStatus('changeStatus(' . $sub_category->id . ')', 'Active') !!}</button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
                                                 <button
                                                     class="btn btn-sm btn-soft-primary waves-effect waves-light action-btn edit_btn"
-                                                    wire:click.prevent='editData({{ $category->id }})'
+                                                    wire:click.prevent='editData({{ $sub_category->id }})'
                                                     wire:loading.attr='disabled'>
                                                     <i
                                                         class="mdi mdi-square-edit-outline font-size-13 align-middle"></i>
                                                 </button>
                                                 <button
                                                     class="btn btn-sm btn-soft-danger waves-effect waves-light action-btn delete_btn"
-                                                    wire:click.prevent='deleteConfirmation({{ $category->id }})'
+                                                    wire:click.prevent='deleteConfirmation({{ $sub_category->id }})'
                                                     wire:loading.attr='disabled'>
                                                     <i class="bx bx-trash font-size-13 align-middle"></i>
                                                 </button>
@@ -111,7 +107,7 @@
                                         @endforeach
                                         @else
                                         <tr>
-                                            <td colspan="5" class="text-center pt-5 pb-5">No category found!</td>
+                                            <td colspan="5" class="text-center pt-5 pb-5">No sub-category found!</td>
                                         </tr>
                                         @endif
                                     </tbody>
@@ -119,7 +115,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-white">
-                            {{ $categories->links('livewire.pagination-links') }}
+                            {{ $sub_categories->links('livewire.pagination-links') }}
                         </div>
                     </div>
                 </div>
@@ -131,7 +127,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: white;">
-                            <h5 class="modal-title m-0" id="mySmallModalLabel">Add New Category</h5>
+                            <h5 class="modal-title m-0" id="mySmallModalLabel">Add New Sub Category</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -162,29 +158,25 @@
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Category Icon</label>
-                                                <input type="file" class="form-control" wire:model='avatar' />
-                                                @error('avatar')
+                                                <label class="col-md-2 col-form-label">Select Category</label>
+                                                <div class="col-md-12">
+                                                    <select class="form-select" wire:model='category_id'>
+                                                        <option>Select Category</option>
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ getCategoryID($category->id)->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                @error('category_id')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
                                                     }}</span>
+                                                <br>
                                                 @enderror
-
-                                                <div wire:loading wire:target='avatar' wire:key='avatar'>
-                                                    <span class="spinner-border spinner-border-xs" role="status"
-                                                        aria-hidden="true"></span> <small>Uploading</small>
-                                                </div>
-                                                @if ($avatar)
-                                                <img src="{{ $avatar->temporaryUrl() }}" class="img-fluid mt-2"
-                                                    style="height: 55px; width: 55px;" />
-                                                @elseif ($uploadedAvatar)
-                                                <img src="{{ asset($uploadedAvatar) }}" class="img-fluid mt-2"
-                                                    style="height: 55px; width: 55px;" />
-                                                @endif
                                             </div>
                                             <div class="col-md-12 text-center mb-3 mt-4">
                                                 <button type="submit"
                                                     class="btn btn-primary waves-effect waves-light w-50">
-                                                    {!! loadingStateWithText('storeData', 'Add Category') !!}
+                                                    {!! loadingStateWithText('storeData', 'Add SubCategory') !!}
                                                 </button>
                                             </div>
                                         </div>
@@ -202,7 +194,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="background: white;">
-                            <h5 class="modal-title m-0" id="mySmallModalLabel">Edit Category</h5>
+                            <h5 class="modal-title m-0" id="mySmallModalLabel">Edit Sub Category</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                 wire:click.prevent='resetInputs'></button>
                         </div>
@@ -233,29 +225,25 @@
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 mb-2">
-                                                <label for="example-number-input" class="col-form-label">Category Icon</label>
-                                                <input type="file" class="form-control" wire:model='avatar' />
-                                                @error('avatar')
+                                                <label class="col-md-2 col-form-label">Select Category</label>
+                                                <div class="col-md-12">
+                                                    <select class="form-select" wire:model='category_id'>
+                                                        <option>Select Category</option>
+                                                        @foreach ($categories as $category)
+                                                            <option>{{ getCategoryID($category->id)->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                @error('category_id')
                                                 <span class="text-danger" style="font-size: 11.5px;">{{ $message
                                                     }}</span>
+                                                <br>
                                                 @enderror
-
-                                                <div wire:loading wire:target='avatar' wire:key='avatar'>
-                                                    <span class="spinner-border spinner-border-xs" role="status"
-                                                        aria-hidden="true"></span> <small>Uploading</small>
-                                                </div>
-                                                @if ($avatar)
-                                                <img src="{{ $avatar->temporaryUrl() }}" class="img-fluid mt-2"
-                                                    style="height: 55px; width: 55px;" />
-                                                @elseif ($uploadedAvatar)
-                                                <img src="{{ asset($uploadedAvatar) }}" class="img-fluid mt-2"
-                                                    style="height: 55px; width: 55px;" />
-                                                @endif
                                             </div>
                                             <div class="col-md-12 text-center mb-3 mt-4">
                                                 <button type="submit"
                                                     class="btn btn-primary waves-effect waves-light w-50">
-                                                    {!! loadingStateWithText('updateData', 'Update Category') !!}
+                                                    {!! loadingStateWithText('updateData', 'Update SubCategory') !!}
                                                 </button>
                                             </div>
                                         </div>
@@ -308,11 +296,11 @@
             $('#editDataModal').modal('show');
         });
 
-        window.addEventListener('category_deleted', event => {
+        window.addEventListener('sub_category_deleted', event => {
             $('#deleteDataModal').modal('hide');
             Swal.fire(
                 "Deleted!",
-                "The category has been deleted.",
+                "The sub-category has been deleted.",
                 "success"
             );
         });

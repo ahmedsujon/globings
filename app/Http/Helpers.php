@@ -9,6 +9,7 @@ use App\Models\CommentLike;
 use App\Models\CommentReply;
 use App\Models\ShopBookmark;
 use App\Models\AdminPermission;
+use App\Models\Category;
 use App\Models\CommentReplyLike;
 use App\Models\ShopReview;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,11 @@ function admin()
 function getAdminByID($id)
 {
     return Admin::find($id);
+}
+
+function getCategoryID($id)
+{
+    return Category::find($id);
 }
 
 function vendor()
