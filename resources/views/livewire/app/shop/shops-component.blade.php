@@ -79,60 +79,60 @@
             /* padding-bottom: 2px; */
         }
     </style>
-<header class="home_header_wrapper mt-24">
-    <div class="container">
-        <div class="d-flex-between">
-            <a href="{{ route('app.home') }}" class="logo">
-                <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
-            </a>
-            <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
-                <li>
-                    @auth
-                        @if (user()->account_type == 'Professional')
-                            @if (userHasActiveSubscription())
-                                <a href="javascript:void(0)" id="openPostCreateBtn">
-                                    <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                </a>
-                            @else
-                                <a href="{{ route('app.plans') }}">
-                                    <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                </a>
+    <header class="home_header_wrapper mt-24">
+        <div class="container">
+            <div class="d-flex-between">
+                <a href="{{ route('app.home') }}" class="logo">
+                    <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
+                </a>
+                <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
+                    <li>
+                        @auth
+                            @if (user()->account_type == 'Professional')
+                                @if (userHasActiveSubscription())
+                                    <a href="javascript:void(0)" id="openPostCreateBtn">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @else
+                                    <a href="{{ route('app.plans') }}">
+                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                    </a>
+                                @endif
                             @endif
+                        @else
+                            <a href="{{ route('login') }}">
+                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                            </a>
+                        @endauth
+                    </li>
+                    <li>
+                        <a href="{{ route('app.my-favorite-shop') }}">
+                            <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
+                        </a>
+                    </li>
+                    <li>
+                        @if (user())
+                            <a href="{{ route('app.bings') }}" class="header_number_area">
+                                <span class="circle_shape"></span>
+                                <span class="number">{{ user()->bings_balance }}</span>
+                                <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
+                                    class="right_shape" />
+                            </a>
                         @endif
-                    @else
-                        <a href="{{ route('login') }}">
-                            <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                        </a>
-                    @endauth
-                </li>
-                <li>
-                    <a href="{{ route('app.my-favorite-shop') }}">
-                        <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />
-                    </a>
-                </li>
-                <li>
-                    @if (user())
-                        <a href="{{ route('app.bings') }}" class="header_number_area">
-                            <span class="circle_shape"></span>
-                            <span class="number">{{ user()->bings_balance }}</span>
-                            <img src="{{ asset('assets/app/icons/header_right_logo_icon.svg') }}" alt="plus icon"
-                                class="right_shape" />
-                        </a>
-                    @endif
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
+            <form action="" id="searchForm" class="header_search">
+                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
+                <button class="search_icon" type="submit">
+                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+                </button>
+                <button class="filter_icon" type="button" id="filterBtn">
+                    <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
+                </button>
+            </form>
         </div>
-        <form action="" id="searchForm" class="header_search">
-            <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
-            <button class="search_icon" type="submit">
-                <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
-            </button>
-            <button class="filter_icon" type="button" id="filterBtn">
-                <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
-            </button>
-        </form>
-    </div>
-</header>
+    </header>
     <!-- Company Location Section  -->
     <section class="company_location_wrapper">
         <div class="location_header" style="margin-top: -20px;">
@@ -247,7 +247,8 @@
                             <div class="location_item">
                                 <div class="position-relative">
                                     <a href="{{ route('app.shopProfile', ['user_id' => $shop->user_id]) }}">
-                                        <img src="{{ asset($shop->cover_photo) }}" alt="post image" class="post_img" />
+                                        <img src="{{ asset($shop->cover_photo) }}" alt="post image"
+                                            class="post_img" />
                                     </a>
                                     <div class="info_area">
                                         <div class="container">
@@ -281,6 +282,10 @@
                 </div>
             </div>
     </section>
+    <!-- Map Fixed Button  -->
+    <a href="#" class="map_fixed_btn">
+        <i class="fa-solid fa-map"></i> <span>Map</span>
+    </a>
 </div>
 
 @push('scripts')
