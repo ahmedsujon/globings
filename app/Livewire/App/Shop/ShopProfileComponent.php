@@ -5,7 +5,6 @@ namespace App\Livewire\App\Shop;
 use App\Models\Contact;
 use App\Models\Shop;
 use App\Models\ShopBookmark;
-use App\Models\ShopFavourite;
 use App\Models\ShopReview;
 use Livewire\Component;
 
@@ -20,7 +19,7 @@ class ShopProfileComponent extends Component
         $this->total_reviews = ShopReview::where('shop_id', $shop->id)->count();
         $this->reviews = ShopReview::where('shop_id', $shop->id)->get();
 
-        if (!session()->has('shop_visited')){
+        if (!session()->has('shop_visited')) {
             $shop = Shop::where('id', $shop->id)->first();
             $shop->visited += 1;
             $shop->save();
@@ -68,9 +67,9 @@ class ShopProfileComponent extends Component
 
     public function favorite()
     {
-        if(user()){
+        if (user()) {
             $getFav = ShopBookmark::where('shop_id', $this->shop->id)->where('user_id', user()->id)->first();
-            if($getFav){
+            if ($getFav) {
                 $getFav->delete();
             } else {
                 $fav = new ShopBookmark();
@@ -85,27 +84,32 @@ class ShopProfileComponent extends Component
 
     public function addReview()
     {
-        $this->validate([
-            'rating' => 'required',
-            'comment' => 'required',
-        ]);
+        if (user()) {
 
-        $getReview = ShopReview::where('shop_id', $this->shop->id)->where('user_id', user()->id)->first();
+            $this->validate([
+                'rating' => 'required',
+                'comment' => 'required',
+            ]);
 
-        if(!$getReview){
-            $msg = new ShopReview();
-            $msg->shop_id = $this->shop->id;
-            $msg->user_id = user()->id;
-            $msg->rating = $this->rating;
-            $msg->comment = $this->comment;
-            $msg->save();
+            $getReview = ShopReview::where('shop_id', $this->shop->id)->where('user_id', user()->id)->first();
 
-            $this->rating = '';
-            $this->comment = '';
+            if (!$getReview) {
+                $msg = new ShopReview();
+                $msg->shop_id = $this->shop->id;
+                $msg->user_id = user()->id;
+                $msg->rating = $this->rating;
+                $msg->comment = $this->comment;
+                $msg->save();
 
-            session()->flash('success_review', 'Review added successfully');
+                $this->rating = '';
+                $this->comment = '';
+
+                session()->flash('success_review', 'Review added successfully');
+            } else {
+                session()->flash('error_review', 'Already reviewed');
+            }
         } else {
-            session()->flash('error_review', 'Already reviewed');
+            return redirect()->route('login');
         }
     }
 
