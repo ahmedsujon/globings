@@ -123,7 +123,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 500;
   width: 100%;
   display: none;
   @include max-media-width(991) {
@@ -218,7 +218,7 @@
     visibility: hidden;
     opacity: 0;
     user-select: none;
-    height: 0;
+    // height: 0;
     @include hover-transition();
     a,
     button {
@@ -257,6 +257,7 @@
     display: none;
   }
   &.mobile_new_active {
+    z-index: 1000;
     .top_mobile_menu_list {
       top: 0;
       visibility: visible;
@@ -368,6 +369,18 @@
   }
   .range_area {
     margin-top: 38px;
+  }
+  .addui-slider-handle-l {
+    left: 0 !important;
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    &:hover {
+      box-shadow: none;
+    }
+    .addui-slider-value {
+      display: none;
+    }
   }
   .addui-slider {
     width: 82%;

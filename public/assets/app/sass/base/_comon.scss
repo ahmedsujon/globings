@@ -1501,3 +1501,34 @@ main {
     line-height: normal;
   }
 }
+
+//Map Fixed Button
+.map_fixed_btn {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  bottom: 90px;
+  z-index: 501;
+  padding: 6px 12px;
+  color: white;
+  background-color: #16181e;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  &:hover {
+    color: white;
+  }
+  i {
+    font-size: 12px;
+    margin-right: 2px;
+  }
+  span {
+    font-size: 12px;
+  }
+}

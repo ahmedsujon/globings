@@ -7,6 +7,7 @@ use App\Livewire\Admin\Accounts\ProfessionalAccountComponent;
 use App\Livewire\Admin\DashboardComponent;
 use App\Livewire\Admin\Auth\LoginComponent;
 use App\Livewire\Admin\Category\CategoryComponent;
+use App\Livewire\Admin\Category\SubCategoryComponent;
 use App\Livewire\Admin\Onboarding\CreateOnboardingComponent;
 use App\Livewire\Admin\Onboarding\EditOnboardingComponent;
 use App\Livewire\Admin\Onboarding\OnboardingComponent;
@@ -35,6 +36,9 @@ Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(functio
 
     // Category routes
     Route::get('categories', CategoryComponent::class)->name('categories');
+
+    // Sub Category routes
+    Route::get('sub-categories', SubCategoryComponent::class)->name('sub.categories');
 
     // Private Account routes
     Route::get('accounts/private', PrivateAccountComponent::class)->name('private.accounts');
