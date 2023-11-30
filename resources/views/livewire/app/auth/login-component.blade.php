@@ -356,14 +356,14 @@
                     <img src="{{ asset('assets/app/icons/Back.svg') }}" alt="back icon" />
                 </button>
                 <div class="forget_modal_area">
-                    <h3 class="sigin_title">Mobile Verification</h3>
+                    <h3 class="sigin_title">Password Recovery</h3>
                     <h5 class="sing_in_sub_title">
-                        Submit your mobile to get <b>5</b> digits code
+                        Enter your email to get <b>6</b> digits code
                     </h5>
                     <form wire:submit.prevent='forgetPassword' class="mobile_form_area" id="resetPasswordForm">
                         <div class="input_row" wire:ignore>
-                            <label for="">Phone Number</label>
-                            <input type="tel" placeholder="Enter number" id="telephone" class="phone_input_field" />
+                            <label for="">Email</label>
+                            <input type="email" placeholder="Enter email" id="email" class="input_field" />
                         </div>
                         @error ('phone')
                             <div class="input_error">{{ $message }}</div>
@@ -389,8 +389,8 @@
                 <div class="forget_modal_area">
                     <h3 class="sigin_title">Enter the code</h3>
                     <h5 class="sing_in_sub_title">
-                        Plese enter the <b> 5-digit</b> code sent to: <br />
-                        +966 3001234567
+                        Plese enter the <b> 6-digit</b> code sent to: <br />
+                        {{ $email }}
                     </h5>
                     <form wire:submit.prevent='submitOtp' class="mobile_form_area ">
                         <div class="input_row">
@@ -399,7 +399,7 @@
                                 <label for="" class="reset_code_btn">{!! loadingStateWithTextApp('submitOtp', 'Resend') !!}</label>
                             </div>
                             <div class="verify_pin_area" wire:ignore>
-                                <input type="text" id="verifyPin" maxlength="5" autofocus />
+                                <input type="number" id="" class="input_field" maxlength="6" wire:model.blur='otp' autofocus />
                             </div>
                             @if (session()->has('otp_error'))
                                 <div class="input_error">{{ session('otp_error') }}</div>
