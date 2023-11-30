@@ -103,10 +103,10 @@
             </div>
             <div class="dealer_area company_bottom_border">
                 <button type="button" class="user_img_area" id="dealerProfileBtn">
-                    <img src="{{ asset(user($event->id)->avatar) }}" alt="user image" class="user_img" />
+                    <img src="{{ asset(getUserByID($event->user_id)->avatar) }}" alt="user image" class="user_img" />
                     <div>
                         <div class="dealer">Author</div>
-                        <h5 class="sub_login">{{ user($event->id)->first_name }} {{ user($event->id)->last_name }}
+                        <h5 class="sub_login">{{ getUserByID($event->user_id)->first_name }} {{ getUserByID($event->user_id)->last_name }}
                         </h5>
                     </div>
                 </button>
