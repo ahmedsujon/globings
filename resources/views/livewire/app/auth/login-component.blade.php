@@ -132,14 +132,14 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="input_row">
+                            {{-- <div class="input_row">
                                 <label for="">Phone</label>
                                 <input type="text" placeholder="Enter phone" wire:model.blur='phone'
                                     class="input_field" />
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="input_row">
                                 <label for="">Password</label>
                                 <input type="password" placeholder="Enter your password" wire:model.blur='password'
@@ -255,14 +255,14 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="input_row">
+                            {{-- <div class="input_row">
                                 <label for="">Phone</label>
                                 <input type="text" placeholder="Enter phone" wire:model.blur='phone'
                                     class="input_field" />
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="input_row">
                                 <label for="">Password</label>
                                 <input type="password" placeholder="Enter your password" wire:model.blur='password'
@@ -360,7 +360,7 @@
                     <h5 class="sing_in_sub_title">
                         Enter your email to get <b>6</b> digits code
                     </h5>
-                    <form wire:submit.prevent='forgetPassword' class="mobile_form_area" id="resetPasswordForm">
+                    {{-- <form wire:submit.prevent='forgetPassword' class="mobile_form_area" id="resetPasswordForm">
                         <div class="input_row" wire:ignore>
                             <label for="">Email</label>
                             <input type="email" placeholder="Enter email" id="email" class="input_field" />
@@ -375,7 +375,7 @@
                         <button type="submit" class="login_btn login_btn_fill">
                             {!! loadingStateWithTextApp('forgetPassword', 'Send Code') !!}
                         </button>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
@@ -421,7 +421,7 @@
 </div>
 
 @push('scripts')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#telephone').on('change', function(){
                 @this.set('phone', $(this).val());
@@ -441,5 +441,5 @@
             });
 
         });
-    </script>
+    </script> --}}
 @endpush
