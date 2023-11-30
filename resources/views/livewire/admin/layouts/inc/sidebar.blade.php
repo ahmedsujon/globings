@@ -30,8 +30,8 @@
                         </a>
                     </li>
 
-                    <li class="#">
-                        <a href="#" class="waves-effect">
+                    <li class="{{ request()->is('admin/shops') ? 'mm-active' : '' }}">
+                        <a href="{{ route('admin.shops.list') }}" class="waves-effect">
                             <i class="bx bx-store"></i>
                             <span key="t-dashboard">Shops</span>
                         </a>
@@ -41,7 +41,7 @@
                     <li class="{{ request()->is('admin/shops/posts') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.shops.posts') }}" class="waves-effect">
                             <i class="bx bx-store"></i>
-                            <span key="t-dashboard">Articles</span>
+                            <span key="t-dashboard">Posts</span>
                         </a>
                     </li>
                     @endif
@@ -75,7 +75,7 @@
                             <span key="t-multi-level">User Management</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('admin.allUsers') }}">User</a></li>
+                            {{-- <li><a href="{{ route('admin.allUsers') }}">User</a></li> --}}
                             <li><a href="{{ route('admin.allAdmins') }}">Admin</a></li>
                         </ul>
                     </li>
