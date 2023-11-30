@@ -22,7 +22,7 @@
                                 <a href="/" class="auth-logo-light">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('assets/images/logo-sm2.svg') }}" alt="" class="rounded-circle" height="60">
+                                            <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" class="rounded-circle" height="60">
                                         </span>
                                     </div>
                                 </a>
@@ -30,7 +30,7 @@
                                 <a href="/" class="auth-logo-dark">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('assets/images/logo-sm2.svg') }}" alt="" class="" height="60">
+                                            <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" class="" height="60">
                                         </span>
                                     </div>
                                 </a>

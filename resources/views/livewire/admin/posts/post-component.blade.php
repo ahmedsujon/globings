@@ -54,8 +54,10 @@
                                     <thead>
                                         <tr>
                                             <th class="align-middle text-center">ID</th>
-                                            <th class="align-middle">Name</th>
-                                            <th class="align-middle text-center">Slug</th>
+                                            <th class="align-middle">Shop Name</th>
+                                            <th class="align-middle">Title</th>
+                                            <th class="align-middle text-center">Total Likes</th>
+                                            <th class="align-middle text-center">Total Comments</th>
                                             <th class="align-middle text-center">Status</th>
                                             <th class="align-middle text-center">Action</th>
                                         </tr>
@@ -69,12 +71,10 @@
                                         @foreach ($articles as $article)
                                         <tr>
                                             <td class="text-center">{{ $sl++ }}</td>
-                                            <td>
-                                                <img src="{{ asset('assets/images/article_icons') }}/{{ $article->avatar }}" style="height: 30px;"
-                                                    class="img-fluid" alt="">
-                                                {{ $article->name }}
-                                            </td>
-                                            <td class="text-center">{{ $article->slug }}</td>
+                                            <td>XYZ</td>
+                                            <td>{{ $article->title }}</td>
+                                            <td class="text-center">{{ $article->total_likes }}</td>
+                                            <td class="text-center">{{ $article->total_comments }}</td>
                                             <td class="text-center" style="width: 15%;">
                                                 @if ($article->status == 0)
                                                 <button class="btn btn-xs btn-danger"
