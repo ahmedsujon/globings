@@ -3,7 +3,6 @@
         .active_stars {
             color: #000;
         }
-
         .inactive_stars {
             color: #fff;
         }
@@ -155,11 +154,12 @@
                 </div>
                 <h4 class="sub_login" style="margin-top: 25px;">Comment</h4>
                 <div class="input_row">
-                    <textarea name="" id="" wire:model.blur='comment' cols="30" rows="5"
-                        placeholder="your comment...." class="input_item"></textarea>
-                    @error('comment')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <div class="input_row">
+                        <textarea class="input_item" wire:model.blur='comment' placeholder="Your comment...."></textarea>
+                        @error('comment')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
                 <button type="submit" class="login_btn login_btn_fill">
@@ -187,7 +187,7 @@
                     $dealer = App\Models\User::find($shop->user_id);
                 @endphp
                 <div class="user_img">
-                    <img src="{{ asset('assets/app/images/post/user_img3.png') }}" alt="user image" />
+                    <img src="{{ asset($dealer->avatar) }}" alt="user image" />
                 </div>
                 <h4 class="dealer_name">{{ $dealer->first_name }} {{ $dealer->last_name }}</h4>
                 <ul class="archive_area">
@@ -219,16 +219,7 @@
                         <span>WhatsApp Message</span>
                     </a>
                 </div>
-                {{-- <form action="" class="contact_form_area company_bottom_border">
-                    <h4 class="sub_login">Send Messages</h4>
-                    <div class="input_row">
-                        <textarea name="" id="" cols="30" rows="5" placeholder="typing..." class="input_item"></textarea>
-                    </div>
-
-                    <button type="submit" class="login_btn login_btn_fill">
-                        Send Message
-                    </button>
-                </form> --}}
+             
                 <div class="review_comment_area">
                     <h3 class="notification_title">{{ $total_reviews }} Revews</h3>
 
@@ -250,24 +241,7 @@
                                 </div>
                             </div>
                         @endforeach
-
-
-                        {{-- <div class="nested_comment_area">
-                            <div class="review_comment_item">
-                                <div class="user_grid">
-                                    <img src="{{ asset('assets/app/images/post/comment_user_img4.png') }}" alt="user image" />
-                                    <div>
-                                        <h4>Response frome kazi mahbub</h4>
-                                        <h5>01 October</h5>
-                                    </div>
-                                </div>
-                                <div class="comment">
-                                    <p>Thanks Borkat for the revew.</p>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
-                    {{-- <a href="#" class="see_all_btn"> Show all review </a> --}}
                 </div>
             </div>
         </div>
