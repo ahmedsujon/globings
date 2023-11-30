@@ -26,7 +26,7 @@ class HomeComponent extends Component
     public function mount()
     {
         $this->search_term = request()->get('search');
-        $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        $this->categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'ASC')->get();
         $this->cities = Shop::groupBy('city')->where('city', '!=', '')->pluck('city')->toArray();
 
         $this->sort_category = request()->get('category');

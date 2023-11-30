@@ -37,7 +37,7 @@ class MapViewComponent extends Component
         }
         $shop_cords = $cords;
 
-        $categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        $categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'ASC')->get();
         $filter_cities = Shop::groupBy('city')->orderBy('city', 'ASC')->get();
 
         return view('livewire.app.maps.map-view-component', ['shop_cords' => json_encode($shop_cords), 'shops' => $shops, 'categories' => $categories, 'filter_cities' => $filter_cities])->layout('livewire.app.layouts.base');

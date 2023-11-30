@@ -86,7 +86,7 @@ class ShopSettingsComponent extends Component
     public function render()
     {
         $shop = Shop::where('user_id', user()->id)->first();
-        $categories = Category::where('status', 1)->orderBy('name', 'DESC')->get();
+        $categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'DESC')->get();
         return view('livewire.app.shop.shop-settings-component', ['categories'=>$categories, 'shop'=>$shop])->layout('livewire.app.layouts.base');
     }
 }

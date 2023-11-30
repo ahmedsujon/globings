@@ -4,7 +4,6 @@ namespace App\Livewire\Admin\Category;
 
 use Livewire\Component;
 use App\Models\Category;
-use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
@@ -31,8 +30,8 @@ class SubCategoryComponent extends Component
             'slug' => 'required',
         ]);
 
-        $data = new SubCategory();
-        $data->category_id = $this->category_id;
+        $data = new Category();
+        $data->parent_id = $this->category_id;
         $data->name = $this->name;
         $data->slug = $this->slug;
         $data->save();
@@ -44,8 +43,8 @@ class SubCategoryComponent extends Component
 
     public function editData($id)
     {
-        $data = SubCategory::find($id);
-        $this->category_id = $data->category_id;
+        $data = Category::find($id);
+        $this->category_id = $data->parent_id;
         $this->name = $data->name;
         $this->slug = $data->slug;
         $this->edit_id = $data->id;
@@ -60,8 +59,8 @@ class SubCategoryComponent extends Component
             'slug' => 'required',
         ]);
 
-        $data = SubCategory::find($this->edit_id);
-        $data->category_id = $this->category_id;
+        $data = Category::find($this->edit_id);
+        $data->parent_id = $this->category_id;
         $data->name = $this->name;
         $data->slug = $this->slug;
         $data->save();
@@ -74,7 +73,7 @@ class SubCategoryComponent extends Component
 
     public function changeStatus($id)
     {
-        $sub_category = SubCategory::find($id);
+        $sub_category = Category::find($id);
         if ($sub_category->status == 0) {
             $sub_category->status = 1;
         } else {
@@ -105,16 +104,16 @@ class SubCategoryComponent extends Component
 
     public function deleteData()
     {
-        $brand = SubCategory::find($this->delete_id);
+        $brand = Category::find($this->delete_id);
         $brand->delete();
         $this->dispatch('sub_category_deleted');
         $this->delete_id = '';
     }
-    
+
     public function render()
     {
-        $categories = Category::where('status', 1)->get();
-        $sub_categories = SubCategory::where('name', 'like', '%'.$this->searchTerm.'%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
+        $categories = Category::where('status', 1)->where('parent_id', 0)->get();
+        $sub_categories = Category::where('name', 'like', '%'.$this->searchTerm.'%')->where('parent_id', '!=', 0)->orderBy('id', 'DESC')->paginate($this->sortingValue);
         $this->dispatch('reload_scripts');
         return view('livewire.admin.category.sub-category-component', ['sub_categories'=>$sub_categories, 'categories'=>$categories])->layout('livewire.admin.layouts.base');
     }
