@@ -283,7 +283,7 @@
             </div>
     </section>
     <!-- Map Fixed Button  -->
-    <a href="#" class="map_fixed_btn">
+    <a href="{{ route('app.map.view') }}" class="map_fixed_btn">
         <i class="fa-solid fa-map"></i> <span>Map</span>
     </a>
 </div>
