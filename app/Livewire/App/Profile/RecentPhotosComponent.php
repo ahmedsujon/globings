@@ -18,7 +18,7 @@ class RecentPhotosComponent extends Component
     public function mount()
     {
         $this->search_term = request()->get('search');
-        $this->categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        $this->categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'ASC')->get();
     }
 
     public function render()
