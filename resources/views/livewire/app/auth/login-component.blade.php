@@ -69,9 +69,6 @@
                                 alt="others login icoin" />
                         </button>
                     </div>
-                    <h6 class="sub_login text-center">
-                        <a href="{{ route('app.home') }}">Continue without signing in</a>
-                    </h6>
                 </div>
             </form>
         </div>
@@ -186,9 +183,8 @@
                                         id="agreeCheckbox" wire:model.live='agree_checkbox' style="@if(session()->has('agree_error')) border-color: red; @endif" />
                                     <label for="agreeCheckbox">
                                         I agree to the
-                                        <a href="https://translate.google.com/?sl=en&tl=bn&op=translate"
-                                            target="_blank">User Agreement</a>
-                                        and <a href="#" target="_blank">Privacy Policy</a> of
+                                        <a href="#">User Agreement</a>
+                                        and <a href="{{ route('app.terms-and-conditions') }}" >Privacy Policy</a> of
                                         using Globings
                                     </label>
                                 </div>
@@ -309,9 +305,8 @@
                                         id="agreeCheckbox" wire:model.live='agree_checkbox' style="@if(session()->has('agree_error')) border-color: red; @endif" />
                                     <label for="agreeCheckbox">
                                         I agree to the
-                                        <a href="https://translate.google.com/?sl=en&tl=bn&op=translate"
-                                            target="_blank">User Agreement</a>
-                                        and <a href="#" target="_blank">Privacy Policy</a> of
+                                        <a href="#">User Agreement</a>
+                                        and <a href="{{ route('app.terms-and-conditions') }}">Privacy Policy</a> of
                                         using Globings
                                     </label>
                                 </div>
