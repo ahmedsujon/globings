@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Livewire\App\Shop;
-use App\Models\Post;
+
+use App\Models\Category;
 use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
-use App\Models\Category;
 use Livewire\WithPagination;
 
 class ShopsComponent extends Component
@@ -35,19 +35,24 @@ class ShopsComponent extends Component
     {
         $city = request()->get('city');
         $category = request()->get('category');
+        $search_term = request()->get('search_value');
 
-        $shops = Shop::orderBy('id', 'DESC');
+        $shops = Shop::where(function ($query) use($search_term) {
+            $query->where('name', 'like', '%' . $search_term . '%')
+                ->orWhere('shop_category', 'like', '%' . $search_term . '%')
+                ->orWhere('shop_sub_category', 'like', '%' . $search_term . '%');
+        })->orderBy('id', 'DESC');
 
-        if($city && $city != 'all'){
+        if ($city && $city != 'all') {
             $shops = $shops->where('city', 'like', '%' . $city . '%');
         }
 
-        if($category){
+        if ($category) {
             $shops = $shops->where('category_id', $category);
         }
 
         $shops = $shops->paginate($this->pagination_value);
 
-        return view('livewire.app.shop.shops-component', ['shops'=>$shops])->layout('livewire.app.layouts.base');
+        return view('livewire.app.shop.shops-component', ['shops' => $shops])->layout('livewire.app.layouts.base');
     }
 }
