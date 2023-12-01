@@ -356,11 +356,11 @@
                         Enter your email to get <b>6</b> digits code
                     </h5>
                     <form wire:submit.prevent='forgetPassword' class="mobile_form_area" id="resetPasswordForm">
-                        <div class="input_row" wire:ignore>
+                        <div class="input_row">
                             <label for="">Email</label>
-                            <input type="email" placeholder="Enter email" id="email" class="input_field" />
+                            <input type="email" placeholder="Enter email" id="forget_password_email" wire:model.blur='forget_password_email' class="input_field" />
                         </div>
-                        @error ('phone')
+                        @error ('forget_password_email')
                             <div class="input_error">{{ $message }}</div>
                         @enderror
                         @if (session()->has('phone_user_error'))
@@ -382,33 +382,64 @@
                     <img src="{{ asset('assets/app/icons/Back.svg') }}" alt="back icon" />
                 </button>
                 <div class="forget_modal_area">
-                    <h3 class="sigin_title">Enter the code</h3>
-                    <h5 class="sing_in_sub_title">
-                        Plese enter the <b> 6-digit</b> code sent to: <br />
-                        {{ $email }}
-                    </h5>
-                    <form wire:submit.prevent='submitOtp' class="mobile_form_area ">
-                        <div class="input_row">
-                            <div class="d-flex-between">
-                                <label for="">Enter code <span class="text-danger">{{ $generated_otp }}</span></label>
-                                <label for="" class="reset_code_btn">{!! loadingStateWithTextApp('submitOtp', 'Resend') !!}</label>
+                    @if ($otp_status == 'verified')
+                        <h3 class="sigin_title">Change Password</h3>
+
+                        <form wire:submit.prevent='changePassword' class="mobile_form_area ">
+                            <div class="input_row">
+                                {{-- <label for="">Enter New Password</label> --}}
+                                <input type="text" class="input_field" wire:model.blur='new_password' placeholder="Enter new password" />
+                                @error ('new_password')
+                                    <div class="input_error">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="verify_pin_area" wire:ignore>
-                                <input type="number" id="" class="input_field" maxlength="6" wire:model.blur='otp' autofocus />
+
+                            <div class="input_row">
+                                {{-- <label for="">Re-Enter New Password</label> --}}
+                                <input type="text" class="input_field" wire:model.blur='confirm_new_password' placeholder="Re-Enter new password" />
+                                @error ('confirm_new_password')
+                                    <div class="input_error">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @if (session()->has('otp_error'))
-                                <div class="input_error">{{ session('otp_error') }}</div>
+
+                            <button type="submit" class="login_btn login_btn_fill">
+                                {!! loadingStateWithTextApp('changePassword', 'Verify') !!}
+                            </button>
+                        </form>
+                    @else
+                        <h3 class="sigin_title">Enter the code</h3>
+                        <h5 class="sing_in_sub_title">
+                            Plese enter the <b> 6-digit</b> code sent to: <br />
+                            {{ $forget_password_email }}
+                        </h5>
+
+                        <form wire:submit.prevent='submitOtp' class="mobile_form_area ">
+
+                            @if (session()->has('resend_success'))
+                                <div style="background: green; color: white; text-align: center; padding: 5px; margin-bottom: 15px;">Code Resent Successfully</div>
                             @endif
-                        </div>
 
-                        <button type="submit" class="login_btn login_btn_fill">
-                            {!! loadingStateWithTextApp('submitOtp', 'Verify') !!}
-                        </button>
-                    </form>
-                    @if (session()->has('otp_success'))
-                        <div class="input_success" style="color: green;">{{ session('otp_success') }}</div>
+                            <div class="input_row">
+                                <div class="d-flex-between">
+                                    <label for="">Enter code</label>
+                                    <a href="" wire:click.prevent='resendCode' class="reset_code_btn">{!! loadingStateWithText('resendCode', 'Resend') !!}</a>
+                                </div>
+                                <div class="verify_pin_area">
+                                    <input type="number" id="" class="input_field" placeholder="Enter otp" wire:model.blur='otp' autofocus />
+                                </div>
+                                @error ('otp')
+                                    <div class="input_error">{{ $message }}</div>
+                                @enderror
+                                @if (session()->has('otp_error'))
+                                    <div class="input_error">{{ session('otp_error') }}</div>
+                                @endif
+                            </div>
+
+                            <button type="submit" class="login_btn login_btn_fill">
+                                {!! loadingStateWithTextApp('submitOtp', 'Verify') !!}
+                            </button>
+                        </form>
                     @endif
-
                 </div>
             </div>
         </div>
@@ -433,6 +464,16 @@
 
                 toggleClassElement("#forgetSidebarArea", "sing_modal_active");
                 toggleClassElement("#verifySidebarArea", "sing_modal_active");
+            });
+
+            window.addEventListener('password_updated', event => {
+                $('#verifySidebarArea').removeClass('sing_modal_active');
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    html: 'Password changed successfully'
+                });
             });
 
         });
