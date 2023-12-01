@@ -29,8 +29,8 @@
                             <div class="row mb-2">
                                 <div class="col-md-6 col-sm-12 mb-2 sort_cont">
                                     <label class="font-weight-normal" style="">Show</label>
-                                    <select name="sortuserresults" class="sinput" id="" wire:model="sortingValue"
-                                        wire:change='resetPage'>
+                                    <select name="sortuserresults" class="sinput" id=""
+                                        wire:model="sortingValue" wire:change='resetPage'>
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>
@@ -65,50 +65,49 @@
                                     </thead>
                                     <tbody>
                                         @if ($sub_categories->count() > 0)
-                                        @php
-                                        $sl = $sub_categories->perPage() * $sub_categories->currentPage() -
-                                        ($sub_categories->perPage() - 1);
-                                        @endphp
-                                        @foreach ($sub_categories as $sub_category)
-                                        <tr>
-                                            <td class="text-center">{{ $sl++ }}</td>
-                                            <td>{{ $sub_category->name }}</td>
-                                            <td class="text-center">{{ $sub_category->slug }}</td>
-                                            <td class="text-center" style="width: 15%;">
-                                                @if ($sub_category->status == 0)
-                                                <button class="btn btn-xs btn-danger"
-                                                    wire:click.prevent='changeStatus({{ $sub_category->id }})'
-                                                    style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $sub_category->id . ')', 'In-Active')
-                                                    !!}</button>
-                                                @else
-                                                <button class="btn btn-xs btn-success"
-                                                    wire:click.prevent='changeStatus({{ $sub_category->id }})'
-                                                    style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
-                                                    loadingStateStatus('changeStatus(' . $sub_category->id . ')', 'Active') !!}</button>
-                                                @endif
-                                            </td>
-                                            <td class="text-center">
-                                                <button
-                                                    class="btn btn-sm btn-soft-primary waves-effect waves-light action-btn edit_btn"
-                                                    wire:click.prevent='editData({{ $sub_category->id }})'
-                                                    wire:loading.attr='disabled'>
-                                                    <i
-                                                        class="mdi mdi-square-edit-outline font-size-13 align-middle"></i>
-                                                </button>
-                                                <button
-                                                    class="btn btn-sm btn-soft-danger waves-effect waves-light action-btn delete_btn"
-                                                    wire:click.prevent='deleteConfirmation({{ $sub_category->id }})'
-                                                    wire:loading.attr='disabled'>
-                                                    <i class="bx bx-trash font-size-13 align-middle"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                            @php
+                                                $sl = $sub_categories->perPage() * $sub_categories->currentPage() - ($sub_categories->perPage() - 1);
+                                            @endphp
+                                            @foreach ($sub_categories as $sub_category)
+                                                <tr>
+                                                    <td class="text-center">{{ $sl++ }}</td>
+                                                    <td><img src="{{ asset($sub_category->icon) }}"
+                                                            style="height: 30px;" class="img-fluid" alt="">
+                                                        {{ $sub_category->name }}</td>
+                                                    <td class="text-center">{{ $sub_category->slug }}</td>
+                                                    <td class="text-center" style="width: 15%;">
+                                                        @if ($sub_category->status == 0)
+                                                            <button class="btn btn-xs btn-danger"
+                                                                wire:click.prevent='changeStatus({{ $sub_category->id }})'
+                                                                style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!! loadingStateStatus('changeStatus(' . $sub_category->id . ')', 'In-Active') !!}</button>
+                                                        @else
+                                                            <button class="btn btn-xs btn-success"
+                                                                wire:click.prevent='changeStatus({{ $sub_category->id }})'
+                                                                style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!! loadingStateStatus('changeStatus(' . $sub_category->id . ')', 'Active') !!}</button>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button
+                                                            class="btn btn-sm btn-soft-primary waves-effect waves-light action-btn edit_btn"
+                                                            wire:click.prevent='editData({{ $sub_category->id }})'
+                                                            wire:loading.attr='disabled'>
+                                                            <i
+                                                                class="mdi mdi-square-edit-outline font-size-13 align-middle"></i>
+                                                        </button>
+                                                        <button
+                                                            class="btn btn-sm btn-soft-danger waves-effect waves-light action-btn delete_btn"
+                                                            wire:click.prevent='deleteConfirmation({{ $sub_category->id }})'
+                                                            wire:loading.attr='disabled'>
+                                                            <i class="bx bx-trash font-size-13 align-middle"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         @else
-                                        <tr>
-                                            <td colspan="5" class="text-center pt-5 pb-5">No sub-category found!</td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="5" class="text-center pt-5 pb-5">No sub-category found!
+                                                </td>
+                                            </tr>
                                         @endif
                                     </tbody>
                                 </table>
@@ -128,7 +127,8 @@
                     <div class="modal-content">
                         <div class="modal-header" style="background: white;">
                             <h5 class="modal-title m-0" id="mySmallModalLabel">Add New Sub Category</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row justify-content-center">
@@ -141,9 +141,9 @@
                                                 <input class="form-control" type="text" wire:model="name"
                                                     placeholder="Enter name" wire:keyup='generateSlug'>
                                                 @error('name')
-                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
-                                                    }}</span>
-                                                <br>
+                                                    <span class="text-danger"
+                                                        style="font-size: 11.5px;">{{ $message }}</span>
+                                                    <br>
                                                 @enderror
                                             </div>
 
@@ -152,9 +152,9 @@
                                                 <input class="form-control" type="text" wire:model="slug"
                                                     placeholder="Enter slug" readonly>
                                                 @error('slug')
-                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
-                                                    }}</span>
-                                                <br>
+                                                    <span class="text-danger"
+                                                        style="font-size: 11.5px;">{{ $message }}</span>
+                                                    <br>
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 mb-2">
@@ -163,14 +163,15 @@
                                                     <select class="form-select" wire:model='category_id'>
                                                         <option>Select Category</option>
                                                         @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">{{ getCategoryID($category->id)->name }}</option>
+                                                            <option value="{{ $category->id }}">
+                                                                {{ getCategoryID($category->id)->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 @error('category_id')
-                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
-                                                    }}</span>
-                                                <br>
+                                                    <span class="text-danger"
+                                                        style="font-size: 11.5px;">{{ $message }}</span>
+                                                    <br>
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 text-center mb-3 mt-4">
@@ -208,9 +209,9 @@
                                                 <input class="form-control" type="text" wire:model="name"
                                                     placeholder="Enter name" wire:keyup='generateSlug'>
                                                 @error('name')
-                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
-                                                    }}</span>
-                                                <br>
+                                                    <span class="text-danger"
+                                                        style="font-size: 11.5px;">{{ $message }}</span>
+                                                    <br>
                                                 @enderror
                                             </div>
 
@@ -219,9 +220,9 @@
                                                 <input class="form-control" type="text" wire:model="slug"
                                                     placeholder="Enter slug" readonly>
                                                 @error('slug')
-                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
-                                                    }}</span>
-                                                <br>
+                                                    <span class="text-danger"
+                                                        style="font-size: 11.5px;">{{ $message }}</span>
+                                                    <br>
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 mb-2">
@@ -235,9 +236,9 @@
                                                     </select>
                                                 </div>
                                                 @error('category_id')
-                                                <span class="text-danger" style="font-size: 11.5px;">{{ $message
-                                                    }}</span>
-                                                <br>
+                                                    <span class="text-danger"
+                                                        style="font-size: 11.5px;">{{ $message }}</span>
+                                                    <br>
                                                 @enderror
                                             </div>
                                             <div class="col-md-12 text-center mb-3 mt-4">
@@ -286,8 +287,8 @@
 
 </div>
 @push('scripts')
-<script>
-    window.addEventListener('closeModal', event => {
+    <script>
+        window.addEventListener('closeModal', event => {
             $('#addDataModal').modal('hide');
             $('#editDataModal').modal('hide');
         });
@@ -304,5 +305,5 @@
                 "success"
             );
         });
-</script>
+    </script>
 @endpush
