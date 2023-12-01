@@ -14,8 +14,8 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $userOne = User::where('email', 'user@example.com')->first();
-        $userTwo = User::where('email', 'shop@example.com')->first();
+        $userOne = User::where('email', 'globings@gmail.com')->first();
+        $userTwo = User::where('email', 'globingshop@gmail.com.com')->first();
         $userThree = User::where('email', 'userthree@example.com')->first();
         $userFour = User::where('email', 'userfour@example.com')->first();
         $userFive = User::where('email', 'userfive@example.com')->first();
@@ -29,8 +29,8 @@ class UserTableSeeder extends Seeder
             $user = new User();
             $user->first_name = 'Globings';
             $user->last_name = 'User';
-            $user->username = 'test_user';
-            $user->email = 'user@example.com';
+            $user->username = 'globings';
+            $user->email = 'globings@gmail.com';
             $user->phone = '01700000000';
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';
@@ -40,10 +40,10 @@ class UserTableSeeder extends Seeder
         }
         if (!$userTwo) {
             $user = new User();
-            $user->first_name = 'User';
-            $user->last_name = 'Two';
-            $user->username = 'user2';
-            $user->email = 'shop@example.com';
+            $user->first_name = 'Globings';
+            $user->last_name = 'Shop';
+            $user->username = 'globingsshop';
+            $user->email = 'globingshop@gmail.com.com';
             $user->phone = '01700000000';
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';
