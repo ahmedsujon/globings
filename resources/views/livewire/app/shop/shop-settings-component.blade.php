@@ -95,9 +95,22 @@
                     @enderror
                 </div>
 
-                <div class="input_row nice_select_row">
-                    <select class="niceSelect" wire:model.blur="shop_category">
-                        <option data-display="Shop Category">Shop Category</option>
+                <div class="input_row nice_select_row" wire:ignore>
+                    <select class="niceSelect" id="shop_category_select">
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ $category->id == $shop_category ? 'selected' : '' }}>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('shop_category')
+                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                        <br>
+                    @enderror
+                </div>
+
+                <div class="input_row nice_select_row" wire:ignore>
+                    <select class="input_field" id="subcategory_select_2">
+                        <option value="">Shop Sub Category</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->name }}">{{ $category->name }}</option>
                         @endforeach
@@ -181,6 +194,14 @@
 
 @push('scripts')
     <script>
+        $(document).ready(function() {
+            $('#shop_category_select').on('change', function() {
+                @this.set('shop_category', $(this).val());
+            });
+
+            
+        });
+
         window.addEventListener('success', event => {
             $.toast({
                 heading: "",

@@ -20,7 +20,7 @@ class ShopTableSeeder extends Seeder
         $cords = ["25.090281, 90.195419", "25.087653, 90.190419", "25.088663, 90.186468", "25.085865, 90.187842", "25.097058, 90.185437", "25.091617, 90.199952", "25.102499, 90.177983", "25.084466, 90.181848", "25.086543, 90.189930", "25.086621, 90.190918", "25.091902, 90.191529", "25.092869, 90.191985"];
 
         foreach ($shops_array as $key => $shop_ar) {
-            $category = Category::inRandomOrder()->first();
+            $category = Category::where('parent_id', 0)->inRandomOrder()->first();
 
             $shop = new Shop();
             $shop->user_id = $key + 1;
