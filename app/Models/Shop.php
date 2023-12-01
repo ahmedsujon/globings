@@ -11,7 +11,7 @@ class Shop extends Model
 
     protected $table = 'shops';
 
-    // protected $casts = [
-    //     'cover_photos' => 'array'
-    // ];
+    protected $casts = [
+        'shop_sub_category' => 'array'
+    ];
 }
