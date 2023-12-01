@@ -2,18 +2,19 @@
 
 namespace App\Livewire\App\Auth;
 
-use App\Models\BingsHistory;
 use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use App\Models\BingsHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class LoginComponent extends Component
 {
     public $email, $password;
-    public $first_name, $last_name, $confirm_password, $account_type = 'private', $agree_checkbox, $phone, $otp, $generated_otp, $refer_code;
+    public $first_name, $last_name, $confirm_password, $account_type = 'private', $agree_checkbox, $phone, $otp, $generated_otp, $refer_code, $forget_password_email, $otp_status = '';
 
     public function updated($fields)
     {
@@ -171,20 +172,27 @@ class LoginComponent extends Component
     public function forgetPassword()
     {
         $this->validate([
-            'email' => 'required|email',
+            'forget_password_email' => 'required|email',
         ]);
 
-        $getUser = User::where('email', $this->email)->first();
+        $getUser = User::where('email', $this->forget_password_email)->first();
 
         if($getUser){
-            $otp = rand(10000,99999);
+            $otp = rand(100000,999999);
 
             $getUser->verification_code = $otp;
             $getUser->save();
 
             //function to send sms/email
-            $this->generated_otp = $otp;
+            $data['email'] = $this->forget_password_email;
+            $data['verification_code'] = $otp;
 
+            Mail::send('emails.reset-password', $data, function ($message) use ($data) {
+                $message->to($data['email'])
+                    ->subject('Reset Password');
+            });
+
+            $this->otp_status = '';
             $this->dispatch('code_sent');
 
         } else {
@@ -192,21 +200,59 @@ class LoginComponent extends Component
         }
     }
 
+    public function resendCode()
+    {
+        $getUser = User::where('email', $this->forget_password_email)->first();
+
+        $otp = rand(100000,999999);
+
+        $getUser->verification_code = $otp;
+        $getUser->save();
+
+        //function to send sms/email
+        $data['email'] = $this->forget_password_email;
+        $data['verification_code'] = $otp;
+
+        Mail::send('emails.reset-password', $data, function ($message) use ($data) {
+            $message->to($data['email'])
+                ->subject('Reset Password');
+        });
+
+        session()->flash('resend_success');
+    }
+
     public function submitOtp()
     {
-        // $this->validate([
-        //     'otp' => 'required',
-        // ]);
+        $this->validate([
+            'otp' => 'required',
+        ]);
 
-        dd($this->otp);
-
-        $getUser = User::where('email', $this->email)->first();
+        $getUser = User::where('email', $this->forget_password_email)->first();
 
         if($getUser->verification_code == $this->otp){
-            session()->flash('otp_success', 'Otp Verified. redirecting to update password page...');
+            $this->otp = '';
+            $this->otp_status = 'verified';
         } else {
             session()->flash('otp_error', 'Invalid code');
         }
+    }
+
+    public $new_password, $confirm_new_password;
+    public function changePassword()
+    {
+        $this->validate([
+            'new_password' => 'required|min:8',
+            'confirm_new_password' => 'required|same:new_password'
+        ]);
+
+        $user = User::where('email', $this->forget_password_email)->first();
+        $user->password = Hash::make($this->new_password);
+        $user->save();
+
+        $this->forget_password_email = '';
+        $this->new_password = '';
+        $this->confirm_new_password = '';
+        $this->dispatch('password_updated');
     }
 
     public function render()
