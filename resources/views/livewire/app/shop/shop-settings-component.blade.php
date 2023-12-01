@@ -96,10 +96,11 @@
                 </div>
 
                 <div class="input_row nice_select_row" wire:ignore>
-                    <select class="niceSelect" id="shop_category_select">
+                    <select class="niceSelect dependent" id="shop_category_select">
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ $category->id == $shop_category ? 'selected' : '' }}>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ $category->id == $shop_category ? 'selected' : '' }}>
+                                {{ $category->name }}</option>
                         @endforeach
                     </select>
                     @error('shop_category')
@@ -108,17 +109,13 @@
                     @enderror
                 </div>
 
-                <div class="input_row nice_select_row" wire:ignore>
-                    <select class="input_field" id="subcategory_select_2">
-                        <option value="">Shop Sub Category</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                <div class="input_row" wire:ignore>
+                    <select class="js-example-basic-single" multiple="multiple" id="multipleSelect">
+                        <option value="">Select subcategories</option>
+                        @foreach ($sub_cats as $scat)
+                            <option value="{{ $scat->id }}" {{ in_array($scat->name, $shop_sub_category) ? 'selected' : '' }}>{{ $scat->name }}</option>
                         @endforeach
                     </select>
-                    @error('shop_category')
-                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                        <br>
-                    @enderror
                 </div>
 
                 <div class="input_row">
@@ -161,7 +158,8 @@
 
                     <div class="input-group">
                         <input type="text" placeholder="Search your address" id="location_address"
-                            name="location_address" class="form-control" oninput="onTyping(this)" autocomplete="off" />
+                            name="location_address" class="form-control" oninput="onTyping(this)"
+                            autocomplete="off" />
                         {{-- <a href="javascript:void(0)" onclick="getCurrentLocation();" class="input-group-text"
                             id="basic-addon2">
                             <i class="fas fa-map-marker-alt"></i>
@@ -199,7 +197,34 @@
                 @this.set('shop_category', $(this).val());
             });
 
-            
+            $('.dependent').change(function() {
+                if ($(this).val() != '') {
+                    var category_id = $(this).val();
+                    console.log(category_id);
+                    $.ajax({
+                        url: "{{ route('getSubCategory') }}",
+                        method: "POST",
+                        data: {
+                            category_id: category_id,
+                            _token: '<?php echo csrf_token(); ?>',
+                        },
+                        success: function(result) {
+                            $('#multipleSelect').html('');
+                            $('#multipleSelect').html(result);
+                        }
+                    })
+                }
+            });
+
+            $("#multipleSelect").select2({
+                placeholder: "Multiple Select"
+            });
+
+            $("#multipleSelect").on('change', function() {
+                var categories = $(this).val();
+
+                @this.set('sub_categories', categories);
+            });
         });
 
         window.addEventListener('success', event => {
