@@ -56,13 +56,13 @@
     </header>
     <!-- Category Slider Section  -->
     <section class="category_slider_area" id="headerCategorySlider">
-        <div class="" wire:ignore>
-            <div class="d-flex align-items-center g-sm category_sceleton" style="margin-bottom: 10px;">
-                <div class="skeleton" style="width: 64px; height: 45px; margin-left: 5px;"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
+        <div class="container" wire:ignore>
+            <div class="d-flex align-items-center g-sm category_sceleton">
+                <div class="skeleton" style="width: 64px; height: 45px; margin-bottom: 5px;"></div>
+                <div class="skeleton" style="width: 64px; height: 45px; margin-bottom: 5px;"></div>
+                <div class="skeleton" style="width: 64px; height: 45px; margin-bottom: 5px;"></div>
+                <div class="skeleton" style="width: 64px; height: 45px; margin-bottom: 5px;"></div>
+                <div class="skeleton" style="width: 64px; height: 45px; margin-bottom: 5px;"></div>
             </div>
             <div class="swiper category_swiper_container d-none">
                 <div class="swiper-wrapper">
