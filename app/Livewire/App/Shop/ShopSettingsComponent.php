@@ -13,13 +13,15 @@ class ShopSettingsComponent extends Component
     use WithFileUploads;
 
     public $edit_id, $delete_id, $user_id;
-    public $name, $shop_category, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, $longitude, $city, $address, $bings_discount;
+    public $name, $shop_category, $sub_categories, $shop_sub_category, $sub_cats, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, $longitude, $city, $address, $bings_discount;
 
     public function mount()
     {
         $data = Shop::where('user_id', user()->id)->first();
         $this->name = $data->name;
-        $this->shop_category = $data->shop_category;
+        $this->shop_category = $data->category_id;
+        $this->shop_sub_category = $data->shop_sub_category ? $data->shop_sub_category : [];
+        $this->sub_cats = Category::where('parent_id', $data->category_id)->get();
         $this->website_url = $data->website_url;
         $this->description = $data->description;
         $this->bings_discount = $data->bings_discount;
@@ -40,16 +42,6 @@ class ShopSettingsComponent extends Component
         }
     }
 
-    public function editData($id)
-    {
-        $data = Shop::where('user_id', user()->id)->first();
-        $this->name = $data->name;
-        $this->shop_category = $data->shop_category;
-        $this->website_url = $data->website_url;
-        $this->description = $data->description;
-        $this->bings_discount = $data->bings_discount;
-        $this->edit_id = $data->id;
-    }
 
     public function updateShop()
     {
@@ -60,9 +52,14 @@ class ShopSettingsComponent extends Component
             'bings_discount' => 'required',
         ]);
 
+
         $data = Shop::where('user_id', user()->id)->first();
         $data->name = $this->name;
-        $data->shop_category = $this->shop_category;
+        $data->category_id = $this->shop_category;
+        $data->shop_category = Category::find($this->shop_category)->name;
+        if($this->sub_categories){
+            $data->shop_sub_category = Category::whereIn('id', $this->sub_categories)->pluck('name')->toArray();
+        }
         $data->description = $this->description;
         $data->website_url = $this->website_url;
         $data->latitude = $this->latitude;

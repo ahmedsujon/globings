@@ -122,8 +122,8 @@
                     </li>
                 </ul>
             </div>
-            <form action="" id="searchForm" class="header_search">
-                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" />
+            <form action="" id="location_search_form" class="header_search">
+                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search_value') }}" />
                 <button class="search_icon" type="submit">
                     <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
                 </button>
@@ -286,6 +286,39 @@
     <a href="{{ route('app.map.view') }}" class="map_fixed_btn">
         <i class="fa-solid fa-map"></i> <span>Map</span>
     </a>
+
+    <div class="filter_modal_area" wire:ignore.self id="searchFilterArea">
+        <form action="" id="filter_form">
+            <div class="container">
+                <div class="d-flex-between">
+                    <h3 class="notification_title">Filters</h3>
+                    <button type="button" id="filterCloseBtn">
+                        <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
+                    </button>
+                </div>
+                <div class="category_area">
+                    @if (count($filter_cities) > 0)
+                        <div class="select_area">
+                            <h4 class="bring_bottom_text">Want to see area of city</h4>
+                            <div class="area_list d-flex align-items-center flex-wrap">
+                                @foreach ($filter_cities as $city)
+                                    <button type="button" class="filter_city"
+                                        data-city="{{ $city->city }}">{{ $city->city }}</button>
+                                @endforeach
+                                <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
+                            </div>
+                        </div>
+                    @endif
+                    <div class="btn_area">
+                        <button type="submit" class="login_btn login_btn_fill">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
 </div>
 
 @push('scripts')
@@ -306,27 +339,39 @@
     </script>
 
     <script>
-        $('#locationSearchSelect').on('select2:select', function(e) {
-            var data = e.params.data;
+        $('#location_search_form').on('submit', function(e) {
 
-            var value = data['id'];
+            e.preventDefault();
+
+            var value = $('#filter_city_val').val();
             var category = $('#category').val();
-            var search_value = $('#search_value').val();
+            var search_value = $('#search_input').val();
 
             window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category +
                 '&search_value=' + search_value;
         });
+    </script>
 
-        $('.location_search_form').on('submit', function(e) {
+    <script>
+        $(document).ready(function() {
+            $('.filter_city').on('click', function() {
+                $(".filter_city").each(function() {
+                    $(this).removeClass('active');
+                });
 
-            e.preventDefault();
+                $(this).addClass('active');
+                $('#filter_city_val').val($(this).data('city'));
+            });
 
-            var value = $('#locationSearchSelect').val();
-            var category = $('#category').val();
-            var search_value = $('#search_value').val();
+            $('#filter_form').on('submit', function(e) {
+                e.preventDefault();
 
-            window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category +
-                '&search_value=' + search_value;
+                var category = $('#category').val();
+                var search_value = $('#search_input').val();
+                var city = $('#filter_city_val').val();
+
+                window.location.href = "{{ URL::to('/shops') }}?category=" + category + "&city=" + city + "&search_value=" + search_value;
+            });
         });
     </script>
 @endpush
