@@ -120,9 +120,15 @@ $(document).ready(function () {
     $("#successModalArea").hide("slow");
     $("#successOverlay").hide("slow");
   });
-
+  $("#topListArea").hide();
   //Mobile Menu
   $("#homeMenuBtn").click(() => {
+    if ($("#topListArea").css("display") == "none") {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+    $("#topListArea").slideToggle();
     if ($("#mobileMenuWrapper").hasClass("mobile_new_active")) {
       $("#mobileMenuOverlay").hide("slow");
       $("#mobileMenuClose").hide("slow");
