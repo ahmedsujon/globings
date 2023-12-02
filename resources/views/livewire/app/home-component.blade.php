@@ -56,7 +56,7 @@
     </header>
     <!-- Category Slider Section  -->
     <section class="category_slider_area" id="headerCategorySlider">
-        <div class="container" wire:ignore>
+        <div class="" wire:ignore>
             <div class="d-flex align-items-center g-sm category_sceleton" style="margin-bottom: 10px;">
                 <div class="skeleton" style="width: 64px; height: 45px"></div>
                 <div class="skeleton" style="width: 64px; height: 45px"></div>

@@ -2,44 +2,46 @@
     <!-- Mobile Menu  -->
     @if (!request()->is('login') && !request()->is('scanner'))
         <section class="mobile_menu_wrapper" id="mobileMenuWrapper">
-            <div class="container position-relative">
-                <ul class="top_mobile_menu_list">
-                    <li>
-                        <a href="{{ route('app.events') }}">
-                            <img src="{{ asset('assets/app/icons/footer_top_menu_icon1.svg') }}"
-                                alt="footer menu icon " />
-                            <span class="text">Events</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('app.map.view') }}">
-                            <img src="{{ asset('assets/app/icons/footer_top_menu_icon2.svg') }}"
-                                alt="footer menu icon " />
-                            <span class="text">Explorer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('app.scanner') }}" class="scan_btn">
-                            <img src="{{ asset('assets/app/icons/footer_top_menu_icon3.svg') }}"
-                                alt="footer menu icon " />
-                            <span class="text">Scanner</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('app.profile.share') }}">
-                            <img src="{{ asset('assets/app/icons/footer_top_menu_icon4.svg') }}"
-                                alt="footer menu icon " />
-                            <span class="text">Invite</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('app.profile') }}">
-                            <img src="{{ asset('assets/app/icons/footer_top_menu_icon5.svg') }}"
-                                alt="footer menu icon " />
-                            <span class="text">Options</span>
-                        </a>
-                    </li>
-                </ul>
+            <div id="topListArea">
+                <div class="container position-relative">
+                    <ul class="top_mobile_menu_list">
+                        <li>
+                            <a href="{{ route('app.events') }}">
+                                <img src="{{ asset('assets/app/icons/footer_top_menu_icon1.svg') }}"
+                                    alt="footer menu icon " />
+                                <span class="text">Events</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('app.map.view') }}">
+                                <img src="{{ asset('assets/app/icons/footer_top_menu_icon2.svg') }}"
+                                    alt="footer menu icon " />
+                                <span class="text">Explorer</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('app.scanner') }}" class="scan_btn">
+                                <img src="{{ asset('assets/app/icons/footer_top_menu_icon3.svg') }}"
+                                    alt="footer menu icon " />
+                                <span class="text">Scanner</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('app.profile.share') }}">
+                                <img src="{{ asset('assets/app/icons/footer_top_menu_icon4.svg') }}"
+                                    alt="footer menu icon " />
+                                <span class="text">Invite</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('app.profile') }}">
+                                <img src="{{ asset('assets/app/icons/footer_top_menu_icon5.svg') }}"
+                                    alt="footer menu icon " />
+                                <span class="text">Options</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="list_area">
                 <div class="container">

@@ -20,7 +20,7 @@ class ShopSettingsComponent extends Component
         $data = Shop::where('user_id', user()->id)->first();
         $this->name = $data->name;
         $this->shop_category = $data->category_id;
-        $this->shop_sub_category = $data->shop_sub_category;
+        $this->shop_sub_category = $data->shop_sub_category ? $data->shop_sub_category : [];
         $this->sub_cats = Category::where('parent_id', $data->category_id)->get();
         $this->website_url = $data->website_url;
         $this->description = $data->description;
@@ -42,16 +42,6 @@ class ShopSettingsComponent extends Component
         }
     }
 
-    public function editData($id)
-    {
-        $data = Shop::where('user_id', user()->id)->first();
-        $this->name = $data->name;
-        $this->shop_category = $data->category_id;
-        $this->website_url = $data->website_url;
-        $this->description = $data->description;
-        $this->bings_discount = $data->bings_discount;
-        $this->edit_id = $data->id;
-    }
 
     public function updateShop()
     {
@@ -67,7 +57,9 @@ class ShopSettingsComponent extends Component
         $data->name = $this->name;
         $data->category_id = $this->shop_category;
         $data->shop_category = Category::find($this->shop_category)->name;
-        $data->shop_sub_category = Category::whereIn('id', $this->sub_categories)->pluck('name')->toArray();
+        if($this->sub_categories){
+            $data->shop_sub_category = Category::whereIn('id', $this->sub_categories)->pluck('name')->toArray();
+        }
         $data->description = $this->description;
         $data->website_url = $this->website_url;
         $data->latitude = $this->latitude;
