@@ -28,7 +28,7 @@
                                 <div class="col-7">
                                     <div class="text-primary p-3">
                                         <h5 class="text-primary">Welcome Back !</h5>
-                                        <p>NzCoding - LaravelCMS</p>
+                                        <p>{{ admin()->name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
@@ -45,25 +45,6 @@
                                     <h5 class="font-size-15 text-truncate">{{ admin()->name }}</h5>
                                     <p class="text-muted mb-0 text-truncate">{{ admin()->phone }}</p>
                                 </div>
-
-                                {{-- <div class="col-sm-8">
-                                    <div class="pt-4">
-
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h5 class="font-size-15">125</h5>
-                                                <p class="text-muted mb-0">Projects</p>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5 class="font-size-15">$1245</h5>
-                                                <p class="text-muted mb-0">Revenue</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <a href="javascript: void(0);" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ms-1"></i></a>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -75,8 +56,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Orders</p>
-                                            <h4 class="mb-0">1,235</h4>
+                                            <p class="text-muted fw-medium">Total Admin</p>
+                                            <h4 class="mb-0">{{ $total_admin }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -95,8 +76,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Revenue</p>
-                                            <h4 class="mb-0">$35, 723</h4>
+                                            <p class="text-muted fw-medium">Total User</p>
+                                            <h4 class="mb-0">{{ $total_user }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center ">
@@ -115,8 +96,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Average Price</p>
-                                            <h4 class="mb-0">$16.2</h4>
+                                            <p class="text-muted fw-medium">Total Shop</p>
+                                            <h4 class="mb-0">{{ $total_shop }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -135,8 +116,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Orders</p>
-                                            <h4 class="mb-0">1,235</h4>
+                                            <p class="text-muted fw-medium">Total Post</p>
+                                            <h4 class="mb-0">{{ $total_post }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -155,8 +136,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Revenue</p>
-                                            <h4 class="mb-0">$35, 723</h4>
+                                            <p class="text-muted fw-medium">Total Category</p>
+                                            <h4 class="mb-0">{{ $total_category }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center ">
@@ -175,8 +156,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
-                                            <p class="text-muted fw-medium">Average Price</p>
-                                            <h4 class="mb-0">$16.2</h4>
+                                            <p class="text-muted fw-medium">Total Sub-Category</p>
+                                            <h4 class="mb-0">{{ $total_sub_category }}</h4>
                                         </div>
 
                                         <div class="flex-shrink-0 align-self-center">
@@ -198,201 +179,80 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Latest Transaction</h4>
+                            <h4 class="card-title mb-4">Recent Register Shops</h4>
                             <div class="table-responsive">
-                                <table class="table align-middle table-nowrap mb-0">
-                                    <thead class="table-light">
+                                <table class="table align-middle table-nowrap table-bordered mb-0">
+                                    <thead>
                                         <tr>
-                                            <th style="width: 20px;">
-                                                <div class="form-check font-size-16 align-middle">
-                                                    <input class="form-check-input" type="checkbox" id="transactionCheck01">
-                                                    <label class="form-check-label" for="transactionCheck01"></label>
-                                                </div>
-                                            </th>
-                                            <th class="align-middle">Order ID</th>
-                                            <th class="align-middle">Billing Name</th>
-                                            <th class="align-middle">Date</th>
-                                            <th class="align-middle">Total</th>
-                                            <th class="align-middle">Payment Status</th>
-                                            <th class="align-middle">Payment Method</th>
-                                            <th class="align-middle">View Details</th>
+                                            <th class="align-middle text-center">ID</th>
+                                            <th class="align-middle">Name</th>
+                                            <th class="align-middle">Address</th>
+                                            <th class="align-middle">Shop Category</th>
+                                            <th class="align-middle">Shop Visited</th>
+                                            <th class="align-middle text-center">Status</th>
+                                            <th class="align-middle text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @if ($shops->count() > 0)
+                                        @php
+                                        $sl = $shops->perPage() * $shops->currentPage() -
+                                        ($shops->perPage() - 1);
+                                        @endphp
+                                        @foreach ($shops as $shop)
                                         <tr>
+                                            <td class="text-center">{{ $sl++ }}</td>
                                             <td>
-                                                <div class="form-check font-size-16">
-                                                    <input class="form-check-input" type="checkbox" id="transactionCheck02">
-                                                    <label class="form-check-label" for="transactionCheck02"></label>
-                                                </div>
+                                                <img src="{{ asset($shop->profile_image) }}" style="height: 30px;"
+                                                    class="img-fluid" alt="">
+                                                {{ $shop->name }}
                                             </td>
-                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2540</a> </td>
-                                            <td>Neal Matthews</td>
-                                            <td>
-                                                07 Oct, 2019
+                                            <td>{{ $shop->address }}</td>
+                                            <td>{{ $shop->shop_category }}</td>
+                                            <td>{{ $shop->visited }}</td>
+                                            <td class="text-center" style="width: 15%;">
+                                                @if ($shop->status == 0)
+                                                <button class="btn btn-xs btn-danger"
+                                                    wire:click.prevent='changeStatus({{ $shop->id }})'
+                                                    style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
+                                                    loadingStateStatus('changeStatus(' . $shop->id . ')', 'In-Active')
+                                                    !!}</button>
+                                                @else
+                                                <button class="btn btn-xs btn-success"
+                                                    wire:click.prevent='changeStatus({{ $shop->id }})'
+                                                    style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!!
+                                                    loadingStateStatus('changeStatus(' . $shop->id . ')', 'Active') !!}</button>
+                                                @endif
                                             </td>
-                                            <td>
-                                                $400
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
-                                            </td>
-                                            <td>
-                                                <i class="fab fa-cc-mastercard me-1"></i> Mastercard
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
-                                                    View Details
+                                            <td class="text-center">
+                                                <button
+                                                    class="btn btn-sm btn-soft-primary waves-effect waves-light action-btn edit_btn"
+                                                    wire:click.prevent='editData({{ $shop->id }})'
+                                                    wire:loading.attr='disabled'>
+                                                    <i
+                                                        class="mdi mdi-square-edit-outline font-size-13 align-middle"></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-sm btn-soft-danger waves-effect waves-light action-btn delete_btn"
+                                                    wire:click.prevent='deleteConfirmation({{ $shop->id }})'
+                                                    wire:loading.attr='disabled'>
+                                                    <i class="bx bx-trash font-size-13 align-middle"></i>
                                                 </button>
                                             </td>
                                         </tr>
-
+                                        @endforeach
+                                        @else
                                         <tr>
-                                            <td>
-                                                <div class="form-check font-size-16">
-                                                    <input class="form-check-input" type="checkbox" id="transactionCheck03">
-                                                    <label class="form-check-label" for="transactionCheck03"></label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2541</a> </td>
-                                            <td>Jamal Burnett</td>
-                                            <td>
-                                                07 Oct, 2019
-                                            </td>
-                                            <td>
-                                                $380
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-soft-danger font-size-11">Chargeback</span>
-                                            </td>
-                                            <td>
-                                                <i class="fab fa-cc-visa me-1"></i> Visa
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
-                                                    View Details
-                                                </button>
-                                            </td>
+                                            <td colspan="5" class="text-center pt-5 pb-5">No category found!</td>
                                         </tr>
-
-                                        <tr>
-                                            <td>
-                                                <div class="form-check font-size-16">
-                                                    <input class="form-check-input" type="checkbox" id="transactionCheck04">
-                                                    <label class="form-check-label" for="transactionCheck04"></label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2542</a> </td>
-                                            <td>Juan Mitchell</td>
-                                            <td>
-                                                06 Oct, 2019
-                                            </td>
-                                            <td>
-                                                $384
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
-                                            </td>
-                                            <td>
-                                                <i class="fab fa-cc-paypal me-1"></i> Paypal
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check font-size-16">
-                                                    <input class="form-check-input" type="checkbox" id="transactionCheck05">
-                                                    <label class="form-check-label" for="transactionCheck05"></label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2543</a> </td>
-                                            <td>Barry Dick</td>
-                                            <td>
-                                                05 Oct, 2019
-                                            </td>
-                                            <td>
-                                                $412
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
-                                            </td>
-                                            <td>
-                                                <i class="fab fa-cc-mastercard me-1"></i> Mastercard
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check font-size-16">
-                                                    <input class="form-check-input" type="checkbox" id="transactionCheck06">
-                                                    <label class="form-check-label" for="transactionCheck06"></label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2544</a> </td>
-                                            <td>Ronald Taylor</td>
-                                            <td>
-                                                04 Oct, 2019
-                                            </td>
-                                            <td>
-                                                $404
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-soft-warning font-size-11">Refund</span>
-                                            </td>
-                                            <td>
-                                                <i class="fab fa-cc-visa me-1"></i> Visa
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="form-check font-size-16">
-                                                    <input class="form-check-input" type="checkbox" id="transactionCheck07">
-                                                    <label class="form-check-label" for="transactionCheck07"></label>
-                                                </div>
-                                            </td>
-                                            <td><a href="javascript: void(0);" class="text-body fw-bold">#SK2545</a> </td>
-                                            <td>Jacob Hunter</td>
-                                            <td>
-                                                04 Oct, 2019
-                                            </td>
-                                            <td>
-                                                $392
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-soft-success font-size-11">Paid</span>
-                                            </td>
-                                            <td>
-                                                <i class="fab fa-cc-paypal me-1"></i> Paypal
-                                            </td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".transaction-detailModal">
-                                                    View Details
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
                             <!-- end table-responsive -->
+                        </div>
+                        <div class="card-footer bg-white">
+                            {{ $shops->links('livewire.pagination-links') }}
                         </div>
                     </div>
                 </div>
