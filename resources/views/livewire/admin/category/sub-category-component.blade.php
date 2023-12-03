@@ -71,9 +71,7 @@
                                             @foreach ($sub_categories as $sub_category)
                                                 <tr>
                                                     <td class="text-center">{{ $sl++ }}</td>
-                                                    <td><img src="{{ asset($sub_category->icon) }}"
-                                                            style="height: 30px;" class="img-fluid" alt="">
-                                                        {{ $sub_category->name }}</td>
+                                                    <td>{{ $sub_category->name }}</td>
                                                     <td class="text-center">{{ $sub_category->slug }}</td>
                                                     <td class="text-center" style="width: 15%;">
                                                         @if ($sub_category->status == 0)
@@ -135,7 +133,6 @@
                                 <div class="col-md-11">
                                     <form wire:submit.prevent='storeData'>
                                         <div class="row">
-
                                             <div class="col-md-6 mb-2">
                                                 <label for="example-number-input" class="col-form-label">Name</label>
                                                 <input class="form-control" type="text" wire:model="name"
