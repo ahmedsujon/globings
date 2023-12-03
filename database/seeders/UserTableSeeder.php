@@ -43,7 +43,7 @@ class UserTableSeeder extends Seeder
             $user->first_name = 'Globings';
             $user->last_name = 'Shop';
             $user->username = 'globingsshop';
-            $user->email = 'globingshop@gmail.com.com';
+            $user->email = 'globingshop@gmail.com';
             $user->phone = '01700000000';
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';

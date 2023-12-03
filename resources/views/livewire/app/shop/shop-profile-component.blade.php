@@ -204,22 +204,35 @@
                         <h5>{{ $dealer->email }}</h5>
                     </li>
                 </ul>
+                @if (user())
                 <div class="dealer_btn_area company_bottom_border">
-                    <button type="button" class="call_btn">
+                    <a href="tel:{{ $dealer->phone }}" class="call_btn">
                         <img src="{{ asset('assets/app/icons/calll_green.svg') }}" alt="call green" />
                         <span class="phone">Phone:</span>
                         @if (user())
                             <span>{{ $dealer->phone }}</span>
                         @else
-                            <a href="{{ route('login') }}"></a>
+                        <span>Login for call</span>
                         @endif
-                    </button>
-                    <a href="{{ $dealer->whatsapp }}" class="wp_btn">
+                    </a>
+                    <a href="https://wa.me/{{ $dealer->phone }}" class="wp_btn">
                         <img src="{{ asset('assets/app/icons/whatsapp_white.svg') }}" alt="call green" />
                         <span>WhatsApp Message</span>
                     </a>
                 </div>
-             
+                @else
+                <div class="dealer_btn_area company_bottom_border">
+                    <a href="{{ route('login') }}" type="submit" class="call_btn">
+                        <img src="{{ asset('assets/app/icons/calll_green.svg') }}" alt="call green" />
+                        <span class="phone">Phone:</span>
+                        <span>Login for call</span>
+                    </a>
+                    <a href="{{ route('login') }}" class="wp_btn">
+                        <img src="{{ asset('assets/app/icons/whatsapp_white.svg') }}" alt="call green" />
+                        <span>WhatsApp Message</span>
+                    </a>
+                </div>
+                @endif
                 <div class="review_comment_area">
                     <h3 class="notification_title">{{ $total_reviews }} Revews</h3>
 

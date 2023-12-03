@@ -123,7 +123,8 @@
                 </ul>
             </div>
             <form action="" id="location_search_form" class="header_search">
-                <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search_value') }}" />
+                <input type="text" placeholder="Search" id="search_input"
+                    value="{{ request()->get('search_value') }}" />
                 <button class="search_icon" type="submit">
                     <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
                 </button>
@@ -135,9 +136,9 @@
     </header>
     <!-- Company Location Section  -->
     <section class="company_location_wrapper">
-        <div class="location_header" style="margin-top: -20px;">
-            <div class="container">
-                <div class="category_slider_area border-0 pb-2" id="headerCategorySlider">
+        <div class="location_header border-0" style="margin-top: -20px;">
+            <div class="category_slider_area border-0 pb-2" id="headerCategorySlider">
+                <div class="container">
                     <div class="d-flex align-items-center g-sm category_sceleton">
                         <div class="skeleton" style="width: 64px; height: 45px"></div>
                         <div class="skeleton" style="width: 64px; height: 45px"></div>
@@ -370,7 +371,8 @@
                 var search_value = $('#search_input').val();
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/shops') }}?category=" + category + "&city=" + city + "&search_value=" + search_value;
+                window.location.href = "{{ URL::to('/shops') }}?category=" + category + "&city=" + city +
+                    "&search_value=" + search_value;
             });
         });
     </script>

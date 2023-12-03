@@ -48,9 +48,6 @@
 .category_slider_area {
   margin-top: 16px;
   margin-bottom: 28px;
-}
-.category_slider_area .swiper {
-  padding: 0 5px 2px 5px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1019607843);
 }
 .category_slider_area .swiper-slide {
@@ -65,7 +62,7 @@
 .category_slider_area .category_item::after {
   content: "";
   position: absolute;
-  bottom: -26px;
+  bottom: -24px;
   left: 50%;
   transform: translateX(-50%) scaleX(0);
   width: 80%;

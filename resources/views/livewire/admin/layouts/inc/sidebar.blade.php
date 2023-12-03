@@ -18,14 +18,14 @@
 
                     <li class="{{ request()->is('admin/categories') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.categories') }}" class="waves-effect">
-                            <i class="bx bx-store"></i>
+                            <i class="bx bx-add-to-queue"></i>
                             <span key="t-dashboard">Category</span>
                         </a>
                     </li>
 
                     <li class="{{ request()->is('admin/sub-categories') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.sub.categories') }}" class="waves-effect">
-                            <i class="bx bx-store"></i>
+                            <i class="bx bx-add-to-queue"></i>
                             <span key="t-dashboard">Sub Category</span>
                         </a>
                     </li>
@@ -40,20 +40,20 @@
                     @if (isAdminPermitted('admins_manage'))
                     <li class="{{ request()->is('admin/shops/posts') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.shops.posts') }}" class="waves-effect">
-                            <i class="bx bx-store"></i>
+                            <i class="bx bx-layer"></i>
                             <span key="t-dashboard">Posts</span>
                         </a>
                     </li>
                     @endif
 
-                    @if (isAdminPermitted('admins_manage'))
+                    {{-- @if (isAdminPermitted('admins_manage'))
                     <li class="{{ request()->is('admin/onboardings') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.onboardings') }}" class="waves-effect">
                             <i class="bx bx-store"></i>
                             <span key="t-dashboard">Onboarding Screens</span>
                         </a>
                     </li>
-                    @endif
+                    @endif --}}
 
                     @if (isAdminPermitted('admins_manage'))
                     <li class="{{ request()->is('admin/accounts') ? 'mm-active' : '' }}">
