@@ -515,6 +515,11 @@
                     @error('images')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
+
+                    <div wire:loading wire:target='images' wire:key='images'>
+                        <i class="fa fa-spinner fa-spin" style="font-size: 10px;" aria-hidden="true"></i> <small>Uploading</small>
+                    </div>
+
                     <div class="uploadSlider" id="uploadSlider">
                         <div class="upload_slider_grid">
                             @if ($images)
