@@ -88,7 +88,7 @@ class LoginComponent extends Component
                             $shop->name = $this->first_name . "'s" . ' Shop';
                             $shop->description = '';
                             $shop->profile_image = 'assets/images/placeholder.jpg';
-                            $shop->cover_photos = ['assets/images/placeholder-rect.jpg'];
+                            $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
                             $shop->latitude = '';
                             $shop->longitude = '';
                             $shop->address = '';
@@ -145,7 +145,7 @@ class LoginComponent extends Component
                         $shop->name = $this->first_name . "'s" . ' Shop';
                         $shop->description = '';
                         $shop->profile_image = 'assets/images/placeholder.jpg';
-                        $shop->cover_photos = ['assets/images/placeholder-rect.jpg'];
+                        $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
                         $shop->latitude = '';
                         $shop->longitude = '';
                         $shop->address = '';
