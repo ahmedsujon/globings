@@ -157,7 +157,7 @@ class HomeComponent extends Component
             'content' => 'required',
             'tags' => 'required',
             'images' => 'required',
-            'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
+            'images.*' => 'mimes:png,jpg,jpeg|image|max:2048',
         ]);
 
         $post = new Post();
@@ -168,18 +168,6 @@ class HomeComponent extends Component
         $post->tags = $this->tags;
         $post->searchable_tags = tagify_array($this->tags);
         $post->status = 1;
-
-        // if ($this->avatar) {
-        //     // Resize the image before storing
-        //     $image = Image::make($this->avatar)->resize(300, 200);
-        //     $directory = 'uploads/category/';
-        //     Storage::makeDirectory($directory);
-        //     $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-        //     $image->save(public_path($directory . $fileName));
-        //     $data->icon = $directory . $fileName;
-        // } else {
-        //     $data->icon = 'assets/images/avatar.png';
-        // }
 
         if ($this->images) {
             $postImgs = [];
