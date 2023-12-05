@@ -7,6 +7,8 @@ use App\Models\Shop;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ShopSettingsComponent extends Component
 {
@@ -31,12 +33,14 @@ class ShopSettingsComponent extends Component
     public function updatedCoverImage()
     {
         if ($this->coverImage) {
+            $image = Image::make($this->coverImage)->resize(375, 195);
+            $directory = 'uploads/shops/';
+            Storage::makeDirectory($directory);
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->coverImage->extension();
-            $this->coverImage->storeAs('category', $fileName);
-            $image_path = 'uploads/category/' . $fileName;
-
+            $image->save(public_path($directory . $fileName));
+        
             $shop = Shop::where('user_id', user()->id)->first();
-            $shop->cover_photo = $image_path;
+            $shop->cover_photo = $directory . $fileName;
             $shop->save();
             $this->dispatch('success', ['message' => 'Cover photo updated successfully']);
         }
