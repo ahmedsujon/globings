@@ -42,6 +42,7 @@ class CreateEventComponent extends Component
         } else{
             $data->banner = 'assets/images/placeholder-rect.jpg';
         }
+        
         $data->save();
 
         $this->resetInputs();

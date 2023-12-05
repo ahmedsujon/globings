@@ -8,6 +8,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProfileComponent extends Component
 {
@@ -50,12 +52,13 @@ class ProfileComponent extends Component
     public function updatedavatar()
     {
         if ($this->avatar) {
-            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-            $this->avatar->storeAs('profiles', $fileName);
-            $image_path = 'uploads/profiles/' . $fileName;
-
+            $image = Image::make($this->avatar)->resize(64, 64);
+            $directory = 'uploads/profiles/';
+            Storage::makeDirectory($directory);
+            $fileName = uniqid(). Carbon::now()->timestamp. '.'. $this->avatar->extension();
+            $image->save(public_path($directory. $fileName));
             $profile = User::where('id', user()->id)->first();
-            $profile->avatar = $image_path;
+            $profile->avatar = $directory . $fileName;
             $profile->save();
             $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }

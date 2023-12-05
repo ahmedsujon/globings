@@ -34,6 +34,20 @@ class CategoryComponent extends Component
         $data = new Category();
         $data->name = $this->name;
         $data->slug = $this->slug;
+
+        // if ($this->avatar) {
+        //     // Resize the image before storing
+        //     $image = Image::make($this->avatar)->resize(300, 200);
+        //     $directory = 'uploads/category/';
+        //     Storage::makeDirectory($directory);
+        //     $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
+        //     $image->save(public_path($directory . $fileName));
+        //     $data->icon = $directory . $fileName;
+        // } else {
+        //     $data->icon = 'assets/images/avatar.png';
+        // }
+
+        
         if ($this->avatar) {
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
             $this->avatar->storeAs('category', $fileName);
