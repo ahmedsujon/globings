@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class HomeComponent extends Component
 {
@@ -156,7 +157,7 @@ class HomeComponent extends Component
             'content' => 'required',
             'tags' => 'required',
             'images' => 'required',
-            'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
+            'images.*' => 'mimes:png,jpg,jpeg|image|max:2048',
         ]);
 
         $post = new Post();
@@ -167,6 +168,7 @@ class HomeComponent extends Component
         $post->tags = $this->tags;
         $post->searchable_tags = tagify_array($this->tags);
         $post->status = 1;
+
         if ($this->images) {
             $postImgs = [];
             foreach ($this->images as $key => $img) {

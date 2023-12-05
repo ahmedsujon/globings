@@ -113,17 +113,32 @@ class CategoryComponent extends Component
         $this->dispatch('show_delete_confirmation');
     }
 
+    // public function deleteData()
+    // {
+    //     $brand = Category::find($this->delete_id);
+    //     $brand->delete();
+    //     $this->dispatch('category_deleted');
+    //     $this->delete_id = '';
+    // }
+
     public function deleteData()
     {
-        $brand = Category::find($this->delete_id);
-        $brand->delete();
-        $this->dispatch('category_deleted');
-        $this->delete_id = '';
+        $data = Category::find($this->delete_id);
+        if ($data) {
+            $filePath = public_path($data->avatar);
+            if (!empty($data->avatar) && file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $data->delete();
+            $this->dispatch('category_deleted');
+            $this->delete_id = '';
+        }
     }
+
 
     public function render()
     {
-        $categories = Category::where('name', 'like', '%'.$this->searchTerm.'%')->where('parent_id', 0)->orderBy('id', 'DESC')->paginate($this->sortingValue);
+        $categories = Category::where('name', 'like', '%' . $this->searchTerm . '%')->where('parent_id', 0)->orderBy('id', 'DESC')->paginate($this->sortingValue);
         $this->dispatch('reload_scripts');
         return view('livewire.admin.category.category-component', ['categories' => $categories])->layout('livewire.admin.layouts.base');
     }
