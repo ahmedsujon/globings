@@ -200,7 +200,7 @@ class HomeComponent extends Component
             $query->where('shops.name', 'like', '%' . $this->search_term . '%')
                 ->orWhere('shops.shop_category', 'like', '%' . $this->search_term . '%')
                 ->orWhere('shops.shop_sub_category', 'like', '%' . $this->search_term . '%');
-        })->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
+        })->where('posts.title', 'like', '%' . $this->search_term . '%')->where('posts.content', 'like', '%' . $this->search_term . '%')->where('posts.searchable_tags', 'like', '%' . $this->search_term . '%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
 
         if ($this->sort_category) {
             $categories = explode(',', $this->sort_category);
