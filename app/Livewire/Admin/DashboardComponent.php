@@ -9,9 +9,10 @@ use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-
 class DashboardComponent extends Component
 {
+    use WithPagination;
+    public $sortingValue = 10, $searchTerm;
     public function render()
     {
         $total_admin = Admin::count();
