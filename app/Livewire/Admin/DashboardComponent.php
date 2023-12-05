@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class DashboardComponent extends Component
 {

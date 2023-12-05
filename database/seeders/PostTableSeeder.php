@@ -17,7 +17,7 @@ class PostTableSeeder extends Seeder
     public function run(): void
     {
         $array = [1, 2, 3];
-        for ($i = 1; $i <= 15; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $faker = Faker::create();
             $title = $faker->sentence;
             $slug = Str::slug($title);
