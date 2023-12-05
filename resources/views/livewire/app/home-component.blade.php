@@ -609,12 +609,19 @@
             });
 
         });
+    </script>
 
+    <script>
         @if (Session::has('post_created'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                html: 'Post has been created successfully'
+            alert('Post Created Successfully');
+            $.toast({
+                heading: "",
+                text: 'Post created successfully',
+                showHideTransition: "slide", //plain,fade
+                icon: "success", //success,warning,error,info
+                position: "bottom-center",
+                hideAfter: 3000,
+                loader: true,
             });
         @endif
     </script>
