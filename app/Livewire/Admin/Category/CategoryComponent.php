@@ -121,21 +121,34 @@ class CategoryComponent extends Component
     //     $this->delete_id = '';
     // }
 
-    public function deleteData()
-    {
-        $data = Category::find($this->delete_id);
-        if ($data) {
-            $filePath = public_path($data->avatar);
-            if (!empty($data->avatar) && file_exists($filePath)) {
-                unlink($filePath);
-            }
-            $data->delete();
-            $this->dispatch('category_deleted');
-            $this->delete_id = '';
-        }
-    }
+    // public function deleteData()
+    // {
+    //     $data = Category::find($this->delete_id);
 
+    //     if ($data) {
+    //         $filePath = public_path($data->avatar);
+    //         if (file_exists($filePath)) {
+    //             unlink($filePath);
+    //         }
+    //         $data->delete();
+    //         $this->dispatchBrowserEvent('category_deleted');
+    //         $this->delete_id = '';
+    //     }
+    // }
 
+    // public function deleteData()
+    // {
+    //     $data = Category::find($this->delete_id);
+    //     if ($data) {
+    //         $filePath = public_path($data->avatar);
+    //         if (!empty($data->avatar) && file_exists($filePath)) {
+    //             unlink($filePath);
+    //         }
+    //         $data->delete();
+    //         $this->dispatch('category_deleted');
+    //         $this->delete_id = '';
+    //     }
+    // }
     public function render()
     {
         $categories = Category::where('name', 'like', '%' . $this->searchTerm . '%')->where('parent_id', 0)->orderBy('id', 'DESC')->paginate($this->sortingValue);
