@@ -2,22 +2,21 @@
 
 namespace App\Livewire\App;
 
-use Carbon\Carbon;
+use App\Models\Category;
+use App\Models\CommentLike;
+use App\Models\CommentReply;
+use App\Models\CommentReplyLike;
 use App\Models\Post;
+use App\Models\PostComment;
+use App\Models\PostLike;
 use App\Models\Shop;
 use App\Models\User;
-use Livewire\Component;
-use App\Models\Category;
-use App\Models\PostLike;
-use App\Models\CommentLike;
-use App\Models\PostComment;
-use Illuminate\Support\Str;
-use App\Models\CommentReply;
-use Livewire\WithPagination;
-use App\Models\CommentReplyLike;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\WithPagination;
 
 class HomeComponent extends Component
 {
@@ -159,41 +158,22 @@ class HomeComponent extends Component
         ]);
 
         $post = new Post();
-        $post->category_id = 1;
-        // $post->slug = Str::slug(Str::lower(Str::random(4)) . ' ' . Str::lower(Str::random(4)) . ' ' . Str::lower(Str::random(4)));
+        $post->category_id = Shop::where('user_id', user()->id)->first()->category_id;
         $post->user_id = user()->id;
         $post->content = $this->content;
         $post->tags = $this->tags;
         $post->searchable_tags = tagify_array($this->tags);
         $post->status = 1;
 
-        // if ($this->avatar) {
-        //     // Resize the image before storing
-        //     $image = Image::make($this->avatar)->resize(300, 200);
-        //     $directory = 'uploads/category/';
-        //     Storage::makeDirectory($directory);
-        //     $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-        //     $image->save(public_path($directory . $fileName));
-        //     $data->icon = $directory . $fileName;
-        // } else {
-        //     $data->icon = 'assets/images/avatar.png';
-        // }
-
         if ($this->images) {
             $postImgs = [];
             foreach ($this->images as $key => $img) {
-            $image = Image::make($this->images[$key])->resize(300, 200);
-            $directory = 'uploads/posts/';
-            Storage::makeDirectory($directory);
-            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
-            $image->save(public_path($directory . $fileName));
-            $postImgs[] = $directory . $fileName;
-
-                // $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
-                // $this->images[$key]->storeAs('posts', $fileName);
-
-                // $name = 'uploads/posts/' . $fileName;
-                // $postImgs[] = $name;
+                $image = Image::make($this->images[$key])->resize(300, 200);
+                $directory = 'uploads/posts/';
+                Storage::makeDirectory($directory);
+                $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
+                $image->save(public_path($directory . $fileName));
+                $postImgs[] = $directory . $fileName;
             }
             $post->images = $postImgs;
         }
@@ -214,8 +194,11 @@ class HomeComponent extends Component
         $posts = Post::select('posts.*')->join('shops', 'shops.user_id', 'posts.user_id')->where(function ($query) {
             $query->where('shops.name', 'like', '%' . $this->search_term . '%')
                 ->orWhere('shops.shop_category', 'like', '%' . $this->search_term . '%')
+                ->orWhere('posts.title', 'like', '%' . $this->search_term . '%')
+                ->orWhere('posts.content', 'like', '%' . $this->search_term . '%')
+                ->orWhere('posts.searchable_tags', 'like', '%' . $this->search_term . '%')
                 ->orWhere('shops.shop_sub_category', 'like', '%' . $this->search_term . '%');
-        })->where('posts.title', 'like', '%' . $this->search_term . '%')->where('posts.content', 'like', '%' . $this->search_term . '%')->where('posts.searchable_tags', 'like', '%' . $this->search_term . '%')->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
+        })->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
 
         if ($this->sort_category) {
             $categories = explode(',', $this->sort_category);
