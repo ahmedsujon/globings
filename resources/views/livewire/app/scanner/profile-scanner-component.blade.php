@@ -79,7 +79,13 @@
         Instascan.Camera.getCameras().then(function(cameras) {
             if (cameras.length > 0) {
                 var rearCamera = cameras.find(camera => camera.name.includes('back'));
-                scanner.start(rearCamera);
+                if(rearCamera){
+                    scanner.start(rearCamera);
+                } else if(cameras[1]) {
+                    scanner.start(cameras[1]);
+                } else {
+                    toast_msg('No supported camera found!');
+                }
             } else {
                 console.error('No cameras found.');
             }
