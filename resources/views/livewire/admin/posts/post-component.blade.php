@@ -54,7 +54,7 @@
                                     <thead>
                                         <tr>
                                             <th class="align-middle text-center">ID</th>
-                                            <th class="align-middle">Shop Name</th>
+                                            <th class="align-middle">Shop Woner</th>
                                             <th class="align-middle">Title</th>
                                             <th class="align-middle text-center">Total Likes</th>
                                             <th class="align-middle text-center">Total Comments</th>
@@ -71,7 +71,7 @@
                                         @foreach ($articles as $article)
                                         <tr>
                                             <td class="text-center">{{ $sl++ }}</td>
-                                            <td>XYZ</td>
+                                            <td>{{ getUserByID($article->user_id)->first_name }} {{ getUserByID($article->user_id)->last_name }}</td>
                                             <td>{{ $article->title }}</td>
                                             <td class="text-center">{{ $article->total_likes }}</td>
                                             <td class="text-center">{{ $article->total_comments }}</td>
