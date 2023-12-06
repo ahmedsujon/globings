@@ -23,6 +23,8 @@
         </div>
     </div>
 
+    <textarea name="" id="logText" cols="30" style="width: 100%;" rows="10"></textarea>
+
 </div>
 @push('scripts')
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
@@ -78,6 +80,8 @@
 
         Instascan.Camera.getCameras().then(function(cameras) {
             console.log(cameras);
+
+            $('#logText').val(cameras);
 
             if (cameras.length > 0) {
                 var rearCamera = cameras.find(camera => camera.name.includes('back'));
