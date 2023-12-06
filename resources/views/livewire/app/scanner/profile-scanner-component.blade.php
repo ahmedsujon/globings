@@ -82,7 +82,7 @@
                 if(rearCamera){
                     scanner.start(rearCamera);
                 } else if(cameras[1]) {
-                    scanner.start(cameras[2]);
+                    scanner.start(cameras[1]);
                 } else {
                     toast_msg('No supported camera found!');
                 }
