@@ -26,15 +26,13 @@
 </div>
 @push('scripts')
     {{-- <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> --}}
-    <script type="text/javascript" src="{{ asset('assets/js/instascan.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/instascan.min.js') }}"></script>
 
     <script type="text/javascript">
         // let scanner = new Instascan.Scanner({
         //     video: document.getElementById('preview')
         // });
-        scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 4, mirror:false })
-                .then(handleSuccess)
-                .catch(handleError);
+        scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 4, mirror:false });
 
         scanner.addListener('scan', function(content) {
             $('.scanner').addClass('d-none');
