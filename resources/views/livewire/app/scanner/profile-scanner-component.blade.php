@@ -81,7 +81,7 @@
         Instascan.Camera.getCameras().then(function(cameras) {
             console.log(cameras);
 
-            $('#logText').val(cameras);
+            $('#logText').val(JSON.parse(cameras));
 
             if (cameras.length > 0) {
                 var rearCamera = cameras.find(camera => camera.name.includes('back'));
