@@ -32,7 +32,7 @@
         // let scanner = new Instascan.Scanner({
         //     video: document.getElementById('preview')
         // });
-        scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 4, mirror:false });
+        scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror:false });
 
         scanner.addListener('scan', function(content) {
             $('.scanner').addClass('d-none');
