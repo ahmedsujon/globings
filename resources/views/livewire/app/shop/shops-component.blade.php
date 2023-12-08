@@ -240,7 +240,6 @@
             </div>
         </div>
         <div class="location_area shop_container d-none" wire:ignore.self>
-
             <div class="location_area location_all_shop_area" style="margin-top: -7px;">
                 <div class="container">
                     @if ($shops->count() > 0)

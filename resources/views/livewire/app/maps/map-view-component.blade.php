@@ -67,7 +67,7 @@
             /* padding-bottom: 2px; */
         }
     </style>
-       <header class="home_header_wrapper mt-24">
+    <header class="home_header_wrapper mt-24">
         <div class="container">
             <div class="d-flex-between">
                 <a href="{{ route('app.home') }}" class="logo">
@@ -130,7 +130,8 @@
                                     Select city</option>
                                 @foreach ($filter_cities as $city)
                                     <option value="{{ $city->city }}"
-                                        {{ $city->city == request()->get('city') ? 'selected' : '' }}>{{ $city->city }}
+                                        {{ $city->city == request()->get('city') ? 'selected' : '' }}>
+                                        {{ $city->city }}
                                     </option>
                                 @endforeach
                             </select>
@@ -142,32 +143,55 @@
                         </a>
                     </div>
                 </form>
-                <div class="category_slider_area border-0" id="headerCategorySlider">
-                    <div class="d-flex align-items-center g-sm category_sceleton">
-                        <div class="skeleton" style="width: 64px; height: 45px"></div>
-                        <div class="skeleton" style="width: 64px; height: 45px"></div>
-                        <div class="skeleton" style="width: 64px; height: 45px"></div>
-                        <div class="skeleton" style="width: 64px; height: 45px"></div>
-                        <div class="skeleton" style="width: 64px; height: 45px"></div>
-                    </div>
-                    <div class="swiper category_swiper_container d-none">
-                        <div class="swiper-wrapper">
-                            @foreach ($categories as $category)
-                                <div class="swiper-slide">
-                                    <a href="{{ route('app.map.view') }}?category={{ $category->id }}"
-                                        class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
-                                        <img src="{{ asset($category->icon) }}" alt="category icon" />
-                                        <h4>{{ $category->name }}</h4>
-                                    </a>
-                                </div>
-                            @endforeach
+            </div>
+        </div>
+        <div class="category_slider_area border-0 pb-2" id="headerCategorySlider">
+            <div class="container">
+                <div class="d-flex align-items-center g-sm category_sceleton">
+                    <div class="skeleton" style="width: 64px; height: 45px"></div>
+                    <div class="skeleton" style="width: 64px; height: 45px"></div>
+                    <div class="skeleton" style="width: 64px; height: 45px"></div>
+                    <div class="skeleton" style="width: 64px; height: 45px"></div>
+                    <div class="skeleton" style="width: 64px; height: 45px"></div>
+                </div>
+                <div class="swiper category_swiper_container d-none">
+                    <div class="swiper-wrapper">
+                        @foreach ($categories as $category)
+                        <div class="swiper-slide">
+                            <a href="{{ route('app.map.view') }}?category={{ $category->id }}"
+                                class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
+                                <img src="{{ asset($category->icon) }}" alt="category icon" />
+                                <h4>{{ $category->name }}</h4>
+                            </a>
                         </div>
+                    @endforeach
                     </div>
                 </div>
             </div>
         </div>
+        {{-- <div class="category_slider_area border-0" id="headerCategorySlider">
+            <div class="d-flex align-items-center g-sm category_sceleton">
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+                <div class="skeleton" style="width: 64px; height: 45px"></div>
+            </div>
+            <div class="swiper category_swiper_container d-none">
+                <div class="swiper-wrapper">
+                    @foreach ($categories as $category)
+                        <div class="swiper-slide">
+                            <a href="{{ route('app.map.view') }}?category={{ $category->id }}"
+                                class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
+                                <img src="{{ asset($category->icon) }}" alt="category icon" />
+                                <h4>{{ $category->name }}</h4>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div> --}}
     </section>
-
     <section class="company_map_wrapper" style="margin-top: -80px;">
         <div class="map_area chart_map_area">
             <!-- HTML -->
@@ -489,8 +513,6 @@
                     );
                 }
             }
-
-
         });
     </script>
 @endpush
