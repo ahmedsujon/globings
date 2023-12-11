@@ -13,7 +13,7 @@ class PostComponent extends Component
     
     public function render()
     {
-        $articles = Post::where('title', 'like', '%'.$this->searchTerm.'%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
+        $articles = Post::where('content', 'like', '%'.$this->searchTerm.'%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
         $this->dispatch('reload_scripts');
         return view('livewire.admin.posts.post-component', ['articles'=>$articles])->layout('livewire.admin.layouts.base');
     }
