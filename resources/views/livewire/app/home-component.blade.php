@@ -509,7 +509,7 @@
                 <div class="input_row">
                     <label for="fileUpload" class="upload_label">
                         <img src="{{ asset('assets/app/icons/mdi_photo-library.svg') }}" alt="photo libray" />
-                        <span>Add photos/videos</span>
+                        <span>Add photos/videos {{ $post_status }}</span>
                     </label>
                     <input type="file" id="fileUpload" wire:model.blur='images' multiple class="d-none" />
                     @error('images')
@@ -535,6 +535,9 @@
                             @endif
                         </div>
                     </div>
+                    <span wire:ignore>
+                        <div id="img_status" style="color: red; font-size: 12.5px;"></div>
+                    </span>
                 </div>
                 <button type="submit" class="login_btn login_btn_fill mt-24">
                     {!! loadingStateWithTextApp('createPost', 'POST') !!}
@@ -609,6 +612,31 @@
             });
 
         });
+    </script>
+
+    <script>
+        const imageInput = document.getElementById('fileUpload');
+        const errorMessages = document.getElementById('errorMessages');
+
+        imageInput.addEventListener('change', handleImageUpload);
+
+        function handleImageUpload() {
+            const files = imageInput.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const maxSizeInBytes = 1024 * 5120; // 2MB (adjust as needed)
+
+                if (file.size > maxSizeInBytes) {
+                    $('#img_status').html('Images must not be greater than 5 MB');
+                    @this.set('post_status', 0);
+                    break;
+                } else {
+                    $('#img_status').html('');
+                    @this.set('post_status', 1);
+                }
+            }
+        }
     </script>
 
     <script>

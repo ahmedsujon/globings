@@ -41,7 +41,6 @@ class HomeComponent extends Component
             'content' => 'required',
             'tags' => 'required',
             'images' => 'required',
-            'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
     }
 
@@ -148,40 +147,42 @@ class HomeComponent extends Component
         unset($this->images[$key]);
     }
 
+    public $post_status = 0;
     public function createPost()
     {
         $this->validate([
             'content' => 'required',
             'tags' => 'required',
             'images' => 'required',
-            'images.*' => 'mimes:png,jpg,jpeg|image|max:2048',
         ]);
 
-        $post = new Post();
-        $post->category_id = Shop::where('user_id', user()->id)->first()->category_id;
-        $post->user_id = user()->id;
-        $post->content = $this->content;
-        $post->tags = $this->tags;
-        $post->searchable_tags = tagify_array($this->tags);
-        $post->status = 1;
+        if($this->post_status == 1){
+            $post = new Post();
+            $post->category_id = Shop::where('user_id', user()->id)->first()->category_id;
+            $post->user_id = user()->id;
+            $post->content = $this->content;
+            $post->tags = $this->tags;
+            $post->searchable_tags = tagify_array($this->tags);
+            $post->status = 1;
 
-        if ($this->images) {
-            $postImgs = [];
-            foreach ($this->images as $key => $img) {
-                $image = Image::make($this->images[$key])->resize(300, 200);
-                $directory = 'uploads/posts/';
-                Storage::makeDirectory($directory);
-                $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
-                $image->save(public_path($directory . $fileName));
-                $postImgs[] = $directory . $fileName;
+            if ($this->images) {
+                $postImgs = [];
+                foreach ($this->images as $key => $img) {
+                    $image = Image::make($this->images[$key])->resize(300, 200);
+                    $directory = 'uploads/posts/';
+                    Storage::makeDirectory($directory);
+                    $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
+                    $image->save(public_path($directory . $fileName));
+                    $postImgs[] = $directory . $fileName;
+                }
+                $post->images = $postImgs;
             }
-            $post->images = $postImgs;
+            $post->save();
+            $this->content = '';
+            $this->images = '';
+            session()->flash('post_created');
+            return redirect()->route('app.home');
         }
-        $post->save();
-        $this->content = '';
-        $this->images = '';
-        session()->flash('post_created');
-        return redirect()->route('app.home');
     }
 
     public function reInitializeSwiper()
