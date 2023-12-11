@@ -23,7 +23,7 @@ class HomeComponent extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [], $tags, $sort_category, $sort_city, $sort_tag;
+    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [], $tags, $sort_category, $sort_sub_category, $sort_city, $sort_tag;
     public function mount()
     {
         $this->search_term = request()->get('search');
@@ -31,6 +31,7 @@ class HomeComponent extends Component
         $this->cities = Shop::groupBy('city')->where('city', '!=', '')->pluck('city')->toArray();
 
         $this->sort_category = request()->get('category');
+        $this->sort_sub_category = request()->get('sub_categories');
         $this->sort_city = request()->get('city');
         $this->sort_tag = request()->get('tag');
     }
@@ -203,9 +204,17 @@ class HomeComponent extends Component
         })->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
 
         if ($this->sort_category) {
-            $categories = explode(',', $this->sort_category);
+            $posts = $posts->where('shops.category_id', $this->sort_category);
+        }
 
-            $posts = $posts->whereIn('posts.category_id', $categories);
+        if ($this->sort_sub_category) {
+            $sub_categories = explode(',', $this->sort_sub_category);
+
+            $posts = $posts->where(function ($query) use ($sub_categories) {
+                foreach ($sub_categories as $category) {
+                    $query->orWhere('shops.shop_sub_category', 'LIKE', '%"'.$category.'"%');
+                }
+            });
         }
 
         if ($this->sort_city) {

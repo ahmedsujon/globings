@@ -34,7 +34,7 @@ class ShopsComponent extends Component
     public function render()
     {
         $city = request()->get('city');
-        $category = request()->get('category');
+        $categories = request()->get('categories');
         $search_term = request()->get('search_value');
 
         $shops = Shop::where(function ($query) use($search_term) {
@@ -47,8 +47,8 @@ class ShopsComponent extends Component
             $shops = $shops->where('city', 'like', '%' . $city . '%');
         }
 
-        if ($category) {
-            $shops = $shops->where('category_id', $category);
+        if ($categories) {
+            $shops = $shops->whereIn('category_id', $categories);
         }
 
         $shops = $shops->paginate($this->pagination_value);

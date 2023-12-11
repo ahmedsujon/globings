@@ -310,7 +310,7 @@
                             @foreach ($sub_categories as $sub_cat)
                                 <div class="form-check" style="margin-top: 10px;">
                                     <input class="form-check-input" type="checkbox" name="filter_category"
-                                    value="{{ $sub_cat->id }}" id="categoryFilterIcon_{{ $sub_cat->id }}" />
+                                    value="{{ $sub_cat->name }}" id="categoryFilterIcon_{{ $sub_cat->id }}" />
                                     <label for="categoryFilterIcon_{{ $sub_cat->id }}" class="form-check-label"><img src="{{ asset($sub_cat->icon) }}" alt="category icon" /> <span style="font-size: 12px;">{{ $sub_cat->name }}</span></label>
                                 </div>
                             @endforeach
@@ -606,12 +606,10 @@
                 $('input:checkbox[name=filter_category]:checked').each(function() {
                     allCats.push($(this).val());
                 });
-                if(main_category != ''){
-                    allCats.push(main_category);
-                }
+
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + allCats;
+                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + main_category + '&sub_categories=' + allCats;
             });
 
             $('#searchForm').on('submit', function(e) {
