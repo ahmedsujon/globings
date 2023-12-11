@@ -291,10 +291,10 @@
                 </div>
                 <div class="category_area">
                     <h4 class="bring_bottom_text">Categories Settings</h4>
-                    <div class="category_filter_grid">
+                    <div class="category_filter_grid" wire:ignore>
                         @foreach ($categories as $f_category)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="filter_category"
+                                <input class="form-check-input filter_main_category" type="radio" name="filter_main_category"
                                     value="{{ $f_category->id }}" id="categoryFilterIcon_{{ $f_category->id }}" />
                                 <label class="form-check-label" for="categoryFilterIcon_{{ $f_category->id }}">
                                     <img src="{{ asset($f_category->icon) }}" alt="category icon" />
@@ -303,18 +303,34 @@
                             </div>
                         @endforeach
                     </div>
-                    @if (count($cities) > 0)
-                        <div class="select_area">
-                            <h4 class="bring_bottom_text">Want to see area of city</h4>
-                            <div class="area_list d-flex align-items-center flex-wrap">
-                                @foreach ($cities as $city)
-                                    <button type="button" class="filter_city"
-                                        data-city="{{ $city }}">{{ $city }}</button>
-                                @endforeach
-                                <input type="hidden" id="filter_city_val" />
-                            </div>
+
+                    @if ($sub_categories)
+                        <h4 class="bring_bottom_text" style="margin-top: 25px;">Choose Sub-Categories</h4>
+                        <div class="category_filter_grid">
+                            @foreach ($sub_categories as $sub_cat)
+                                <div class="form-check" style="margin-top: 10px;">
+                                    <input class="form-check-input" type="checkbox" name="filter_category"
+                                    value="{{ $sub_cat->name }}" id="categoryFilterIcon_{{ $sub_cat->id }}" />
+                                    <label for="categoryFilterIcon_{{ $sub_cat->id }}" class="form-check-label"><img src="{{ asset($sub_cat->icon) }}" alt="category icon" /> <span style="font-size: 12px;">{{ $sub_cat->name }}</span></label>
+                                </div>
+                            @endforeach
                         </div>
                     @endif
+
+                    <div wire:ignore>
+                        @if ($cities)
+                            <div class="select_area">
+                                <h4 class="bring_bottom_text">Want to see area of city</h4>
+                                <div class="area_list d-flex align-items-center flex-wrap">
+                                    @foreach ($cities as $city)
+                                        <button type="button" class="filter_city"
+                                            data-city="{{ $city }}">{{ $city }}</button>
+                                    @endforeach
+                                    <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
+                                </div>
+                            </div>
+                        @endif
+                    </div>
 
                     {{-- <div class="range_area" wire:ignore>
                         <h4 class="bring_bottom_text">Range of area</h4>
@@ -509,7 +525,7 @@
                 <div class="input_row">
                     <label for="fileUpload" class="upload_label">
                         <img src="{{ asset('assets/app/icons/mdi_photo-library.svg') }}" alt="photo libray" />
-                        <span>Add photos/videos</span>
+                        <span>Add photos/videos {{ $post_status }}</span>
                     </label>
                     <input type="file" id="fileUpload" wire:model.blur='images' multiple class="d-none" />
                     @error('images')
@@ -535,6 +551,9 @@
                             @endif
                         </div>
                     </div>
+                    <span wire:ignore>
+                        <div id="img_status" style="color: red; font-size: 12.5px;"></div>
+                    </span>
                 </div>
                 <button type="submit" class="login_btn login_btn_fill mt-24">
                     {!! loadingStateWithTextApp('createPost', 'POST') !!}
@@ -573,16 +592,30 @@
                 $('#filter_city_val').val($(this).data('city'));
             });
 
+            $('.filter_main_category').on('change', function() {
+                var id = $(this).val();
+
+                @this.getSubCategories(id);
+            });
+
+
+
             $('#filter_form').on('submit', function(e) {
                 e.preventDefault();
 
                 var allCats = [];
+                var main_category = '';
+                if(document.querySelector('input[name="filter_main_category"]:checked')){
+                    main_category = document.querySelector('input[name="filter_main_category"]:checked').value;
+                }
+
                 $('input:checkbox[name=filter_category]:checked').each(function() {
                     allCats.push($(this).val());
                 });
+
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + allCats;
+                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + main_category + '&sub_categories=' + allCats;
             });
 
             $('#searchForm').on('submit', function(e) {
@@ -609,6 +642,31 @@
             });
 
         });
+    </script>
+
+    <script>
+        const imageInput = document.getElementById('fileUpload');
+        const errorMessages = document.getElementById('errorMessages');
+
+        imageInput.addEventListener('change', handleImageUpload);
+
+        function handleImageUpload() {
+            const files = imageInput.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const maxSizeInBytes = 1024 * 5120; // 2MB (adjust as needed)
+
+                if (file.size > maxSizeInBytes) {
+                    $('#img_status').html('Images must not be greater than 5 MB');
+                    @this.set('post_status', 0);
+                    break;
+                } else {
+                    $('#img_status').html('');
+                    @this.set('post_status', 1);
+                }
+            }
+        }
     </script>
 
     <script>

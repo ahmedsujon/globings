@@ -23,7 +23,7 @@ class HomeComponent extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [], $tags, $sort_category, $sort_city, $sort_tag;
+    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [], $tags, $sort_category, $sort_sub_category, $sort_city, $sort_tag;
     public function mount()
     {
         $this->search_term = request()->get('search');
@@ -31,6 +31,7 @@ class HomeComponent extends Component
         $this->cities = Shop::groupBy('city')->where('city', '!=', '')->pluck('city')->toArray();
 
         $this->sort_category = request()->get('category');
+        $this->sort_sub_category = request()->get('sub_categories');
         $this->sort_city = request()->get('city');
         $this->sort_tag = request()->get('tag');
     }
@@ -41,7 +42,6 @@ class HomeComponent extends Component
             'content' => 'required',
             'tags' => 'required',
             'images' => 'required',
-            'images.*' => 'mimes:png,jpg,jpeg,gif|image|max:2048',
         ]);
     }
 
@@ -148,45 +148,48 @@ class HomeComponent extends Component
         unset($this->images[$key]);
     }
 
+    public $post_status = 0;
     public function createPost()
     {
         $this->validate([
             'content' => 'required',
             'tags' => 'required',
             'images' => 'required',
-            'images.*' => 'mimes:png,jpg,jpeg|image|max:2048',
         ]);
 
-        $post = new Post();
-        $post->category_id = Shop::where('user_id', user()->id)->first()->category_id;
-        $post->user_id = user()->id;
-        $post->content = $this->content;
-        $post->tags = $this->tags;
-        $post->searchable_tags = tagify_array($this->tags);
-        $post->status = 1;
+        if($this->post_status == 1){
+            $post = new Post();
+            $post->category_id = Shop::where('user_id', user()->id)->first()->category_id;
+            $post->user_id = user()->id;
+            $post->content = $this->content;
+            $post->tags = $this->tags;
+            $post->searchable_tags = tagify_array($this->tags);
+            $post->status = 1;
 
-        if ($this->images) {
-            $postImgs = [];
-            foreach ($this->images as $key => $img) {
-                $image = Image::make($this->images[$key])->resize(300, 200);
-                $directory = 'uploads/posts/';
-                Storage::makeDirectory($directory);
-                $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
-                $image->save(public_path($directory . $fileName));
-                $postImgs[] = $directory . $fileName;
+            if ($this->images) {
+                $postImgs = [];
+                foreach ($this->images as $key => $img) {
+                    $image = Image::make($this->images[$key])->resize(300, 200);
+                    $directory = 'uploads/posts/';
+                    Storage::makeDirectory($directory);
+                    $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
+                    $image->save(public_path($directory . $fileName));
+                    $postImgs[] = $directory . $fileName;
+                }
+                $post->images = $postImgs;
             }
-            $post->images = $postImgs;
+            $post->save();
+            $this->content = '';
+            $this->images = '';
+            session()->flash('post_created');
+            return redirect()->route('app.home');
         }
-        $post->save();
-        $this->content = '';
-        $this->images = '';
-        session()->flash('post_created');
-        return redirect()->route('app.home');
     }
 
-    public function reInitializeSwiper()
+    public $sub_categories;
+    public function getSubCategories($cat)
     {
-        $this->dispatch('reInitializeSwiper');
+        $this->sub_categories = Category::where('status', 1)->where('parent_id', $cat)->orderBy('name', 'ASC')->get();
     }
 
     public function render()
@@ -201,9 +204,17 @@ class HomeComponent extends Component
         })->where('posts.status', 1)->orderBy('posts.created_at', 'DESC');
 
         if ($this->sort_category) {
-            $categories = explode(',', $this->sort_category);
+            $posts = $posts->where('shops.category_id', $this->sort_category);
+        }
 
-            $posts = $posts->whereIn('posts.category_id', $categories);
+        if ($this->sort_sub_category) {
+            $sub_categories = explode(',', $this->sort_sub_category);
+
+            $posts = $posts->where(function ($query) use ($sub_categories) {
+                foreach ($sub_categories as $category) {
+                    $query->orWhere('shops.shop_sub_category', 'LIKE', '%"'.$category.'"%');
+                }
+            });
         }
 
         if ($this->sort_city) {
