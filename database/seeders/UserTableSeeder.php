@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
         $userOne = User::where('email', 'globings@gmail.com')->first();
         $userTwo = User::where('email', 'globingshop@gmail.com')->first();
         $userThree = User::where('email', 'shop@example.com')->first();
-        $userFour = User::where('email', 'userfour@example.com')->first();
+        $userFour = User::where('email', 'user@example.com')->first();
         $userFive = User::where('email', 'userfive@example.com')->first();
         $userSix = User::where('email', 'usersix@example.com')->first();
         $userSeven = User::where('email', 'userseven@example.com')->first();
@@ -53,9 +53,9 @@ class UserTableSeeder extends Seeder
         }
         if (!$userThree) {
             $user = new User();
-            $user->first_name = 'User';
-            $user->last_name = 'Three';
-            $user->username = 'user3';
+            $user->first_name = 'Test';
+            $user->last_name = 'Shop';
+            $user->username = 'shop';
             $user->email = 'shop@example.com';
             $user->phone = '01700000000';
             $user->password = Hash::make('12345678');
@@ -66,10 +66,10 @@ class UserTableSeeder extends Seeder
         }
         if (!$userFour) {
             $user = new User();
-            $user->first_name = 'User';
-            $user->last_name = 'Four';
-            $user->username = 'user4';
-            $user->email = 'user4@example.com';
+            $user->first_name = 'Test';
+            $user->last_name = 'User';
+            $user->username = 'user';
+            $user->email = 'user@example.com';
             $user->phone = '01700000000';
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';

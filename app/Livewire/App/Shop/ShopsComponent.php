@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 
 class ShopsComponent extends Component
 {
-    public $categories, $pagination_value = 50, $filter_cities;
+    public $categories, $sub_categories, $pagination_value = 50, $filter_cities;
     public $phone, $edit_id;
     use WithPagination;
 
@@ -31,10 +31,17 @@ class ShopsComponent extends Component
         $data->save();
     }
 
+    public function getSubCategories($cat)
+    {
+        $this->sub_categories = Category::where('status', 1)->where('parent_id', $cat)->orderBy('name', 'ASC')->get();
+    }
+
+
     public function render()
     {
         $city = request()->get('city');
         $category = request()->get('category');
+        $filter_sub_categories = request()->get('sub_categories');
         $search_term = request()->get('search_value');
 
         $shops = Shop::where(function ($query) use($search_term) {
@@ -50,6 +57,16 @@ class ShopsComponent extends Component
 
         if ($category) {
             $shops = $shops->where('category_id', $category);
+        }
+
+        if ($filter_sub_categories) {
+            $sub_categories = explode(',', $filter_sub_categories);
+
+            $shops = $shops->where(function ($query) use ($sub_categories) {
+                foreach ($sub_categories as $category) {
+                    $query->orWhere('shop_sub_category', 'LIKE', '%"'.$category.'"%');
+                }
+            });
         }
 
         $shops = $shops->paginate($this->pagination_value);

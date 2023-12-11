@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/addSlider.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/jquery.toast.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/pace-theme-flash.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('assets/app/plugins/css/pace-theme-flash.css') }}" /> --}}
 
     {{-- tagify --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.12.0/tagify.min.css" />
@@ -40,6 +40,11 @@
 
     .comment_modal .nested_comment::after {
         background-image: url("../../../assets/app/icons/comment_border.png") !important;
+    }
+
+    .category_label {
+        font-size: 12.5px !important;
+        border: 1px solid red;
     }
 </style>
 
@@ -68,7 +73,7 @@
     <script src="{{ asset('assets/app/plugins/js/jquery.star-rating-svg.js') }}"></script>
 
     <script src="{{ asset('assets/app/plugins/js/jquery.toast.min.js') }}"></script>
-    <script data-pace-options='{ "ajax": false }' src="{{ asset('assets/app/plugins/js/pace.min.js') }}"></script>
+    {{-- <script data-pace-options='{ "ajax": false }' src="{{ asset('assets/app/plugins/js/pace.min.js') }}"></script> --}}
 
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
