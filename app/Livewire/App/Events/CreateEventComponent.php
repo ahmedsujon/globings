@@ -21,8 +21,7 @@ class CreateEventComponent extends Component
             'name' => 'required',
             'date' => 'required',
             'location' => 'required',
-            'banner' => 'required',
-            'banner.*' => 'mimes:jpeg,jpg,webp,png,mp4,avi,mov',
+            'banner' => 'required|mimes:jpeg,jpg,webp,png,mp4,avi,mov|max:5120',
         ]);
 
         $data = new Event();
@@ -42,7 +41,7 @@ class CreateEventComponent extends Component
         } else{
             $data->banner = 'assets/images/placeholder-rect.jpg';
         }
-        
+
         $data->save();
 
         $this->resetInputs();
