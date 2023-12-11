@@ -75,7 +75,7 @@
             <div class="input_row">
                 <label for="fileUpload" class="upload_label">
                     <img src="{{ asset('assets/app/icons/mdi_photo-library.svg') }}" alt="photo libray" />
-                    <span>Add photos/videos</span>
+                    <span>Add photo/video</span>
                 </label>
                 <input type="file" wire:model.blur='banner' id="fileUpload" class="d-none" />
                 @error('banner')
@@ -86,15 +86,14 @@
                     <div class="upload_slider_grid">
                         <div class="slider_img">
                             <div wire:loading wire:target='banner' wire:key='banner'>
-                                <span class="spinner-border spinner-border-xs" role="status" aria-hidden="true"></span>
-                                <small>Uploading</small>
+                                <i class="fa fa-spinner fa-spin" style="font-size: 10px;" aria-hidden="true"></i> <small>Uploading</small>
                             </div>
                             @if ($banner)
                                 <img src="{{ $banner->temporaryUrl() }}" class="upload_img w-auto"
-                                    style="height: 55px; width: 55px;" />
+                                    style="height: 120px; width: 120px;" />
                             @elseif ($updatedBanner)
                                 <img src="{{ asset($updatedBanner) }}" class="upload_img w-auto"
-                                    style="height: 55px; width: 55px;" />
+                                    style="height: 120px; width: 120px;" />
                             @endif
                         </div>
                     </div>
