@@ -317,18 +317,20 @@
                         </div>
                     @endif
 
-                    @if (count($cities) > 0)
-                        <div class="select_area" wire:ignore>
-                            <h4 class="bring_bottom_text">Want to see area of city</h4>
-                            <div class="area_list d-flex align-items-center flex-wrap">
-                                @foreach ($cities as $city)
-                                    <button type="button" class="filter_city"
-                                        data-city="{{ $city }}">{{ $city }}</button>
-                                @endforeach
-                                <input type="hidden" id="filter_city_val" />
+                    <div wire:ignore>
+                        @if ($cities)
+                            <div class="select_area">
+                                <h4 class="bring_bottom_text">Want to see area of city</h4>
+                                <div class="area_list d-flex align-items-center flex-wrap">
+                                    @foreach ($cities as $city)
+                                        <button type="button" class="filter_city"
+                                            data-city="{{ $city }}">{{ $city }}</button>
+                                    @endforeach
+                                    <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
+                                </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
 
                     {{-- <div class="range_area" wire:ignore>
                         <h4 class="bring_bottom_text">Range of area</h4>
@@ -602,7 +604,11 @@
                 e.preventDefault();
 
                 var allCats = [];
-                var main_category = document.querySelector('input[name="filter_main_category"]:checked').value;
+                var main_category = '';
+                if(document.querySelector('input[name="filter_main_category"]:checked')){
+                    main_category = document.querySelector('input[name="filter_main_category"]:checked').value;
+                }
+
                 $('input:checkbox[name=filter_category]:checked').each(function() {
                     allCats.push($(this).val());
                 });
