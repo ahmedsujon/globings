@@ -47,6 +47,7 @@ class ShopsComponent extends Component
         $shops = Shop::where(function ($query) use($search_term) {
             $query->where('name', 'like', '%' . $search_term . '%')
                 ->orWhere('shop_category', 'like', '%' . $search_term . '%')
+                ->orWhere('description', 'like', '%' . $search_term . '%')
                 ->orWhere('shop_sub_category', 'like', '%' . $search_term . '%');
         })->orderBy('id', 'DESC');
 
