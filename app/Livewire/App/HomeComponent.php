@@ -185,9 +185,10 @@ class HomeComponent extends Component
         }
     }
 
-    public function reInitializeSwiper()
+    public $sub_categories;
+    public function getSubCategories($cat)
     {
-        $this->dispatch('reInitializeSwiper');
+        $this->sub_categories = Category::where('status', 1)->where('parent_id', $cat)->orderBy('name', 'ASC')->get();
     }
 
     public function render()

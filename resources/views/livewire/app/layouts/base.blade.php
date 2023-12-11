@@ -41,6 +41,11 @@
     .comment_modal .nested_comment::after {
         background-image: url("../../../assets/app/icons/comment_border.png") !important;
     }
+
+    .category_label {
+        font-size: 12.5px !important;
+        border: 1px solid red;
+    }
 </style>
 
 <body>
