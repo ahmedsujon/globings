@@ -9,18 +9,12 @@
         </div>
         <div class="share_area">
             <div class="container">
-                <h3 class="bing_inner_title">Share you invite link</h3>
+                <h3 class="bing_inner_title">Share with your friends</h3>
                 <div class="share_list d-flex align-items-center justify-content-center flex-wrap mt-4">
                     <div class="share_item">
-                        <button type="button" class="share_btn message_icon">
-                            <img src="{{ asset('assets/app/icons/bing_share_icon1.svg') }}" alt="bing share icon" />
-                        </button>
-                        <h4 class="bring_bottom_text">Text</h4>
-                    </div>
-                    <div class="share_item">
-                        <button type="button" class="share_btn" id="shareModalBtn">
+                        <a href="{{ route('app.profile.share') }}" class="share_btn" id="shareModalBtn">
                             <img src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}" alt="bing share icon" />
-                        </button>
+                        </a>
                         <h4 class="bring_bottom_text">Share</h4>
                     </div>
                     <div class="share_item">
