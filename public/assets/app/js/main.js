@@ -80,11 +80,6 @@ $(document).ready(function () {
     toggleClassElement("#forgetSidebarArea", "sing_modal_active");
   });
 
-  //Pin verification
-  $("#verifyPin").segmentedInput({
-    // options
-  });
-
   $("#verifyBackBtn").click(function (e) {
     e.preventDefault();
     toggleClassElement("#verifySidebarArea", "sing_modal_active");
@@ -514,30 +509,10 @@ $(document).ready(function () {
     });
   });
 
-  //Select edit
-  $("#locationSearchSelect2").editableSelect({
-    // enable filter
-    filter: true,
-
-    // default, fade or slide
-    effects: "slide",
-
-    // fast, slow or [0-9]+
-    duration: "fast",
-
-    // Where to append the dropdown list.
-    // appendTo: 'body',
-
-    // "focus" or "manual"
-    // trigger: 'focus',
-
-    // callback events
-    onCreate: function () {},
-    onShow: function () {},
-    onHide: function () {},
-    onSelect: function (element) {
-      // $('#afterSelect').html($(this).val());
-    },
+  $(".post_description").myOwnLineShowMoreLess({
+    showLessLine: 2,
+    showLessText: "Read Less",
+    showMoreText: "Read More",
   });
 });
 
@@ -780,7 +755,6 @@ swiperAutoSlider("#recentSearchSlider", 15);
 
 //Country Input
 var input = document.querySelector("#telephone");
-console.log("input:", input);
 if (input) {
   window.intlTelInput(input, {
     // options here

@@ -230,7 +230,9 @@
                             @if ($post->tags)
                                 <ul class="post_tag_list d-flex align-items-center flex-wrap">
                                     @foreach (tagify_array($post->tags) as $tag)
-                                        <li><a href="{{ route('app.home') }}?tag={{ $tag }}">#{{ $tag }}</a></li>
+                                        <li><a
+                                                href="{{ route('app.home') }}?tag={{ $tag }}">#{{ $tag }}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             @endif
@@ -290,12 +292,13 @@
                     </button>
                 </div>
                 <div class="category_area">
-                    <h4 class="bring_bottom_text">Categories Settings</h4>
+                    <h4 class="bring_bottom_text">Categories</h4>
                     <div class="category_filter_grid" wire:ignore>
                         @foreach ($categories as $f_category)
                             <div class="form-check">
-                                <input class="form-check-input filter_main_category" type="radio" name="filter_main_category"
-                                    value="{{ $f_category->id }}" id="categoryFilterIcon_{{ $f_category->id }}" />
+                                <input class="form-check-input filter_main_category" type="radio"
+                                    name="filter_main_category" value="{{ $f_category->id }}"
+                                    id="categoryFilterIcon_{{ $f_category->id }}" />
                                 <label class="form-check-label" for="categoryFilterIcon_{{ $f_category->id }}">
                                     <img src="{{ asset($f_category->icon) }}" alt="category icon" />
                                     <span>{{ $f_category->name }}</span>
@@ -305,16 +308,20 @@
                     </div>
 
                     @if ($sub_categories)
-                        <h4 class="bring_bottom_text" style="margin-top: 25px;">Choose Sub-Categories</h4>
+                    <div class="second_category_filter">
+                        <h4 class="bring_bottom_text" style="margin-top: 25px;">Sub Categories</h4>
                         <div class="category_filter_grid">
                             @foreach ($sub_categories as $sub_cat)
-                                <div class="form-check" style="margin-top: 10px;">
+                                <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="filter_category"
-                                    value="{{ $sub_cat->name }}" id="categoryFilterIcon_{{ $sub_cat->id }}" />
-                                    <label for="categoryFilterIcon_{{ $sub_cat->id }}" class="form-check-label"><img src="{{ asset($sub_cat->icon) }}" alt="category icon" /> <span style="font-size: 12px;">{{ $sub_cat->name }}</span></label>
+                                        value="{{ $sub_cat->name }}" id="categoryFilterIcon_{{ $sub_cat->id }}" />
+                                    <label class="form-check-label" for="categoryFilterIcon_{{ $sub_cat->id }}">
+                                        <span>{{ $sub_cat->name }}</span>
+                                    </label>
                                 </div>
                             @endforeach
                         </div>
+                    </div>
                     @endif
 
                     <div wire:ignore>
@@ -326,7 +333,8 @@
                                         <button type="button" class="filter_city"
                                             data-city="{{ $city }}">{{ $city }}</button>
                                     @endforeach
-                                    <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
+                                    <input type="hidden" id="filter_city_val"
+                                        value="{{ request()->get('city') }}" />
                                 </div>
                             </div>
                         @endif
@@ -499,7 +507,8 @@
                 <h4 class="notification_title">Create Post</h4>
             </div>
             <div class="header_border"></div>
-            <form wire:submit.prevent='createPost' class="mobile_form_area post_form_area" style="justify-content: normal !important;" id="postCreateFormSubmit">
+            <form wire:submit.prevent='createPost' class="mobile_form_area post_form_area"
+                style="justify-content: normal !important;" id="postCreateFormSubmit">
                 <div class="user_grid">
                     <img src="{{ asset(user()->avatar) }}" alt="user image" class="user_img" />
                     <div>
@@ -516,7 +525,8 @@
                 </div>
                 <div class="input_row">
                     <div wire:ignore>
-                        <input type="text" name="keywords" id="keyWords" class="input_field" placeholder="Enter your tags" />
+                        <input type="text" name="keywords" id="keyWords" class="input_field"
+                            placeholder="Enter your tags" />
                     </div>
                     @error('tags')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -533,7 +543,8 @@
                     @enderror
 
                     <div wire:loading wire:target='images' wire:key='images'>
-                        <i class="fa fa-spinner fa-spin" style="font-size: 10px;" aria-hidden="true"></i> <small>Uploading</small>
+                        <i class="fa fa-spinner fa-spin" style="font-size: 10px;" aria-hidden="true"></i>
+                        <small>Uploading</small>
                     </div>
 
                     <div class="uploadSlider" id="uploadSlider">
@@ -567,7 +578,7 @@
     <script>
         var input = document.querySelector('input[name=keywords]');
         new Tagify(input);
-        $('#keyWords').on('change', function(){
+        $('#keyWords').on('change', function() {
             var val = $(this).val();
             @this.set('tags', val);
         });
@@ -605,8 +616,9 @@
 
                 var allCats = [];
                 var main_category = '';
-                if(document.querySelector('input[name="filter_main_category"]:checked')){
-                    main_category = document.querySelector('input[name="filter_main_category"]:checked').value;
+                if (document.querySelector('input[name="filter_main_category"]:checked')) {
+                    main_category = document.querySelector('input[name="filter_main_category"]:checked')
+                        .value;
                 }
 
                 $('input:checkbox[name=filter_category]:checked').each(function() {
@@ -615,7 +627,8 @@
 
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + main_category + '&sub_categories=' + allCats;
+                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + main_category +
+                    '&sub_categories=' + allCats;
             });
 
             $('#searchForm').on('submit', function(e) {

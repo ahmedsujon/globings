@@ -315,16 +315,20 @@
                     </div>
 
                     @if ($sub_categories)
+                    <div class="second_category_filter">
                         <h4 class="bring_bottom_text" style="margin-top: 25px;">Choose Sub-Categories</h4>
                         <div class="category_filter_grid">
                             @foreach ($sub_categories as $sub_cat)
-                                <div class="form-check" style="margin-top: 10px;">
+                                <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="filter_category"
-                                    value="{{ $sub_cat->name }}" id="categoryFilterIcon_{{ $sub_cat->id }}" />
-                                    <label for="categoryFilterIcon_{{ $sub_cat->id }}" class="form-check-label"><img src="{{ asset($sub_cat->icon) }}" alt="category icon" /> <span style="font-size: 12px;">{{ $sub_cat->name }}</span></label>
+                                        value="{{ $sub_cat->name }}"  id="categoryFilterIcon_{{ $sub_cat->id }}" />
+                                    <label class="form-check-label" for="categoryFilterIcon_{{ $sub_cat->id }}">
+                                        <span>{{ $sub_cat->name }}</span>
+                                    </label>
                                 </div>
                             @endforeach
                         </div>
+                    </div>
                     @endif
 
                     <div wire:ignore>
