@@ -250,9 +250,11 @@
                                 <!-- Add Pagination -->
                                 <div class="swiper-pagination"></div>
                             </div>
-                            <p class="post_description">
-                                {!! $post->content !!}
-                            </p>
+                            <span wire:ignore>
+                                <p class="post_description">
+                                    {!! $post->content !!}
+                                </p>
+                            </span>
                             <div class="action_area d-flex align-items-center flex-wrap">
                                 <button type="button" data-post_id="{{ $post->id }}"
                                     class="heart_icon add_like_btn {{ isLiked($post->id) ? 'selected_heart' : '' }}"
