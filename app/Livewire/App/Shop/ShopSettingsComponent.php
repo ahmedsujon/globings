@@ -37,7 +37,7 @@ class ShopSettingsComponent extends Component
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->encode('webp', 75);
-            $directory = 'uploads/events/';
+            $directory = 'uploads/shops/';
 
             $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
             Storage::disk('do_spaces')->put($directory.$fileName, $image->getEncoded());

@@ -52,13 +52,19 @@ class ProfileComponent extends Component
     public function updatedavatar()
     {
         if ($this->avatar) {
-            $image = Image::make($this->avatar)->resize(64, 64);
+            $image = Image::make($this->avatar)->resize(626, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 75);
             $directory = 'uploads/profiles/';
-            Storage::makeDirectory($directory);
-            $fileName = uniqid(). Carbon::now()->timestamp. '.'. $this->avatar->extension();
-            $image->save(public_path($directory. $fileName));
+
+            $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+            Storage::disk('do_spaces')->put($directory.$fileName, $image->getEncoded());
+            $img = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
+
+
             $profile = User::where('id', user()->id)->first();
-            $profile->avatar = $directory . $fileName;
+            $profile->avatar = $img;
             $profile->save();
             $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }
