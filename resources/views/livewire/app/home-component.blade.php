@@ -668,10 +668,10 @@
 
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                const maxSizeInBytes = 1024 * 5120; // 2MB (adjust as needed)
+                const maxSizeInBytes = 1024 * 10240; // 2MB (adjust as needed)
 
                 if (file.size > maxSizeInBytes) {
-                    $('#img_status').html('Images must not be greater than 5 MB');
+                    $('#img_status').html('Images must not be greater than 10 MB');
                     @this.set('post_status', 0);
                     break;
                 } else {

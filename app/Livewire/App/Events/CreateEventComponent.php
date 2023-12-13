@@ -36,8 +36,8 @@ class CreateEventComponent extends Component
 
         if ($this->banner) {
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->banner->extension();
-            $this->banner->storeAs('img/events', $fileName, 'do_spaces');
-            $data->banner = env('DO_SPACES_ENDPOINT') . '/img/events/' . $fileName;
+            $this->banner->storeAs('uploads/events', $fileName, 'do_spaces');
+            $data->banner = env('DO_SPACES_ENDPOINT') . '/uploads/events/' . $fileName;
         } else{
             $data->banner = 'assets/images/placeholder-rect.jpg';
         }
