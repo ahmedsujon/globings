@@ -33,14 +33,18 @@ class ShopSettingsComponent extends Component
     public function updatedCoverImage()
     {
         if ($this->coverImage) {
-            $image = Image::make($this->coverImage)->resize(375, 195);
-            $directory = 'uploads/shops/';
-            Storage::makeDirectory($directory);
-            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->coverImage->extension();
-            $image->save(public_path($directory . $fileName));
-        
+            $image = Image::make($this->coverImage)->resize(626, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 75);
+            $directory = 'uploads/events/';
+
+            $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+            Storage::disk('do_spaces')->put($directory.$fileName, $image->getEncoded());
+            $banner = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
+
             $shop = Shop::where('user_id', user()->id)->first();
-            $shop->cover_photo = $directory . $fileName;
+            $shop->cover_photo = $banner;
             $shop->save();
             $this->dispatch('success', ['message' => 'Cover photo updated successfully']);
         }
