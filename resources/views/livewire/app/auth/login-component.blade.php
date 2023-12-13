@@ -53,26 +53,8 @@
                         Create Account
                     </button>
                 </div>
-                <div class="others_login_area">
-                    <h5 class="others_text">or Sign in with</h5>
-                    <div class="others_btn d-flex align-items-center justify-content-center flex-wrap">
-                        <button type="button">
-                            <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}"
-                                alt="others login icoin" />
-                        </button>
-                        <button type="button">
-                            <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}"
-                                alt="others login icoin" />
-                        </button>
-                        <button type="button">
-                            <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}"
-                                alt="others login icoin" />
-                        </button>
-                    </div>
-                </div>
             </form>
         </div>
-
         <!-- Sign In Modal  -->
         <div wire:ignore.self class="sing_modal_area" id="signUpSidebarArea">
             <div class="container">
@@ -197,26 +179,6 @@
 
                                 <a href="{{ route('login') }}" type="button">Sign in</a>
                             </div>
-                            <div class="others_login_area">
-                                <h5 class="others_text">Or Log In With</h5>
-                                <div class="others_btn d-flex align-items-center justify-content-center flex-wrap">
-                                    <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}"
-                                            alt="others login icoin" />
-                                    </button>
-                                    <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}"
-                                            alt="others login icoin" />
-                                    </button>
-                                    <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}"
-                                            alt="others login icoin" />
-                                    </button>
-                                </div>
-                                <h6 class="sub_login text-center">
-                                    <a href="{{ route('app.home') }}">Continue without signing in</a>
-                                </h6>
-                            </div>
                         </form>
                     </div>
                     <div wire:ignore.self class="tab-pane fade" id="pills-profile" role="tabpanel"
@@ -317,26 +279,6 @@
                             <div class="dont_account text-center">
                                 Already a member?
                                 <a href="{{ route('login') }}" type="button">Sign in</a>
-                            </div>
-                            <div class="others_login_area">
-                                <h5 class="others_text">Or Log In With</h5>
-                                <div class="others_btn d-flex align-items-center justify-content-center flex-wrap">
-                                    <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon1.svg') }}"
-                                            alt="others login icoin" />
-                                    </button>
-                                    <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon2.svg') }}"
-                                            alt="others login icoin" />
-                                    </button>
-                                    <button type="button">
-                                        <img src="{{ asset('assets/app/icons/others_option_icon3.svg') }}"
-                                            alt="others login icoin" />
-                                    </button>
-                                </div>
-                                <h6 class="sub_login text-center">
-                                    <a href="{{ route('app.home') }}">Continue without signing in</a>
-                                </h6>
                             </div>
                         </form>
                     </div>
