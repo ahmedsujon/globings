@@ -169,16 +169,19 @@ class HomeComponent extends Component
             if ($this->images) {
                 $postImgs = [];
                 foreach ($this->images as $key => $img) {
-                    // $image = Image::make($this->images[$key])->resize(300, 200);
-                    // $directory = 'uploads/posts/';
-                    // Storage::makeDirectory($directory);
-                    // $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
-                    // $image->save(public_path($directory . $fileName));
-                    // $postImgs[] = $directory . $fileName;
+                    $image = Image::make($this->images[$key])->resize(626, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    })->encode('webp', 75);
+                    $directory = 'uploads/posts/';
 
-                    $image = Carbon::now()->timestamp . '.' . $this->images[$key]->extention();
-                    $this->images[$key]->storeAs('img/posts', $image, 'do_spaces');
-                    $postImgs[] = env('AWS_BUCKET_URL') . 'imgs/posts/' . $image;
+                    $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+                    Storage::disk('do_spaces')->put($directory.$fileName, $image->getEncoded());
+                    $postImgs[] = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
+
+                    // $image = Carbon::now()->timestamp . '.' . $this->images[$key]->extension();
+                    // $this->images[$key]->storeAs('uploads/posts', $image, 'do_spaces');
+                    // $postImgs[] = env('DO_SPACES_ENDPOINT') . '/uploads/posts/' . $image;
                 }
                 $post->images = $postImgs;
             }
