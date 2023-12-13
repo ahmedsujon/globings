@@ -509,10 +509,23 @@ $(document).ready(function () {
     });
   });
 
-  $(".post_description").myOwnLineShowMoreLess({
-    showLessLine: 2,
-    showLessText: "Read Less",
-    showMoreText: "Read More",
+  //Copy Button
+  $("#referCopyBtn").click(function () {
+    var textToCopy = $("#textToCopy").text().trim();
+    // var textToCopy = "Demo string text".trim();
+    var tempTextarea = $("<input>");
+    $("body").append(tempTextarea);
+    tempTextarea.val(textToCopy).select();
+    document.execCommand("copy");
+    tempTextarea.remove();
+  });
+
+  //Read more less button
+  $(".post_description").each(function (indexInArray, valueOfElement) {
+    console.log("valueOfElement:", valueOfElement);
+    $(valueOfElement).multiTextToggleCollapse({
+      line: 2,
+    });
   });
 });
 
