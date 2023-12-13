@@ -5,9 +5,11 @@ namespace App\Livewire\App\Events;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Event;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class CreateEventComponent extends Component
 {
@@ -21,7 +23,7 @@ class CreateEventComponent extends Component
             'name' => 'required',
             'date' => 'required',
             'location' => 'required',
-            'banner' => 'required|mimes:jpeg,jpg,webp,png,mp4,avi,mov|max:5120',
+            'banner' => 'required|mimes:jpeg,jpg,webp,png,mp4,avi,mov|max:10240',
         ]);
 
         $data = new Event();
@@ -35,9 +37,19 @@ class CreateEventComponent extends Component
         $data->extension = $extension;
 
         if ($this->banner) {
-            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->banner->extension();
-            $this->banner->storeAs('events', $fileName);
-            $data->banner = 'uploads/events/' . $fileName;
+            $image = Image::make($this->banner)->resize(626, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 75);
+            $directory = 'uploads/events/';
+
+            $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+            Storage::disk('do_spaces')->put($directory.$fileName, $image->getEncoded());
+            $data->banner = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
+
+            // $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->banner->extension();
+            // $this->banner->storeAs('uploads/events', $fileName, 'do_spaces');
+            // $data->banner = env('DO_SPACES_ENDPOINT') . '/uploads/events/' . $fileName;
         } else{
             $data->banner = 'assets/images/placeholder-rect.jpg';
         }
