@@ -21,7 +21,7 @@ class NotificationSendController extends Controller
     {
         $url = 'https://fcm.googleapis.com/fcm/send';
 
-        $FcmToken = User::whereNotNull('device_token')->pluck('device_token')->all();
+        $FcmToken = User::whereNotNull('device_token')->where('id', '!=', user()->id)->pluck('device_token')->all();
 
         $serverKey =env('FIREBASE_SERVER_KEY'); // ADD SERVER KEY HERE PROVIDED BY FCM
 
@@ -58,6 +58,7 @@ class NotificationSendController extends Controller
         // Close connection
         curl_close($ch);
         // FCM response
-        dd($result);
+        // dd($result);
+        return redirect()->back();
     }
 }
