@@ -518,13 +518,17 @@ $(document).ready(function () {
     tempTextarea.val(textToCopy).select();
     document.execCommand("copy");
     tempTextarea.remove();
+    $(this).addClass("tooltip_active");
+    setTimeout(() => {
+      $(this).removeClass("tooltip_active");
+    }, 1500);
   });
-
-  //Read more less button
-  $(".post_description").each(function (indexInArray, valueOfElement) {
-    $(valueOfElement).multiTextToggleCollapse({
-      line: 2,
-    });
+  $(".post_description").expander({
+    slicePoint: 100,
+    expandEffect: "fadeIn",
+    collapseEffect: "fadeOut",
+    expandText: "read more",
+    lessLinkClass: "read less",
   });
 });
 

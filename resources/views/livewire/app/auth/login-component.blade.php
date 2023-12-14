@@ -111,14 +111,14 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="input_row">
+                            {{-- <div class="input_row">
                                 <label for="">Phone</label>
                                 <input type="text" placeholder="Enter phone" wire:model.blur='phone'
                                     class="input_field" />
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="input_row">
                                 <label for="">Password</label>
                                 <input type="password" placeholder="Enter your password" wire:model.blur='password'
@@ -213,14 +213,14 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="input_row">
+                            {{-- <div class="input_row">
                                 <label for="">Phone</label>
                                 <input type="text" placeholder="Enter phone" wire:model.blur='phone'
                                     class="input_field" />
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="input_row">
                                 <label for="">Password</label>
                                 <input type="password" placeholder="Enter your password" wire:model.blur='password'
@@ -308,7 +308,6 @@
                         @if (session()->has('phone_user_error'))
                             <div class="input_error">{{ session('phone_user_error') }}</div>
                         @endif
-
                         <button type="submit" class="login_btn login_btn_fill">
                             {!! loadingStateWithTextApp('forgetPassword', 'Send Code') !!}
                         </button>
@@ -391,9 +390,9 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#telephone').on('change', function(){
-                @this.set('phone', $(this).val());
-            });
+            // $('#telephone').on('change', function(){
+            //     @this.set('phone', $(this).val());
+            // });
 
             $('#verifyPin').on('change', function(){
                 @this.set('otp', $(this).val());
