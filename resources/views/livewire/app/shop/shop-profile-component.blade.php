@@ -167,7 +167,8 @@
                 </button>
             </form>
 
-            <div class="card mt-3">
+            
+            {{-- <div class="card mt-3">
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -187,7 +188,7 @@
                         <button type="submit" class="btn btn-success btn-block">Send Notification</button>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 

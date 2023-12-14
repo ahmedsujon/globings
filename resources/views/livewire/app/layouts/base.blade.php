@@ -62,6 +62,9 @@
     @endif
 
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+
     <!-- JS Here -->
     <script src="{{ asset('assets/app/plugins/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/app/plugins/js/bootstrap.bundle.min.js') }}"></script>
@@ -83,14 +86,15 @@
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
+
+
     {{-- tagify --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.12.0/tagify.min.js"></script>
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+
     <script>
         var firebaseConfig = {
             apiKey: "AIzaSyApeClQthA9ilOOZ5oYVSvjRe7wrhjpLL8",

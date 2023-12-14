@@ -2,14 +2,14 @@
 
 namespace App\Livewire\App\Profile;
 
-use Carbon\Carbon;
 use App\Models\User;
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ProfileComponent extends Component
 {
@@ -18,6 +18,12 @@ class ProfileComponent extends Component
     public $first_name, $last_name, $email, $phone, $gender, $dob, $avatar, $uploadedAvatar, $edit_id;
     public $currentPassword, $newPassword, $confirmPassword;
 
+    public function changeNotificationStatus()
+    {
+        $user = User::find(Auth::user()->id);
+        $user->notification_status = $user->notification_status == 1 ? 0 : 1;
+        $user->save();
+    }
     public function updateProfile()
     {
         $this->validate([
@@ -59,9 +65,8 @@ class ProfileComponent extends Component
             $directory = 'uploads/profiles/';
 
             $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
-            Storage::disk('do_spaces')->put($directory.$fileName, $image->getEncoded());
+            Storage::disk('do_spaces')->put($directory . $fileName, $image->getEncoded());
             $img = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
-
 
             $profile = User::where('id', user()->id)->first();
             $profile->avatar = $img;
