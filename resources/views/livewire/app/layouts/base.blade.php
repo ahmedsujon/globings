@@ -56,7 +56,7 @@
     {{-- </div> --}}
     @livewire('app.partials.home-component-partials')
     @if (user())
-        <input type="hidden" id="notification_status" value="{{ user()->device_token ? 'enabled' : 'disabled' }}" />
+        <input type="hidden" id="notification_status" value="authenticated" />
     @else
         <input type="hidden" id="notification_status" value="no_auth" />
     @endif
@@ -104,6 +104,8 @@
         firebase.initializeApp(firebaseConfig);
         const messaging = firebase.messaging();
         function startFCM() {
+            var saved_token = $('#device_token').val();
+
             messaging
                 .requestPermission()
                 .then(function () {
@@ -133,10 +135,8 @@
         $(document).ready(function(){
             var status = $('#notification_status').val();
 
-            if(status != 'no_auth'){
-                if(status == 'disabled') {
-                    startFCM();
-                }
+            if(status == 'authenticated'){
+                startFCM();
             }
         });
 
