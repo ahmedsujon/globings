@@ -566,6 +566,17 @@
                                     <h5>English</h5>
                                 </button>
                             </li>
+
+                            <li>
+                                <button type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#1872F6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                                        <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                                    </svg>
+                                    <div style="display: flex"><label for="not">Allow Notification</label> <input type="checkbox" style="height: 25px; width: 25px; margin-left: 25px;" id="not" {{ user()->notification_status == 0 ? '' : 'checked' }} wire:change='changeNotificationStatus' /></div>
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>
