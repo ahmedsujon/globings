@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DependableDropdownController;
 use App\Livewire\App\HomeComponent;
 use App\Livewire\App\IndexComponent;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +11,7 @@ use App\Livewire\App\Events\EventsComponent;
 use App\Livewire\App\Events\MyEventsComponent;
 use App\Livewire\App\Profile\ProfileComponent;
 use App\Livewire\App\Shop\ShopProfileComponent;
+use App\Livewire\App\Shop\FavoriteShopComponent;
 use App\Livewire\App\Shop\ShopSettingsComponent;
 use App\Livewire\App\Events\CreateEventComponent;
 use App\Livewire\App\Pages\ShareProfileComponent;
@@ -22,12 +22,13 @@ use App\Livewire\App\Profile\UserProfileComponent;
 use App\Livewire\App\Scanner\ScanSuccessComponent;
 use App\Livewire\App\Pages\TermsConditionComponent;
 use App\Livewire\App\Profile\RecentPhotosComponent;
+use App\Http\Controllers\NotificationSendController;
 use App\Livewire\App\Payment\StripePaymentComponent;
 use App\Livewire\App\Scanner\ProfileScannerComponent;
+use App\Http\Controllers\DependableDropdownController;
 use App\Http\Controllers\payment\PayPalPaymentController;
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Payment\StripePaymentSuccessComponent;
-use App\Livewire\App\Shop\FavoriteShopComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/scanner', ProfileScannerComponent::class)->name('app.scanner');
     Route::post('/scanner/scan', [ProfileScannerComponent::class, 'scan'])->name('app.scannerScan');
     Route::get('/scanner/scan-success', ScanSuccessComponent::class)->name('app.scannerScanSuccess');
+
+    Route::post('/store-token', [NotificationSendController::class, 'updateDeviceToken'])->name('store.token');
+    Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
 });
 
 
