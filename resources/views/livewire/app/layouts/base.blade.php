@@ -73,7 +73,7 @@
     <script src="{{ asset('assets/app/plugins/js/jquery.star-rating-svg.js') }}"></script>
 
     <script src="{{ asset('assets/app/plugins/js/jquery.toast.min.js') }}"></script>
-    <script src="{{ asset('assets/app/plugins/js/jquery.multiTextToggleCollapse.js') }}"></script>
+    <script src="{{ asset('assets/app/plugins/js/jquery.expander.min.js') }}"></script>
 
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>

@@ -12,17 +12,24 @@
                 <h3 class="bing_inner_title">Share with your friends</h3>
                 <div class="share_list d-flex align-items-center justify-content-center flex-wrap mt-4">
                     <div class="share_item">
-                        <a href="{{ route('app.profile.share') }}" class="share_btn" id="shareModalBtn">
-                            <img src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}" alt="bing share icon" />
-                        </a>
+                        <button type="button" class="share_btn" id="shareModalBtn">
+                          <img
+                            src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}"
+                            alt="bing share icon"
+                          />
+                        </button>
                         <h4 class="bring_bottom_text">Share</h4>
-                    </div>
-                    <div class="share_item">
+                      </div>
+                      <div class="share_item tooltip_area" id="referCopyBtn">
                         <button type="button" class="share_btn copy_icon">
-                            <img src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}" alt="bing share icon" />
+                          <img
+                            src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}"
+                            alt="bing share icon"
+                          />
                         </button>
                         <h4 class="bring_bottom_text">Copy</h4>
-                    </div>
+                        <div class="tooltip_item">Copied</div>
+                      </div>
                 </div>
             </div>
         </div>
