@@ -522,7 +522,6 @@ $(document).ready(function () {
 
   //Read more less button
   $(".post_description").each(function (indexInArray, valueOfElement) {
-    console.log("valueOfElement:", valueOfElement);
     $(valueOfElement).multiTextToggleCollapse({
       line: 2,
     });
