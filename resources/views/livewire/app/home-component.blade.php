@@ -313,36 +313,38 @@
                                 @php
                                     $f_sub_categories = App\Models\Category::where('parent_id', $f_category->id)->where('level', 1)->get();
                                 @endphp
-                                <div class="accordion" id="hairDressingAccordion">
+                                <div class="accordion" id="accordion_{{ $f_category->id }}">
                                     @foreach ($f_sub_categories as $f_sub_category)
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapse_{{ $f_sub_category->id }}"
-                                                    aria-expanded="true" aria-controls="collapseOne">
-                                                    {{ $f_sub_category->name }}
-                                                </button>
-                                            </h2>
-                                            <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse"
-                                                data-bs-parent="#hairDressingAccordion">
-                                                <div class="accordion-body">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="categoryFilterInnerIcon1" />
-                                                        <label class="form-check-label" for="categoryFilterInnerIcon1">
-                                                            <span>Hairdressing</span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="categoryFilterInnerIcon2" />
-                                                        <label class="form-check-label" for="categoryFilterInnerIcon2">
-                                                            <span>Hairdressing</span>
-                                                        </label>
+                                        @php
+                                            $f_sub_sub_categories = App\Models\Category::where('parent_id', $f_sub_category->id)->where('level', 2)->get();
+                                        @endphp
+
+                                        @if ($f_sub_sub_categories->count() > 0)
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapse_{{ $f_sub_category->id }}"
+                                                        aria-expanded="true" aria-controls="collapseOne">
+                                                        {{ $f_sub_category->name }}
+                                                    </button>
+                                                </h2>
+
+                                                <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse"
+                                                    data-bs-parent="#accordion_{{ $f_category->id }}">
+                                                    <div class="accordion-body">
+                                                        @foreach ($f_sub_sub_categories as $f_sub_sub_category)
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" name="sub_sub_category" type="checkbox" value="{{ $f_sub_sub_category->name }}"
+                                                                    id="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}" />
+                                                                <label class="form-check-label" for="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}">
+                                                                    <span>{{ $f_sub_sub_category->name }}</span>
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -677,14 +679,14 @@
                         .value;
                 }
 
-                $('input:checkbox[name=filter_category]:checked').each(function() {
+                $('input:checkbox[name=sub_sub_category]:checked').each(function() {
                     allCats.push($(this).val());
                 });
 
                 var city = $('#filter_city_val').val();
 
                 window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + main_category +
-                    '&sub_categories=' + allCats;
+                    '&sub_sub_categories=' + allCats;
             });
 
             $('#searchForm').on('submit', function(e) {
