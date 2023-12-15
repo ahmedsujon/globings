@@ -21,21 +21,41 @@ $(document).ready(function () {
   // });
 
   //Header category filter
-  // console.log("get input:",  $("#categoryFilterArea .form-check-input"));
   $("#categoryFilterArea .main_form_check").click(function (e) {
     e.preventDefault();
-    console.log("e:", $(this).parent().find(".accordion"));
 
+    //Hide previous radio
+    $("#categoryFilterArea .main_form_check .main_form_check_input").prop(
+      "checked",
+      false
+    );
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion")
+      .slideUp();
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion .accordion-button")
+      .addClass("collapsed");
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion .accordion-collapse")
+      .removeClass("show");
+
+    //Reset inner uncheck select
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion .form-check-input")
+      .prop("checked", false);
+
+    //Find target input
     const mainInputFind = $(this).children(".main_form_check_input");
     const findAccordionLabel = $(this).parent().find(".accordion");
 
     if (mainInputFind.prop("checked")) {
-      console.log("Test");
       mainInputFind.prop("checked", false);
       findAccordionLabel.slideUp();
     } else {
-      console.log("else");
-
       mainInputFind.prop("checked", true);
       findAccordionLabel.slideDown();
     }
@@ -544,6 +564,7 @@ $(document).ready(function () {
       $(this).removeClass("tooltip_active");
     }, 1500);
   });
+
   //Read more less
   $(".post_description").expander({
     slicePoint: 100,
