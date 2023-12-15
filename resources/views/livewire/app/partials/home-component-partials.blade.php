@@ -80,7 +80,7 @@
                                 <button type="button" class="home_menu_btn" id="homeMenuBtn">
                                     <img src="{{ asset('assets/app/icons/footer_active_icon_icon3.svg') }}"
                                         alt="menu icon" class="active_home__icon" />
-                                    <img src="{{ asset('assets/app/icons/footer_icon_icon3.svg') }}" alt="menu icon"
+                                    <img src="{{ asset('assets/app/icons/logo_menu_shape.svg') }}" alt="menu icon"
                                         class="inactive_home_icon" />
                                 </button>
                             </div>

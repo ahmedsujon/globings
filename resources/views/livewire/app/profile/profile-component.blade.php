@@ -813,7 +813,7 @@
                                 margin-top: 30px;
                             }
                             .qr_tab_btn, .qr_tab_btn:focus, .qr_tab_btn:hover{
-                                padding: 3px 10px;
+                                padding: 3px 7px;
                                 background: #fff;
                                 color: black;
                                 border: 1px solid #5897F4 !important;
@@ -822,7 +822,7 @@
                             }
 
                             .active_qr_tab_btn, .active_qr_tab_btn:focus, .active_qr_tab_btn:hover {
-                                padding: 3px 10px;
+                                padding: 3px 7px;
                                 background: #5897F4;
                                 border: 1px solid #5897F4 !important;
                                 color: white;

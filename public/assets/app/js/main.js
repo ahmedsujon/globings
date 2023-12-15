@@ -544,7 +544,6 @@ $(document).ready(function () {
       $(this).removeClass("tooltip_active");
     }, 1500);
   });
-
   //Read more less
   $(".post_description").expander({
     slicePoint: 100,
