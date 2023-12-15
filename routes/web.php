@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/profile', ProfileComponent::class)->name('app.profile');
     Route::get('/shop-settings', ShopSettingsComponent::class)->name('app.shop.settings');
     Route::post('/shop-settings/get-sub-category', [DependableDropdownController::class, 'subCategory'])->name('getSubCategory');
+    Route::post('/shop-settings/get-sub-sub-category', [DependableDropdownController::class, 'subSubCategory'])->name('getSubSubCategory');
     Route::get('/recent-posts', RecentPostComponent::class)->name('app.recent-posts');
     Route::get('/recent-photos', RecentPhotosComponent::class)->name('app.recent-photos');
 
