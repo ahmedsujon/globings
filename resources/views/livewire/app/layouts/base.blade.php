@@ -88,8 +88,13 @@
 
 
 
+
     {{-- tagify --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.12.0/tagify.min.js"></script>
+
+
+    <script src="{{ asset('assets/app/plugins/js/jquery.expander.min.js') }}"></script>
+
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
 

@@ -293,9 +293,66 @@
                         <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
                     </button>
                 </div>
-                <div class="category_area">
+                <div class="category_area" id="categoryFilterArea" wire:ignore>
                     <h4 class="bring_bottom_text">Categories</h4>
-                    <div class="category_filter_grid" wire:ignore>
+
+                    <div class="category_filter_grid">
+
+                        @foreach ($categories as $f_category)
+                            <div>
+                                <div class="form-check main_form_check">
+                                    <input class="form-check-input main_form_check_input" name="filter_main_category" type="radio"
+                                        value="{{ $f_category->id }}" id="categoryFilterIcon" />
+
+                                    <label class="form-check-label" for="categoryFilterIcon">
+                                        <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
+                                            alt="category icon" />
+                                        <span>{{ $f_category->name }}</span>
+                                    </label>
+                                </div>
+                                @php
+                                    $f_sub_categories = App\Models\Category::where('parent_id', $f_category->id)->where('level', 1)->get();
+                                @endphp
+                                <div class="accordion" id="hairDressingAccordion">
+                                    @foreach ($f_sub_categories as $f_sub_category)
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#collapse_{{ $f_sub_category->id }}"
+                                                    aria-expanded="true" aria-controls="collapseOne">
+                                                    {{ $f_sub_category->name }}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse"
+                                                data-bs-parent="#hairDressingAccordion">
+                                                <div class="accordion-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="categoryFilterInnerIcon1" />
+                                                        <label class="form-check-label" for="categoryFilterInnerIcon1">
+                                                            <span>Hairdressing</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="categoryFilterInnerIcon2" />
+                                                        <label class="form-check-label" for="categoryFilterInnerIcon2">
+                                                            <span>Hairdressing</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+
+
+
+                    </div>
+
+                    {{-- <div class="category_filter_grid" wire:ignore>
                         @foreach ($categories as $f_category)
                             <div class="form-check">
                                 <input class="form-check-input filter_main_category" type="radio"
@@ -324,23 +381,20 @@
                             @endforeach
                         </div>
                     </div>
-                    @endif
+                    @endif --}}
 
-                    <div wire:ignore>
-                        @if ($cities)
-                            <div class="select_area">
-                                <h4 class="bring_bottom_text">Want to see area of city</h4>
-                                <div class="area_list d-flex align-items-center flex-wrap">
-                                    @foreach ($cities as $city)
-                                        <button type="button" class="filter_city"
-                                            data-city="{{ $city }}">{{ $city }}</button>
-                                    @endforeach
-                                    <input type="hidden" id="filter_city_val"
-                                        value="{{ request()->get('city') }}" />
-                                </div>
+                    @if ($cities)
+                        <div class="select_area">
+                            <h4 class="bring_bottom_text">Want to see area of city</h4>
+                            <div class="area_list d-flex align-items-center flex-wrap">
+                                @foreach ($cities as $city)
+                                    <button type="button" class="filter_city"
+                                        data-city="{{ $city }}">{{ $city }}</button>
+                                @endforeach
+                                <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
 
                     {{-- <div class="range_area" wire:ignore>
                         <h4 class="bring_bottom_text">Range of area</h4>

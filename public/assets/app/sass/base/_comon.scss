@@ -1725,3 +1725,52 @@ main {
     white
   );
 }
+
+//Read More
+.post_description {
+  span {
+    display: inline;
+  }
+}
+.read-more,
+.read-less {
+  font-weight: 600;
+  color: #1872f6;
+}
+
+//Tooltip
+.tooltip_area {
+  position: relative;
+  .tooltip_item {
+    position: absolute;
+    top: -42px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    padding: 6px 15px;
+    color: white;
+    font-size: 12px;
+    border-radius: 8px;
+    @include hover-transition();
+    opacity: 0;
+    visibility: hidden;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background: #000000;
+      z-index: -1;
+    }
+  }
+  &.tooltip_active {
+    .tooltip_item {
+      top: -35px;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

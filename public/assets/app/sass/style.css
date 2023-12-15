@@ -327,6 +327,47 @@
 .filter_modal_area .category_area {
   margin-top: 30px;
 }
+.filter_modal_area .category_area .accordion {
+  margin-top: 12px;
+  margin-left: 28px;
+  display: none;
+}
+.filter_modal_area .category_area .accordion-item {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 8px;
+}
+.filter_modal_area .category_area .accordion-item .form-check {
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.filter_modal_area .category_area .accordion-item .form-check-label {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.filter_modal_area .category_area .accordion-button {
+  padding: 0;
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 9.934px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background: transparent;
+  border: none !important;
+  outline: none;
+  box-shadow: none;
+}
+.filter_modal_area .category_area .accordion-button::after {
+  width: 10px;
+  height: 10px;
+  background-size: 10px;
+}
+.filter_modal_area .category_area .accordion-body {
+  padding: 0;
+  padding-top: 10px;
+  padding-left: 5px;
+}
 .filter_modal_area .category_filter_grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5685,4 +5726,52 @@ main {
   left: 100%;
   padding-right: 5px;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+}
+
+.post_description span {
+  display: inline;
+}
+
+.read-more,
+.read-less {
+  font-weight: 600;
+  color: #1872f6;
+}
+
+.tooltip_area {
+  position: relative;
+}
+.tooltip_area .tooltip_item {
+  position: absolute;
+  top: -42px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  padding: 6px 15px;
+  color: white;
+  font-size: 12px;
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.tooltip_area .tooltip_item::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: #000000;
+  z-index: -1;
+}
+.tooltip_area.tooltip_active .tooltip_item {
+  top: -35px;
+  opacity: 1;
+  visibility: visible;
 }/*# sourceMappingURL=style.css.map */
