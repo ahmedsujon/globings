@@ -313,6 +313,47 @@
   }
   .category_area {
     margin-top: 30px;
+    .accordion{
+      margin-top: 12px;
+      margin-left: 28px;
+      display: none;
+    }
+    .accordion-item {
+      border: none;
+      border-radius: 0;
+      margin-bottom: 8px;
+      .form-check{
+        align-items: center;
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+      .form-check-label {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+    }
+    .accordion-button {
+      padding: 0;
+      color: #000;
+      font-family: $secondary-font;
+      font-size: 9.934px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      background: transparent;
+      border: none !important;
+      outline: none;
+      box-shadow: none;
+      &::after {
+        width: 10px;
+        height: 10px;
+        background-size: 10px;
+      }
+    }
+    .accordion-body {
+      padding: 0;
+      padding-top: 10px;
+      padding-left: 5px;
+    }
   }
   .category_filter_grid {
     display: grid;

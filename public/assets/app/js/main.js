@@ -6,7 +6,7 @@ $(document).ready(function () {
 
   //Show Scroll bar
   function showScrollbar() {
-    $("html,body").css("overflow", "auto");
+    $("html,body").css("overflow-y", "auto");
   }
 
   //Nice Select
@@ -19,6 +19,27 @@ $(document).ready(function () {
   //     enabled: true,
   //   },
   // });
+
+  //Header category filter
+  // console.log("get input:",  $("#categoryFilterArea .form-check-input"));
+  $("#categoryFilterArea .main_form_check").click(function (e) {
+    e.preventDefault();
+    console.log("e:", $(this).parent().find(".accordion"));
+
+    const mainInputFind = $(this).children(".main_form_check_input");
+    const findAccordionLabel = $(this).parent().find(".accordion");
+
+    if (mainInputFind.prop("checked")) {
+      console.log("Test");
+      mainInputFind.prop("checked", false);
+      findAccordionLabel.slideUp();
+    } else {
+      console.log("else");
+
+      mainInputFind.prop("checked", true);
+      findAccordionLabel.slideDown();
+    }
+  });
 
   //Preview Slider
   $("#previewSecondPage").hide();
@@ -523,6 +544,7 @@ $(document).ready(function () {
       $(this).removeClass("tooltip_active");
     }, 1500);
   });
+  //Read more less
   $(".post_description").expander({
     slicePoint: 100,
     expandEffect: "fadeIn",
@@ -555,7 +577,7 @@ function scrollOutsideHidden() {
 //OutSide Scroll Scroll
 function scrollOutsideScroll() {
   let htmlTag = document.querySelector("html");
-  htmlTag.style.cssText = "overflow:auto;";
+  htmlTag.style.cssText = "overflow-y:auto;";
 }
 
 //Sticky Navbar
