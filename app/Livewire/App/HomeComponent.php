@@ -186,6 +186,11 @@ class HomeComponent extends Component
                 $post->images = $postImgs;
             }
             $post->save();
+
+            $shop = Shop::where('user_id', user()->id)->first();
+
+            pushNotification('New Post', ''.$shop->name.' has created a new post');
+
             $this->content = '';
             $this->images = '';
             session()->flash('post_created');

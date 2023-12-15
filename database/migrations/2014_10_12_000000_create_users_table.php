@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('referral_code')->nullable();
             $table->unsignedBigInteger('referred_by')->nullable();
             $table->string('verification_code')->nullable();
+            $table->text('device_token')->nullable();
+            $table->tinyInteger('notification_status')->default(0);
             $table->timestamps();
         });
     }

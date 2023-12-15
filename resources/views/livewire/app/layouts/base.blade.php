@@ -55,7 +55,15 @@
         </main>
     {{-- </div> --}}
     @livewire('app.partials.home-component-partials')
+    @if (user())
+        <input type="hidden" id="notification_status" value="authenticated" />
+    @else
+        <input type="hidden" id="notification_status" value="no_auth" />
+    @endif
 
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
 
     <!-- JS Here -->
     <script src="{{ asset('assets/app/plugins/js/jquery-3.6.0.min.js') }}"></script>
@@ -78,10 +86,73 @@
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
+
+
     {{-- tagify --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.12.0/tagify.min.js"></script>
     <script src="https://kit.fontawesome.com/46f35fbc02.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/app/js/main.js') }}"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyApeClQthA9ilOOZ5oYVSvjRe7wrhjpLL8",
+            authDomain: "nzcoding-61a74.firebaseapp.com",
+            projectId: "nzcoding-61a74",
+            storageBucket: "nzcoding-61a74.appspot.com",
+            messagingSenderId: "95008265144",
+            appId: "1:95008265144:web:478b21933d538b5c57754d",
+            measurementId: "G-VKY7QNE747"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
+        function startFCM() {
+            var saved_token = $('#device_token').val();
+
+            messaging
+                .requestPermission()
+                .then(function () {
+                    return messaging.getToken()
+                })
+                .then(function (response) {
+                    $.ajax({
+                        url: '{{ route("store.token") }}',
+                        type: 'POST',
+                        data: {
+                            token: response,
+                            _token: '<?php echo csrf_token(); ?>',
+                        },
+                        dataType: 'JSON',
+                        success: function (response) {
+                            console.log('Token stored.');
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        },
+                    });
+                }).catch(function (error) {
+                    console.log(error);
+                });
+        }
+
+        $(document).ready(function(){
+            var status = $('#notification_status').val();
+
+            if(status == 'authenticated'){
+                startFCM();
+            }
+        });
+
+        messaging.onMessage(function (payload) {
+            const title = payload.notification.title;
+            const options = {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+            };
+            new Notification(title, options);
+        });
+    </script>
 
     <!-- For range extension show  -->
     <script>
