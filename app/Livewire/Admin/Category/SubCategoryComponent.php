@@ -26,7 +26,6 @@ class SubCategoryComponent extends Component
     {
         $this->validate([
             'category_id' =>'required',
-            'level' => 'required',
             'name' => 'required',
             'slug' => 'required',
         ]);
@@ -74,7 +73,6 @@ class SubCategoryComponent extends Component
         $this->dispatch('closeModal');
         $this->dispatch('success', ['message' => 'Sub-category updated successfully']);
     }
-
 
     public function changeStatus($id)
     {

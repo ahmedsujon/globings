@@ -29,13 +29,11 @@ class CategoryComponent extends Component
     {
         $this->validate([
             'name' => 'required',
-            'level' => 'required',
             'slug' => 'required',
             'avatar' => 'required',
         ]);
 
         $data = new Category();
-        $data->level = 0;
         $data->name = $this->name;
         $data->slug = $this->slug;
 
@@ -47,7 +45,7 @@ class CategoryComponent extends Component
             $directory = 'uploads/category/';
 
             $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
-            Storage::disk('do_spaces')->put($directory.$fileName, $image->getEncoded());
+            Storage::disk('do_spaces')->put($directory . $fileName, $image->getEncoded());
             $data->avatar = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
         } else {
             $data->icon = 'assets/images/avatar.png';
@@ -63,7 +61,6 @@ class CategoryComponent extends Component
     {
         $data = Category::find($id);
         $this->name = $data->name;
-        $this->level = 0;
         $this->slug = $data->slug;
         $this->edit_id = $data->id;
         $this->dispatch('showEditModal');
@@ -73,18 +70,22 @@ class CategoryComponent extends Component
     {
         $this->validate([
             'name' => 'required',
-            'level' => 'required',
             'slug' => 'required',
         ]);
 
         $data = Category::find($this->edit_id);
-        $data->level = 0;
         $data->name = $this->name;
         $data->slug = $this->slug;
         if ($this->avatar) {
-            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-            $this->avatar->storeAs('category', $fileName);
-            $data->icon = 'uploads/category/' . $fileName;
+            $image = Image::make($this->avatar)->resize(626, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 75);
+            $directory = 'uploads/category/';
+
+            $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+            Storage::disk('do_spaces')->put($directory . $fileName, $image->getEncoded());
+            $data->avatar = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
         } else {
             $data->icon = 'assets/images/avatar.png';
         }
@@ -116,7 +117,6 @@ class CategoryComponent extends Component
     public function resetInputs()
     {
         $this->name = '';
-        $this->level = '';
         $this->slug = '';
         $this->avatar = '';
         $this->edit_id = '';
@@ -164,7 +164,7 @@ class CategoryComponent extends Component
     //         $this->delete_id = '';
     //     }
     // }
-    
+
     public function render()
     {
         $categories = Category::where('name', 'like', '%' . $this->searchTerm . '%')->where('parent_id', 0)->orderBy('id', 'DESC')->paginate($this->sortingValue);
