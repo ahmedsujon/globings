@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="input_row nice_select_row" wire:ignore>
-                    <select class="niceSelect dependent" id="shop_category_select">
+                    <select class="niceSelect main_category" id="shop_main_category_select">
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" {{ $category->id == $shop_category ? 'selected' : '' }}>
@@ -109,11 +109,25 @@
                     @enderror
                 </div>
 
+                <div class="input_row nice_select_row" wire:ignore>
+                    <select class="dependent" id="shop_sub_category_select" style="width: 100%; padding: 10px; border: 1px solid #F0F0F0;">
+                        <option value="">Select Sub-Category</option>
+                        @foreach ($sub_cats as $scat)
+                            <option value="{{ $scat->id }}" {{ $scat->id == $shop_sub_category ? 'selected' : '' }}>
+                                {{ $scat->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('shop_sub_category')
+                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                        <br>
+                    @enderror
+                </div>
+
                 <div class="input_row" wire:ignore>
                     <select class="js-example-basic-single" multiple="multiple" id="multipleSelect">
-                        <option value="">Select subcategories</option>
-                        @foreach ($sub_cats as $scat)
-                            <option value="{{ $scat->id }}" {{ in_array($scat->name, $shop_sub_category) ? 'selected' : '' }}>{{ $scat->name }}</option>
+                        <option value="">Select Sub-Sub-Categories</option>
+                        @foreach ($sub_sub_cats as $sscat)
+                            <option value="{{ $sscat->id }}" {{ in_array($sscat->name, $shop_sub_sub_category) ? 'selected' : '' }}>{{ $sscat->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -193,16 +207,33 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#shop_category_select').on('change', function() {
+            $('#shop_main_category_select').on('change', function() {
                 @this.set('shop_category', $(this).val());
+            });
+
+            $('.main_category').change(function() {
+                if ($(this).val() != '') {
+                    var category_id = $(this).val();
+                    $.ajax({
+                        url: "{{ route('getSubCategory') }}",
+                        method: "POST",
+                        data: {
+                            category_id: category_id,
+                            _token: '<?php echo csrf_token(); ?>',
+                        },
+                        success: function(result) {
+                            $('#shop_sub_category_select').html('');
+                            $('#shop_sub_category_select').html(result);
+                        }
+                    })
+                }
             });
 
             $('.dependent').change(function() {
                 if ($(this).val() != '') {
                     var category_id = $(this).val();
-                    console.log(category_id);
                     $.ajax({
-                        url: "{{ route('getSubCategory') }}",
+                        url: "{{ route('getSubSubCategory') }}",
                         method: "POST",
                         data: {
                             category_id: category_id,
@@ -216,14 +247,18 @@
                 }
             });
 
+            $('#shop_sub_category_select').on('change', function() {
+                @this.set('sub_category', $(this).val());
+            });
+
             $("#multipleSelect").select2({
-                placeholder: "Multiple Select"
+                placeholder: "Select more-categories"
             });
 
             $("#multipleSelect").on('change', function() {
                 var categories = $(this).val();
 
-                @this.set('sub_categories', categories);
+                @this.set('sub_sub_categories', categories);
             });
         });
 

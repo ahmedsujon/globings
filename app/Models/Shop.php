@@ -12,6 +12,6 @@ class Shop extends Model
     protected $table = 'shops';
 
     protected $casts = [
-        'shop_sub_category' => 'array'
+        'sub_sub_category' => 'array'
     ];
 }
