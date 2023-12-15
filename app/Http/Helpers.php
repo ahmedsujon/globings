@@ -29,6 +29,7 @@ function getCategoryID($id)
     return Category::find($id);
 }
 
+
 function vendor()
 {
     return Auth::guard('vendor')->user();
