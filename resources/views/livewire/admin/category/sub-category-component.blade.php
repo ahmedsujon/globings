@@ -58,8 +58,9 @@
                                         <tr>
                                             <th class="align-middle text-center">ID</th>
                                             <th class="align-middle">Name</th>
-                                            <th class="align-middle text-center">Slug</th>
+                                            <th class="align-middle">Slug</th>
                                             <th class="align-middle text-center">Status</th>
+                                            <th class="align-middle">Main Category</th>
                                             <th class="align-middle text-center">Action</th>
                                         </tr>
                                     </thead>
@@ -84,6 +85,7 @@
                                                                 style="font-weight: normal; font-size: 11px; padding: 1px 7px;">{!! loadingStateStatus('changeStatus(' . $sub_category->id . ')', 'Active') !!}</button>
                                                         @endif
                                                     </td>
+                                                    <td>{{ getCategoryID($sub_category->parent_id)->name }}</td>
                                                     <td class="text-center">
                                                         <button
                                                             class="btn btn-sm btn-soft-primary waves-effect waves-light action-btn edit_btn"

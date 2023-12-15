@@ -15,7 +15,7 @@ class SubCategoryComponent extends Component
     public $sortingValue = 10, $searchTerm;
 
     public $edit_id, $delete_id;
-    public $category_id, $name, $slug, $status, $avatar, $uploadedAvatar;
+    public $category_id, $level, $name, $slug, $status, $avatar, $uploadedAvatar;
 
     public function generateSlug()
     {
@@ -32,6 +32,7 @@ class SubCategoryComponent extends Component
 
         $data = new Category();
         $data->parent_id = $this->category_id;
+        $data->level = 1;
         $data->name = $this->name;
         $data->slug = $this->slug;
         $data->save();
@@ -45,6 +46,7 @@ class SubCategoryComponent extends Component
     {
         $data = Category::find($id);
         $this->category_id = $data->parent_id;
+        $this->level = 1;
         $this->name = $data->name;
         $this->slug = $data->slug;
         $this->edit_id = $data->id;
@@ -55,12 +57,14 @@ class SubCategoryComponent extends Component
     {
         $this->validate([
             'category_id' => 'required',
+            'level' => 'required',
             'name' => 'required',
             'slug' => 'required',
         ]);
 
         $data = Category::find($this->edit_id);
         $data->parent_id = $this->category_id;
+        $data->level = 1;
         $data->name = $this->name;
         $data->slug = $this->slug;
         $data->save();
@@ -69,7 +73,6 @@ class SubCategoryComponent extends Component
         $this->dispatch('closeModal');
         $this->dispatch('success', ['message' => 'Sub-category updated successfully']);
     }
-
 
     public function changeStatus($id)
     {
