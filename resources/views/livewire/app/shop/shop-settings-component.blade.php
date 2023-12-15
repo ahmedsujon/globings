@@ -252,7 +252,7 @@
             });
 
             $("#multipleSelect").select2({
-                placeholder: "Multiple Select"
+                placeholder: "Select more-categories"
             });
 
             $("#multipleSelect").on('change', function() {
