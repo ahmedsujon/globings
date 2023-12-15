@@ -48,7 +48,7 @@ class ShopsComponent extends Component
             $query->where('name', 'like', '%' . $search_term . '%')
                 ->orWhere('shop_category', 'like', '%' . $search_term . '%')
                 ->orWhere('description', 'like', '%' . $search_term . '%')
-                ->orWhere('shop_sub_category', 'like', '%' . $search_term . '%');
+                ->orWhere('sub_sub_category', 'like', '%' . $search_term . '%');
         })->orderBy('id', 'DESC');
 
         if ($city && $city != 'all') {
@@ -64,7 +64,7 @@ class ShopsComponent extends Component
 
             $shops = $shops->where(function ($query) use ($sub_categories) {
                 foreach ($sub_categories as $category) {
-                    $query->orWhere('shop_sub_category', 'LIKE', '%"'.$category.'"%');
+                    $query->orWhere('sub_sub_category', 'LIKE', '%"'.$category.'"%');
                 }
             });
         }

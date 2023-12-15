@@ -6,7 +6,7 @@ $(document).ready(function () {
 
   //Show Scroll bar
   function showScrollbar() {
-    $("html,body").css("overflow", "auto");
+    $("html,body").css("overflow-y", "auto");
   }
 
   //Nice Select
@@ -19,6 +19,47 @@ $(document).ready(function () {
   //     enabled: true,
   //   },
   // });
+
+  //Header category filter
+  $("#categoryFilterArea .main_form_check").click(function (e) {
+    e.preventDefault();
+
+    //Hide previous radio
+    $("#categoryFilterArea .main_form_check .main_form_check_input").prop(
+      "checked",
+      false
+    );
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion")
+      .slideUp();
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion .accordion-button")
+      .addClass("collapsed");
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion .accordion-collapse")
+      .removeClass("show");
+
+    //Reset inner uncheck select
+    $("#categoryFilterArea .main_form_check")
+      .parent()
+      .find(".accordion .form-check-input")
+      .prop("checked", false);
+
+    //Find target input
+    const mainInputFind = $(this).children(".main_form_check_input");
+    const findAccordionLabel = $(this).parent().find(".accordion");
+
+    if (mainInputFind.prop("checked")) {
+      mainInputFind.prop("checked", false);
+      findAccordionLabel.slideUp();
+    } else {
+      mainInputFind.prop("checked", true);
+      findAccordionLabel.slideDown();
+    }
+  });
 
   //Preview Slider
   $("#previewSecondPage").hide();
@@ -523,6 +564,8 @@ $(document).ready(function () {
       $(this).removeClass("tooltip_active");
     }, 1500);
   });
+
+  //Read more less
   $(".post_description").expander({
     slicePoint: 100,
     expandEffect: "fadeIn",
@@ -555,7 +598,7 @@ function scrollOutsideHidden() {
 //OutSide Scroll Scroll
 function scrollOutsideScroll() {
   let htmlTag = document.querySelector("html");
-  htmlTag.style.cssText = "overflow:auto;";
+  htmlTag.style.cssText = "overflow-y:auto;";
 }
 
 //Sticky Navbar
