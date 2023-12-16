@@ -6,8 +6,10 @@ use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Category;
 use Illuminate\Support\Str;
-use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class CategoryComponent extends Component
 {
@@ -16,7 +18,7 @@ class CategoryComponent extends Component
     public $sortingValue = 10, $searchTerm;
 
     public $edit_id, $delete_id;
-    public $name, $slug, $status, $avatar, $uploadedAvatar;
+    public $name, $slug, $level, $status, $avatar, $uploadedAvatar;
 
     public function generateSlug()
     {
@@ -35,23 +37,16 @@ class CategoryComponent extends Component
         $data->name = $this->name;
         $data->slug = $this->slug;
 
-        // if ($this->avatar) {
-        //     // Resize the image before storing
-        //     $image = Image::make($this->avatar)->resize(300, 200);
-        //     $directory = 'uploads/category/';
-        //     Storage::makeDirectory($directory);
-        //     $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-        //     $image->save(public_path($directory . $fileName));
-        //     $data->icon = $directory . $fileName;
-        // } else {
-        //     $data->icon = 'assets/images/avatar.png';
-        // }
-
-        
         if ($this->avatar) {
-            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-            $this->avatar->storeAs('category', $fileName);
-            $data->icon = 'uploads/category/' . $fileName;
+            $image = Image::make($this->avatar)->resize(626, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 75);
+            $directory = 'uploads/category/';
+
+            $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+            Storage::disk('do_spaces')->put($directory . $fileName, $image->getEncoded());
+            $data->avatar = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
         } else {
             $data->icon = 'assets/images/avatar.png';
         }
@@ -82,9 +77,15 @@ class CategoryComponent extends Component
         $data->name = $this->name;
         $data->slug = $this->slug;
         if ($this->avatar) {
-            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
-            $this->avatar->storeAs('category', $fileName);
-            $data->icon = 'uploads/category/' . $fileName;
+            $image = Image::make($this->avatar)->resize(626, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 75);
+            $directory = 'uploads/category/';
+
+            $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+            Storage::disk('do_spaces')->put($directory . $fileName, $image->getEncoded());
+            $data->avatar = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
         } else {
             $data->icon = 'assets/images/avatar.png';
         }
@@ -163,6 +164,7 @@ class CategoryComponent extends Component
     //         $this->delete_id = '';
     //     }
     // }
+
     public function render()
     {
         $categories = Category::where('name', 'like', '%' . $this->searchTerm . '%')->where('parent_id', 0)->orderBy('id', 'DESC')->paginate($this->sortingValue);

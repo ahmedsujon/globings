@@ -20,52 +20,74 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Food Sales',
                 'sub_categories' => [
                     [
-                        'name' => 'Card/cash',
-                        'sub_sub_categories' => ['cat_1', 'cat_2'],
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => ['Card/cash', 'Loyalty program', 'Promotions/low prices', 'Student discount', 'Clearance sale', 'Bulk purchase discount'],
                     ],
                     [
-                        'name' => 'Gift vouchers',
-                        'sub_sub_categories' => [],
+                        'name' => 'Organic and Fairtrade',
+                        'sub_sub_categories' => ['Organic products', 'Local products', 'Seasonal products', 'Bulk purchase', 'Recycling of batteries', 'Glass bottles'],
                     ],
                     [
-                        'name' => 'Loyalty program',
-                        'sub_sub_categories' => [],
+                        'name' => 'Dietary Options',
+                        'sub_sub_categories' => ['Sports nutrition', 'Vegetarian', 'Vegan', 'Gluten-free', 'Lactose-free'],
                     ],
                     [
-                        'name' => 'Promotions',
-                        'sub_sub_categories' => [],
+                        'name' => 'Products for Sale',
+                        'sub_sub_categories' => [
+                            'Tea/coffee/infusions',
+                            'Juice/syrup',
+                            'soft drinks/water',
+                            'Chocolates',
+                            'confectionery',
+                            'Fruits and vegetables',
+                            'Frozen foods',
+                            'Ready-made meals',
+                            'Frozen and fresh',
+                            'Sandwiches',
+                            'Butcher/charcuterie',
+                            'Fishmonger',
+                            'Cheese shop',
+                            'Catering',
+                            'Sweet/savory groceries',
+                            'Desserts',
+                            'Bakery/pastry shop',
+                            'Pastries',
+                            'Alcohol/tobacco',
+                            'Dietary supplements'
+                        ],
                     ],
                     [
-                        'name' => 'low prices',
-                        'sub_sub_categories' => [],
+                        'name' => 'Market Types',
+                        'sub_sub_categories' => [
+                            'Specialized supermarkets',
+                            'Regional specialty sections',
+                            'Artisanal shops',
+                            'Independent stores',
+                            'Chain stores'
+                        ],
                     ],
                     [
-                        'name' => 'Student discount',
-                        'sub_sub_categories' => [],
+                        'name' => 'Opening Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Open at night',
+                            'On-site consumption',
+                            'Terrace',
+                            'Opening hours',
+                            'E-shop',
+                            'Mobile application'
+                        ],
                     ],
                     [
-                        'name' => 'Clearance sale',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Organic products',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Fairtrade products',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Local products',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Seasonal products',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Bulk purchase',
-                        'sub_sub_categories' => [],
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Delivery',
+                            'In-store pickup',
+                            'Relay point',
+                            'Pre-order',
+                            'Vacuum packaging'
+                        ],
                     ],
                 ],
             ],
@@ -73,64 +95,96 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Restaurants',
                 'sub_categories' => [
                     [
-                        'name' => 'Traditional',
-                        'sub_sub_categories' => [],
+                        'name' => 'Cuisine Types',
+                        'sub_sub_categories' => [
+                            'Special beers and spirits',
+                            'Traditional',
+                            'Fast food',
+                            'Gourmet',
+                            'Regional',
+                            'Molecular'
+                        ],
                     ],
                     [
-                        'name' => 'Fast food',
-                        'sub_sub_categories' => [],
+                        'name' => 'By Country',
+                        'sub_sub_categories' => [
+                            'American',
+                            'Chinese',
+                            'Korean',
+                            'Spanish',
+                            'French',
+                            'Indian',
+                            'Italian',
+                            'Japanese',
+                            'Maghreb',
+                            'Mexican',
+                            'Lebanese',
+                            'Thai',
+                            'Turkish'
+                        ],
                     ],
                     [
-                        'name' => 'Gourmet',
-                        'sub_sub_categories' => [],
+                        'name' => 'Themes and Concepts',
+                        'sub_sub_categories' => [
+                            'Dinner and concert',
+                            'Breakfast',
+                            'Brunch',
+                            'Bars',
+                            'Buffet',
+                            'Shisha bar',
+                            'Cat café and bar'
+                        ],
                     ],
                     [
-                        'name' => 'Regional',
-                        'sub_sub_categories' => [],
+                        'name' => 'Rice, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Student discount',
+                            'Gift vouchers and meal vouchers',
+                            'Happy hours',
+                            'Price range'
+                        ],
                     ],
                     [
-                        'name' => 'Molecular',
-                        'sub_sub_categories' => [],
+                        'name' => 'Other Offers and Services',
+                        'sub_sub_categories' => [
+                            'Free Wi-Fi',
+                            'Electrical outlets',
+                            'Sports event broadcasting',
+                            'Private room for special occasions'
+                        ],
                     ],
                     [
-                        'name' => 'American',
-                        'sub_sub_categories' => [],
+                        'name' => 'Dietary Options',
+                        'sub_sub_categories' => [
+                            'Halal',
+                            'Vegetarian',
+                            'Vegan',
+                            'Gluten-free',
+                        ],
                     ],
                     [
-                        'name' => 'Chinese',
-                        'sub_sub_categories' => [],
+                        'name' => 'Opening Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Smoking area',
+                            'Work/study space',
+                            'Pets allowed',
+                            'Terrace',
+                            'Toilets',
+                            'Opening hours',
+                            'Website',
+                            'Mobile application',
+                        ],
                     ],
                     [
-                        'name' => 'Korean',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Spanish',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Halal',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Terrace',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Toilets',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Website',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Takeout',
-                        'sub_sub_categories' => [],
-                    ],
-                    [
-                        'name' => 'Delivery',
-                        'sub_sub_categories' => [],
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Reservation required',
+                            'Takeout',
+                            'Delivery',
+                        ],
                     ],
                 ],
             ],
@@ -138,68 +192,139 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Beauty and Wellness',
                 'sub_categories' => [
                     [
-                        'name' => 'Beauty salons',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Student discount',
+                            'Promotions and special days',
+                            'Subscription',
+                            'Gift vouchers'
+                        ]
                     ],
                     [
-                        'name' => 'Tattoo parlors',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Hair coloring, highlights, balayage',
+                            'Extensions/wig fitting',
+                            'Perms and straightening',
+                            'Shampoo/dry cleaning',
+                            'Beard grooming',
+                            'Deep treatments',
+                            'Massages (slimming, Velashape)',
+                            'Eyelashes and eyebrows',
+                            'Waxing (wax and laser)',
+                            'Tanning',
+                            'Cosmetics/makeup',
+                            'Manicure and pedicure',
+                            'Radiofrequency and firming treatments',
+                            'Henna dye/vegetable coloring',
+                            'Natural shampoos',
+                            'Essential oil treatments',
+                            'Cruelty-free products'
+                        ]
                     ],
                     [
-                        'name' => 'Spas',
-                        'sub_sub_categories' => []
+                        'name' => 'Types',
+                        'sub_sub_categories' => [
+                            'Hair salons',
+                            'Beauty salons',
+                            'Tattoo parlors',
+                            'Spas',
+                            'Natural/organic treatment salons'
+                        ]
                     ],
                     [
-                        'name' => 'Natural',
-                        'sub_sub_categories' => []
+                        'name' => 'Target Audience',
+                        'sub_sub_categories' => [
+                            'Men',
+                            'Women',
+                            'Mixed',
+                            'Children'
+                        ]
                     ],
                     [
-                        'name' => 'Men',
-                        'sub_sub_categories' => []
+                        'name' => 'Other Offers and Services',
+                        'sub_sub_categories' => [
+                            'Free Wi-Fi',
+                            'Wardrobe',
+                            'Kids corner',
+                            'Reading materials available',
+                            'Tea and coffee (dining)',
+                            'Sale of cosmetic products'
+                        ]
                     ],
                     [
-                        'name' => 'Women',
-                        'sub_sub_categories' => []
+                        'name' => 'Opening Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Waiting area',
+                            'Toilets',
+                            'Opening hours',
+                            'E-shop'
+                        ]
                     ],
                     [
-                        'name' => 'Mixed',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'At-home/at-work services',
+                            'Single/multiple hairdressers'
+                        ]
+                    ],
+                ],
+            ],
+            [
+                'category' => 'Healthcare',
+                'sub_categories' => [
+                    [
+                        'name' => 'Payment',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Reimbursement by health insurance',
+                            'Contracted/non-contracted'
+                        ]
                     ],
                     [
-                        'name' => 'Children',
-                        'sub_sub_categories' => []
+                        'name' => 'Types of Facilities and Services',
+                        'sub_sub_categories' => [
+                            'Medical centers',
+                            'Public hospitals',
+                            'Psychiatric hospitals',
+                            'Clinics',
+                            'Private practices',
+                            'Family planning clinics',
+                            'Childcare centers',
+                            'Mental health services (MHS)'
+                        ]
                     ],
                     [
-                        'name' => 'Free Wi-Fi',
-                        'sub_sub_categories' => []
+                        'name' => 'Other Services',
+                        'sub_sub_categories' => [
+                            'Home visits',
+                            'Nursing and physiotherapy',
+                            'Emergency medical services',
+                            'Pharmacies (emergency pharmacies)',
+                            'Blood tests',
+                            'Vaccinations'
+                        ]
                     ],
                     [
-                        'name' => 'Wardrobe',
-                        'sub_sub_categories' => []
+                        'name' => 'Opening Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours',
+                            'Accepting new patients'
+                        ]
                     ],
                     [
-                        'name' => 'Kids corner',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Parking',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Waiting area',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Toilets',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Opening hours',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'E-shop',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'By appointment (or without)',
+                            'Mandatory mask wearing',
+                            'Online consultations',
+                            'Online appointment scheduling'
+                        ]
                     ],
                 ],
             ],
@@ -207,36 +332,81 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Culture and Leisure',
                 'sub_categories' => [
                     [
-                        'name' => 'Card',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Gift vouchers/advantage cards',
+                            'Loyalty program',
+                            'Promotions/low prices',
+                            'Student discount',
+                            'Subscription',
+                            'Free entry'
+                        ]
                     ],
                     [
-                        'name' => 'Cash',
-                        'sub_sub_categories' => []
+                        'name' => 'Types of Services and Events',
+                        'sub_sub_categories' => [
+                            'Premieres',
+                            '3D/4DX option',
+                            'Marathons',
+                            'Birthday parties',
+                            'Meet and greets with actors',
+                            'Shows and performances',
+                            'Educational activities (workshops, classes, school activities)'
+                        ]
                     ],
                     [
-                        'name' => 'Student discount',
-                        'sub_sub_categories' => []
+                        'name' => 'Other Offers and Services',
+                        'sub_sub_categories' => [
+                            'Late-night showings',
+                            'Food area/picnic area',
+                            'Cloakroom',
+                            'Guided tours',
+                            'Audio guides',
+                            'Available languages',
+                            'Baby rooms',
+                            'School excursions',
+                            'Workshop exhibitions for rent'
+                        ]
                     ],
                     [
-                        'name' => 'Subscription',
-                        'sub_sub_categories' => []
+                        'name' => 'Target Audience',
+                        'sub_sub_categories' => [
+                            'General public',
+                            'Informed public',
+                            'Groups',
+                            'Children'
+                        ]
                     ],
                     [
-                        'name' => 'Free entry',
-                        'sub_sub_categories' => []
+                        'name' => 'Types of Venues',
+                        'sub_sub_categories' => [
+                            'Independent',
+                            'Chain venues',
+                            'Updated new releases',
+                            'Classic films',
+                            'Themed venues'
+                        ]
                     ],
                     [
-                        'name' => 'Premieres',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours',
+                            'Average time for specific activities',
+                            'Toilets',
+                            'Website',
+                            'Mobile application'
+                        ]
                     ],
                     [
-                        'name' => '3D/4DX option',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Marathons',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Air-conditioned venue',
+                            'Online/on-site reservations',
+                            'Large/small venue'
+                        ]
                     ],
                 ],
             ],
@@ -244,44 +414,74 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Home and DIY',
                 'sub_categories' => [
                     [
-                        'name' => 'Card/cash',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Gift cards',
+                            'Loyalty program',
+                            'With guarantees',
+                            'Promotions',
+                            'Price range'
+                        ]
                     ],
                     [
-                        'name' => 'Gift cards',
-                        'sub_sub_categories' => []
+                        'name' => 'Products for Sale',
+                        'sub_sub_categories' => [
+                            'Professional materials and tools',
+                            'Paints',
+                            'Moldings',
+                            'Parquet flooring',
+                            'PVC coverings',
+                            'Second-hand items',
+                            'Interior decoration',
+                            'Household appliances',
+                            'Furniture',
+                            'Rugs and carpets'
+                        ]
                     ],
                     [
-                        'name' => 'Loyalty program',
-                        'sub_sub_categories' => []
+                        'name' => 'Styles',
+                        'sub_sub_categories' => [
+                            'Industrial',
+                            'Vintage',
+                            'Natural',
+                            'Brands'
+                        ]
                     ],
                     [
-                        'name' => 'With guarantees',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Wallpaper installation',
+                            'Repair and maintenance',
+                            'Home installation',
+                            'Custom item fabrication',
+                            'Renovation',
+                            'Spare parts',
+                            'Battery service',
+                            'Tinting machine',
+                            'Wood and glass cutting',
+                            'Made-to-measure',
+                            'Planning tools',
+                            'In-home furnishing advice',
+                            'Training offerings',
+                            'Personalized advice',
+                            'Project studies and quotes'
+                        ]
                     ],
                     [
-                        'name' => 'Promotions',
-                        'sub_sub_categories' => []
+                        'name' => 'Rental and Resale',
+                        'sub_sub_categories' => [
+                            'Vehicle rental, vans for transport',
+                            'Equipment resale'
+                        ]
                     ],
                     [
-                        'name' => 'Price range',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Paints',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Moldings',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Parquet flooring',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'PVC coverings',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours'
+                        ]
                     ],
                 ],
             ],
@@ -289,32 +489,55 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Jewelry and Watches',
                 'sub_categories' => [
                     [
-                        'name' => 'Card/cash',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Price range',
+                            'Discounts and promotions',
+                            'Student discount'
+                        ]
                     ],
                     [
-                        'name' => 'Price range',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Artisanal creation',
+                            'Battery replacement',
+                            'Repair',
+                            'Maintenance and polishing',
+                            'Waterproof testing',
+                            'Comprehensive watch servicing',
+                            'Engraving',
+                            'Piercing',
+                            'Jewelry transformation',
+                            'Bead threading'
+                        ]
                     ],
                     [
-                        'name' => 'Student discount',
-                        'sub_sub_categories' => []
+                        'name' => 'Other Services',
+                        'sub_sub_categories' => [
+                            'Watch and jewelry resale and appraisal',
+                            'Gold exchange'
+                        ]
                     ],
                     [
-                        'name' => 'Repair',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours',
+                            'Website/E-shop',
+                            'Mobile application'
+                        ]
                     ],
                     [
-                        'name' => 'Engraving',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Piercing',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Bead threading',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Delivery',
+                            'In-store pickup',
+                            'Orders and pre-orders',
+                            'Mondial Relay',
+                            'Appointment scheduling'
+                        ]
                     ],
                 ],
             ],
@@ -322,20 +545,83 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Automotive',
                 'sub_categories' => [
                     [
-                        'name' => 'Card/cash',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Discounts',
+                            'Loyalty program',
+                            'Price range'
+                        ]
                     ],
                     [
-                        'name' => 'Discounts',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Polishing and buffing',
+                            'Ceramic protection and treatment',
+                            'Home cleaning service',
+                            'Complete vehicle disinfection',
+                            'Interior options and reconditioning',
+                            'Tire change',
+                            '(Pre)technical inspection',
+                            'Electronic part repair',
+                            'Oil change and pollution control',
+                            'Cleaning',
+                            'Self carwash with/without contact',
+                            'Air conditioning service',
+                            'Maintenance and repair',
+                            'Vehicle trade-in',
+                            'Labor',
+                            'Insurance provision'
+                        ]
                     ],
                     [
-                        'name' => 'Loyalty program',
-                        'sub_sub_categories' => []
+                        'name' => 'Rental and Sales Services',
+                        'sub_sub_categories' => [
+                            'Car sales',
+                            'Equipment and vehicle rental',
+                            'Replacement vehicles',
+                            'Rental for individuals/professionals',
+                            'Company rentals',
+                            'Car part sales',
+                            'Second-hand rentals',
+                            'Vehicle and equipment purchases'
+                        ]
                     ],
                     [
-                        'name' => 'Price range',
-                        'sub_sub_categories' => []
+                        'name' => 'Brands',
+                        'sub_sub_categories' => [
+                            'Specialized in a single brand',
+                            'Multibrand'
+                        ]
+                    ],
+                    [
+                        'name' => 'Vehicle Types',
+                        'sub_sub_categories' => [
+                            'Manual',
+                            'Automatic',
+                            'Luxury',
+                            'Vans and trucks',
+                            'Professional (ambulances, etc.)'
+                        ]
+                    ],
+                    [
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours',
+                            '24/7 assistance',
+                            'Website'
+                        ]
+                    ],
+                    [
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Appointment scheduling',
+                            'Walk-in service',
+                            'On-site',
+                            'Mobile showroom'
+                        ]
                     ],
                 ],
             ],
@@ -343,28 +629,62 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Animals',
                 'sub_categories' => [
                     [
-                        'name' => 'Groomers',
-                        'sub_sub_categories' => []
+                        'name' => 'Pet Care Services',
+                        'sub_sub_categories' => [
+                            'Groomers',
+                            'Veterinary clinics'
+                        ]
                     ],
                     [
-                        'name' => 'Veterinary clinics',
-                        'sub_sub_categories' => []
+                        'name' => 'Products for Sale',
+                        'sub_sub_categories' => [
+                            'Pet food',
+                            'Pet houses',
+                            'Cat trees',
+                            'Mats',
+                            'Toys',
+                            'Blankets and textiles',
+                            'Collars',
+                            'Medicines and supplements',
+                            'Electronics'
+                        ]
                     ],
                     [
-                        'name' => 'Pet food',
-                        'sub_sub_categories' => []
+                        'name' => 'Shelters and Centers',
+                        'sub_sub_categories' => [
+                            'Wildlife centers',
+                            'Domestic animal shelters'
+                        ]
                     ],
                     [
-                        'name' => 'Pet houses',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Parking',
+                            'Access for people with reduced mobility',
+                            'Opening hours',
+                            'Website/E-shop',
+                            'Mobile application',
+                        ]
                     ],
                     [
-                        'name' => 'Cat trees',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Gift vouchers/advantage cards',
+                            'Loyalty program',
+                            'Promotions/low prices',
+                            'Subscription',
+                            'Pet insurance reimbursement'
+                        ]
                     ],
                     [
-                        'name' => 'Mats',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Delivery',
+                            'Purchase and pickup in-store',
+                            'Orders and pre-orders',
+                            'Relay point'
+                        ]
                     ],
                 ],
             ],
@@ -372,32 +692,71 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Fitness and Sports',
                 'sub_categories' => [
                     [
-                        'name' => 'Ladies-only',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Discounts',
+                            'Loyalty program',
+                            'Price range',
+                            'Subscription (annual, monthly, quarterly)',
+                            'Free trial',
+                            'Student discount'
+                        ]
                     ],
                     [
-                        'name' => 'Opening hours',
-                        'sub_sub_categories' => []
+                        'name' => 'Types of Facilities',
+                        'sub_sub_categories' => [
+                            'Independent facilities',
+                            'Chain facilities'
+                        ]
                     ],
                     [
-                        'name' => 'Parking',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Equipment and machines',
+                            'Crossfit',
+                            'Street workout',
+                            'Coaching',
+                            'Group classes',
+                            'Virtual classes',
+                            'Sports monitoring (personal coach, physiotherapist)'
+                        ]
                     ],
                     [
-                        'name' => 'Open 24/7',
-                        'sub_sub_categories' => []
+                        'name' => 'Other Offerings and Services',
+                        'sub_sub_categories' => [
+                            'Free Wi-Fi',
+                            'Electrical outlets',
+                            'Snacks and beverages',
+                            'Lockers (with or without integrated padlocks)',
+                            'Showers'
+                        ]
                     ],
                     [
-                        'name' => 'Website',
-                        'sub_sub_categories' => []
+                        'name' => 'Target Audience',
+                        'sub_sub_categories' => [
+                            'Facilities available to everyone',
+                            'Ladies-only'
+                        ]
                     ],
                     [
-                        'name' => 'Large facility',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Opening hours',
+                            'Parking',
+                            'Access for people with reduced mobility',
+                            'Open 24/7',
+                            'Open 7 days a week',
+                            'Website',
+                            'Mobile application'
+                        ]
                     ],
                     [
-                        'name' => 'Small facility',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Large facility',
+                            'Small facility'
+                        ]
                     ],
                 ],
             ],
@@ -405,32 +764,75 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Clothing Shopping',
                 'sub_categories' => [
                     [
-                        'name' => 'Cash payment',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Cash payment',
+                            'Gift card',
+                            'Loyalty card',
+                            'Discounts and promotions',
+                            'Price range'
+                        ]
                     ],
                     [
-                        'name' => 'Gift card',
-                        'sub_sub_categories' => []
+                        'name' => 'Intended Audience',
+                        'sub_sub_categories' => [
+                            'Men',
+                            'Women',
+                            'Pregnant women',
+                            'Children',
+                            'Babies',
+                            'General public'
+                        ]
                     ],
                     [
-                        'name' => 'Loyalty card',
-                        'sub_sub_categories' => []
+                        'name' => 'Products for Sale',
+                        'sub_sub_categories' => [
+                            'Sports clothing',
+                            'Second-hand clothing',
+                            'Plus-size clothing',
+                            'Fair trade products',
+                            'High-end shoes',
+                            'Sneakers',
+                            'Classic shoes',
+                            'Recycled materials',
+                            'Bags and accessories'
+                        ]
                     ],
                     [
-                        'name' => 'Price range',
-                        'sub_sub_categories' => []
+                        'name' => 'Product Styles',
+                        'sub_sub_categories' => [
+                            'Brand',
+                            'Autumn-Winter collection',
+                            'Spring-Summer collection'
+                        ]
                     ],
                     [
-                        'name' => 'Men',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Fitting rooms',
+                            'Returns'
+                        ]
                     ],
                     [
-                        'name' => 'Women',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours',
+                            'Toilets',
+                            'Elevators and escalators',
+                            'Website/E-shop',
+                            'Mobile application'
+                        ]
                     ],
                     [
-                        'name' => 'Pregnant women',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Delivery',
+                            'In-store pickup',
+                            'Relay point',
+                            'Pre-order'
+                        ]
                     ],
                 ],
             ],
@@ -438,36 +840,25 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Real Estate',
                 'sub_categories' => [
                     [
-                        'name' => 'Price range',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Price range',
+                            'Promotions'
+                        ]
                     ],
                     [
-                        'name' => 'Promotions',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Notary',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Real estate sales',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Evaluation',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'House clearance',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Property developers',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Home assessment',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Personal property information',
+                            'Notary',
+                            'Real estate sales',
+                            'Evaluation',
+                            'House clearance',
+                            'Assistance (investment, financial arrangement optimization)',
+                            'Financing assistance',
+                            'Property developers',
+                            'Home assessment'
+                        ]
                     ],
                 ],
             ],
@@ -475,40 +866,31 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Childcare Centers',
                 'sub_categories' => [
                     [
-                        'name' => 'Ecological laundry',
-                        'sub_sub_categories' => []
+                        'name' => 'Payment',
+                        'sub_sub_categories' => [
+                            'Subsidized',
+                            'Non-subsidized',
+                            'Food included in fees'
+                        ]
                     ],
                     [
-                        'name' => 'At-home service',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Pet sitting',
+                            'Multiple caregivers available',
+                            'Special care for children (autism, visual impairment, mute, etc.)',
+                            'Nap room',
+                            'Linguistic offerings'
+                        ]
                     ],
                     [
-                        'name' => 'Cobbler',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Parking',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Opening hours',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Website/E-shop',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Delivery',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'In-store pickup',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Mondial Relay',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Opening and closing hours',
+                            'Access for people with reduced mobility and strollers',
+                            'Possibility of picking up the child earlier',
+                            'Childs age group'
+                        ]
                     ],
                 ],
             ],
@@ -516,28 +898,46 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Textile and Shoe Treatment',
                 'sub_categories' => [
                     [
-                        'name' => 'Card/cash',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Price range',
+                            'Discounts and promotions',
+                            'Student discount'
+                        ]
                     ],
                     [
-                        'name' => 'Price range',
-                        'sub_sub_categories' => []
+                        'name' => 'Services Offered',
+                        'sub_sub_categories' => [
+                            'Alterations and repairs',
+                            'Transformation',
+                            'Dry cleaning and pressing',
+                            'Ironing',
+                            'Automatic laundry',
+                            'Ecological laundry',
+                            'At-home service',
+                            'Cobbler'
+                        ]
                     ],
                     [
-                        'name' => 'Student discount',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours',
+                            'Website/E-shop',
+                            'Mobile application'
+                        ]
                     ],
                     [
-                        'name' => 'Transformation',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Ironing',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Automatic laundry',
-                        'sub_sub_categories' => []
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Delivery',
+                            'In-store pickup',
+                            'Orders and pre-orders',
+                            'Mondial Relay',
+                            'Appointment scheduling'
+                        ]
                     ],
                 ],
             ],
@@ -545,31 +945,34 @@ class CategoryTableSeeder extends Seeder
                 'category' => 'Parks and Gardens',
                 'sub_categories' => [
                     [
-                        'name' => 'Free admission',
-                        'sub_sub_categories' => []
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Free admission',
+                            'Price ranges',
+                            'Student discount',
+                            'Discounts'
+                        ]
                     ],
                     [
-                        'name' => 'Price ranges',
-                        'sub_sub_categories' => []
+                        'name' => 'Types of Places',
+                        'sub_sub_categories' => [
+                            'Public gardens',
+                            'Greenhouses',
+                            'Public parks',
+                            'Animal parks'
+                        ]
                     ],
                     [
-                        'name' => 'Student discount',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Discounts',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Public gardens',
-                        'sub_sub_categories' => []
-                    ],
-                    [
-                        'name' => 'Greenhouses',
-                        'sub_sub_categories' => []
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours'
+                        ]
                     ],
                 ],
             ],
+
         ];
 
         foreach ($categories as $key => $main_category) {
@@ -599,7 +1002,6 @@ class CategoryTableSeeder extends Seeder
                     $sub_sub_cat->icon = 'assets/images/placeholder.jpg';
                     $sub_sub_cat->status = 1;
                     $sub_sub_cat->save();
-
                 }
             }
         }

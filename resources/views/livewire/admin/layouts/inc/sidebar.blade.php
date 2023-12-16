@@ -16,20 +16,20 @@
                         </a>
                     </li>
 
+                    @if (isAdminPermitted('admins_manage'))
                     <li class="{{ request()->is('admin/categories') ? 'mm-active' : '' }}">
-                        <a href="{{ route('admin.categories') }}" class="waves-effect">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-add-to-queue"></i>
-                            <span key="t-dashboard">Category</span>
+                            <span key="t-multi-level">Categories</span>
                         </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li><a href="{{ route('admin.categories') }}">Category</a></li>
+                            <li><a href="{{ route('admin.sub.categories') }}">Sub Category</a></li>
+                            <li><a href="{{ route('admin.sub.sub.categories') }}">Sub-Sub Category</a></li>
+                        </ul>
                     </li>
-
-                    <li class="{{ request()->is('admin/sub-categories') ? 'mm-active' : '' }}">
-                        <a href="{{ route('admin.sub.categories') }}" class="waves-effect">
-                            <i class="bx bx-add-to-queue"></i>
-                            <span key="t-dashboard">Sub Category</span>
-                        </a>
-                    </li>
-
+                    @endif
+                    
                     <li class="{{ request()->is('admin/shops') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.shops.list') }}" class="waves-effect">
                             <i class="bx bx-store"></i>
