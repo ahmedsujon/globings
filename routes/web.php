@@ -51,6 +51,7 @@ Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.sh
 
 // App show menu
 Route::get('/shops', ShopsComponent::class)->name('app.shops');
+Route::get('/shops/filter', ShopsComponent::class);
 Route::get('/map-view', MapViewComponent::class)->name('app.map.view');
 
 // Events routes
