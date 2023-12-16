@@ -43,6 +43,7 @@ use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 
 // Route::get('/', IndexComponent::class)->name('app.index');
 Route::get('/', HomeComponent::class)->name('app.home');
+Route::get('/filter', HomeComponent::class);
 
 // Profile routes
 Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile');

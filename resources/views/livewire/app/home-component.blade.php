@@ -288,7 +288,7 @@
         <form action="" id="filter_form">
             <div class="container">
                 <div class="d-flex-between">
-                    <h3 class="notification_title">Filters</h3>
+                    <h3 class="notification_title">Filters @if(!request()->is('/')) <a href="{{ route('app.home') }}" style="font-size: 11.5px; font-weight: normal; color: blue;">Reset Filters</a> @endif</h3>
                     <button type="button" id="filterCloseBtn">
                         <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
                     </button>
@@ -297,6 +297,7 @@
                     <h4 class="bring_bottom_text">Categories</h4>
 
                     <div class="category_filter_grid">
+                        <input type="hidden" id="filter_sub_cat_id" value="" />
 
                         @foreach ($categories as $f_category)
                             <div>
@@ -321,14 +322,14 @@
                                         @if ($f_sub_sub_categories->count() > 0)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
-                                                    <button class="accordion-button collapsed" type="button"
+                                                    <button data-sub_cat_id="{{ $f_sub_category->id }}" class="accordion-button collapsed sub_cat_btn" type="button"
                                                         data-bs-toggle="collapse" data-bs-target="#collapse_{{ $f_sub_category->id }}"
                                                         aria-expanded="true" aria-controls="collapseOne">
                                                         {{ $f_sub_category->name }}
                                                     </button>
                                                 </h2>
 
-                                                <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse"
+                                                <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse {{ request()->get('sub_category') == $f_sub_category->id ? 'show' : '' }}"
                                                     data-bs-parent="#accordion_{{ $f_category->id }}">
                                                     <div class="accordion-body">
                                                         @foreach ($f_sub_sub_categories as $f_sub_sub_category)
@@ -682,10 +683,12 @@
                     allCats.push($(this).val());
                 });
 
+                var sub_id = $('#filter_sub_cat_id').val();
+
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/') }}?city=" + city + "&category=" + main_category +
-                    '&sub_sub_categories=' + allCats;
+                window.location.href = "{{ URL::to('/filter') }}?city=" + city + "&category=" + main_category +
+                '&sub_category=' + sub_id + '&sub_sub_categories=' + allCats;
             });
 
             $('#searchForm').on('submit', function(e) {
@@ -693,7 +696,12 @@
 
                 var value = $('#search_input').val();
 
-                window.location.href = "{{ URL::to('/') }}?search=" + value;
+                window.location.href = "{{ URL::to('/filter') }}?search=" + value;
+            });
+
+            $('.sub_cat_btn').on('click', function() {
+                var id = $(this).data('sub_cat_id');
+                $('#filter_sub_cat_id').val(id);
             });
 
             $('.add_like_btn').on('click', function() {
