@@ -301,8 +301,7 @@
                         @foreach ($categories as $f_category)
                             <div>
                                 <div class="form-check main_form_check">
-                                    <input class="form-check-input main_form_check_input" name="filter_main_category" type="radio"
-                                        value="{{ $f_category->id }}" id="categoryFilterIcon" />
+                                    <input class="form-check-input main_form_check_input" name="filter_main_category" type="radio" {{ request()->get('category') == $f_category->id ? 'checked':'' }} value="{{ $f_category->id }}" id="categoryFilterIcon" />
 
                                     <label class="form-check-label" for="categoryFilterIcon">
                                         <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
@@ -313,7 +312,7 @@
                                 @php
                                     $f_sub_categories = App\Models\Category::where('parent_id', $f_category->id)->where('level', 1)->get();
                                 @endphp
-                                <div class="accordion" id="accordion_{{ $f_category->id }}">
+                                <div class="accordion" id="accordion_{{ $f_category->id }}" style="{{ request()->get('category') == $f_category->id ? 'display: block;':'' }}">
                                     @foreach ($f_sub_categories as $f_sub_category)
                                         @php
                                             $f_sub_sub_categories = App\Models\Category::where('parent_id', $f_sub_category->id)->where('level', 2)->get();
@@ -334,7 +333,7 @@
                                                     <div class="accordion-body">
                                                         @foreach ($f_sub_sub_categories as $f_sub_sub_category)
                                                             <div class="form-check">
-                                                                <input class="form-check-input" name="sub_sub_category" type="checkbox" value="{{ $f_sub_sub_category->name }}"
+                                                                <input class="form-check-input" name="sub_sub_category" type="checkbox" {{ in_array($f_sub_sub_category->name, explode(',', request()->get('sub_sub_categories'))) ? 'checked':'' }} value="{{ $f_sub_sub_category->name }}"
                                                                     id="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}" />
                                                                 <label class="form-check-label" for="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}">
                                                                     <span>{{ $f_sub_sub_category->name }}</span>

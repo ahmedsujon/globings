@@ -41,7 +41,7 @@ class ShopsComponent extends Component
     {
         $city = request()->get('city');
         $category = request()->get('category');
-        $filter_sub_categories = request()->get('sub_categories');
+        $filter_sub_sub_categories = request()->get('sub_sub_categories');
         $search_term = request()->get('search_value');
 
         $shops = Shop::where(function ($query) use($search_term) {
@@ -59,11 +59,11 @@ class ShopsComponent extends Component
             $shops = $shops->where('category_id', $category);
         }
 
-        if ($filter_sub_categories) {
-            $sub_categories = explode(',', $filter_sub_categories);
+        if ($filter_sub_sub_categories) {
+            $sub_sub_categories = explode(',', $filter_sub_sub_categories);
 
-            $shops = $shops->where(function ($query) use ($sub_categories) {
-                foreach ($sub_categories as $category) {
+            $shops = $shops->where(function ($query) use ($sub_sub_categories) {
+                foreach ($sub_sub_categories as $category) {
                     $query->orWhere('sub_sub_category', 'LIKE', '%"'.$category.'"%');
                 }
             });
