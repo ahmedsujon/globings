@@ -61,6 +61,17 @@ $(document).ready(function () {
     }
   });
 
+  //Accordion reset
+  $("#categoryFilterArea .accordion-button").click(function (e) {
+    e.preventDefault();
+    $(this)
+      .parent()
+      .parent()
+      .parent()
+      .find(".form-check-input")
+      .prop("checked", false);
+  });
+
   //Preview Slider
   $("#previewSecondPage").hide();
   setTimeout(() => {
