@@ -294,14 +294,73 @@
         <form action="" id="filter_form">
             <div class="container">
                 <div class="d-flex-between">
-                    <h3 class="notification_title">Filters</h3>
+                    <h3 class="notification_title">Filters @if(!request()->is('shops')) <a href="{{ route('app.shops') }}" style="font-size: 11.5px; font-weight: normal; color: blue;">Reset Filters</a> @endif</h3>
                     <button type="button" id="filterCloseBtn">
                         <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
                     </button>
                 </div>
-                <div class="category_area">
+                <div class="category_area" id="categoryFilterArea" wire:ignore>
                     <h4 class="bring_bottom_text">Categories Settings</h4>
-                    <div class="category_filter_grid" wire:ignore>
+
+                    <div class="category_filter_grid">
+                        <input type="hidden" id="filter_sub_cat_id" value="" />
+
+                        @foreach ($categories as $f_category)
+                            <div>
+                                <div class="form-check main_form_check">
+                                    <input class="form-check-input main_form_check_input" name="filter_main_category" type="radio" {{ request()->get('category') == $f_category->id ? 'checked':'' }} value="{{ $f_category->id }}" id="categoryFilterIcon" />
+
+                                    <label class="form-check-label" for="categoryFilterIcon">
+                                        <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
+                                            alt="category icon" />
+                                        <span>{{ $f_category->name }}</span>
+                                    </label>
+                                </div>
+                                @php
+                                    $f_sub_categories = App\Models\Category::where('parent_id', $f_category->id)->where('level', 1)->get();
+                                @endphp
+                                <div class="accordion" id="accordion_{{ $f_category->id }}" style="{{ request()->get('category') == $f_category->id ? 'display: block;':'' }}">
+                                    @foreach ($f_sub_categories as $f_sub_category)
+                                        @php
+                                            $f_sub_sub_categories = App\Models\Category::where('parent_id', $f_sub_category->id)->where('level', 2)->get();
+                                        @endphp
+
+                                        @if ($f_sub_sub_categories->count() > 0)
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button data-sub_cat_id="{{ $f_sub_category->id }}" class="accordion-button collapsed sub_cat_btn" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapse_{{ $f_sub_category->id }}"
+                                                        aria-expanded="true" aria-controls="collapseOne">
+                                                        {{ $f_sub_category->name }}
+                                                    </button>
+                                                </h2>
+
+                                                <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse {{ request()->get('sub_category') == $f_sub_category->id ? 'show' : '' }}"
+                                                    data-bs-parent="#accordion_{{ $f_category->id }}">
+                                                    <div class="accordion-body">
+                                                        @foreach ($f_sub_sub_categories as $f_sub_sub_category)
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" name="sub_sub_category" type="checkbox" {{ in_array($f_sub_sub_category->name, explode(',', request()->get('sub_sub_categories'))) ? 'checked':'' }} value="{{ $f_sub_sub_category->name }}"
+                                                                    id="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}" />
+                                                                <label class="form-check-label" for="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}">
+                                                                    <span>{{ $f_sub_sub_category->name }}</span>
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+
+
+
+                    </div>
+
+                    {{-- <div class="category_filter_grid" wire:ignore>
                         @foreach ($categories as $f_category)
                             <div class="form-check">
                                 <input class="form-check-input filter_main_category" type="radio" name="filter_main_category"
@@ -329,22 +388,20 @@
                             @endforeach
                         </div>
                     </div>
-                    @endif
+                    @endif --}}
 
-                    <div wire:ignore>
-                        @if (count($filter_cities) > 0)
-                            <div class="select_area">
-                                <h4 class="bring_bottom_text">Want to see area of city</h4>
-                                <div class="area_list d-flex align-items-center flex-wrap">
-                                    @foreach ($filter_cities as $city)
-                                        <button type="button" class="filter_city"
-                                            data-city="{{ $city->city }}">{{ $city->city }}</button>
-                                    @endforeach
-                                    <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
-                                </div>
+                    @if (count($filter_cities) > 0)
+                        <div class="select_area">
+                            <h4 class="bring_bottom_text">Want to see area of city</h4>
+                            <div class="area_list d-flex align-items-center flex-wrap">
+                                @foreach ($filter_cities as $city)
+                                    <button type="button" class="filter_city"
+                                        data-city="{{ $city->city }}">{{ $city->city }}</button>
+                                @endforeach
+                                <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
 
                     <div class="btn_area">
                         <button type="submit" class="login_btn login_btn_fill">
@@ -389,7 +446,7 @@
             var category = $('#category').val();
             var search_value = $('#search_input').val();
 
-            window.location.href = "{{ URL::to('/shops') }}?city=" + value + '&category=' + category +
+            window.location.href = "{{ URL::to('/shops/filter') }}?city=" + value + '&category=' + category +
                 '&search_value=' + search_value;
         });
     </script>
@@ -405,6 +462,11 @@
                 $('#filter_city_val').val($(this).data('city'));
             });
 
+            $('.sub_cat_btn').on('click', function() {
+                var id = $(this).data('sub_cat_id');
+                $('#filter_sub_cat_id').val(id);
+            });
+
             $('#filter_form').on('submit', function(e) {
                 e.preventDefault();
 
@@ -413,13 +475,15 @@
                 if(document.querySelector('input[name="filter_main_category"]:checked')){
                     main_category = document.querySelector('input[name="filter_main_category"]:checked').value;
                 }
-                $('input:checkbox[name=filter_category]:checked').each(function() {
+                $('input:checkbox[name=sub_sub_category]:checked').each(function() {
                     allCats.push($(this).val());
                 });
 
+                var sub_id = $('#filter_sub_cat_id').val();
+
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/shops') }}?city=" + city + "&category=" + main_category + '&sub_categories=' + allCats;
+                window.location.href = "{{ URL::to('/shops/filter') }}?city=" + city + "&category=" + main_category + '&sub_category=' + sub_id + '&sub_sub_categories=' + allCats;
             });
         });
     </script>
