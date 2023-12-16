@@ -311,7 +311,7 @@
                                     <input class="form-check-input main_form_check_input" name="filter_main_category" type="radio" {{ request()->get('category') == $f_category->id ? 'checked':'' }} value="{{ $f_category->id }}" id="categoryFilterIcon" />
 
                                     <label class="form-check-label" for="categoryFilterIcon">
-                                        <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
+                                        <img src="{{ $f_category->icon }}"
                                             alt="category icon" />
                                         <span>{{ $f_category->name }}</span>
                                     </label>
