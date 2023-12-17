@@ -21,7 +21,7 @@ class LoginComponent extends Component
         $this->validateOnly($fields, [
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required',
+            // 'phone' => 'required',
             'email' => 'required',
             'password' => 'required',
             'confirm_password' => 'required',
@@ -60,7 +60,7 @@ class LoginComponent extends Component
         $this->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required|unique:users,phone',
+            // 'phone' => 'required|unique:users,phone',
             'email' => 'required|unique:users,email',
             'password' => 'required|min:8',
             'confirm_password' => 'required|same:password',
