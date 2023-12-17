@@ -328,88 +328,7 @@ class CategoryTableSeeder extends Seeder
                     ],
                 ],
             ],
-            [
-                'category' => 'Culture and Leisure',
-                'sub_categories' => [
-                    [
-                        'name' => 'Price, Offers, and Benefits',
-                        'sub_sub_categories' => [
-                            'Card/cash',
-                            'Gift vouchers/advantage cards',
-                            'Loyalty program',
-                            'Promotions/low prices',
-                            'Student discount',
-                            'Subscription',
-                            'Free entry'
-                        ]
-                    ],
-                    [
-                        'name' => 'Types of Services and Events',
-                        'sub_sub_categories' => [
-                            'Premieres',
-                            '3D/4DX option',
-                            'Marathons',
-                            'Birthday parties',
-                            'Meet and greets with actors',
-                            'Shows and performances',
-                            'Educational activities (workshops, classes, school activities)'
-                        ]
-                    ],
-                    [
-                        'name' => 'Other Offers and Services',
-                        'sub_sub_categories' => [
-                            'Late-night showings',
-                            'Food area/picnic area',
-                            'Cloakroom',
-                            'Guided tours',
-                            'Audio guides',
-                            'Available languages',
-                            'Baby rooms',
-                            'School excursions',
-                            'Workshop exhibitions for rent'
-                        ]
-                    ],
-                    [
-                        'name' => 'Target Audience',
-                        'sub_sub_categories' => [
-                            'General public',
-                            'Informed public',
-                            'Groups',
-                            'Children'
-                        ]
-                    ],
-                    [
-                        'name' => 'Types of Venues',
-                        'sub_sub_categories' => [
-                            'Independent',
-                            'Chain venues',
-                            'Updated new releases',
-                            'Classic films',
-                            'Themed venues'
-                        ]
-                    ],
-                    [
-                        'name' => 'Hours and Access',
-                        'sub_sub_categories' => [
-                            'Access for people with reduced mobility',
-                            'Parking',
-                            'Opening hours',
-                            'Average time for specific activities',
-                            'Toilets',
-                            'Website',
-                            'Mobile application'
-                        ]
-                    ],
-                    [
-                        'name' => 'Additional Information',
-                        'sub_sub_categories' => [
-                            'Air-conditioned venue',
-                            'Online/on-site reservations',
-                            'Large/small venue'
-                        ]
-                    ],
-                ],
-            ],
+
             [
                 'category' => 'Home and DIY',
                 'sub_categories' => [
@@ -968,6 +887,91 @@ class CategoryTableSeeder extends Seeder
                             'Access for people with reduced mobility',
                             'Parking',
                             'Opening hours'
+                        ]
+                    ],
+                ],
+            ],
+            [
+                'category' => 'Culture and Leisure',
+                'sub_categories' => [
+                    [
+                        'name' => 'Price, Offers, and Benefits',
+                        'sub_sub_categories' => [
+                            'Card/cash',
+                            'Gift vouchers/advantage cards',
+                            'Loyalty program',
+                            'Promotions/low prices',
+                            'Student discount',
+                            'Subscription',
+                            'Free entry'
+                        ]
+                    ],
+                    [
+                        'name' => 'Types of Services and Events',
+                        'sub_sub_categories' => [
+                            'Premieres',
+                            '3D/4DX option',
+                            'Marathons',
+                            'Birthday parties',
+                            'Meet and greets with actors',
+                            'Shows and performances',
+                            'Educational activities',
+                            'workshops',
+                            'classes',
+                            'school activities'
+                        ]
+                    ],
+                    [
+                        'name' => 'Other Offers and Services',
+                        'sub_sub_categories' => [
+                            'Late-night showings',
+                            'Food area/picnic area',
+                            'Cloakroom',
+                            'Guided tours',
+                            'Audio guides',
+                            'Available languages',
+                            'Baby rooms',
+                            'School excursions',
+                            'Workshop exhibitions for rent'
+                        ]
+                    ],
+                    [
+                        'name' => 'Target Audience',
+                        'sub_sub_categories' => [
+                            'General public',
+                            'Informed public',
+                            'Groups',
+                            'Children'
+                        ]
+                    ],
+                    [
+                        'name' => 'Types of Venues',
+                        'sub_sub_categories' => [
+                            'Independent',
+                            'Chain venues',
+                            'Updated new releases',
+                            'Classic films',
+                            'Themed venues'
+                        ]
+                    ],
+                    [
+                        'name' => 'Hours and Access',
+                        'sub_sub_categories' => [
+                            'Access for people with reduced mobility',
+                            'Parking',
+                            'Opening hours',
+                            'Average time for specific activities',
+                            'Toilets',
+                            'Website',
+                            'Mobile application'
+                        ]
+                    ],
+                    [
+                        'name' => 'Additional Information',
+                        'sub_sub_categories' => [
+                            'Air-conditioned venue',
+                            'Online/on-site reservations',
+                            'Large/small venue'
                         ]
                     ],
                 ],
