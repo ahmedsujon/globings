@@ -42,42 +42,40 @@ use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 */
 
 // Route::get('/', IndexComponent::class)->name('app.index');
-Route::get('/', HomeComponent::class)->name('app.home');
-Route::get('/filter', HomeComponent::class);
+Route::get('/', HomeComponent::class)->name('app.home')->middleware('subscribed');
+Route::get('/filter', HomeComponent::class)->middleware('subscribed');
 
 // Profile routes
-Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile');
-Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.shopProfile');
+Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile')->middleware('subscribed');
+Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.shopProfile')->middleware('subscribed');
 
 // App show menu
-Route::get('/shops', ShopsComponent::class)->name('app.shops');
-Route::get('/shops/filter', ShopsComponent::class);
-Route::get('/map-view', MapViewComponent::class)->name('app.map.view');
+Route::get('/shops', ShopsComponent::class)->name('app.shops')->middleware('subscribed');
+Route::get('/shops/filter', ShopsComponent::class)->middleware('subscribed');
+Route::get('/map-view', MapViewComponent::class)->name('app.map.view')->middleware('subscribed');
 
 // Events routes
-Route::get('/events', EventsComponent::class)->name('app.events');
-Route::get('/event/{id}', EventDetailsComponent::class)->name('app.event.details');
+Route::get('/events', EventsComponent::class)->name('app.events')->middleware('subscribed');
+Route::get('/event/{id}', EventDetailsComponent::class)->name('app.event.details')->middleware('subscribed');
 
 
 // Terms-and-conditions routes
-Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.terms-and-conditions');
+Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.terms-and-conditions')->middleware('subscribed');
 
+Route::get('/plans', PackagePlanComponent::class)->name('app.plans')->middleware('auth');
+Route::get('/plans/payment/{subscription_id}', StripePaymentComponent::class)->name('app.planPayment')->middleware('auth');
 
-Route::middleware('auth')->group(function(){
-    Route::get('/plans', PackagePlanComponent::class)->name('app.plans');
-    Route::get('/plans/payment/{subscription_id}', StripePaymentComponent::class)->name('app.planPayment');
+//Stripe Payment
+Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe')->middleware('auth');
+Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess')->middleware('auth');
 
+//Paypal Payment
+Route::post('/plans/payment/paypal/pay', [PayPalPaymentController::class, 'makePayment'])->name('app.payWithPaypal')->middleware('auth');
+Route::get('/paypal-payment-success', [PayPalPaymentController::class, 'paymentSuccess'])->name('app.paypalPaymentSuccess')->middleware('auth');
 
-    //Stripe Payment
-    Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe');
-    Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess');
+Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->name('app.paymentSuccessComponent')->middleware('auth');
 
-    //Paypal Payment
-    Route::post('/plans/payment/paypal/pay', [PayPalPaymentController::class, 'makePayment'])->name('app.payWithPaypal');
-    Route::get('/paypal-payment-success', [PayPalPaymentController::class, 'paymentSuccess'])->name('app.paypalPaymentSuccess');
-
-    Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->name('app.paymentSuccessComponent');
-
+Route::middleware(['auth', 'subscribed'])->group(function(){
     // Profile share routes
     Route::get('/share-my-profile', ShareProfileComponent::class)->name('app.profile.share');
 
