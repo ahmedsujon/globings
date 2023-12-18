@@ -12,7 +12,7 @@
                 <h3 class="bing_inner_title">Share with your friends</h3>
                 <div class="share_list d-flex align-items-center justify-content-center flex-wrap mt-4">
                     <div class="share_item">
-                        <a href="{{ route('app.profile.share.reload') }}" class="share_btn" id="shareModalBtn">
+                        <a href="{{ route('app.profile.share') }}" class="share_btn" id="shareModalBtn">
                           <img
                             src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}"
                             alt="bing share icon"
