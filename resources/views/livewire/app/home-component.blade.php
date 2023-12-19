@@ -11,9 +11,15 @@
                         @auth
                             @if (user()->account_type == 'Professional')
                                 @if (userHasActiveSubscription())
-                                    <a href="javascript:void(0)" id="openPostCreateBtn">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
+                                    @if (!postLimit())
+                                        <a href="javascript:void(0)" id="openPostCreateBtn">
+                                            <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                        </a>
+                                    @else
+                                        <a href="{{ route('app.plans') }}">
+                                            <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
+                                        </a>
+                                    @endif
                                 @else
                                     <a href="{{ route('app.plans') }}">
                                         <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />

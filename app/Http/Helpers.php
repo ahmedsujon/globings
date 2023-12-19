@@ -11,6 +11,7 @@ use App\Models\ShopBookmark;
 use App\Models\AdminPermission;
 use App\Models\Category;
 use App\Models\CommentReplyLike;
+use App\Models\Post;
 use App\Models\ShopReview;
 use Illuminate\Support\Facades\Auth;
 
@@ -121,6 +122,40 @@ function userHasActiveSubscription()
     } else {
         return false;
     }
+}
+
+function postLimit()
+{
+    $total_posts = Post::where('user_id', user()->id)->count();
+
+    $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->first();
+
+    $value = '';
+
+    if($subscription->package_id == 1){
+        if($total_posts >= 2){
+            $value = true;
+        }
+        else{
+            $value = false;
+        }
+    } else if($subscription->package_id == 2){
+        if($total_posts >= 4){
+            $value = true;
+        }
+        else{
+            $value = false;
+        }
+    } else if($subscription->package_id == 3){
+        if($total_posts >= 8){
+            $value = true;
+        }
+        else{
+            $value = false;
+        }
+    }
+
+    return $value;
 }
 
 function shop_total_review($id)
