@@ -11,6 +11,7 @@ use App\Models\ShopBookmark;
 use App\Models\AdminPermission;
 use App\Models\Category;
 use App\Models\CommentReplyLike;
+use App\Models\FcmToken;
 use App\Models\Post;
 use App\Models\ShopReview;
 use Illuminate\Support\Facades\Auth;
@@ -115,7 +116,7 @@ function isCommentReplyLiked($comment_reply_id)
 
 function userHasActiveSubscription()
 {
-    $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->first();
+    $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->orderBy('user_subscriptions.created_at', 'DESC')->first();
 
     if($subscription){
         return true;
@@ -128,7 +129,7 @@ function postLimit()
 {
     $total_posts = Post::where('user_id', user()->id)->count();
 
-    $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->first();
+    $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->orderBy('user_subscriptions.created_at', 'DESC')->first();
 
     $value = '';
 
@@ -355,7 +356,8 @@ function tagify_array( $value ) {
 function pushNotification($title, $body) {
     $url = 'https://fcm.googleapis.com/fcm/send';
 
-        $FcmToken = User::whereNotNull('device_token')->where('id', '!=', user()->id)->where('notification_status', 1)->pluck('device_token')->all();
+        // $FcmToken = User::whereNotNull('device_token')->where('id', '!=', user()->id)->where('notification_status', 1)->pluck('device_token')->all();
+        $FcmToken = FcmToken::where('status', 1)->pluck('token')->all();
 
         $serverKey =env('FIREBASE_SERVER_KEY'); // ADD SERVER KEY HERE PROVIDED BY FCM
 
