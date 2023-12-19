@@ -26,6 +26,7 @@ use App\Http\Controllers\NotificationSendController;
 use App\Livewire\App\Payment\StripePaymentComponent;
 use App\Livewire\App\Scanner\ProfileScannerComponent;
 use App\Http\Controllers\DependableDropdownController;
+use App\Livewire\App\Pages\ReloadShareProfileComponent;
 use App\Http\Controllers\payment\PayPalPaymentController;
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Payment\StripePaymentSuccessComponent;
@@ -78,6 +79,7 @@ Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->
 Route::middleware(['auth', 'subscribed'])->group(function(){
     // Profile share routes
     Route::get('/share-my-profile', ShareProfileComponent::class)->name('app.profile.share');
+    Route::get('/share-my-profile-reload', ReloadShareProfileComponent::class)->name('app.profile.share.reload');
 
     // Bings routes
     Route::get('/bings', BingComponent::class)->name('app.bings');

@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
         $userSeven = User::where('email', 'userseven@example.com')->first();
         $userEight = User::where('email', 'usereight@example.com')->first();
         $userNine = User::where('email', 'usernine@example.com')->first();
-        $userTen = User::where('email', 'userten@example.com')->first();
+        $userTen = User::where('email', 'sujonahmed424@gmail.com')->first();
 
         if (!$userOne) {
             $user = new User();
@@ -144,14 +144,14 @@ class UserTableSeeder extends Seeder
         }
         if (!$userTen) {
             $user = new User();
-            $user->first_name = 'User';
-            $user->last_name = 'Ten';
-            $user->username = 'user10';
-            $user->email = 'user10@example.com';
-            $user->phone = '01700000000';
+            $user->first_name = 'Sujon';
+            $user->last_name = 'Ahmed';
+            $user->username = 'sujonahmed';
+            $user->email = 'sujonahmed424@gmail.com';
+            $user->phone = '01752625389';
             $user->password = Hash::make('12345678');
             $user->avatar = 'assets/images/avatar.png';
-            $user->account_type = 'private';
+            $user->account_type = 'Professional';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
             $user->save();
         }
