@@ -70,6 +70,9 @@ class ProfileComponent extends Component
 
             $profile = User::where('id', user()->id)->first();
             $profile->avatar = $img;
+
+            dd($profile->all());
+
             $profile->save();
             $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }
