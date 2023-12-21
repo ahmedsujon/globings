@@ -61,7 +61,7 @@ class ProfileComponent extends Component
             $image = Image::make($this->avatar)->resize(626, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->encode('jpg', 75);
+            })->encode('webp', 75);
             $directory = 'uploads/profiles/';
 
             $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
@@ -70,6 +70,9 @@ class ProfileComponent extends Component
 
             $profile = User::where('id', user()->id)->first();
             $profile->avatar = $img;
+
+            dd($profile->all());
+
             $profile->save();
             $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }
