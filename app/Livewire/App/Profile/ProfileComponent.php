@@ -57,6 +57,10 @@ class ProfileComponent extends Component
 
     public function updatedavatar()
     {
+        $this->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,webp,gif,svg|max:15000',
+        ]);
+
         if ($this->avatar) {
             $image = Image::make($this->avatar)->resize(626, null, function ($constraint) {
                 $constraint->aspectRatio();
