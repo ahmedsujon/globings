@@ -60,7 +60,7 @@ function getUserProfileHome($id)
 
 function getShopProfileHome($id)
 {
-    return Shop::select('profile_image')->where('user_id', $id)->first();
+    return Shop::select('profile_image', 'name')->where('user_id', $id)->first();
 }
 
 function isLiked($post_id)
