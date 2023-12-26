@@ -325,9 +325,9 @@
                 </button>
             </form>
             <ul class="suggestion_list_area">
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
+                @foreach ($search_histories as $search_history)
+                    <li class="search_item" data-search_val="{{ $search_history->search_value }}" data-location_val="{{ $search_history->location_value }}">{{ $search_history->search_value }}, {{ $search_history->location_value }}</li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -765,6 +765,8 @@
                 var value = $('#search_input').val();
                 var location = $('#location_input').val();
 
+                @this.addSearchHistory(value, location);
+
                 window.location.href = "{{ URL::to('/filter') }}?search=" + value + "&location=" + location;
             });
 
@@ -778,6 +780,14 @@
             $('.sub_cat_btn').on('click', function() {
                 var id = $(this).data('sub_cat_id');
                 $('#filter_sub_cat_id').val(id);
+            });
+
+            $('.search_item').on('click', function() {
+                var search = $(this).data('search_val');
+                var location = $(this).data('location_val');
+
+                $('#search_input').val(search);
+                $('#location_input').val(location);
             });
 
             $('.add_like_btn').on('click', function() {

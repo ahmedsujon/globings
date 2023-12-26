@@ -9,6 +9,7 @@ use App\Models\CommentReplyLike;
 use App\Models\Post;
 use App\Models\PostComment;
 use App\Models\PostLike;
+use App\Models\SearchHistory;
 use App\Models\Shop;
 use App\Models\User;
 use Carbon\Carbon;
@@ -23,12 +24,13 @@ class HomeComponent extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [], $tags, $sort_category, $sort_sub_sub_category, $sort_location, $sort_tag, $sort_type;
+    public $categories, $cities, $pagination_value = 50, $search_term, $comment, $comment_filter_by, $content, $images = [], $tags, $sort_category, $sort_sub_sub_category, $sort_location, $sort_tag, $sort_type, $search_histories;
     public function mount()
     {
         $this->search_term = request()->get('search');
         $this->categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'ASC')->get();
         $this->cities = Shop::groupBy('city')->where('city', '!=', '')->pluck('city')->toArray();
+        $this->search_histories = SearchHistory::orderBy('count', 'DESC')->get();
 
         $this->sort_category = request()->get('category');
         $this->sort_sub_sub_category = request()->get('sub_categories');
@@ -203,6 +205,22 @@ class HomeComponent extends Component
     public function getSubCategories($cat)
     {
         $this->sub_categories = Category::where('status', 1)->where('parent_id', $cat)->orderBy('name', 'ASC')->get();
+    }
+
+    public function addSearchHistory($value, $location)
+    {
+        $getData = SearchHistory::where('search_value', $value)->where('location_value', $location)->first();
+
+        if($getData) {
+            $getData->count += 1;
+            $getData->save();
+        } else {
+            $data = new SearchHistory();
+            $data->search_value = $value;
+            $data->location_value = $location;
+            $data->count = 1;
+            $data->save();
+        }
     }
 
     public function render()
