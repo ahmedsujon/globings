@@ -2,6 +2,17 @@
 .post_home_wrapper {
   margin-top: 24px;
   padding-bottom: 80px;
+  .post_main_area {
+    margin-bottom: 20px;
+  }
+  .business_owner_name {
+    color: #929292;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 8px;
+  }
   .post_grid {
     display: grid;
     grid-template-columns: minmax(0, 32px) repeat(1, minmax(0, 1fr));
@@ -91,7 +102,6 @@
       line-height: 20px;
       // max-height: 40px ;
       margin-top: 7px;
-   
     }
   }
 

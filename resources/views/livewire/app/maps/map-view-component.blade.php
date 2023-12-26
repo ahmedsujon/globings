@@ -112,7 +112,7 @@
             </div>
         </div>
     </header>
-    <section class="company_location_wrapper">
+    {{-- <section class="company_location_wrapper">
         <div class="location_header" style="margin-top: -20px;">
             <div class="container">
                 <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
@@ -169,35 +169,35 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="category_slider_area border-0" id="headerCategorySlider">
-            <div class="d-flex align-items-center g-sm category_sceleton">
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-                <div class="skeleton" style="width: 64px; height: 45px"></div>
-            </div>
-            <div class="swiper category_swiper_container d-none">
-                <div class="swiper-wrapper">
-                    @foreach ($categories as $category)
-                        <div class="swiper-slide">
-                            <a href="{{ route('app.map.view') }}?category={{ $category->id }}"
-                                class="category_item {{ request()->get('category') == $category->id ? 'active_category' : '' }}">
-                                <img src="{{ asset($category->icon) }}" alt="category icon" />
-                                <h4>{{ $category->name }}</h4>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div> --}}
-    </section>
-    <section class="company_map_wrapper" style="margin-top: -80px;">
+    </section> --}}
+
+    <section class="company_map_wrapper">
         <div class="map_area chart_map_area">
             <!-- HTML -->
-            <div class="map_item" id="mapItem" style="height: 67vh;"></div>
+            <div class="map_item" id="mapItem"></div>
+            <div class="map_top_btn_list" id="mapFilterListArea">
+                <button type="button" class="active_map_list">Carte</button>
+                <button type="button" class="list_btn">Liste</button>
+            </div>
+            <div class="map_search_main_area">
+                <form class="map_search_area" id="mapSearchArea">
+                    <input type="search" placeholder="Search.." id="search_value" class="search_input" />
+                    <button type="submit" class="search_btn" id="">
+                        <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+                    </button>
+                </form>
+            </div>
+            <button type="button" class="search_btn" id="mapSearchBtn">
+                <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+            </button>
         </div>
     </section>
+
+    {{-- <section class="company_map_wrapper">
+        <div class="map_area chart_map_area">
+            <div class="map_item" id="mapItem" style="height: 67vh;"></div>
+        </div>
+    </section> --}}
 
     <input type="hidden" name="" id="shop_cords" value="{{ $shop_cords }}">
 
@@ -223,6 +223,17 @@
             var category = $('#category').val();
 
             window.location.href = "{{ URL::to('/map-view') }}?city=" + value + '&category=' + category;
+        });
+
+        $('.list_btn').on('click', function() {
+            window.location.href = "{{ URL::to('/shops') }}";
+        });
+
+        $('#mapSearchArea').on('submit', function(e) {
+            e.preventDefault();
+
+            var value = $('#search_value').val();
+            window.location.href = "{{ URL::to('/map-view') }}?search_value=" + value;
         });
     </script>
     <script>
@@ -267,9 +278,6 @@
                 currentCord = {};
 
             async function initMap(positionList) {
-
-                console.log(positionList);
-
                 const origin = {
                     lat: 39.21587946892194,
                     lng: 35.29780273277126
@@ -304,7 +312,6 @@
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
-                            console.log("initMap - position:", position);
                             const pos = {
                                 lat: position.coords.latitude,
                                 lng: position.coords.longitude,
@@ -318,7 +325,7 @@
                             //Current Location Marker
                             const beachFlagImg = document.createElement("img");
 
-                            beachFlagImg.src = "{{ asset('assets/app/icons/map_marker.png') }}";
+                            beachFlagImg.src = "{{ asset('assets/app/icons/map_marker_2.png') }}";
 
                             const beachFlagMarkerView = new AdvancedMarkerElement({
                                 map,
@@ -333,6 +340,11 @@
                                 lat: position.coords.latitude,
                                 lng: position.coords.longitude,
                             };
+
+                            new ClickEventHandler(map, {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            });
                         },
                         () => {
                             handleLocationError(true, infoWindow, map.getCenter());
@@ -343,19 +355,19 @@
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
 
-                new ClickEventHandler(map, currentCord);
-
+                //Custom marker location route
                 var marker, i;
                 var markers = new Array();
                 const directionsService = new google.maps.DirectionsService();
-                console.log("directionsService:", directionsService.route());
                 const directionsRenderer = new google.maps.DirectionsRenderer({
                     map: map,
                     suppressMarkers: true,
+                    polylineOptions: {
+                        strokeColor: "#f90101",
+                    },
                 });
 
                 for (i = 0; i < positionList.length; i++) {
-                    // console.log("initMap - i:", i,positionList[i])
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(
                             positionList[i][1],
@@ -371,18 +383,9 @@
                         "click",
                         (function(marker, i) {
                             return function() {
-                                console.log(
-                                    "google.maps.event.addListener - marker:",
-                                    marker,
-                                    i,
-                                    positionList[i][1]
-                                );
                                 infoWindow.setContent(positionList[i][0]);
                                 infoWindow.open(map, marker);
 
-                                // directionsRenderer.setDirections({})
-                                // directionsService.route({})
-                                console.log("currentCord:", currentCord);
                                 directionsService.route({
                                         origin: currentCord,
                                         destination: {
@@ -397,7 +400,7 @@
                                             directionsRenderer.setDirections(response);
                                         } else {
                                             window.alert(
-                                                "Directions request failed due to unavailable routes"
+                                                "Directions request failed due to " + status
                                             );
                                         }
                                     }
@@ -407,14 +410,44 @@
                     );
                 }
 
-
-
                 // pathBetween.setMap(map);
-                google.maps.event.addListener(markers, "click", function(marker, i) {
-                    return function() {
-                        console.log("Test");
-                    };
-                });
+                class ClickEventHandler {
+                    constructor(map, origin) {
+                        this.origin = origin;
+                        this.map = map;
+                        this.directionsService = directionsService;
+                        this.directionsRenderer = directionsRenderer;
+                        this.directionsRenderer.setMap(map);
+                        this.placesService = new google.maps.places.PlacesService(map);
+                        this.infowindow = infoWindow;
+                        this.infowindowContent =
+                            document.getElementById("infowindow-content");
+                        this.infowindow.setContent(this.infowindowContent);
+                        // Listen for clicks on the map.
+                        this.map.addListener("click", this.handleClick.bind(this));
+                    }
+
+                    handleClick(event) {
+                        console.log("ClickEventHandler - constructor - origin:", origin);
+                        console.log("You clicked on: " + event.latLng);
+                        $.toast({
+                            heading: "Success",
+                            // text: "And these were just the basic demos! Scroll down to check further details on how to customize the output.",
+                            showHideTransition: "slide", //plain,fade
+                            icon: "success", //success,warning,error,info
+                            position: "bottom-center",
+                            hideAfter: 3000,
+                            loader: true,
+                            //   position: {
+                            //     left: 120,
+                            //     top: 120
+                            // },
+                            // bgColor: '#FF1356',
+                            // textColor: 'white'
+                            // loaderBg: '#9EC600'
+                        });
+                    }
+                }
             }
 
             //Show error message
@@ -426,92 +459,6 @@
                     "Error: Your browser doesn't support geolocation."
                 );
                 infoWindow.open(map);
-            }
-
-            function isIconMouseEvent(e) {
-                console.log("isIconMouseEvent - e:", e, e.placeId);
-                return e.placeId;
-            }
-
-            class ClickEventHandler {
-                origin;
-                map;
-                directionsService;
-                directionsRenderer;
-                placesService;
-                infowindow;
-                infowindowContent;
-                constructor(map, origin) {
-                    this.origin = origin;
-                    this.map = map;
-                    this.directionsService = new google.maps.DirectionsService();
-                    this.directionsRenderer = new google.maps.DirectionsRenderer();
-                    this.directionsRenderer.setMap(map);
-                    this.placesService = new google.maps.places.PlacesService(map);
-                    this.infowindow = new google.maps.InfoWindow();
-                    this.infowindowContent =
-                        document.getElementById("infowindow-content");
-                    this.infowindow.setContent(this.infowindowContent);
-                    // Listen for clicks on the map.
-                    this.map.addListener("click", this.handleClick.bind(this));
-                }
-                handleClick(event) {
-                    console.log("You clicked on: " + event.latLng);
-                    // If the event has a placeId, use it.
-                    if (isIconMouseEvent(event)) {
-                        console.log("You clicked on place:" + event.placeId);
-                        event.stop();
-                        if (event.placeId) {
-                            this.calculateAndDisplayRoute(event.placeId);
-                            this.getPlaceInformation(event.placeId);
-                        }
-                    }
-                }
-                calculateAndDisplayRoute(placeId) {
-                    const me = this;
-
-                    this.directionsService
-                        .route({
-                            origin: this.origin,
-                            destination: {
-                                placeId: placeId
-                            },
-                            travelMode: google.maps.TravelMode.WALKING,
-                        })
-                        .then((response) => {
-                            me.directionsRenderer.setDirections(response);
-                        })
-                        .catch((e) =>
-                            window.alert("Directions request failed due to " + status)
-                        );
-                }
-                getPlaceInformation(placeId) {
-                    const me = this;
-
-                    this.placesService.getDetails({
-                            placeId: placeId
-                        },
-                        (place, status) => {
-                            if (
-                                status === "OK" &&
-                                place &&
-                                place.geometry &&
-                                place.geometry.location
-                            ) {
-                                me.infowindow.close();
-                                me.infowindow.setPosition(place.geometry.location);
-                                me.infowindowContent.children["place-icon"].src = place.icon;
-                                me.infowindowContent.children["place-name"].textContent =
-                                    place.name;
-                                me.infowindowContent.children["place-id"].textContent =
-                                    place.place_id;
-                                me.infowindowContent.children["place-address"].textContent =
-                                    place.formatted_address;
-                                me.infowindow.open(me.map);
-                            }
-                        }
-                    );
-                }
             }
         });
     </script>
