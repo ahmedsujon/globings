@@ -302,110 +302,84 @@
                         <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
                     </button>
                 </div>
-                <div class="category_area" id="categoryFilterArea" wire:ignore>
+                <div class="category_area" id="categoryFilterArea">
 
-                    <div class="top_filter_area" id="topFilterArea">
-                        <h4 class="bring_bottom_text">
-                            <img src="{{ asset('assets/app/icons/left_arrow.svg') }}" alt="left arrow" />
-                            Select Category
-                        </h4>
+
+
+                    <div class="top_filter_area" id="topFilterArea" wire:ignore.self>
+                        <h4 class="bring_bottom_text">Category</h4>
                         <div class="category_filter_grid">
-                            <div>
-                                <button type="button" class="form-check main_form_check">
-                                    <label class="form-check-label">
-                                        <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
-                                            alt="category icon" />
-                                        <span>Hairdressing</span>
-                                    </label>
-                                    <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
-                                        class="right_arrow" />
-                                </button>
-                            </div>
-                            <div>
-                                <button type="button" class="form-check main_form_check">
-                                    <label class="form-check-label">
-                                        <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}"
-                                            alt="category icon" />
-                                        <span>Hairdressing</span>
-                                    </label>
-                                    <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
-                                        class="right_arrow" />
-                                </button>
-                            </div>
-
+                            @foreach ($categories as $category)
+                                <div>
+                                    <button type="button" class="form-check main_form_check" wire:click.prevent='getSubCategory({{ $category->id }})'>
+                                        <label class="form-check-label">
+                                            <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}" alt="category icon" />
+                                            <span>{{ $category->name }}</span>
+                                        </label>
+                                        <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow" class="right_arrow" />
+                                    </button>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-
-                    <div class="sub_filter_modal_area" id="subFilterArea">
-                        <div class="container">
+                    <!-- Filter Sub Modal  -->
+                    <div class="sub_filter_modal_area" id="subFilterArea" wire:ignore.self>
+                        <div>
                             <div class="category_area" id="subCategoryFilterArea">
-                                <h4 class="bring_bottom_text">
-                                    <img src="{{ asset('assets/app/icons/left_arrow.svg') }}" alt="left arrow" />
-                                    Select Sub Category
-                                </h4>
-                                <div class="category_filter_grid d-block">
+                                <div class="d-flex align-items-center flex-wrap g-small">
+                                    <button type="button" id="subBackBtn" wire:click.prevent='resetSubCat'>
+                                        <img src="{{ asset('assets/app/icons/left_arrow.svg') }}" alt="left arrow" />
+                                    </button>
                                     <div>
-                                        <button type="button" class="form-check main_form_check">
-                                            <label class="form-check-label d-block">
-                                                <span>Hairdressing (10)</span>
-                                            </label>
-                                            <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
-                                                class="right_arrow" />
-                                        </button>
+                                        <h4 class="bring_bottom_text">Sub Category</h4>
                                     </div>
-                                    <div>
-                                        <button type="button" class="form-check main_form_check">
-                                            <label class="form-check-label d-block">
-                                                <span>Hairdressing</span>
-                                            </label>
-                                            <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
-                                                class="right_arrow" />
-                                        </button>
-                                    </div>
+                                </div>
+
+                                <div class="category_filter_grid d-block" style="margin-left: 10px;">
+                                    @if ($total_sub_cat > 0)
+                                        @foreach ($subCategories as $subCat)
+                                            <div>
+                                                <button type="button" class="form-check main_form_check" wire:click.prevent='getSubSubCategory({{ $subCat->id }})'>
+                                                    <label class="form-check-label d-block">
+                                                        <span>{{ $subCat->name }}</span>
+                                                    </label>
+                                                    <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
+                                                        class="right_arrow" />
+                                                </button>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Filter Sub Inner Modal  -->
-                    <div class="sub_inner_filter_modal_area" id="subInnerFilterArea">
-                        <div class="container">
+                    <div class="sub_inner_filter_modal_area" id="subInnerFilterArea" wire:ignore.self>
+                        <div>
                             <div class="category_area" id="subInnerCategoryFilterArea">
-                                <h4 class="bring_bottom_text">
-                                    <img src="{{ asset('assets/app/icons/left_arrow.svg') }}" alt="left arrow" />
-                                    Select Sub Sub Categories
-                                </h4>
-                                <div class="category_filter_grid d-block">
-                                    <!--! Each label , input tag,accordion and accordion button add unique id  -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="categoryFilterInnerIcon111" />
-                                        <label class="form-check-label" for="categoryFilterInnerIcon111">
-                                            <span>Cafe Bar</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="categoryFilterInnerIcon22222" />
-                                        <label class="form-check-label" for="categoryFilterInnerIcon22222">
-                                            <span>Hairdressing</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="categoryFilterInnerIcon1111" />
-                                        <label class="form-check-label" for="categoryFilterInnerIcon1111">
-                                            <span>Hairdressing</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="categoryFilterInnerIcon2222" />
-                                        <label class="form-check-label" for="categoryFilterInnerIcon22">
-                                            <span>Hairdressing</span>
-                                        </label>
+                                <div class="d-flex align-items-center flex-wrap g-small">
+                                    <button type="button" id="subInnerBackBtn" wire:click.prevent='resetSubSubCat'>
+                                        <img src="{{ asset('assets/app/icons/left_arrow.svg') }}" alt="left arrow" />
+                                    </button>
+                                    <div>
+                                        <h4 class="bring_bottom_text">Sub Sub Category</h4>
                                     </div>
                                 </div>
+                                <div class="category_filter_grid d-block" style="margin-left: 7px;">
+                                    @if ($total_sub_sub_cat > 0)
+                                        @foreach ($subSubCategories as $subSubCat)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="categoryFilterInnerIcon111" />
+                                                <label class="form-check-label" for="categoryFilterInnerIcon111">
+                                                    <span>{{ $subSubCat->name }}</span>
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    @endif
 
+
+                                </div>
 
                             </div>
                         </div>

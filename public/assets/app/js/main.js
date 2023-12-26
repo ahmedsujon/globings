@@ -496,54 +496,49 @@ $(document).ready(function () {
 
   //Filter Modal
   $("#filterBtn,#filterOverlay,#filterCloseBtn").click(() => {
-    if ($("#subInnerFilterArea").hasClass("filter_active")) {
-      console.log("subInnerFilterArea");
-      $("#subInnerFilterArea").hide("fast");
-      $("#subFilterArea").show("fast");
-      $("#subFilterArea").addClass("filter_active");
-      $("#subInnerFilterArea").removeClass("filter_active");
-
-      //Reset check input
-      $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
-    } else if ($("#subFilterArea").hasClass("filter_active")) {
-      $("#subFilterArea").hide("fast");
-      $("#topFilterArea").show("fast");
-      $("#searchFilterArea").removeClass("filter_active");
-      $("#subFilterArea").removeClass("filter_active");
-    } else if (
-      $("#searchFilterArea").hasClass("filter_active") &&
-      !$("#subFilterArea").hasClass("filter_active")
-    ) {
-      $("#topFilterArea").show("fast");
-      $("#subFilterArea").hide("fast");
-      $("#filterOverlay").hide("fast");
-      $("#searchFilterArea").toggleClass("filter_active");
-      showScrollbar();
-    } else {
-      $("#topFilterArea").show("fast");
-      $("#searchFilterArea").toggleClass("filter_active");
-      hideScrollbar();
-    }
+    $("#subInnerFilterArea").hide();
+    $("#subFilterArea").hide();
+    $("#topFilterArea").show();
+    $("#searchFilterArea").toggleClass("filter_active");
+    // showScrollbar();
+    //Reset check input
+    $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
   });
 
   //Filter Sub Modal
   $(
     "#searchFilterArea .main_form_check,#subFilterOverlay,#subFilterCloseBtn"
   ).click(() => {
-    $("#topFilterArea").hide("slow");
-    $("#subFilterArea").show("slow");
+    $("#topFilterArea").hide();
+    $("#subFilterArea").show();
     $("#subFilterArea").toggleClass("filter_active");
+  });
+  //close sub content
+  $("#subBackBtn").click(function (e) {
+    e.preventDefault();
+    $("#subFilterArea").hide();
+    $("#topFilterArea").show();
   });
 
   //Filter Sub Inner Modal
   $(
     "#subFilterArea .main_form_check,#subInnerFilterOverlay,#subInnerFilterCloseBtn"
   ).click(() => {
-    $("#topFilterArea").hide("slow");
-    $("#subFilterArea").hide("slow");
-    $("#subInnerFilterArea").show("slow");
+    $("#topFilterArea").hide();
+    $("#subFilterArea").hide();
+    $("#subInnerFilterArea").show();
     $("#subInnerFilterArea").toggleClass("filter_active");
     $("#subFilterArea").addClass("filter_active");
+  });
+
+  //close sub inner content
+  $("#subInnerBackBtn").click(function (e) {
+    e.preventDefault();
+    $("#subInnerFilterArea").hide();
+    $("#subFilterArea").show();
+
+    //Reset check input
+    $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
   });
 
   //Result Share Modal
