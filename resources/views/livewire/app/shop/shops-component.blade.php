@@ -239,7 +239,7 @@
                 </div>
             </div>
         </div>
-        <div class="location_area shop_container d-none" wire:ignore.self>
+        <div class="location_area shop_container d-none" wire:ignore>
             <div class="location_area location_all_shop_area" style="margin-top: -7px;">
                 <div class="container">
                     @if ($shops->count() > 0)
@@ -304,16 +304,17 @@
                 </div>
                 <div class="category_area" id="categoryFilterArea">
 
+                    <input type="hidden" name="" id="filter_cat_id" value="{{ $f_category }}" />
+                    <input type="hidden" name="" id="filter_sub_cat_id" value="{{ $f_sub_category }}" />
 
-
-                    <div class="top_filter_area" id="topFilterArea" wire:ignore.self>
+                    <div class="top_filter_area {{ $ui_status == 1 ? '' : 'd-none' }}" id="topFilterArea" >
                         <h4 class="bring_bottom_text">Category</h4>
                         <div class="category_filter_grid">
                             @foreach ($categories as $category)
                                 <div>
-                                    <button type="button" class="form-check main_form_check" wire:click.prevent='getSubCategory({{ $category->id }})'>
+                                    <button type="button" class="form-check main_form_check main_cat_btn" data-id="{{ $category->id }}" wire:click.prevent='getSubCategory({{ $category->id }})'>
                                         <label class="form-check-label">
-                                            <img src="{{ asset('assets/app/icons/category_filter_icon1.svg') }}" alt="category icon" />
+                                            <img src="{{ asset($category->icon) }}" alt="" />
                                             <span>{{ $category->name }}</span>
                                         </label>
                                         <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow" class="right_arrow" />
@@ -322,26 +323,27 @@
                             @endforeach
                         </div>
                     </div>
+
                     <!-- Filter Sub Modal  -->
-                    <div class="sub_filter_modal_area" id="subFilterArea" wire:ignore.self>
+                    <div class="sub_filter_modal_area {{ $ui_status == 2 ? 'd-block' : 'd-none' }}" id="subFilterArea">
                         <div>
                             <div class="category_area" id="subCategoryFilterArea">
                                 <div class="d-flex align-items-center flex-wrap g-small">
-                                    <button type="button" id="subBackBtn" wire:click.prevent='resetSubCat'>
+                                    <button type="button" id="subBackBtn" style="margin-top: -2px;" wire:click.prevent='resetSubCat'>
                                         <img src="{{ asset('assets/app/icons/left_arrow.svg') }}" alt="left arrow" />
                                     </button>
                                     <div>
-                                        <h4 class="bring_bottom_text">Sub Category</h4>
+                                        <h4 class="bring_bottom_text">Select Sub Category</h4>
                                     </div>
                                 </div>
 
                                 <div class="category_filter_grid d-block" style="margin-left: 10px;">
                                     @if ($total_sub_cat > 0)
-                                        @foreach ($subCategories as $subCat)
+                                        @foreach ($subCategories as $subCategory)
                                             <div>
-                                                <button type="button" class="form-check main_form_check" wire:click.prevent='getSubSubCategory({{ $subCat->id }})'>
+                                                <button type="button" class="form-check main_form_check sub_cate_btn" data-id="{{ $subCategory->id }}" wire:click.prevent='getSubSubCategory({{ $subCategory->id }})'>
                                                     <label class="form-check-label d-block">
-                                                        <span>{{ $subCat->name }}</span>
+                                                        <span>{{ $subCategory->name }}</span>
                                                     </label>
                                                     <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
                                                         class="right_arrow" />
@@ -354,127 +356,34 @@
                         </div>
                     </div>
                     <!-- Filter Sub Inner Modal  -->
-                    <div class="sub_inner_filter_modal_area" id="subInnerFilterArea" wire:ignore.self>
+                    <div class="sub_inner_filter_modal_area {{ $ui_status == 3 ? 'd-block' : 'd-none' }}" id="subInnerFilterArea">
                         <div>
                             <div class="category_area" id="subInnerCategoryFilterArea">
                                 <div class="d-flex align-items-center flex-wrap g-small">
-                                    <button type="button" id="subInnerBackBtn" wire:click.prevent='resetSubSubCat'>
+                                    <button type="button" id="subInnerBackBtn" style="margin-top: -2px;" wire:click.prevent='resetSubSubCat'>
                                         <img src="{{ asset('assets/app/icons/left_arrow.svg') }}" alt="left arrow" />
                                     </button>
                                     <div>
-                                        <h4 class="bring_bottom_text">Sub Sub Category</h4>
+                                        <h4 class="bring_bottom_text">Select Sub Sub Categories</h4>
                                     </div>
                                 </div>
-                                <div class="category_filter_grid d-block" style="margin-left: 7px;">
+                                <div class="category_filter_grid d-block" style="margin-left: 10px;">
                                     @if ($total_sub_sub_cat > 0)
-                                        @foreach ($subSubCategories as $subSubCat)
+                                        @foreach ($subSubCategories as $subSubCategory)
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="categoryFilterInnerIcon111" />
-                                                <label class="form-check-label" for="categoryFilterInnerIcon111">
-                                                    <span>{{ $subSubCat->name }}</span>
+                                                <input class="form-check-input" type="checkbox" name="sub_sub_category" value="{{ $subSubCategory->id }}"
+                                                    id="categoryFilterInnerIcon_{{ $subSubCategory->id }}" />
+                                                <label class="form-check-label" for="categoryFilterInnerIcon_{{ $subSubCategory->id }}">
+                                                    <span>{{ $subSubCategory->name }}</span>
                                                 </label>
                                             </div>
                                         @endforeach
                                     @endif
-
-
                                 </div>
 
                             </div>
                         </div>
                     </div>
-
-
-                    {{-- <h4 class="bring_bottom_text">Categories Settings</h4>
-
-                    <div class="category_filter_grid">
-                        <input type="hidden" id="filter_sub_cat_id" value="" />
-
-                        @foreach ($categories as $f_category)
-                            <div>
-                                <div class="form-check main_form_check">
-                                    <input class="form-check-input main_form_check_input" name="filter_main_category" type="radio" {{ request()->get('category') == $f_category->id ? 'checked':'' }} value="{{ $f_category->id }}" id="categoryFilterIcon" />
-
-                                    <label class="form-check-label" for="categoryFilterIcon">
-                                        <img src="{{ $f_category->icon }}"
-                                            alt="category icon" />
-                                        <span>{{ $f_category->name }}</span>
-                                    </label>
-                                </div>
-                                @php
-                                    $f_sub_categories = App\Models\Category::where('parent_id', $f_category->id)->where('level', 1)->get();
-                                @endphp
-                                <div class="accordion" id="accordion_{{ $f_category->id }}" style="{{ request()->get('category') == $f_category->id ? 'display: block;':'' }}">
-                                    @foreach ($f_sub_categories as $f_sub_category)
-                                        @php
-                                            $f_sub_sub_categories = App\Models\Category::where('parent_id', $f_sub_category->id)->where('level', 2)->get();
-                                        @endphp
-
-                                        @if ($f_sub_sub_categories->count() > 0)
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header">
-                                                    <button data-sub_cat_id="{{ $f_sub_category->id }}" class="accordion-button collapsed sub_cat_btn" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapse_{{ $f_sub_category->id }}"
-                                                        aria-expanded="true" aria-controls="collapseOne">
-                                                        {{ $f_sub_category->name }}
-                                                    </button>
-                                                </h2>
-
-                                                <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse {{ request()->get('sub_category') == $f_sub_category->id ? 'show' : '' }}"
-                                                    data-bs-parent="#accordion_{{ $f_category->id }}">
-                                                    <div class="accordion-body">
-                                                        @foreach ($f_sub_sub_categories as $f_sub_sub_category)
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" name="sub_sub_category" type="checkbox" {{ in_array($f_sub_sub_category->name, explode(',', request()->get('sub_sub_categories'))) ? 'checked':'' }} value="{{ $f_sub_sub_category->name }}"
-                                                                    id="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}" />
-                                                                <label class="form-check-label" for="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}">
-                                                                    <span>{{ $f_sub_sub_category->name }}</span>
-                                                                </label>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endforeach
-
-
-
-                    </div> --}}
-
-                    {{-- <div class="category_filter_grid" wire:ignore>
-                        @foreach ($categories as $f_category)
-                            <div class="form-check">
-                                <input class="form-check-input filter_main_category" type="radio" name="filter_main_category"
-                                    value="{{ $f_category->id }}" id="categoryFilterIcon_{{ $f_category->id }}" />
-                                <label class="form-check-label" for="categoryFilterIcon_{{ $f_category->id }}">
-                                    <img src="{{ asset($f_category->icon) }}" alt="category icon" />
-                                    <span>{{ $f_category->name }}</span>
-                                </label>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    @if ($sub_categories)
-                    <div class="second_category_filter">
-                        <h4 class="bring_bottom_text" style="margin-top: 25px;">Choose Sub-Categories</h4>
-                        <div class="category_filter_grid">
-                            @foreach ($sub_categories as $sub_cat)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="filter_category"
-                                        value="{{ $sub_cat->name }}"  id="categoryFilterIcon_{{ $sub_cat->id }}" />
-                                    <label class="form-check-label" for="categoryFilterIcon_{{ $sub_cat->id }}">
-                                        <span>{{ $sub_cat->name }}</span>
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif --}}
 
                     @if (count($filter_cities) > 0)
                         <div class="select_area">
@@ -498,7 +407,6 @@
             </div>
         </form>
     </div>
-    <input type="hidden" name="" id="category" value="{{ request()->get('category') }}">
 </div>
 
 @push('scripts')
@@ -548,25 +456,16 @@
                 $('#filter_city_val').val($(this).data('city'));
             });
 
-            $('.sub_cat_btn').on('click', function() {
-                var id = $(this).data('sub_cat_id');
-                $('#filter_sub_cat_id').val(id);
-            });
-
             $('#filter_form').on('submit', function(e) {
                 e.preventDefault();
 
                 var allCats = [];
-                var main_category = '';
-                if (document.querySelector('input[name="filter_main_category"]:checked')) {
-                    main_category = document.querySelector('input[name="filter_main_category"]:checked')
-                        .value;
-                }
+                var main_category = $('#filter_cat_id').val();
+                var sub_id = $('#filter_sub_cat_id').val();
+
                 $('input:checkbox[name=sub_sub_category]:checked').each(function() {
                     allCats.push($(this).val());
                 });
-
-                var sub_id = $('#filter_sub_cat_id').val();
 
                 var city = $('#filter_city_val').val();
 
