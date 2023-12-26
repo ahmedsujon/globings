@@ -15,17 +15,27 @@ class MapViewComponent extends Component
 
     public function render()
     {
-        $city = request()->get('city');
-        $category = request()->get('category');
+        // $city = request()->get('city');
+        // $category = request()->get('category');
+        $search_term = request()->get('search_value');
 
         $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('latitude', '!=', '')->where('longitude', '!=', '');
 
-        if ($city) {
-            $shops = $shops->where('city', 'like', '%' . $city . '%');
-        }
+        // if ($city) {
+        //     $shops = $shops->where('city', 'like', '%' . $city . '%');
+        // }
 
-        if ($category) {
-            $shops = $shops->where('category_id', $category);
+        // if ($category) {
+        //     $shops = $shops->where('category_id', $category);
+        // }
+
+        if ($search_term) {
+            $shops = $shops->where(function ($query) use ($search_term) {
+                $query->where('name', 'like', '%' . $search_term . '%')
+                    ->orWhere('shop_category', 'like', '%' . $search_term . '%')
+                    ->orWhere('sub_category', 'like', '%' . $search_term . '%')
+                    ->orWhere('sub_sub_category', 'like', '%' . $search_term . '%');
+            });
         }
 
         $shops = $shops->get();
