@@ -496,27 +496,42 @@ $(document).ready(function () {
 
   //Filter Modal
   $("#filterBtn,#filterOverlay,#filterCloseBtn").click(() => {
-    if ($("#searchFilterArea").hasClass("filter_active")) {
-      $("#filterOverlay").hide("slow");
+    if ($("#subInnerFilterArea").hasClass("filter_active")) {
+      console.log("subInnerFilterArea");
+      $("#subInnerFilterArea").hide("fast");
+      $("#subFilterArea").show("fast");
+      $("#subFilterArea").addClass("filter_active");
+      $("#subInnerFilterArea").removeClass("filter_active");
+
+      //Reset check input
+      $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
+    } else if ($("#subFilterArea").hasClass("filter_active")) {
+      $("#subFilterArea").hide("fast");
+      $("#topFilterArea").show("fast");
+      $("#searchFilterArea").removeClass("filter_active");
+      $("#subFilterArea").removeClass("filter_active");
+    } else if (
+      $("#searchFilterArea").hasClass("filter_active") &&
+      !$("#subFilterArea").hasClass("filter_active")
+    ) {
+      $("#topFilterArea").show("fast");
+      $("#subFilterArea").hide("fast");
+      $("#filterOverlay").hide("fast");
+      $("#searchFilterArea").toggleClass("filter_active");
       showScrollbar();
     } else {
-      $("#filterOverlay").show("slow");
+      $("#topFilterArea").show("fast");
+      $("#searchFilterArea").toggleClass("filter_active");
       hideScrollbar();
     }
-    $("#searchFilterArea").toggleClass("filter_active");
   });
 
   //Filter Sub Modal
   $(
     "#searchFilterArea .main_form_check,#subFilterOverlay,#subFilterCloseBtn"
   ).click(() => {
-    if ($("#subFilterArea").hasClass("filter_active")) {
-      $("#subFilterOverlay").hide("slow");
-      showScrollbar();
-    } else {
-      $("#subFilterOverlay").show("slow");
-      hideScrollbar();
-    }
+    $("#topFilterArea").hide("slow");
+    $("#subFilterArea").show("slow");
     $("#subFilterArea").toggleClass("filter_active");
   });
 
@@ -524,14 +539,11 @@ $(document).ready(function () {
   $(
     "#subFilterArea .main_form_check,#subInnerFilterOverlay,#subInnerFilterCloseBtn"
   ).click(() => {
-    if ($("#subInnerFilterArea").hasClass("filter_active")) {
-      $("#subInnerFilterOverlay").hide("slow");
-      showScrollbar();
-    } else {
-      $("#subInnerFilterOverlay").show("slow");
-      hideScrollbar();
-    }
+    $("#topFilterArea").hide("slow");
+    $("#subFilterArea").hide("slow");
+    $("#subInnerFilterArea").show("slow");
     $("#subInnerFilterArea").toggleClass("filter_active");
+    $("#subFilterArea").addClass("filter_active");
   });
 
   //Result Share Modal

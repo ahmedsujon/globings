@@ -8,6 +8,11 @@
                 </a>
                 <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
                     <li>
+                        <button type="button" class="search_icon" id="headerSearchBtn">
+                            <img src="{{ asset('assets/app/icons/search-lg-topbar.svg') }}" alt="search icon" />
+                        </button>
+                    </li>
+                    <li>
                         @auth
                             @if (user()->account_type == 'Professional')
                                 @if (userHasActiveSubscription())
@@ -235,7 +240,10 @@
                                 </a>
                             </div>
                             <div class="post_area">
-                                <a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}"><h3 class="business_owner_name" style="color: black;">{{ getShopProfileHome($post->user_id)->name }}</h3></a>
+                                <a href="{{ route('app.shopProfile', ['user_id' => $post->user_id]) }}">
+                                    <h3 class="business_owner_name" style="color: black;">
+                                        {{ getShopProfileHome($post->user_id)->name }}</h3>
+                                </a>
                                 @if ($post->tags)
                                     <ul class="post_tag_list d-flex align-items-center flex-wrap">
                                         @foreach (tagify_array($post->tags) as $tag)
@@ -278,7 +286,8 @@
                                     </button>
                                     <button type="button" wire:click.prevent='getPostInfo({{ $post->id }})'
                                         class="coment_area postCommentBtn d-flex align-items-center flex-wrap">
-                                        <img src="{{ asset('assets/app/icons/comment_icon.svg') }}" alt="comment icon" />
+                                        <img src="{{ asset('assets/app/icons/comment_icon.svg') }}"
+                                            alt="comment icon" />
                                         <h5>Comment</h5>
                                     </button>
                                 </div>
@@ -293,12 +302,46 @@
             @endif
         </div>
     </section>
+
+    <!-- Search Modal  -->
+    <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
+        <div class="container">
+            <div class="d-flex-between">
+                <h3 class="notification_title">Search</h3>
+                <button type="button" id="headerSearchCloseBtn">
+                    <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
+                </button>
+            </div>
+            <form action="" id="searchForm" class="header_divided_search">
+                <div class="search_input_area">
+                    <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" class="search_input" />
+                </div>
+                <input type="text" placeholder="Location" id="location_input" value="{{ request()->get('location') }}" class="location_input" />
+                <button class="search_icon" type="submit">
+                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+                </button>
+                <button class="filter_icon sort_btn" type="button" data-value="{{ $sort_type == 'ASC' ? 'DESC' : 'ASC' }}">
+                    <img src="{{ asset('assets/app/icons/sort_icon.svg') }}" alt="filter icon" />
+                </button>
+            </form>
+            <ul class="suggestion_list_area">
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Filter Modal  -->
     <div class="filter_modal_area" wire:ignore.self id="searchFilterArea">
         <form action="" id="filter_form">
             <div class="container">
                 <div class="d-flex-between">
-                    <h3 class="notification_title">Filters @if(!request()->is('/')) <a href="{{ route('app.home') }}" style="font-size: 11.5px; font-weight: normal; color: blue;">Reset Filters</a> @endif</h3>
+                    <h3 class="notification_title">Filters @if (!request()->is('/'))
+                            <a href="{{ route('app.home') }}"
+                                style="font-size: 11.5px; font-weight: normal; color: blue;">Reset Filters</a>
+                        @endif
+                    </h3>
                     <button type="button" id="filterCloseBtn">
                         <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
                     </button>
@@ -312,41 +355,55 @@
                         @foreach ($categories as $f_category)
                             <div>
                                 <div class="form-check main_form_check">
-                                    <input class="form-check-input main_form_check_input" name="filter_main_category" type="radio" {{ request()->get('category') == $f_category->id ? 'checked':'' }} value="{{ $f_category->id }}" id="categoryFilterIcon" />
+                                    <input class="form-check-input main_form_check_input" name="filter_main_category"
+                                        type="radio"
+                                        {{ request()->get('category') == $f_category->id ? 'checked' : '' }}
+                                        value="{{ $f_category->id }}" id="categoryFilterIcon" />
 
                                     <label class="form-check-label" for="categoryFilterIcon">
-                                        <img src="{{ $f_category->icon }}"
-                                            alt="category icon" />
+                                        <img src="{{ $f_category->icon }}" alt="category icon" />
                                         <span>{{ $f_category->name }}</span>
                                     </label>
                                 </div>
                                 @php
-                                    $f_sub_categories = App\Models\Category::where('parent_id', $f_category->id)->where('level', 1)->get();
+                                    $f_sub_categories = App\Models\Category::where('parent_id', $f_category->id)
+                                        ->where('level', 1)
+                                        ->get();
                                 @endphp
-                                <div class="accordion" id="accordion_{{ $f_category->id }}" style="{{ request()->get('category') == $f_category->id ? 'display: block;':'' }}">
+                                <div class="accordion" id="accordion_{{ $f_category->id }}"
+                                    style="{{ request()->get('category') == $f_category->id ? 'display: block;' : '' }}">
                                     @foreach ($f_sub_categories as $f_sub_category)
                                         @php
-                                            $f_sub_sub_categories = App\Models\Category::where('parent_id', $f_sub_category->id)->where('level', 2)->get();
+                                            $f_sub_sub_categories = App\Models\Category::where('parent_id', $f_sub_category->id)
+                                                ->where('level', 2)
+                                                ->get();
                                         @endphp
 
                                         @if ($f_sub_sub_categories->count() > 0)
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
-                                                    <button data-sub_cat_id="{{ $f_sub_category->id }}" class="accordion-button collapsed sub_cat_btn" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapse_{{ $f_sub_category->id }}"
+                                                    <button data-sub_cat_id="{{ $f_sub_category->id }}"
+                                                        class="accordion-button collapsed sub_cat_btn" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse_{{ $f_sub_category->id }}"
                                                         aria-expanded="true" aria-controls="collapseOne">
                                                         {{ $f_sub_category->name }}
                                                     </button>
                                                 </h2>
 
-                                                <div id="collapse_{{ $f_sub_category->id }}" class="accordion-collapse collapse {{ request()->get('sub_category') == $f_sub_category->id ? 'show' : '' }}"
+                                                <div id="collapse_{{ $f_sub_category->id }}"
+                                                    class="accordion-collapse collapse {{ request()->get('sub_category') == $f_sub_category->id ? 'show' : '' }}"
                                                     data-bs-parent="#accordion_{{ $f_category->id }}">
                                                     <div class="accordion-body">
                                                         @foreach ($f_sub_sub_categories as $f_sub_sub_category)
                                                             <div class="form-check">
-                                                                <input class="form-check-input" name="sub_sub_category" type="checkbox" {{ in_array($f_sub_sub_category->name, explode(',', request()->get('sub_sub_categories'))) ? 'checked':'' }} value="{{ $f_sub_sub_category->name }}"
+                                                                <input class="form-check-input"
+                                                                    name="sub_sub_category" type="checkbox"
+                                                                    {{ in_array($f_sub_sub_category->name, explode(',', request()->get('sub_sub_categories'))) ? 'checked' : '' }}
+                                                                    value="{{ $f_sub_sub_category->name }}"
                                                                     id="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}" />
-                                                                <label class="form-check-label" for="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}">
+                                                                <label class="form-check-label"
+                                                                    for="categoryFilterInnerIcon_{{ $f_sub_sub_category->id }}">
                                                                     <span>{{ $f_sub_sub_category->name }}</span>
                                                                 </label>
                                                             </div>
@@ -697,16 +754,25 @@
 
                 var city = $('#filter_city_val').val();
 
-                window.location.href = "{{ URL::to('/filter') }}?city=" + city + "&category=" + main_category +
-                '&sub_category=' + sub_id + '&sub_sub_categories=' + allCats;
+                window.location.href = "{{ URL::to('/filter') }}?city=" + city + "&category=" +
+                    main_category +
+                    '&sub_category=' + sub_id + '&sub_sub_categories=' + allCats;
             });
 
             $('#searchForm').on('submit', function(e) {
                 e.preventDefault();
 
                 var value = $('#search_input').val();
+                var location = $('#location_input').val();
 
-                window.location.href = "{{ URL::to('/filter') }}?search=" + value;
+                window.location.href = "{{ URL::to('/filter') }}?search=" + value + "&location=" + location;
+            });
+
+            $('.sort_btn').on('click', function() {
+                var sort_value = $(this).data('value');
+                var value = $('#search_input').val();
+                var location = $('#location_input').val();
+                window.location.href = "{{ URL::to('/filter') }}?search=" + value + "&location=" + location + "&sort=" + sort_value;
             });
 
             $('.sub_cat_btn').on('click', function() {

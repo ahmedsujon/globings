@@ -528,7 +528,7 @@
 
 // Sub Category Filter Section
 .sub_filter_modal_area {
-  z-index: 1007;
+  display: none;
   .category_filter_grid {
     margin-top: 20px;
   }
@@ -539,7 +539,7 @@
 
 // Sub Inner Category Filter Section
 .sub_inner_filter_modal_area {
-  z-index: 1009;
+  display: none;
   .form-check-label {
     display: block;
     margin-top: -5px;

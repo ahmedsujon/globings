@@ -97,11 +97,12 @@
 .profile_manage_wrapper {
   padding-bottom: 100px;
   .profile_top_area {
-    padding-top: 60px;
+    padding-top: 18px;
     padding-bottom: 24px;
     @include background-image();
-    .notification_title {
-      color: white;
+    .user_name_area {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #d9d9d9;
     }
   }
   .user_grid {
@@ -142,6 +143,78 @@
       margin-top: 5px;
     }
   }
+  .user_img_area {
+    margin-top: 15px;
+    .img_area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+    }
+    h4 {
+      color: black;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      margin-top: 10px;
+    }
+    h5 {
+      color: black;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      margin-top: 5px;
+    }
+  }
+  .profile_action_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 20px 15px;
+    margin-top: 20px;
+    .edit_btn,
+    .invite_btn {
+      text-align: center;
+      font-size: 12px;
+      padding: 8px 5px;
+      border-radius: 4px;
+    }
+    .edit_btn {
+      position: relative;
+      background: #f9f9f9;
+      border: 1px solid #dededf !important;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        right: -5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        background-color: #1872f6;
+      }
+    }
+    .invite_btn {
+      color: white;
+      background-color: #1872f6;
+    }
+  }
   .number_top_area {
     padding: 12px 0;
     border-bottom: 7px solid #efefefed;
@@ -153,6 +226,43 @@
       line-height: 20px;
     }
   }
+  .reward_card_item {
+    display: grid;
+    grid-template-columns: minmax(0, 44px) repeat(1, minmax(0, 1fr));
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+    padding: 16px 12px;
+    background: #ffffff;
+    box-shadow: 0px 3px 7px 0px rgba(146, 146, 146, 0.2);
+    border-radius: 8px;
+    width: 100%;
+    &:first-child {
+      background-color: #1872f6;
+      h4,
+      h5 {
+        color: white;
+      }
+    }
+    h4 {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 18px;
+      color: #000;
+    }
+    h5 {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #75869c;
+      margin-top: 6px;
+    }
+    .bing_sub_text {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
   .others_content_area {
     margin-top: 23px;
   }
@@ -354,9 +464,9 @@
 .profile_setting_modal {
   .profile_manage_wrapper {
     padding-bottom: 20px;
-    .profile_top_area {
-      background-color: #1872f6;
-    }
+    // .profile_top_area {
+    //   background-color: #1872f6;
+    // }
 
     .user_grid {
       .img_area {
@@ -370,7 +480,18 @@
         border: 4px solid #fff;
       }
     }
-
+    .user_img_area {
+      .img_area {
+        position: relative;
+        background-color: #d9d9d9;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border: 4px solid #fff;
+      }
+    }
     .others_content_area {
       .notification_title {
         color: #5897f4;
