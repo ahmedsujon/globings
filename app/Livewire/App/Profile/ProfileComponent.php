@@ -2,6 +2,7 @@
 
 namespace App\Livewire\App\Profile;
 
+use App\Models\Shop;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -75,6 +76,11 @@ class ProfileComponent extends Component
             $profile = User::where('id', user()->id)->first();
             $profile->avatar = $img;
             $profile->save();
+
+            $shop = Shop::where('user_id', user()->id)->first();
+            $shop->profile_image = $img;
+            $shop->save();
+
             $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }
     }
