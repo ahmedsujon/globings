@@ -16,7 +16,11 @@
                 <div class="container">
                     <div class="user_img_area">
                         <div class="img_area">
-                            <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" />
+                            @if (getUserByID($profile->id)->avatar)
+                                <img src="{{ asset(getUserByID($profile->id)->avatar) }}" alt="user image" />
+                            @else
+                                <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" />
+                            @endif
                         </div>
                         <div>
                             <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
@@ -565,6 +569,21 @@
                                             id="not" {{ user()->notification_status == 0 ? '' : 'checked' }}
                                             wire:change='changeNotificationStatus' /></div>
                                 </button>
+                            </li>
+                            <li>
+                                <form id="logout-form" style="display: none;" method="POST"
+                                    action="{{ route('logout') }}">
+                                    @csrf
+                                </form>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <img src="{{ asset('assets/app/icons/setting_icon6.svg') }}" alt="manage icon" />
+                                    <h5>Log Out</h5>
+                                </a>
+                                <form id="logout-form" style="display: none;" method="POST"
+                                    action="{{ route('logout') }}">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </div>
