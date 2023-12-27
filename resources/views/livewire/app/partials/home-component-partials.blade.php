@@ -7,7 +7,7 @@
                     <ul class="top_mobile_menu_list">
                         <li>
                             <a href="{{ route('app.events') }}">
-                                <img src="{{ asset('assets/app/icons/footer_top_menu_icon1.svg') }}"
+                                <img src="{{ asset('assets/app/icons/footer_top_menu_icon11.svg') }}"
                                     alt="footer menu icon " />
                                 <span class="text">Events</span>
                             </a>
@@ -64,7 +64,7 @@
                                         </defs>
                                     </svg>
                                 </div>
-                                <span class="label_name">Actuallite</span>
+                                <span class="label_name">Home</span>
                             </a>
                         </li>
                         <li>
@@ -78,7 +78,7 @@
                                             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
-                                <span class="label_name">Commerce</span>
+                                <span class="label_name">Shop</span>
                             </a>
                         </li>
                         <li>
@@ -105,7 +105,7 @@
                                     </svg>
                                 </div>
 
-                                <span class="label_name">Brings</span>
+                                <span class="label_name">Bings</span>
                             </a>
                         </li>
                         <li>

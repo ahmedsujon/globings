@@ -318,7 +318,7 @@
                 </div>
                 <input type="text" placeholder="Location" id="location_input" value="{{ request()->get('location') }}" class="location_input" />
                 <button class="search_icon" type="submit">
-                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+                    <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
                 </button>
                 <button class="filter_icon sort_btn" type="button" data-value="{{ $sort_type == 'ASC' ? 'DESC' : 'ASC' }}">
                     <img src="{{ asset('assets/app/icons/sort_icon.svg') }}" alt="filter icon" />
