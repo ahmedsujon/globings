@@ -2,15 +2,16 @@
 
 namespace App\Livewire\App\Shop;
 
-use App\Models\Category;
 use App\Models\Shop;
 use App\Models\User;
 use Livewire\Component;
+use App\Models\Category;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 class ShopsComponent extends Component
 {
-    public $categories, $sub_categories, $pagination_value = 50, $filter_cities;
+    public $categories, $sub_categories, $pagination_value = 50, $filter_cities, $total_sub_cat = 0, $subCategories, $total_sub_sub_cat, $subSubCategories;
     public $phone, $edit_id;
     use WithPagination;
 
@@ -18,6 +19,32 @@ class ShopsComponent extends Component
     {
         $this->categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'ASC')->get();
         $this->filter_cities = Shop::groupBy('city')->orderBy('city', 'ASC')->get();
+    }
+
+    public function getSubCategory($id) {
+
+        $subCategory = DB::table('categories')->where('parent_id', $id)->where('level', 1)->orderBy('name', 'ASC')->get();
+        $this->total_sub_cat = $subCategory->count();
+        $this->subCategories = $subCategory;
+    }
+    public function resetSubCat()
+    {
+        $this->total_sub_cat = 0;
+        $this->subCategories = '';
+    }
+
+    public function getSubSubCategory($id) {
+
+        $subCategory = DB::table('categories')->where('parent_id', $id)->where('level', 2)->orderBy('name', 'ASC')->get();
+        $this->total_sub_sub_cat = $subCategory->count();
+        $this->subSubCategories = $subCategory;
+
+        // dd($this->total_sub_sub_cat);
+    }
+    public function resetSubSubCat()
+    {
+        $this->total_sub_sub_cat = 0;
+        $this->subCategories = '';
     }
 
     public function updatePhone()
