@@ -23,8 +23,10 @@ class ShopSettingsComponent extends Component
         $data = Shop::where('user_id', user()->id)->first();
         $this->name = $data->name;
         $this->shop_category = $data->category_id;
+        $this->sub_category = $data->sub_category_id;
         $this->shop_sub_category = $data->sub_category_id;
         $this->shop_sub_sub_category = $data->sub_sub_category ? $data->sub_sub_category : [];
+        $this->sub_sub_categories = $data->sub_sub_category ? $data->sub_sub_category : [];
 
         $this->sub_cats = Category::where('parent_id', $data->category_id)->where('level', 1)->get();
         $this->sub_sub_cats = Category::where('parent_id', $data->sub_category_id)->where('level', 2)->get();
