@@ -220,6 +220,66 @@
                     </div>
                 </div>
             </div>
+            <div class="post_grid">
+                <div class="hash_area">
+                    <div class="hash_icon">
+                        <div class="skeleton"
+                            style="
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        margin-left: auto;
+                        margin-right: auto;
+                      ">
+                        </div>
+                        <div class="skeleton"
+                            style="
+                        width: 30px;
+                        height: 10px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                      ">
+                        </div>
+                    </div>
+                    <div class="middle_bar"></div>
+                    <button type="button" class="post_user_area postUserBtn">
+                        <div class="skeleton"
+                            style="
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 7px;
+                        margin-left: auto;
+                        margin-right: auto;
+                      ">
+                        </div>
+                        <div class="skeleton"
+                            style="
+                        width: 30px;
+                        height: 10px;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 5px;
+                      ">
+                        </div>
+                    </button>
+                </div>
+                <div class="post_area">
+                    <div class="skeleton"
+                        style="
+                      width: 100%;
+                      height: 199px;
+                      border-radius: 8px;
+                      margin-left: auto;
+                      margin-right: auto;
+                    ">
+                    </div>
+                    <div class="d-flex align-items-center g-sm mt-2">
+                        <div class="skeleton" style="width: 24px; height: 24px; border-radius: 50%"></div>
+                        <div class="skeleton" style="width: 100px; height: 24px;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container post_container d-none" wire:ignore.self>
             @if ($posts->count() > 0)
@@ -314,19 +374,24 @@
             </div>
             <form action="" id="searchForm" class="header_divided_search">
                 <div class="search_input_area">
-                    <input type="text" placeholder="Search" id="search_input" value="{{ request()->get('search') }}" class="search_input" />
+                    <input type="text" placeholder="Search" id="search_input"
+                        value="{{ request()->get('search') }}" class="search_input" />
                 </div>
-                <input type="text" placeholder="Location" id="location_input" value="{{ request()->get('location') }}" class="location_input" />
+                <input type="text" placeholder="Location" id="location_input"
+                    value="{{ request()->get('location') }}" class="location_input" />
                 <button class="search_icon" type="submit">
-                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+                    <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
                 </button>
-                <button class="filter_icon sort_btn" type="button" data-value="{{ $sort_type == 'ASC' ? 'DESC' : 'ASC' }}">
+                <button class="filter_icon sort_btn" type="button"
+                    data-value="{{ $sort_type == 'ASC' ? 'DESC' : 'ASC' }}">
                     <img src="{{ asset('assets/app/icons/sort_icon.svg') }}" alt="filter icon" />
                 </button>
             </form>
             <ul class="suggestion_list_area">
                 @foreach ($search_histories as $search_history)
-                    <li class="search_item" data-search_val="{{ $search_history->search_value }}" data-location_val="{{ $search_history->location_value }}">{{ $search_history->search_value }}, {{ $search_history->location_value }}</li>
+                    <li class="search_item" data-search_val="{{ $search_history->search_value }}"
+                        data-location_val="{{ $search_history->location_value }}">
+                        {{ $search_history->search_value }}, {{ $search_history->location_value }}</li>
                 @endforeach
             </ul>
         </div>
@@ -767,14 +832,16 @@
 
                 @this.addSearchHistory(value, location);
 
-                window.location.href = "{{ URL::to('/filter') }}?search=" + value + "&location=" + location;
+                window.location.href = "{{ URL::to('/filter') }}?search=" + value + "&location=" +
+                    location;
             });
 
             $('.sort_btn').on('click', function() {
                 var sort_value = $(this).data('value');
                 var value = $('#search_input').val();
                 var location = $('#location_input').val();
-                window.location.href = "{{ URL::to('/filter') }}?search=" + value + "&location=" + location + "&sort=" + sort_value;
+                window.location.href = "{{ URL::to('/filter') }}?search=" + value + "&location=" +
+                    location + "&sort=" + sort_value;
             });
 
             $('.sub_cat_btn').on('click', function() {

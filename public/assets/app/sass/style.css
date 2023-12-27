@@ -140,7 +140,10 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 8px 3px;
-  min-height: 76px;
+  min-height: 60px;
+}
+.mobile_menu_wrapper .menu_list li a {
+  text-align: center;
 }
 .mobile_menu_wrapper .menu_list li .icon {
   display: flex;
@@ -162,6 +165,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+  -moz-transform: translateY(-4px);
+  -ms-transform: translateY(-4px);
+  -o-transform: translateY(-4px);
 }
 .mobile_menu_wrapper .menu_list .active_icon {
   display: none;
@@ -251,7 +259,7 @@
 }
 .mobile_menu_wrapper .outline_shape {
   position: relative;
-  left: -17px;
+  top: -6px;
 }
 .mobile_menu_wrapper .outline_shape::before {
   content: "";
@@ -272,7 +280,7 @@
   z-index: 1000;
 }
 .mobile_menu_wrapper.mobile_new_active .top_mobile_menu_list {
-  top: 0;
+  top: -10px;
   visibility: visible;
   opacity: 1;
   -webkit-user-select: auto;
@@ -1106,6 +1114,13 @@
   line-height: 18px;
   margin-top: 5px;
 }
+.profile_manage_wrapper .user_img_new_area {
+  text-align: center;
+}
+.profile_manage_wrapper .user_img_new_area .img_area {
+  margin-left: auto;
+  margin-right: auto;
+}
 .profile_manage_wrapper .profile_action_grid {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
@@ -1117,7 +1132,7 @@
 .profile_manage_wrapper .profile_action_grid .invite_btn {
   text-align: center;
   font-size: 12px;
-  padding: 8px 5px;
+  padding: 15px 5px;
   border-radius: 4px;
 }
 .profile_manage_wrapper .profile_action_grid .edit_btn {
@@ -1125,22 +1140,9 @@
   background: #f9f9f9;
   border: 1px solid #dededf !important;
 }
-.profile_manage_wrapper .profile_action_grid .edit_btn::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  right: -5px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  background-color: #1872f6;
-}
 .profile_manage_wrapper .profile_action_grid .invite_btn {
   color: white;
+  border: 1px solid #1872f6 !important;
   background-color: #1872f6;
 }
 .profile_manage_wrapper .number_top_area {
@@ -1156,7 +1158,7 @@
 }
 .profile_manage_wrapper .reward_card_item {
   display: grid;
-  grid-template-columns: minmax(0, 44px) repeat(1, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 36px) repeat(1, minmax(0, 1fr));
   align-items: center;
   gap: 16px;
   margin-top: 16px;
@@ -1377,6 +1379,16 @@
 
 .profile_setting_modal .profile_manage_wrapper {
   padding-bottom: 20px;
+}
+.profile_setting_modal .profile_manage_wrapper .profile_top_area {
+  background-color: #1872f6;
+}
+.profile_setting_modal .profile_manage_wrapper .profile_top_area .notification_title {
+  color: white;
+}
+.profile_setting_modal .profile_manage_wrapper .profile_top_area .user_img_area h4,
+.profile_setting_modal .profile_manage_wrapper .profile_top_area .user_img_area h5 {
+  color: white;
 }
 .profile_setting_modal .profile_manage_wrapper .user_grid .img_area {
   position: relative;
@@ -5522,7 +5534,7 @@ main {
   -o-transform: translateY(-50%);
   width: 1.3px;
   height: 85%;
-  background-color: #d3d3d3;
+  background-color: rgba(211, 211, 211, 0.4);
 }
 .header_divided_search .location_input {
   padding-left: 10px;
@@ -5724,9 +5736,12 @@ main {
   visibility: visible;
 }
 
+.location_item .position-relative a {
+  width: 100%;
+}
 .location_item .post_img {
   width: 100%;
-  height: 204px;
+  height: auto;
 }
 .location_item .info_area {
   position: absolute;
