@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class ShopsComponent extends Component
 {
-    public $categories, $sub_categories, $pagination_value = 50, $filter_cities, $total_sub_cat = 0, $subCategories, $total_sub_sub_cat, $subSubCategories;
+    public $categories, $sub_categories, $pagination_value = 50, $filter_cities, $total_sub_cat = 0, $subCategories, $total_sub_sub_cat, $subSubCategories, $ui_status = 1, $f_category, $f_sub_category;
     public $phone, $edit_id;
     use WithPagination;
 
     public function mount()
     {
-        $this->categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'ASC')->get();
+        $this->categories = Category::where('status', 1)->where('parent_id', 0)->get();
         $this->filter_cities = Shop::groupBy('city')->orderBy('city', 'ASC')->get();
     }
 
@@ -26,25 +26,31 @@ class ShopsComponent extends Component
         $subCategory = DB::table('categories')->where('parent_id', $id)->where('level', 1)->orderBy('name', 'ASC')->get();
         $this->total_sub_cat = $subCategory->count();
         $this->subCategories = $subCategory;
+        $this->ui_status = 2;
+
+        $this->f_category = $id;
     }
     public function resetSubCat()
     {
         $this->total_sub_cat = 0;
         $this->subCategories = '';
+        $this->ui_status = 1;
     }
 
     public function getSubSubCategory($id) {
 
-        $subCategory = DB::table('categories')->where('parent_id', $id)->where('level', 2)->orderBy('name', 'ASC')->get();
-        $this->total_sub_sub_cat = $subCategory->count();
-        $this->subSubCategories = $subCategory;
+        $subSubCategory = DB::table('categories')->where('parent_id', $id)->where('level', 2)->orderBy('name', 'ASC')->get();
+        $this->total_sub_sub_cat = $subSubCategory->count();
+        $this->subSubCategories = $subSubCategory;
+        $this->ui_status = 3;
 
-        // dd($this->total_sub_sub_cat);
+        $this->f_sub_category = $id;
     }
     public function resetSubSubCat()
     {
         $this->total_sub_sub_cat = 0;
-        $this->subCategories = '';
+        $this->subSubCategories = '';
+        $this->ui_status = 2;
     }
 
     public function updatePhone()
