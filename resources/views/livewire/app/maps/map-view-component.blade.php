@@ -176,8 +176,8 @@
             <!-- HTML -->
             <div class="map_item" id="mapItem"></div>
             <div class="map_top_btn_list" id="mapFilterListArea">
-                <button type="button" class="active_map_list">Carte</button>
-                <button type="button" class="list_btn">Liste</button>
+                <button type="button" class="active_map_list">Map View</button>
+                <button type="button" class="list_btn">Liste View</button>
             </div>
             <div class="map_search_main_area">
                 <form class="map_search_area" id="mapSearchArea">
