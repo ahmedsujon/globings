@@ -47,7 +47,7 @@
                 <div class="container">
                     <a href="#" class="reward_card_item">
                         <div>
-                            <img src="{{ asset('assets/app/icons/bings_invite_icon.svg') }}" alt="invite icon"
+                            <img src="{{ asset('assets/app/icons/two-fingers.png') }}" alt="invite icon"
                                 class="invite_icon" />
                         </div>
                         <div>
@@ -59,7 +59,7 @@
                     </a>
                     <a href="#" class="reward_card_item">
                         <div>
-                            <img src="{{ asset('assets/app/icons/bings_invite_icon.svg') }}" alt="invite icon"
+                            <img src="{{ asset('assets/app/icons/star.png') }}" alt="invite icon"
                                 class="invite_icon" />
                         </div>
                         <div>
@@ -577,7 +577,7 @@
                                 </form>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <img src="{{ asset('assets/app/icons/setting_icon6.svg') }}" alt="manage icon" />
+                                    <img src="{{ asset('assets/app/icons/log-out.svg') }}" alt="manage icon" />
                                     <h5>Log Out</h5>
                                 </a>
                                 <form id="logout-form" style="display: none;" method="POST"

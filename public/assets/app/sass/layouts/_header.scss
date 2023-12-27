@@ -142,8 +142,11 @@
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 8px 3px;
-    min-height: 76px;
+    min-height: 60px;
     li {
+      a {
+        text-align: center;
+      }
       .icon {
         display: flex;
         align-items: center;
@@ -165,7 +168,12 @@
       font-style: normal;
       font-weight: 500;
       line-height: normal;
-    }
+      transform: translateY(-4px);
+      -webkit-transform: translateY(-4px);
+      -moz-transform: translateY(-4px);
+      -ms-transform: translateY(-4px);
+      -o-transform: translateY(-4px);
+}
     .active_icon {
       display: none;
     }
@@ -261,7 +269,8 @@
   }
   .outline_shape {
     position: relative;
-    left: -17px;
+    top: -6px;
+    // left: -4px;
     &::before {
       content: "";
       position: absolute;
@@ -281,7 +290,7 @@
   &.mobile_new_active {
     z-index: 1000;
     .top_mobile_menu_list {
-      top: 0;
+      top: -10px;
       visibility: visible;
       opacity: 1;
       user-select: auto;
