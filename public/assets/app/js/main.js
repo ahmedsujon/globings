@@ -496,50 +496,50 @@ $(document).ready(function () {
 
   //Filter Modal
   $("#filterBtn,#filterOverlay,#filterCloseBtn").click(() => {
-    $("#subInnerFilterArea").hide();
-    $("#subFilterArea").hide();
-    $("#topFilterArea").show();
+    // $("#subInnerFilterArea").hide();
+    // $("#subFilterArea").hide();
+    // $("#topFilterArea").show();
     $("#searchFilterArea").toggleClass("filter_active");
     // showScrollbar();
     //Reset check input
-    $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
+    // $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
   });
 
   //Filter Sub Modal
-  $(
-    "#searchFilterArea .main_form_check,#subFilterOverlay,#subFilterCloseBtn"
-  ).click(() => {
-    $("#topFilterArea").hide();
-    $("#subFilterArea").show();
-    $("#subFilterArea").toggleClass("filter_active");
-  });
+  // $(
+  //   "#searchFilterArea .main_form_check,#subFilterOverlay,#subFilterCloseBtn"
+  // ).click(() => {
+  //   $("#topFilterArea").hide();
+  //   $("#subFilterArea").show();
+  //   $("#subFilterArea").toggleClass("filter_active");
+  // });
   //close sub content
-  $("#subBackBtn").click(function (e) {
-    e.preventDefault();
-    $("#subFilterArea").hide();
-    $("#topFilterArea").show();
-  });
+  // $("#subBackBtn").click(function (e) {
+  //   e.preventDefault();
+  //   $("#subFilterArea").hide();
+  //   $("#topFilterArea").show();
+  // });
 
   //Filter Sub Inner Modal
-  $(
-    "#subFilterArea .main_form_check,#subInnerFilterOverlay,#subInnerFilterCloseBtn"
-  ).click(() => {
-    $("#topFilterArea").hide();
-    $("#subFilterArea").hide();
-    $("#subInnerFilterArea").show();
-    $("#subInnerFilterArea").toggleClass("filter_active");
-    $("#subFilterArea").addClass("filter_active");
-  });
+  // $(
+  //   "#subFilterArea .main_form_check,#subInnerFilterOverlay,#subInnerFilterCloseBtn"
+  // ).click(() => {
+  //   $("#topFilterArea").hide();
+  //   $("#subFilterArea").hide();
+  //   $("#subInnerFilterArea").show();
+  //   $("#subInnerFilterArea").toggleClass("filter_active");
+  //   $("#subFilterArea").addClass("filter_active");
+  // });
 
   //close sub inner content
-  $("#subInnerBackBtn").click(function (e) {
-    e.preventDefault();
-    $("#subInnerFilterArea").hide();
-    $("#subFilterArea").show();
+  // $("#subInnerBackBtn").click(function (e) {
+  //   e.preventDefault();
+  //   $("#subInnerFilterArea").hide();
+  //   $("#subFilterArea").show();
 
-    //Reset check input
-    $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
-  });
+  //   //Reset check input
+  //   $("#subInnerCategoryFilterArea .form-check-input").prop("checked", false);
+  // });
 
   //Result Share Modal
   $("#shareModalBtn,#resultScanCloseBtn").click(() => {

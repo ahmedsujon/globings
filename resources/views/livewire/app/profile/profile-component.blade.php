@@ -2,41 +2,21 @@
     <main>
         <!-- Profile Manage Section  -->
         <section class="profile_manage_wrapper">
-            <div class="profile_top_area" style="background-image: url('assets/app/images/others/profilel_bg.png')">
-                <div class="container">
-                    <div class="d-flex-between">
-                        <h4 class="notification_title">Manage Profile</h4>
-                        <div>
+            <div class="profile_top_area">
+                <div class="user_name_area">
+                    <div class="container">
+                        <div class="d-flex-between">
+                            <h4 class="sub_login">{{ '@' . $profile->username }}</h4>
                             <button type="button" id="settingProfileBtn">
-                                <img src="{{ asset('assets/app/icons/settings-white.svg') }}" alt="setting icon" />
-
+                                <img src="{{ asset('assets/app/icons/settings-black.svg') }}" alt="setting icon" />
                             </button>
-
-                            <a href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px;"
-                                    class="icon icon-tabler icon-tabler-logout" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2.5" stroke="#ff0000" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path
-                                        d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
-                                    <path d="M9 12h12l-3 -3" />
-                                    <path d="M18 15l3 -3" />
-                                </svg>
-                            </a>
-                            <form id="logout-form" style="display: none;" method="POST" action="{{ route('logout') }}">
-                                @csrf
-                            </form>
                         </div>
                     </div>
-                    <div class="user_grid">
+                </div>
+                <div class="container">
+                    <div class="user_img_area">
                         <div class="img_area">
-                            @if (getUserByID($profile->id)->avatar)
-                                <img src="{{ asset(getUserByID($profile->id)->avatar) }}" alt="user image" />
-                            @else
-                                <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" />
-                            @endif
+                            <img src="{{ asset('assets/app/images/others/user_img.png') }}" alt="user image" />
                         </div>
                         <div>
                             <h4>{{ $profile->first_name }} {{ $profile->last_name }}</h4>
@@ -53,9 +33,43 @@
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="profile_action_grid">
+                    <button type="button" class="edit_btn" id="profileEditModalBtn">Edit profile</button>
+                    <a href="{{ route('app.profile.share') }}" class="invite_btn">Share Profile</a>
+                </div>
+            </div>
+            <div class="profile_card_area">
+                <div class="container">
+                    <a href="#" class="reward_card_item">
+                        <div>
+                            <img src="{{ asset('assets/app/icons/bings_invite_icon.svg') }}" alt="invite icon"
+                                class="invite_icon" />
+                        </div>
+                        <div>
+                            <h4>Get you 10+ Bings invite bonus!</h4>
+                            <h5>
+                                Just send your friend
+                            </h5>
+                        </div>
+                    </a>
+                    <a href="#" class="reward_card_item">
+                        <div>
+                            <img src="{{ asset('assets/app/icons/bings_invite_icon.svg') }}" alt="invite icon"
+                                class="invite_icon" />
+                        </div>
+                        <div>
+                            <h4>Get you 10+ Bings invite bonus!</h4>
+                            <h5>
+                                Just send your friend
+                            </h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
             <div class="others_content_area">
                 <div class="container">
-                    <h4 class="notification_title">Other</h4>
+                    <h4 class="notification_title">Others</h4>
                     <ul class="manage_list">
                         @if (Auth::user()->account_type == 'Professional')
                             <li>
@@ -69,18 +83,10 @@
                             <li>
                                 <button id="qrCodeModalBtn">
                                     <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
-                                    <h5>QR-Code</h5>
+                                    <h5>Shop QR-Code</h5>
                                     <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
                                         alt="right icon" />
                                 </button>
-                            </li>
-                            <li>
-                                <a href="{{ route('app.recent-posts') }}">
-                                    <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
-                                    <h5>Recent posts</h5>
-                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
-                                        alt="right icon" />
-                                </a>
                             </li>
                             <li>
                                 <a href="{{ route('app.recent-photos') }}">
@@ -98,48 +104,24 @@
                                         alt="right icon" />
                                 </a>
                             </li>
-                            {{-- <li>
-                                <button type="button" id="placeModalBtn">
-                                    <img src="{{ asset('assets/app/icons/manage_icon3.svg') }}" alt="manage icon" />
-                                    <h5>My places</h5>
+                        @else
+                            <li>
+                                <a href="{{ route('app.recent-posts') }}">
+                                    <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
+                                    <h5>Recent posts</h5>
                                     <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
                                         alt="right icon" />
-                                </button>
-                            </li> --}}
-                        @endif
-                        @if (Auth::user()->account_type == 'Private')
+                                </a>
+                            </li>
                             <li>
-                                <a href="{{ route('app.scanner') }}">
-                                    <img src="{{ asset('assets/app/icons/qr-code.svg') }}" alt="manage icon" />
-                                    <div>
-                                        <h5>Scan QrCode</h5>
-                                        <h6>
-                                            Get special discount from shops!
-                                        </h6>
-                                    </div>
+                                <a href="{{ route('app.recent-photos') }}">
+                                    <img src="{{ asset('assets/app/icons/manage_icon2.svg') }}" alt="manage icon" />
+                                    <h5>Recent photos</h5>
                                     <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
                                         alt="right icon" />
                                 </a>
                             </li>
                         @endif
-                        <li>
-                            <a href="{{ route('app.profile.share') }}" type="button">
-                                <img src="{{ asset('assets/app/icons/manage_icon4.svg') }}" alt="manage icon" />
-                                <div>
-                                    <h5>Share my profile</h5>
-                                    <h6>
-                                        Get you
-                                        <span class="number_area">
-                                            <img src="{{ asset('assets/app/icons/store_green_icon.svg') }}"
-                                                alt="store icon" />
-                                            <span>50 Bings</span>
-                                        </span>
-                                        invite bonus!
-                                    </h6>
-                                </div>
-                                <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}" alt="right icon" />
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -569,12 +551,19 @@
 
                             <li>
                                 <button type="button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#1872F6" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bell"
+                                        width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="#1872F6" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
                                         <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
                                     </svg>
-                                    <div style="display: flex"><label for="not">Allow Notification</label> <input type="checkbox" style="height: 25px; width: 25px; margin-left: 25px;" id="not" {{ user()->notification_status == 0 ? '' : 'checked' }} wire:change='changeNotificationStatus' /></div>
+                                    <div style="display: flex"><label for="not">Allow Notification</label> <input
+                                            type="checkbox" style="height: 25px; width: 25px; margin-left: 25px;"
+                                            id="not" {{ user()->notification_status == 0 ? '' : 'checked' }}
+                                            wire:change='changeNotificationStatus' /></div>
                                 </button>
                             </li>
                         </ul>
@@ -812,7 +801,10 @@
                                 text-align: center;
                                 margin-top: 30px;
                             }
-                            .qr_tab_btn, .qr_tab_btn:focus, .qr_tab_btn:hover{
+
+                            .qr_tab_btn,
+                            .qr_tab_btn:focus,
+                            .qr_tab_btn:hover {
                                 padding: 3px 7px;
                                 background: #fff;
                                 color: black;
@@ -821,7 +813,9 @@
                                 width: 35%;
                             }
 
-                            .active_qr_tab_btn, .active_qr_tab_btn:focus, .active_qr_tab_btn:hover {
+                            .active_qr_tab_btn,
+                            .active_qr_tab_btn:focus,
+                            .active_qr_tab_btn:hover {
                                 padding: 3px 7px;
                                 background: #5897F4;
                                 border: 1px solid #5897F4 !important;
@@ -838,8 +832,8 @@
 
                         <span id="discount_qr" style="padding: 50px 0px;">
                             @php
-                                $data_1 = user()->id.','.'discount';
-                                $data_2 = user()->id.','.'visit';
+                                $data_1 = user()->id . ',' . 'discount';
+                                $data_2 = user()->id . ',' . 'visit';
                             @endphp
 
                             {!! DNS2D::getBarcodeHTML($data_1, 'QRCODE', 10, 10) !!}
