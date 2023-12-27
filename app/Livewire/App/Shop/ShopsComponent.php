@@ -17,7 +17,7 @@ class ShopsComponent extends Component
 
     public function mount()
     {
-        $this->categories = Category::where('status', 1)->where('parent_id', 0)->orderBy('name', 'ASC')->get();
+        $this->categories = Category::where('status', 1)->where('parent_id', 0)->get();
         $this->filter_cities = Shop::groupBy('city')->orderBy('city', 'ASC')->get();
     }
 
