@@ -74,6 +74,7 @@ class ShopsComponent extends Component
     {
         $city = request()->get('city');
         $category = request()->get('category');
+        $sub_category = request()->get('sub_category');
         $filter_sub_sub_categories = request()->get('sub_sub_categories');
         $search_term = request()->get('search_value');
 
@@ -90,6 +91,9 @@ class ShopsComponent extends Component
 
         if ($category) {
             $shops = $shops->where('category_id', $category);
+        }
+        if ($sub_category) {
+            $shops = $shops->where('sub_category_id', $sub_category);
         }
 
         if ($filter_sub_sub_categories) {
