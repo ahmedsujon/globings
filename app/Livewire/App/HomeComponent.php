@@ -36,7 +36,7 @@ class HomeComponent extends Component
         $this->sort_sub_sub_category = request()->get('sub_categories');
         $this->sort_location = request()->get('location');
         $this->sort_tag = request()->get('tag');
-        $this->sort_type = request()->get('sort') ? request()->get('sort') : 'ASC';
+        $this->sort_type = request()->get('sort') ? request()->get('sort') : 'DESC';
     }
 
     public function updated($fields)
