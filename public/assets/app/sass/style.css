@@ -1114,6 +1114,13 @@
   line-height: 18px;
   margin-top: 5px;
 }
+.profile_manage_wrapper .user_img_new_area {
+  text-align: center;
+}
+.profile_manage_wrapper .user_img_new_area .img_area {
+  margin-left: auto;
+  margin-right: auto;
+}
 .profile_manage_wrapper .profile_action_grid {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
@@ -1125,7 +1132,7 @@
 .profile_manage_wrapper .profile_action_grid .invite_btn {
   text-align: center;
   font-size: 12px;
-  padding: 8px 5px;
+  padding: 15px 5px;
   border-radius: 4px;
 }
 .profile_manage_wrapper .profile_action_grid .edit_btn {

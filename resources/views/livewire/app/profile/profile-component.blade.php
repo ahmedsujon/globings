@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="user_img_area">
+                    <div class="user_img_area user_img_new_area">
                         <div class="img_area">
                             @if (getUserByID($profile->id)->avatar)
                                 <img src="{{ asset(getUserByID($profile->id)->avatar) }}" alt="user image" />

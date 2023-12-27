@@ -46,7 +46,6 @@
       border-radius: 50%;
     }
   }
-
   .user_info {
     margin-top: 10px;
     h5 {
@@ -178,6 +177,13 @@
       margin-top: 5px;
     }
   }
+  .user_img_new_area {
+    text-align: center;
+    .img_area {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
   .profile_action_grid {
     display: grid;
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
@@ -188,7 +194,7 @@
     .invite_btn {
       text-align: center;
       font-size: 12px;
-      padding: 8px 5px;
+      padding: 15px 5px;
       border-radius: 4px;
     }
     .edit_btn {
@@ -232,7 +238,7 @@
         color: white;
       }
     }
-     
+
     h4 {
       font-weight: 500;
       font-size: 14px;
