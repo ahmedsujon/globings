@@ -393,7 +393,7 @@
                                     @if ($total_sub_sub_cat > 0)
                                         @foreach ($subSubCategories as $subSubCategory)
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="sub_sub_category" value="{{ $subSubCategory->name }}"
+                                                <input class="form-check-input" type="checkbox" wire:model.live='selected_sub_sub_categories' name="sub_sub_category" value="{{ $subSubCategory->name }}"
                                                     id="categoryFilterInnerIcon_{{ $subSubCategory->id }}" />
                                                 <label class="form-check-label" for="categoryFilterInnerIcon_{{ $subSubCategory->id }}">
                                                     <span>{{ $subSubCategory->name }} ({{ sub_sub_category_total_shop($subSubCategory->name) }})</span>
@@ -421,6 +421,7 @@
                     @endif --}}
 
                     <div class="btn_area">
+                        <input type="hidden" id="sub_sub_cats_filter" value="{{ json_encode($selected_sub_sub_categories) }}">
                         <button type="submit" class="login_btn login_btn_fill">
                             Apply
                         </button>
@@ -479,17 +480,19 @@
             $('#filter_form').on('submit', function(e) {
                 e.preventDefault();
 
-                var allCats = [];
+                // var allCats = [];
                 var main_category = $('#filter_cat_id').val();
                 var sub_id = $('#filter_sub_cat_id').val();
 
-                $('input:checkbox[name=sub_sub_category]:checked').each(function() {
-                    allCats.push($(this).val());
-                });
+                // $('input:checkbox[name=sub_sub_category]:checked').each(function() {
+                //     allCats.push($(this).val());
+                // });
 
-                var city = $('#filter_city_val').val();
+                var allCats = $('#sub_sub_cats_filter').val();
 
-                window.location.href = "{{ URL::to('/shops/filter') }}?city=" + city + "&category=" +
+                // var city = $('#filter_city_val').val();
+
+                window.location.href = "{{ URL::to('/shops/filter') }}?category=" +
                     main_category + '&sub_category=' + sub_id + '&sub_sub_categories=' + allCats;
             });
         });
