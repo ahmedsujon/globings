@@ -371,7 +371,7 @@
                                     @if ($total_sub_sub_cat > 0)
                                         @foreach ($subSubCategories as $subSubCategory)
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="sub_sub_category" value="{{ $subSubCategory->id }}"
+                                                <input class="form-check-input" type="checkbox" name="sub_sub_category" value="{{ $subSubCategory->name }}"
                                                     id="categoryFilterInnerIcon_{{ $subSubCategory->id }}" />
                                                 <label class="form-check-label" for="categoryFilterInnerIcon_{{ $subSubCategory->id }}">
                                                     <span>{{ $subSubCategory->name }}</span>
