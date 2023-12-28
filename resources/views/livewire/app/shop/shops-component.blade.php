@@ -314,10 +314,11 @@
         <form action="" id="filter_form">
             <div class="container">
                 <div class="d-flex-between">
-                    <h3 class="notification_title">Filters @if (!request()->is('shops'))
+                    <h3 class="notification_title">Filters
+                        {{-- @if (!request()->is('shops'))
                             <a href="{{ route('app.shops') }}"
                                 style="font-size: 11.5px; font-weight: normal; color: blue;">Reset Filters</a>
-                        @endif
+                        @endif --}}
                     </h3>
                     <button type="button" id="filterCloseBtn">
                         <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
@@ -336,7 +337,7 @@
                                     <button type="button" class="form-check main_form_check main_cat_btn" data-id="{{ $category->id }}" wire:click.prevent='getSubCategory({{ $category->id }})'>
                                         <label class="form-check-label">
                                             <img src="{{ asset($category->icon) }}" alt="" />
-                                            <span>{{ $category->name }}</span>
+                                            <span>{{ $category->name }} ({{ category_total_shop($category->id) }})</span>
                                         </label>
                                         <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow" class="right_arrow" />
                                     </button>
@@ -364,7 +365,7 @@
                                             <div>
                                                 <button type="button" class="form-check main_form_check sub_cate_btn" data-id="{{ $subCategory->id }}" wire:click.prevent='getSubSubCategory({{ $subCategory->id }})'>
                                                     <label class="form-check-label d-block">
-                                                        <span>{{ $subCategory->name }}</span>
+                                                        <span>{{ $subCategory->name }} ({{ sub_category_total_shop($subCategory->id) }})</span>
                                                     </label>
                                                     <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
                                                         class="right_arrow" />
@@ -395,7 +396,7 @@
                                                 <input class="form-check-input" type="checkbox" name="sub_sub_category" value="{{ $subSubCategory->name }}"
                                                     id="categoryFilterInnerIcon_{{ $subSubCategory->id }}" />
                                                 <label class="form-check-label" for="categoryFilterInnerIcon_{{ $subSubCategory->id }}">
-                                                    <span>{{ $subSubCategory->name }}</span>
+                                                    <span>{{ $subSubCategory->name }} ({{ sub_sub_category_total_shop($subSubCategory->name) }})</span>
                                                 </label>
                                             </div>
                                         @endforeach
