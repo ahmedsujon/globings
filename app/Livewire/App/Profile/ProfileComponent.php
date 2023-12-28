@@ -81,9 +81,13 @@ class ProfileComponent extends Component
             $profile->avatar = $img;
             $profile->save();
 
-            $shop = Shop::where('user_id', user()->id)->first();
-            $shop->profile_image = $img;
-            $shop->save();
+            if(user()->account_type == 'professional')
+            {
+                $shop = Shop::where('user_id', user()->id)->first();
+                $shop->profile_image = $img;
+                $shop->save();
+            }
+
             $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }
     }
