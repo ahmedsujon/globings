@@ -462,9 +462,9 @@
 .filter_modal_area .form-check-label span {
   color: #000;
   font-family: "Inter", sans-serif;
-  font-size: 9.934px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
 }
 .filter_modal_area .second_category_filter {

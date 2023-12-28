@@ -27,6 +27,7 @@ class AdminsComponent extends Component
             'email' => 'required',
             'phone' => 'required',
             'password' => 'min:8|max:25',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:20048',
         ]);
 
         $data = new Admin();
@@ -34,21 +35,8 @@ class AdminsComponent extends Component
         $data->email = $this->email;
         $data->phone = $this->phone;
         $data->password = Hash::make($this->password);
-
-
+        
         if ($this->avatar) {
-
-            $avatar = Image::make($this->avatar)->resize(626, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            })->encode('webp', 75);
-            $directory = 'uploads/profile_images/';
-
-            // $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
-            // Storage::disk('do_spaces')->put($directory . $fileName, $image->getEncoded());
-            // $img = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
-
-
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
             $this->avatar->storeAs('profile_images', $fileName);
             $data->avatar = 'uploads/profile_images/' . $fileName;
