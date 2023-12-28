@@ -84,7 +84,6 @@ class ProfileComponent extends Component
             $shop = Shop::where('user_id', user()->id)->first();
             $shop->profile_image = $img;
             $shop->save();
-
             $this->dispatch('success', ['message' => 'Profile photo updated successfully']);
         }
     }
@@ -102,8 +101,10 @@ class ProfileComponent extends Component
         $data->contact_phone = $this->contact_phone;
         $data->contact_email = $this->contact_email;
         $data->contact_message = $this->contact_message;
+        $data->contact_message = $this->contact_message;
         $data->save();
         $this->resetInputs();
+        session()->flash('success_support_contact', 'Thank you for your message. We will contact you soon!');
         $this->dispatch('success', ['message' => 'Message send successfully']);
     }
 

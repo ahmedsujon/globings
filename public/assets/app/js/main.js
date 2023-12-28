@@ -347,7 +347,7 @@ $(document).ready(function () {
   });
 
     // Contact Support Modal
-    $("#supportModalBtn,#passwordEditCloseBtn").click(function (e) {
+    $("#supportModalBtn,#supportEditCloseBtn").click(function (e) {
       e.preventDefault();
   
       $("#globingsSupportModalArea").toggleClass("sing_modal_active");
