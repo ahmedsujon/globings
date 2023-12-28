@@ -554,6 +554,13 @@
                                 </button>
                             </li>
                             <li>
+                                <button type="button" id="supportModalBtn">
+                                    <img src="{{ asset('assets/app/icons/globings_support.svg') }}"
+                                        alt="manage icon" />
+                                    <h5>Support</h5>
+                                </button>
+                            </li>
+                            <li>
                                 <form id="logout-form" style="display: none;" method="POST"
                                     action="{{ route('logout') }}">
                                     @csrf
@@ -653,6 +660,61 @@
             </div>
         </div>
     </div>
+
+    <!-- Contact Support Modal  -->
+    <div class="sing_modal_area" id="globingsSupportModalArea" wire:ignore.self>
+        <div class="profile_edit_modal">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-xl">
+                        <button type="button" class="close_btn" id="supportEditCloseBtn">
+                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+                        </button>
+                        <h4 class="notification_title">Contact with globings</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <form wire:submit.prevent='supportData'
+                    class="mobile_form_area d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="input_row">
+                            <label for="first_name">Full Name</label>
+                            <input type="text" wire:model="" class="input_field" />
+                            @error('currentPassword')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                            @enderror
+                        </div>
+                        <div class="input_row">
+                            <label for="text">Phone</label>
+                            <input type="text" wire:model="" class="input_field" />
+                            @error('newPassword')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                            @enderror
+                        </div>
+                        <div class="input_row">
+                            <label for="last_name">Email</label>
+                            <input type="email" wire:model="" class="input_field" />
+                            @error('newPassword')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
+                            @enderror
+                        </div>
+                        <div class="input_row">
+                            <textarea class="input_field" wire:model="" cols="30" rows="4" placeholder="Write your message"></textarea>
+                            @error('description')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                <br>
+                            @enderror
+                        </div>
+                    </div>
+                    <button type="submit" class="login_btn login_btn_fill">
+                        {!! loadingStateWithText('supportData', 'Save') !!}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Password Change Modal  -->
     <div class="sing_modal_area" id="passwordEditModalArea" wire:ignore.self>
         <div class="profile_edit_modal">
