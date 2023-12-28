@@ -122,16 +122,37 @@
                     </li>
                 </ul>
             </div>
-            <form action="" id="location_search_form" class="header_search" wire:ignore>
-                <input type="text" placeholder="Search" id="search_input"
-                    value="{{ request()->get('search_value') }}" />
+
+            <form action="" id="location_search_form" class="header_divided_search">
+                <div class="search_input_area">
+                    <input type="text" placeholder="Search" id="search_input"
+                        value="{{ request()->get('search_value') }}" class="search_input" />
+                </div>
+                <input type="text" placeholder="Location" id="location_input"
+                    value="{{ request()->get('city') }}" class="location_input" />
                 <button class="search_icon" type="submit">
-                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+                    <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
                 </button>
-                <button class="filter_icon" type="button" id="filterBtn">
+                <button class="filter_icon sort_btn" type="button" id="filterBtn">
                     <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
                 </button>
             </form>
+
+            {{-- <form action="" id="location_search_form header_divided_search" class="header_search" wire:ignore>
+                <div class="search_input_area">
+                    <input type="text" placeholder="Search" id="search_input"
+                        value="{{ request()->get('search_value') }}" class="search_input" />
+                </div>
+                <input type="text" placeholder="Location" id="location_input"
+                    value="{{ request()->get('location') }}" class="location_input" />
+                <button class="search_icon" type="submit">
+                    <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
+                </button>
+
+                <button class="filter_icon" type="button" id="filterBtn">
+                    <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
+                </button>
+            </form> --}}
         </div>
     </header>
     <!-- Company Location Section  -->
@@ -436,12 +457,10 @@
 
             e.preventDefault();
 
-            var value = $('#filter_city_val').val();
-            var category = $('#category').val();
             var search_value = $('#search_input').val();
+            var city = $('#location_input').val();
 
-            window.location.href = "{{ URL::to('/shops/filter') }}?city=" + value + '&category=' + category +
-                '&search_value=' + search_value;
+            window.location.href = "{{ URL::to('/shops/filter') }}?city=" + city + '&search_value=' + search_value;
         });
     </script>
 
