@@ -71,11 +71,11 @@
                     </a>
                 </div>
             </div>
-            <div class="others_content_area">
-                <div class="container">
-                    <h4 class="notification_title">Others</h4>
-                    <ul class="manage_list">
-                        @if (Auth::user()->account_type == 'Professional')
+            @if (Auth::user()->account_type == 'Professional')
+                <div class="others_content_area">
+                    <div class="container">
+                        <h4 class="notification_title">Others</h4>
+                        <ul class="manage_list">
                             <li>
                                 <a href="{{ route('app.shop.settings') }}">
                                     <img src="{{ asset('assets/app/icons/shop_settings.svg') }}" alt="manage icon" />
@@ -108,27 +108,10 @@
                                         alt="right icon" />
                                 </a>
                             </li>
-                        @else
-                            <li>
-                                <a href="{{ route('app.recent-posts') }}">
-                                    <img src="{{ asset('assets/app/icons/manage_icon1.svg') }}" alt="manage icon" />
-                                    <h5>Recent posts</h5>
-                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
-                                        alt="right icon" />
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('app.recent-photos') }}">
-                                    <img src="{{ asset('assets/app/icons/manage_icon2.svg') }}" alt="manage icon" />
-                                    <h5>Recent photos</h5>
-                                    <img src="{{ asset('assets/app/icons/profile_right_arrow.svg') }}"
-                                        alt="right icon" />
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            @endif
         </section>
     </main>
 
