@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class ShopsComponent extends Component
 {
-    public $categories, $sub_categories, $pagination_value = 50, $filter_cities, $total_sub_cat = 0, $subCategories, $total_sub_sub_cat, $subSubCategories, $ui_status = 1, $f_category, $f_sub_category;
+    public $categories, $sub_categories, $pagination_value = 50, $filter_cities, $total_sub_cat = 0, $subCategories, $total_sub_sub_cat, $subSubCategories, $ui_status = 1, $f_category, $f_sub_category, $selected_sub_sub_categories = [];
     public $phone, $edit_id;
     use WithPagination;
 
@@ -97,7 +97,7 @@ class ShopsComponent extends Component
         }
 
         if ($filter_sub_sub_categories) {
-            $sub_sub_categories = explode(',', $filter_sub_sub_categories);
+            $sub_sub_categories = json_decode($filter_sub_sub_categories);
 
             $shops = $shops->where(function ($query) use ($sub_sub_categories) {
                 foreach ($sub_sub_categories as $category) {

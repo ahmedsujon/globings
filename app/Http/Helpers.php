@@ -1,19 +1,20 @@
 <?php
 
 use Carbon\Carbon;
+use App\Models\Post;
 use App\Models\Shop;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Category;
+use App\Models\FcmToken;
 use App\Models\PostLike;
+use App\Models\ShopReview;
 use App\Models\CommentLike;
 use App\Models\CommentReply;
 use App\Models\ShopBookmark;
 use App\Models\AdminPermission;
-use App\Models\Category;
 use App\Models\CommentReplyLike;
-use App\Models\FcmToken;
-use App\Models\Post;
-use App\Models\ShopReview;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 function admin()
@@ -211,6 +212,21 @@ function avgShopReview($shop_id)
     return $avg_star;
 }
 
+
+function category_total_shop($category_id)
+{
+    return DB::table('shops')->where('category_id', $category_id)->count();
+}
+
+function sub_category_total_shop($category_id)
+{
+    return DB::table('shops')->where('sub_category_id', $category_id)->count();
+}
+
+function sub_sub_category_total_shop($category_name)
+{
+    return DB::table('shops')->where('sub_sub_category', 'LIKE', '%"'.$category_name.'"%')->count();
+}
 
 
 //setting

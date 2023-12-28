@@ -180,12 +180,29 @@
                 <button type="button" class="list_btn">Liste View</button>
             </div>
             <div class="map_search_main_area">
-                <form class="map_search_area" id="mapSearchArea">
+                {{-- <form class="map_search_area" id="mapSearchArea">
                     <input type="search" placeholder="Search.." id="search_value" class="search_input" />
                     <button type="submit" class="search_btn" id="">
                         <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
                     </button>
-                </form>
+                </form> --}}
+                <div class="container">
+                    <div class="display-none" id="mapSearchArea">
+                        <form action="" id="mapSearchForm" class="header_divided_search">
+                            <div class="search_input_area">
+                                <input type="text" placeholder="Search" class="search_input" value="{{ request()->get('search_value') }}" id="search_value" />
+                            </div>
+                            <input type="text" id="location_value"
+                            value="{{ request()->get('city') }}" placeholder="Location" class="location_input" />
+                            <button class="search_icon" type="submit">
+                                <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
+                            </button>
+                            <button class="filter_icon" type="button" id="mapCloseSearchBtn">
+                                <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="filter icon" />
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <button type="button" class="search_btn" id="mapSearchBtn">
                 <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
@@ -229,11 +246,12 @@
             window.location.href = "{{ URL::to('/shops') }}";
         });
 
-        $('#mapSearchArea').on('submit', function(e) {
+        $('#mapSearchForm').on('submit', function(e) {
             e.preventDefault();
 
             var value = $('#search_value').val();
-            window.location.href = "{{ URL::to('/map-view') }}?search_value=" + value;
+            var city = $('#location_value').val();
+            window.location.href = "{{ URL::to('/map-view') }}?search_value=" + value + '&city=' + city;
         });
     </script>
     <script>
