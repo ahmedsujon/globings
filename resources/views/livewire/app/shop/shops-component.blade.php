@@ -331,7 +331,7 @@
 
                     <div class="top_filter_area {{ $ui_status == 1 ? '' : 'd-none' }}" id="topFilterArea" >
                         <h4 class="bring_bottom_text">Category</h4>
-                        <div class="category_filter_grid">
+                        <div class="">
                             @foreach ($categories as $category)
                                 <div>
                                     <button type="button" class="form-check main_form_check main_cat_btn" data-id="{{ $category->id }}" wire:click.prevent='getSubCategory({{ $category->id }})'>
