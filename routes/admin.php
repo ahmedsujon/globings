@@ -14,6 +14,7 @@ use App\Livewire\Admin\Onboarding\EditOnboardingComponent;
 use App\Livewire\Admin\Onboarding\OnboardingComponent;
 use App\Livewire\Admin\Posts\PostComponent;
 use App\Livewire\Admin\Shops\ShopComponent;
+use App\Livewire\Admin\Support\SupportComponent;
 use App\Livewire\Admin\User\AdminsComponent;
 use App\Livewire\Admin\User\UsersComponent;
 
@@ -51,6 +52,9 @@ Route::prefix('admin/')->name('admin.')->middleware('auth:admin')->group(functio
 
     // Posts routes
     Route::get('shop/posts', PostComponent::class)->name('shops.posts');
+
+        // Support routes
+        Route::get('support/message', SupportComponent::class)->name('support.message');
 
     // Onboarding routes
     Route::get('onboardings', OnboardingComponent::class)->name('onboardings');

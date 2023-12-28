@@ -670,32 +670,35 @@
                         <button type="button" class="close_btn" id="supportEditCloseBtn">
                             <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
                         </button>
-                        <h4 class="notification_title">Contact with globings</h4>
+                        <h4 class="notification_title">Contact with our support team</h4>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <form action="" wire:submit.prevent='supportData' class="contact_form_area">
-                    {{-- @if (session()->has('success_contact'))
+                    @if (session()->has('success_support_contact'))
                         <div class="input_row"
-                            style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 2px;">
-                            <p style="color: white;">{{ session('success_contact') }}</p>
+                            style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 10px;">
+                            <p style="color: white; font-size: 15px; font-weight: 300;">{{ session('success_support_contact') }}</p>
                         </div>
-                    @endif --}}
+                    @endif
                     <div class="input_row">
-                        <input type="text" wire:model.blur='contact_name' class="input_item" placeholder="Full Name" />
+                        <input type="text" wire:model.blur='contact_name' class="input_item"
+                            placeholder="Full Name" />
                         @error('contact_name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="input_row">
-                        <input type="number" wire:model.blur='contact_phone' class="input_item" placeholder="Phone Number" />
+                        <input type="number" wire:model.blur='contact_phone' class="input_item"
+                            placeholder="Phone Number" />
                         @error('contact_phone')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="input_row">
-                        <input type="email" wire:model.blur='contact_email' class="input_item" placeholder="E-mail" />
+                        <input type="email" wire:model.blur='contact_email' class="input_item"
+                            placeholder="E-mail" />
                         @error('contact_email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
