@@ -46,6 +46,10 @@
         font-size: 12.5px !important;
         border: 1px solid red;
     }
+
+    .post_home_wrapper .slider_img img {
+        height: auto !important;
+    }
 </style>
 
 <body>
