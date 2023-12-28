@@ -136,7 +136,7 @@
     </header>
     <!-- Company Location Section  -->
     <section class="company_location_wrapper">
-        {{-- <div class="location_header border-0" style="margin-top: -20px;" wire:ignore>
+        <div class="location_header border-0" style="margin-top: -20px;" wire:ignore>
             <div class="category_slider_area border-0 pb-2" id="headerCategorySlider">
                 <div class="container">
                     <div class="d-flex align-items-center g-sm category_sceleton">
@@ -161,7 +161,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <div class="container shop_seceleton_container" wire:ignore>
             <div class="shop_grid">
 
