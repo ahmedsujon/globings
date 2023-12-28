@@ -385,7 +385,7 @@
                         </div>
                     </div>
 
-                    @if (count($filter_cities) > 0)
+                    {{-- @if (count($filter_cities) > 0)
                         <div class="select_area">
                             <h4 class="bring_bottom_text">Want to see area of city</h4>
                             <div class="area_list d-flex align-items-center flex-wrap">
@@ -396,7 +396,7 @@
                                 <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
                     <div class="btn_area">
                         <button type="submit" class="login_btn login_btn_fill">
