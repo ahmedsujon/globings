@@ -18,12 +18,13 @@ class MapViewComponent extends Component
         // $city = request()->get('city');
         // $category = request()->get('category');
         $search_term = request()->get('search_value');
+        $city = request()->get('city');
 
         $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('latitude', '!=', '')->where('longitude', '!=', '');
 
-        // if ($city) {
-        //     $shops = $shops->where('city', 'like', '%' . $city . '%');
-        // }
+        if ($city) {
+            $shops = $shops->where('city', 'like', '%' . $city . '%');
+        }
 
         // if ($category) {
         //     $shops = $shops->where('category_id', $category);

@@ -4437,6 +4437,10 @@ input[type=number] {
   gap: 7px 12px;
 }
 
+.display-none {
+  display: none;
+}
+
 .g-small {
   gap: 5px 6px;
 }

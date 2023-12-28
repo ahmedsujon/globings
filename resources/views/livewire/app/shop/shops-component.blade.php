@@ -122,21 +122,42 @@
                     </li>
                 </ul>
             </div>
-            <form action="" id="location_search_form" class="header_search" wire:ignore>
-                <input type="text" placeholder="Search" id="search_input"
-                    value="{{ request()->get('search_value') }}" />
+
+            <form action="" id="location_search_form" class="header_divided_search">
+                <div class="search_input_area">
+                    <input type="text" placeholder="Search" id="search_input"
+                        value="{{ request()->get('search_value') }}" class="search_input" />
+                </div>
+                <input type="text" placeholder="Location" id="location_input"
+                    value="{{ request()->get('city') }}" class="location_input" />
                 <button class="search_icon" type="submit">
-                    <img src="{{ asset('assets/app/icons/search-lg.svg') }}" alt="search icon" />
+                    <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
                 </button>
-                <button class="filter_icon" type="button" id="filterBtn">
+                <button class="filter_icon sort_btn" type="button" id="filterBtn">
                     <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
                 </button>
             </form>
+
+            {{-- <form action="" id="location_search_form header_divided_search" class="header_search" wire:ignore>
+                <div class="search_input_area">
+                    <input type="text" placeholder="Search" id="search_input"
+                        value="{{ request()->get('search_value') }}" class="search_input" />
+                </div>
+                <input type="text" placeholder="Location" id="location_input"
+                    value="{{ request()->get('location') }}" class="location_input" />
+                <button class="search_icon" type="submit">
+                    <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
+                </button>
+
+                <button class="filter_icon" type="button" id="filterBtn">
+                    <img src="{{ asset('assets/app/icons/filter_icon.svg') }}" alt="filter icon" />
+                </button>
+            </form> --}}
         </div>
     </header>
     <!-- Company Location Section  -->
     <section class="company_location_wrapper">
-        {{-- <div class="location_header border-0" style="margin-top: -20px;" wire:ignore>
+        <div class="location_header border-0" style="margin-top: -20px;" wire:ignore>
             <div class="category_slider_area border-0 pb-2" id="headerCategorySlider">
                 <div class="container">
                     <div class="d-flex align-items-center g-sm category_sceleton">
@@ -161,7 +182,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <div class="container shop_seceleton_container" wire:ignore>
             <div class="shop_grid">
 
@@ -293,10 +314,11 @@
         <form action="" id="filter_form">
             <div class="container">
                 <div class="d-flex-between">
-                    <h3 class="notification_title">Filters @if (!request()->is('shops'))
+                    <h3 class="notification_title">Filters
+                        {{-- @if (!request()->is('shops'))
                             <a href="{{ route('app.shops') }}"
                                 style="font-size: 11.5px; font-weight: normal; color: blue;">Reset Filters</a>
-                        @endif
+                        @endif --}}
                     </h3>
                     <button type="button" id="filterCloseBtn">
                         <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
@@ -315,7 +337,7 @@
                                     <button type="button" class="form-check main_form_check main_cat_btn" data-id="{{ $category->id }}" wire:click.prevent='getSubCategory({{ $category->id }})'>
                                         <label class="form-check-label">
                                             <img src="{{ asset($category->icon) }}" alt="" />
-                                            <span>{{ $category->name }}</span>
+                                            <span>{{ $category->name }} ({{ category_total_shop($category->id) }})</span>
                                         </label>
                                         <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow" class="right_arrow" />
                                     </button>
@@ -343,7 +365,7 @@
                                             <div>
                                                 <button type="button" class="form-check main_form_check sub_cate_btn" data-id="{{ $subCategory->id }}" wire:click.prevent='getSubSubCategory({{ $subCategory->id }})'>
                                                     <label class="form-check-label d-block">
-                                                        <span>{{ $subCategory->name }}</span>
+                                                        <span>{{ $subCategory->name }} ({{ sub_category_total_shop($subCategory->id) }})</span>
                                                     </label>
                                                     <img src="{{ asset('assets/app/icons/right_arrow.svg') }}" alt="right arrow"
                                                         class="right_arrow" />
@@ -371,10 +393,10 @@
                                     @if ($total_sub_sub_cat > 0)
                                         @foreach ($subSubCategories as $subSubCategory)
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="sub_sub_category" value="{{ $subSubCategory->name }}"
+                                                <input class="form-check-input" type="checkbox" wire:model.live='selected_sub_sub_categories' name="sub_sub_category" value="{{ $subSubCategory->name }}"
                                                     id="categoryFilterInnerIcon_{{ $subSubCategory->id }}" />
                                                 <label class="form-check-label" for="categoryFilterInnerIcon_{{ $subSubCategory->id }}">
-                                                    <span>{{ $subSubCategory->name }}</span>
+                                                    <span>{{ $subSubCategory->name }} ({{ sub_sub_category_total_shop($subSubCategory->name) }})</span>
                                                 </label>
                                             </div>
                                         @endforeach
@@ -385,7 +407,7 @@
                         </div>
                     </div>
 
-                    @if (count($filter_cities) > 0)
+                    {{-- @if (count($filter_cities) > 0)
                         <div class="select_area">
                             <h4 class="bring_bottom_text">Want to see area of city</h4>
                             <div class="area_list d-flex align-items-center flex-wrap">
@@ -396,9 +418,10 @@
                                 <input type="hidden" id="filter_city_val" value="{{ request()->get('city') }}" />
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
                     <div class="btn_area">
+                        <input type="hidden" id="sub_sub_cats_filter" value="{{ json_encode($selected_sub_sub_categories) }}">
                         <button type="submit" class="login_btn login_btn_fill">
                             Apply
                         </button>
@@ -436,12 +459,10 @@
 
             e.preventDefault();
 
-            var value = $('#filter_city_val').val();
-            var category = $('#category').val();
             var search_value = $('#search_input').val();
+            var city = $('#location_input').val();
 
-            window.location.href = "{{ URL::to('/shops/filter') }}?city=" + value + '&category=' + category +
-                '&search_value=' + search_value;
+            window.location.href = "{{ URL::to('/shops/filter') }}?city=" + city + '&search_value=' + search_value;
         });
     </script>
 
@@ -459,17 +480,19 @@
             $('#filter_form').on('submit', function(e) {
                 e.preventDefault();
 
-                var allCats = [];
+                // var allCats = [];
                 var main_category = $('#filter_cat_id').val();
                 var sub_id = $('#filter_sub_cat_id').val();
 
-                $('input:checkbox[name=sub_sub_category]:checked').each(function() {
-                    allCats.push($(this).val());
-                });
+                // $('input:checkbox[name=sub_sub_category]:checked').each(function() {
+                //     allCats.push($(this).val());
+                // });
 
-                var city = $('#filter_city_val').val();
+                var allCats = $('#sub_sub_cats_filter').val();
 
-                window.location.href = "{{ URL::to('/shops/filter') }}?city=" + city + "&category=" +
+                // var city = $('#filter_city_val').val();
+
+                window.location.href = "{{ URL::to('/shops/filter') }}?category=" +
                     main_category + '&sub_category=' + sub_id + '&sub_sub_categories=' + allCats;
             });
         });

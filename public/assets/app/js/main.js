@@ -346,19 +346,6 @@ $(document).ready(function () {
     }
   });
 
-    // Support Modal
-    $("#supportModalBtn,#supportEditCloseBtn").click(function (e) {
-      e.preventDefault();
-  
-      $("#globingsSupportModalArea").toggleClass("sing_modal_active");
-  
-      if ($("#globingsSupportModalArea").hasClass("sing_modal_active")) {
-        hideScrollbar();
-      } else {
-        showScrollbar();
-      }
-    });
-
   // Change Password Modal
   $("#passwordChangeModalBtn,#passwordEditCloseBtn").click(function (e) {
     e.preventDefault();
