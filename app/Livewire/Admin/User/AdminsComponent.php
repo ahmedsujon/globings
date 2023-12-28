@@ -8,6 +8,8 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminsComponent extends Component
 {
@@ -32,13 +34,29 @@ class AdminsComponent extends Component
         $data->email = $this->email;
         $data->phone = $this->phone;
         $data->password = Hash::make($this->password);
+
+
         if ($this->avatar) {
+
+            $avatar = Image::make($this->avatar)->resize(626, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('webp', 75);
+            $directory = 'uploads/profile_images/';
+
+            // $fileName = uniqid() . Carbon::now()->timestamp . '.webp';
+            // Storage::disk('do_spaces')->put($directory . $fileName, $image->getEncoded());
+            // $img = env('DO_SPACES_ENDPOINT') . '/' . $directory . $fileName;
+
+
             $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
             $this->avatar->storeAs('profile_images', $fileName);
             $data->avatar = 'uploads/profile_images/' . $fileName;
-        } else{
+        } else {
             $data->avatar = 'assets/images/avatar.png';
         }
+
+
         $data->save();
 
         $this->resetInputs();
@@ -83,13 +101,14 @@ class AdminsComponent extends Component
         if ($this->password) {
             $user->password = Hash::make($this->password);
         }
+
         if ($this->avatar) {
             $imageName = Carbon::now()->timestamp . '_favicon' . $this->avatar->extension();
             $this->avatar->storeAs('profile_images', $imageName);
             $user->avatar = 'uploads/profile_images/' . $imageName;
         }
-        $user->save();
 
+        $user->save();
         $this->resetInputs();
         $this->dispatch('closeModal');
         $this->dispatch('success', ['message' => 'User updated successfully']);
@@ -127,8 +146,8 @@ class AdminsComponent extends Component
 
     public function render()
     {
-        $admins = Admin::where('name', 'like', '%'.$this->searchTerm.'%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
+        $admins = Admin::where('name', 'like', '%' . $this->searchTerm . '%')->orderBy('id', 'DESC')->paginate($this->sortingValue);
         $this->dispatch('reload_scripts');
-        return view('livewire.admin.user.admins-component', ['admins'=>$admins])->layout('livewire.admin.layouts.base');
+        return view('livewire.admin.user.admins-component', ['admins' => $admins])->layout('livewire.admin.layouts.base');
     }
 }

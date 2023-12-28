@@ -3,6 +3,7 @@
 namespace App\Livewire\App\Profile;
 
 use App\Models\Shop;
+use App\Models\Support;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +20,15 @@ class ProfileComponent extends Component
     public $first_name, $last_name, $email, $phone, $gender, $dob, $avatar, $uploadedAvatar, $edit_id;
     public $currentPassword, $newPassword, $confirmPassword;
 
+    public $contact_name, $contact_phone, $contact_email, $contact_message;
+
     public function changeNotificationStatus()
     {
         $user = User::find(Auth::user()->id);
         $user->notification_status = $user->notification_status == 1 ? 0 : 1;
         $user->save();
     }
+    
     public function updateProfile()
     {
         $this->validate([
@@ -85,6 +89,24 @@ class ProfileComponent extends Component
         }
     }
 
+    public function supportData()
+    {
+        $this->validate([
+            'contact_name' => 'required',
+            'contact_phone' => 'required',
+            'contact_email' => 'required:email',
+            'contact_message' => 'required',
+        ]);
+        $data = new Support();
+        $data->contact_name = $this->contact_name;
+        $data->contact_phone = $this->contact_phone;
+        $data->contact_email = $this->contact_email;
+        $data->contact_message = $this->contact_message;
+        $data->save();
+        $this->resetInputs();
+        $this->dispatch('success', ['message' => 'Message send successfully']);
+    }
+
     public function changePassword()
     {
         $this->validate([
@@ -116,6 +138,10 @@ class ProfileComponent extends Component
         $this->phone = '';
         $this->gender = '';
         $this->dob = '';
+        $this->contact_name = '';
+        $this->contact_phone = '';
+        $this->contact_email = '';
+        $this->contact_message = '';
         $this->edit_id = '';
     }
 
