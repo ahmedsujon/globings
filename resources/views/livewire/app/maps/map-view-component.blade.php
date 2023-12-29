@@ -190,10 +190,11 @@
                     <div class="display-none" id="mapSearchArea">
                         <form action="" id="mapSearchForm" class="header_divided_search">
                             <div class="search_input_area">
-                                <input type="text" placeholder="Search" class="search_input" value="{{ request()->get('search_value') }}" id="search_value" />
+                                <input type="text" placeholder="Search" class="search_input"
+                                    value="{{ request()->get('search_value') }}" id="search_value" />
                             </div>
-                            <input type="text" id="location_value"
-                            value="{{ request()->get('city') }}" placeholder="Location" class="location_input" />
+                            <input type="text" id="location_value" value="{{ request()->get('city') }}"
+                                placeholder="Location" class="location_input" />
                             <button class="search_icon" type="submit">
                                 <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
                             </button>
@@ -343,7 +344,7 @@
                             //Current Location Marker
                             const beachFlagImg = document.createElement("img");
 
-                            beachFlagImg.src = "{{ asset('assets/app/icons/map_marker_2.png') }}";
+                            beachFlagImg.src = "assets/icons/map_marker_2.png";
 
                             const beachFlagMarkerView = new AdvancedMarkerElement({
                                 map,
@@ -386,11 +387,18 @@
                 });
 
                 for (i = 0; i < positionList.length; i++) {
-                    marker = new google.maps.Marker({
+                    //Current Location Marker
+                    const markerDiv = document.createElement("div");
+                    const beachFlagImg = document.createElement("img");
+                    markerDiv.classList.add("custom_marker");
+                    markerDiv.appendChild(beachFlagImg);
+                    beachFlagImg.src = positionList[i][3];
+                    marker = new AdvancedMarkerElement({
                         position: new google.maps.LatLng(
                             positionList[i][1],
                             positionList[i][2]
                         ),
+                        content: markerDiv,
                         map: map,
                     });
 
