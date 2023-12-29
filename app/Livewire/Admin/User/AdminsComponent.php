@@ -60,7 +60,7 @@ class AdminsComponent extends Component
         $this->phone = $data->phone;
         $this->uploadedAvatar = $data->avatar;
         $this->edit_id = $data->id;
-
+        
         $this->dispatch('showEditModal');
     }
 
