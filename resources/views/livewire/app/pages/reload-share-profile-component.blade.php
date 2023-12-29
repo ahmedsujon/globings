@@ -13,23 +13,17 @@
                 <div class="share_list d-flex align-items-center justify-content-center flex-wrap mt-4">
                     <div class="share_item">
                         <a href="{{ route('app.profile.share') }}" class="share_btn" id="shareModalBtn">
-                          <img
-                            src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}"
-                            alt="bing share icon"
-                          />
+                            <img src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}" alt="bing share icon" />
                         </a>
                         <h4 class="bring_bottom_text">Share</h4>
-                      </div>
-                      <div class="share_item tooltip_area" id="referCopyBtn">
+                    </div>
+                    <div class="share_item tooltip_area" id="referCopyBtn">
                         <button type="button" class="share_btn copy_icon">
-                          <img
-                            src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}"
-                            alt="bing share icon"
-                          />
+                            <img src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}" alt="bing share icon" />
                         </button>
                         <h4 class="bring_bottom_text">Copy</h4>
                         <div class="tooltip_item">Copied</div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,3 +60,23 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+        //Copy Button
+        $("#referCopyBtn").click(function() {
+            // var textToCopy = $("#textToCopy").text().trim();
+            var textToCopy =
+                "Playstore: https://play.google.com/store/apps/details?id=app.com.globings&hl=en&gl=US ref=sujonahmed || Appstore: https://apps.apple.com/us/app/globings/id6455375135 ref=sujonahmed"
+                .trim();
+            var tempTextarea = $("<input>");
+            $("body").append(tempTextarea);
+            tempTextarea.val(textToCopy).select();
+            document.execCommand("copy");
+            tempTextarea.remove();
+            $(this).addClass("tooltip_active");
+            setTimeout(() => {
+                $(this).removeClass("tooltip_active");
+            }, 1500);
+        });
+    </script>
+@endpush

@@ -66,3 +66,23 @@
         </div>
     </div>
 </div>
+
+{{-- @push('scripts')
+    <script>
+        //Copy Button
+        $("#referCopyBtn").click(function () {
+            var userName = {{ Auth::user()->username }}; // Assuming you have access to the authenticated user's ID
+            // Construct the URL with the user ID
+            var textToCopy = "Playstore: https://play.google.com/store/apps/details?id=app.com.globings&hl=en&gl=US&ref=sujonahmed";
+            var tempTextarea = $("<input>");
+            $("body").append(tempTextarea);
+            tempTextarea.val(textToCopy).select();
+            document.execCommand("copy");
+            tempTextarea.remove();
+            $(this).addClass("tooltip_active");
+            setTimeout(() => {
+                $(this).removeClass("tooltip_active");
+            }, 1500);
+        });
+    </script>
+@endpush --}}
