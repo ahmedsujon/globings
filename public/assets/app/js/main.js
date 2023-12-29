@@ -639,8 +639,8 @@ $(document).ready(function () {
 
   //Copy Button
   $("#referCopyBtn").click(function () {
-    var textToCopy = $("#textToCopy").text().trim();
-    // var textToCopy = "Demo string text".trim();
+    // var textToCopy = $("#textToCopy").text().trim();
+    var textToCopy = "Playstore: https://play.google.com/store/apps/details?id=app.com.globings&hl=en&gl=US ref=sujonahmed || Appstore: https://apps.apple.com/us/app/globings/id6455375135 ref=sujonahmed".trim();
     var tempTextarea = $("<input>");
     $("body").append(tempTextarea);
     tempTextarea.val(textToCopy).select();
