@@ -173,7 +173,7 @@
       -moz-transform: translateY(-4px);
       -ms-transform: translateY(-4px);
       -o-transform: translateY(-4px);
-}
+    }
     .active_icon {
       display: none;
     }
@@ -351,6 +351,7 @@
   border-radius: 23px 23px 0px 0px;
   box-shadow: 0px -6px 27px 0px rgba(0, 0, 0, 0.25);
   @include customScrollbarInner();
+  overflow-x: hidden;
   @include hover-transition();
   opacity: 0;
   visibility: hidden;
@@ -449,9 +450,9 @@
     span {
       color: #000;
       font-family: $secondary-font;
-      font-size: 9.934px;
+      font-size: 14px;
       font-style: normal;
-      font-weight: 600;
+      font-weight: 500;
       line-height: normal;
     }
   }
