@@ -80,6 +80,15 @@
                         </ul>
                     </li>
                     @endif
+
+                    @if (isAdminPermitted('admins_manage'))
+                    <li class="{{ request()->is('admin/support/message') ? 'mm-active' : '' }}">
+                        <a href="{{ route('admin.support.message') }}" class="waves-effect">
+                            <i class="bx bx-support"></i>
+                            <span key="t-dashboard">Support Message</span>
+                        </a>
+                    </li>
+                    @endif
                 </ul>
             </div>
             <!-- Sidebar -->

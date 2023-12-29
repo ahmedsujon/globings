@@ -670,45 +670,47 @@
                         <button type="button" class="close_btn" id="supportEditCloseBtn">
                             <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
                         </button>
-                        <h4 class="notification_title">Contact with globings</h4>
+                        <h4 class="notification_title">Contact with our support team</h4>
                     </div>
                 </div>
             </div>
             <div class="container">
-                <form wire:submit.prevent='supportData'
-                    class="mobile_form_area d-flex flex-column justify-content-between">
-                    <div>
-                        <div class="input_row">
-                            <label for="first_name">Full Name</label>
-                            <input type="text" wire:model="" class="input_field" />
-                            @error('currentPassword')
-                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
-                            @enderror
+                <form action="" wire:submit.prevent='supportData' class="contact_form_area">
+                    @if (session()->has('success_support_contact'))
+                        <div class="input_row"
+                            style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 10px;">
+                            <p style="color: white; font-size: 15px; font-weight: 300;">{{ session('success_support_contact') }}</p>
                         </div>
-                        <div class="input_row">
-                            <label for="text">Phone</label>
-                            <input type="text" wire:model="" class="input_field" />
-                            @error('newPassword')
-                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
-                            @enderror
-                        </div>
-                        <div class="input_row">
-                            <label for="last_name">Email</label>
-                            <input type="email" wire:model="" class="input_field" />
-                            @error('newPassword')
-                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span><br>
-                            @enderror
-                        </div>
-                        <div class="input_row">
-                            <textarea class="input_field" wire:model="" cols="30" rows="4" placeholder="Write your message"></textarea>
-                            @error('description')
-                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                <br>
-                            @enderror
-                        </div>
+                    @endif
+                    <div class="input_row">
+                        <input type="text" wire:model.blur='contact_name' class="input_item"
+                            placeholder="Full Name" />
+                        @error('contact_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input_row">
+                        <input type="number" wire:model.blur='contact_phone' class="input_item"
+                            placeholder="Phone Number" />
+                        @error('contact_phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input_row">
+                        <input type="email" wire:model.blur='contact_email' class="input_item"
+                            placeholder="E-mail" />
+                        @error('contact_email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input_row">
+                        <textarea class="input_item" wire:model.blur='contact_message' placeholder="Message"></textarea>
+                        @error('contact_message')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="login_btn login_btn_fill">
-                        {!! loadingStateWithText('supportData', 'Save') !!}
+                        {!! loadingStateWithTextApp('supportData', 'Send Message') !!}
                     </button>
                 </form>
             </div>
