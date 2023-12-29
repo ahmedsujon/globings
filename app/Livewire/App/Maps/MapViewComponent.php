@@ -20,7 +20,7 @@ class MapViewComponent extends Component
         $search_term = request()->get('search_value');
         $city = request()->get('city');
 
-        $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo')->where('latitude', '!=', '')->where('longitude', '!=', '');
+        $shops = Shop::select('id', 'name', 'latitude', 'longitude', 'cover_photo', 'category_id')->where('latitude', '!=', '')->where('longitude', '!=', '');
 
         if ($city) {
             $shops = $shops->where('city', 'like', '%' . $city . '%');
@@ -44,7 +44,11 @@ class MapViewComponent extends Component
         $cords = [];
 
         foreach ($shops as $shop) {
-            $cords[] = ["$shop->name", (Double) $shop->latitude, (Double) $shop->longitude, $shop->id];
+            $category = Category::find($shop->category_id);
+
+            $icon = isset($category->icon) ? $category->icon : 'assets/images/placeholder.jpg';
+
+            $cords[] = ["$shop->name", (Double) $shop->latitude, (Double) $shop->longitude, "$icon", $shop->id];
         }
         $shop_cords = $cords;
 

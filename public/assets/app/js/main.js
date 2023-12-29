@@ -1,3 +1,13 @@
+//hide footer when input box is on focus
+$(document).on("focus", "input, textarea,select", function () {
+  $("#mobileMenuWrapper").hide();
+});
+
+//show footer when input is NOT on focus
+$(document).on("blur", "input, textarea,select", function () {
+  $("#mobileMenuWrapper").show();
+});
+
 $(document).ready(function () {
   //Hide Scroll bar
   function hideScrollbar() {
