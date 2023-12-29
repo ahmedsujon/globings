@@ -1,12 +1,12 @@
 //hide footer when input box is on focus
-$(document).on("focus", "input, textarea,select", function () {
-  $("#mobileMenuWrapper").hide();
-});
+// $(document).on("focus", "input, textarea,select", function () {
+//   $("#mobileMenuWrapper").hide();
+// });
 
 //show footer when input is NOT on focus
-$(document).on("blur", "input, textarea,select", function () {
-  $("#mobileMenuWrapper").show();
-});
+// $(document).on("blur", "input, textarea,select", function () {
+//   $("#mobileMenuWrapper").show();
+// });
 
 $(document).ready(function () {
   //Hide Scroll bar
@@ -639,8 +639,8 @@ $(document).ready(function () {
 
   //Copy Button
   $("#referCopyBtn").click(function () {
-    // var textToCopy = $("#textToCopy").text().trim();
-    var textToCopy = "Playstore: https://play.google.com/store/apps/details?id=app.com.globings&hl=en&gl=US ref=sujonahmed || Appstore: https://apps.apple.com/us/app/globings/id6455375135 ref=sujonahmed".trim();
+    var textToCopy = $("#textToCopy").text().trim();
+    // var textToCopy = "Demo string text".trim();
     var tempTextarea = $("<input>");
     $("body").append(tempTextarea);
     tempTextarea.val(textToCopy).select();

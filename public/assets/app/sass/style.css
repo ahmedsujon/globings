@@ -119,7 +119,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 500;
+  z-index: 100;
   width: 100%;
   display: none;
 }
@@ -2013,10 +2013,10 @@
 }
 .company_map_wrapper .chart_map_area .custom_marker img {
   position: relative;
-  top: 1px;
-  left: 1px;
+  top: 2px;
+  left: -1px;
   z-index: 5;
-  width: 11px;
+  width: 15px;
 }
 .company_map_wrapper .chart_map_area .custom_marker::before {
   content: "";
@@ -2024,11 +2024,11 @@
   top: -2px;
   left: -5.5px;
   border-radius: 50% 50% 50% 0;
-  border: 4px solid #f5150b;
+  border: 4px solid #1872f6;
   width: 24px;
   height: 24px;
   transform: rotate(-45deg);
-  background-color: #f5150b;
+  background-color: #1872f6;
 }
 .company_map_wrapper .chart_map_area .custom_marker::after {
   position: absolute;
