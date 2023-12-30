@@ -364,7 +364,7 @@
     </section>
 
     <!-- Search Modal  -->
-    <div class="sing_modal_area pt-24" id="homeFilterModalArea" wire:ignore.self>
+    <div class="filter_modal_area pt-24" id="homeFilterModalArea" wire:ignore.self>
         <div class="profile_edit_modal">
             <div class="container">
                 <div class="d-flex-between">

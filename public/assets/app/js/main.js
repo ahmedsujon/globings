@@ -508,9 +508,9 @@ $(document).ready(function () {
     $("#homeFilterModalBtn,#homeFilterEditCloseBtn").click(function (e) {
       e.preventDefault();
   
-      $("#homeFilterModalArea").toggleClass("sing_modal_active");
+      $("#homeFilterModalArea").toggleClass("filter_active");
   
-      if ($("#homeFilterModalArea").hasClass("sing_modal_active")) {
+      if ($("#homeFilterModalArea").hasClass("filter_active")) {
         hideScrollbar();
       } else {
         showScrollbar();
