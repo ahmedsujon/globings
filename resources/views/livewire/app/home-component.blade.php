@@ -364,7 +364,32 @@
     </section>
 
     <!-- Search Modal  -->
-    <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
+    <div class="header_divider_search_area" id="headerSearchModalArea">
+        <div class="container">
+          <div class="d-flex-between">
+            <h3 class="notification_title">Search</h3>
+            <button type="button" id="headerSearchCloseBtn">
+              <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
+            </button>
+          </div>
+          <input type="text" placeholder="search" />
+          <form action="" class="header_divided_search">
+            <div class="search_input_area">
+              <input type="text" placeholder="Search" class="search_input" />
+            </div>
+            <input type="text" placeholder="Location" class="location_input" />
+            <button class="search_icon" type="submit">
+              <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
+            </button>
+            <button class="filter_icon" type="button" id="filterBtn">
+              <img src="{{ asset('assets/app/icons/sort_icon.svg') }}" alt="filter icon" />
+            </button>
+          </form>
+          <input type="text" placeholder="search" />
+        </div>
+      </div>
+
+    {{-- <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
         <div class="container">
             <div class="d-flex-between">
                 <h3 class="notification_title">Search</h3>
@@ -395,7 +420,7 @@
                 @endforeach
             </ul>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Filter Modal  -->
     <div class="filter_modal_area" wire:ignore.self id="searchFilterArea">
@@ -529,12 +554,6 @@
                             </div>
                         </div>
                     @endif
-
-                    {{-- <div class="range_area" wire:ignore>
-                        <h4 class="bring_bottom_text">Range of area</h4>
-                        <input data-addui="slider" data-range="false" data-fontsize="14" data-step="1"
-                            data-min="5" data-max="50" value="20" data-formatter="usd" />
-                    </div> --}}
                     <div class="btn_area">
                         <button type="submit" class="login_btn login_btn_fill">
                             Apply
