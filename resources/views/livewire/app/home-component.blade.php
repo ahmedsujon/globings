@@ -364,7 +364,7 @@
     </section>
 
     <!-- Search Modal  -->
-    <div class="header_divider_search_area" id="headerSearchModalArea">
+    {{-- <div class="header_divider_search_area" id="headerSearchModalArea">
         <div class="container">
           <div class="d-flex-between">
             <h3 class="notification_title">Search</h3>
@@ -387,9 +387,9 @@
           </form>
           <input type="text" placeholder="search" />
         </div>
-      </div>
+      </div> --}}
 
-    {{-- <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
+    <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
         <div class="container">
             <div class="d-flex-between">
                 <h3 class="notification_title">Search</h3>
@@ -420,7 +420,7 @@
                 @endforeach
             </ul>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Filter Modal  -->
     <div class="filter_modal_area" wire:ignore.self id="searchFilterArea">
