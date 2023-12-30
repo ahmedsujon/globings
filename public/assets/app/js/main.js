@@ -504,6 +504,19 @@ $(document).ready(function () {
     $(this).toggleClass("sorting_active");
   });
 
+    // Home Filter Modal
+    $("#homeFilterModalBtn,#homeFilterEditCloseBtn").click(function (e) {
+      e.preventDefault();
+  
+      $("#homeFilterModalArea").toggleClass("sing_modal_active");
+  
+      if ($("#homeFilterModalArea").hasClass("sing_modal_active")) {
+        hideScrollbar();
+      } else {
+        showScrollbar();
+      }
+    });
+
   // Contact Support Modal
   $("#supportModalBtn,#supportEditCloseBtn").click(function (e) {
     e.preventDefault();
