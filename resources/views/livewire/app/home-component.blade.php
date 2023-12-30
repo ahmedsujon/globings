@@ -364,87 +364,76 @@
     </section>
 
     <!-- Search Modal  -->
-
-        <!-- Contact Support Modal  -->
-        <div class="sing_modal_area" id="globingsSupportModalArea" wire:ignore.self>
-            <div class="profile_edit_modal">
-                <div class="bing_back_area">
-                    <div class="container">
-                        <div class="d-flex align-items-center flex-wrap g-xl">
-                            <button type="button" class="close_btn" id="supportEditCloseBtn">
-                                <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
-                            </button>
-                            <h4 class="notification_title">Contact with our support team</h4>
-                        </div>
+    <div class="sing_modal_area" id="globingsSupportModalArea" wire:ignore.self>
+        <div class="profile_edit_modal">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-xl">
+                        <button type="button" class="close_btn" id="supportEditCloseBtn">
+                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+                        </button>
+                        <h4 class="notification_title">Contact with our support team</h4>
                     </div>
                 </div>
-                <div class="container">
-                    <form action="" wire:submit.prevent='supportData' class="contact_form_area">
-                        @if (session()->has('success_support_contact'))
-                            <div class="input_row"
-                                style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 10px;">
-                                <p style="color: white; font-size: 15px; font-weight: 300;">{{ session('success_support_contact') }}</p>
-                            </div>
-                        @endif
-                        <div class="input_row">
-                            <input type="text" wire:model.blur='contact_name' class="input_item"
-                                placeholder="Full Name" />
-                            @error('contact_name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="input_row">
-                            <input type="number" wire:model.blur='contact_phone' class="input_item"
-                                placeholder="Phone Number" />
-                            @error('contact_phone')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="input_row">
-                            <input type="email" wire:model.blur='contact_email' class="input_item"
-                                placeholder="E-mail" />
-                            @error('contact_email')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="input_row">
-                            <textarea class="input_item" wire:model.blur='contact_message' placeholder="Message"></textarea>
-                            @error('contact_message')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <button type="submit" class="login_btn login_btn_fill">
-                            {!! loadingStateWithTextApp('supportData', 'Send Message') !!}
-                        </button>
-                    </form>
-                </div>
             </div>
-        </div>
+            <div class="container">
+                <form action="" class="header_divided_search">
+                    <div class="search_input_area">
+                        <input type="text" placeholder="Search" id="search_input"
+                            value="{{ request()->get('search') }}" class="search_input" />
+                    </div>
+                    <input type="text" placeholder="Location" id="location_input"
+                        value="{{ request()->get('location') }}" class="location_input" />
+                    <button class="search_icon" type="submit">
+                        <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
+                    </button>
+                    <button class="filter_icon sort_btn" type="button"
+                        data-value="{{ $sort_type == 'ASC' ? 'DESC' : 'ASC' }}">
+                        <img src="{{ asset('assets/app/icons/sort_icon.svg') }}" alt="filter icon" />
+                    </button>
+                </form>
 
-    {{-- <div class="header_divider_search_area" id="headerSearchModalArea">
-        <div class="container">
-          <div class="d-flex-between">
-            <h3 class="notification_title">Search</h3>
-            <button type="button" id="headerSearchCloseBtn">
-              <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
-            </button>
-          </div>
-          <input type="text" placeholder="search" />
-          <form action="" class="header_divided_search">
-            <div class="search_input_area">
-              <input type="text" placeholder="Search" class="search_input" />
+                <form action="" wire:submit.prevent='supportData' class="contact_form_area">
+                    @if (session()->has('success_support_contact'))
+                        <div class="input_row"
+                            style="text-align: center; background: rgb(93, 161, 93); padding: 10px; border-radius: 10px;">
+                            <p style="color: white; font-size: 15px; font-weight: 300;">{{ session('success_support_contact') }}</p>
+                        </div>
+                    @endif
+                    <div class="input_row">
+                        <input type="text" wire:model.blur='contact_name' class="input_item"
+                            placeholder="Full Name" />
+                        @error('contact_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input_row">
+                        <input type="number" wire:model.blur='contact_phone' class="input_item"
+                            placeholder="Phone Number" />
+                        @error('contact_phone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input_row">
+                        <input type="email" wire:model.blur='contact_email' class="input_item"
+                            placeholder="E-mail" />
+                        @error('contact_email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="input_row">
+                        <textarea class="input_item" wire:model.blur='contact_message' placeholder="Message"></textarea>
+                        @error('contact_message')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="login_btn login_btn_fill">
+                        {!! loadingStateWithTextApp('supportData', 'Send Message') !!}
+                    </button>
+                </form>
             </div>
-            <input type="text" placeholder="Location" class="location_input" />
-            <button class="search_icon" type="submit">
-              <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
-            </button>
-            <button class="filter_icon" type="button" id="filterBtn">
-              <img src="{{ asset('assets/app/icons/sort_icon.svg') }}" alt="filter icon" />
-            </button>
-          </form>
-          <input type="text" placeholder="search" />
         </div>
-      </div> --}}
+    </div>
 
     {{-- <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
         <div class="container">
@@ -611,6 +600,12 @@
                             </div>
                         </div>
                     @endif
+
+                    {{-- <div class="range_area" wire:ignore>
+                        <h4 class="bring_bottom_text">Range of area</h4>
+                        <input data-addui="slider" data-range="false" data-fontsize="14" data-step="1"
+                            data-min="5" data-max="50" value="20" data-formatter="usd" />
+                    </div> --}}
                     <div class="btn_area">
                         <button type="submit" class="login_btn login_btn_fill">
                             Apply
