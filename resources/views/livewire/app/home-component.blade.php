@@ -398,7 +398,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
         <div class="container">
             <div class="d-flex-between">
@@ -938,6 +938,20 @@
             $.toast({
                 heading: "",
                 text: 'Post created successfully',
+                showHideTransition: "slide", //plain,fade
+                icon: "success", //success,warning,error,info
+                position: "bottom-center",
+                hideAfter: 3000,
+                loader: true,
+            });
+        @endif
+    </script>
+
+    <script>
+         @if (Session::has('verification_success'))
+            $.toast({
+                heading: "",
+                text: 'Account successfully verified',
                 showHideTransition: "slide", //plain,fade
                 icon: "success", //success,warning,error,info
                 position: "bottom-center",
