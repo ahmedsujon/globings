@@ -23,7 +23,7 @@
                             <img src="{{ asset('assets/images/avatar.png') }}" alt="user image" class="bing_user_img" />
                         @endif
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="bings-badge.html" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
+                            <a href="#" class="bing_coin_btn d-flex align-items-center flex-wrap g-smm">
                                 <img src="{{ asset('assets/app/icons/bookmark.png') }}" alt="book mark" />
                                 <span>{{ user()->bings_balance }} Bings</span>
                                 <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
