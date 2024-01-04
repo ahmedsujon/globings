@@ -1,21 +1,20 @@
 <div>
     <main>
         <!-- Bings Section  -->
-        <section class="bings_wrapper mt-24">
+        <section class="bings_wrapper bing_wrapper2 mt-24">
             <div class="container">
                 <div class="d-flex-between">
                     <a href="#" class="bing_setting_icion">
-                        {{-- <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" /> --}}
+                        <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" />
                     </a>
-                    <button type="button"
-                        class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm"
-                        id="coinModalBtn">
-                        <img src="{{ asset('assets/app/icons/store_green_icon.svg') }}" alt="coin" />
-                        <span>{{ user()->bings_balance }} Bings</span>
+                    <a href="{{ route('app.loyalty.cards') }}" type="button"
+                        class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm">
+                        <span>Loyalty Cards</span>
                         <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
                             class="right_arrow" />
-                    </button>
+                    </a>
                 </div>
+
                 <div class="bing_profile_wrapper">
                     <div class="profile_area text-center">
                         @if (Auth::user()->avatar)
@@ -31,446 +30,322 @@
                                     class="right_arrow" />
                             </a>
                         </div>
-
                         <h4>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
-                        <h5><span>@</span>{{ Auth::user()->username }}</h5>
                     </div>
-                    <div class="reward_card_wrapper">
-                        <a href="{{ route('app.profile.share') }}" class="reward_card_item" id="">
-                            <div>
-                                <h4>Get your 50+ Bings invite bonus!</h4>
-                                <h5>
-                                    Just send your friend
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
-                                        class="right_arrow" />
-                                </h5>
-                            </div>
-                            <div class="text-end">
-                                <img src="{{ asset('assets/app/icons/bings_invite_icon.svg') }}" alt="invite icon"
-                                    class="invite_icon" />
-                            </div>
-                        </a>
-                        <button type="button" class="reward_card_item" id="localModalBtn">
-                            <div>
-                                <h4>Bings Badges</h4>
-                                <h5>
-                                    Rewards by challenges and shop visits
-                                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
-                                        class="right_arrow" />
-                                </h5>
-                            </div>
-                            <div class="text-end">
-                                <img src="{{ asset('assets/app/icons/bings_invite_icon2.svg') }}" alt="invite icon"
-                                    class="invite_icon" />
-                            </div>
-                        </button>
-                    </div>
-                    {{-- <div class="bing_category_wrapper mb-5">
-                        <h4 class="bing_inner_title">Explore Bings by category</h4>
-                        <div class="category_grid">
-                            <a href="#" class="bing_category_item">
-                                <img src="{{ asset('assets/app/icons/reward_icon.png') }}" alt="reward icon" />
-                                <h4>Rewards by shop</h4>
-                            </a>
-                            <a href="#" class="bing_category_item">
-                                <img src="{{ asset('assets/app/icons/bouns_icon.png') }}" alt="bonus icon" />
-                                <h4>Bonus & challenges</h4>
-                            </a>
+                    <div class="coupon_collector_area mt-24">
+                        <div class="collector_header d-flex-between">
+                            <h3>Coupon Collection</h3>
+                            <button type="button" id="rewardModalBtn">
+                                <span> See all </span>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 12L10 8L6 4" stroke="#5897F4" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
                         </div>
-                    </div> --}}
+                        <div class="collector_bar_area">
+                            <div class="position-relative">
+                                <div class="active_bar_area" style="width: 15%">
+                                    <div class="active_bar"></div>
+                                    <div class="tooltip_text">5bings</div>
+                                </div>
+                                <div class="bar_line">
+                                    <div></div>
+                                    <div class="git_item">
+                                        <div class="icon">
+                                            <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
+                                        </div>
+                                        <div class="price">
+                                            <span>€5</span>
+                                        </div>
+                                    </div>
+                                    <div class="git_item">
+                                        <div class="icon">
+                                            <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
+                                        </div>
+                                        <div class="price">
+                                            <span>€10</span>
+                                        </div>
+                                    </div>
+                                    <div class="git_item">
+                                        <div class="icon">
+                                            <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
+                                        </div>
+                                        <div class="price">
+                                            <span>€15</span>
+                                        </div>
+                                    </div>
+                                    <div class="git_item">
+                                        <div class="icon">
+                                            <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
+                                        </div>
+                                        <div class="price">
+                                            <span>€20</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="remain_title">30 days remaining</h3>
+                        </div>
+                    </div>
+                    <div class="collector_grid_area">
+                        <div class="collector_grid">
+                            <div class="icon">
+                                <img src="{{ asset('assets/app/icons/archive_icon.svg') }}" alt="archive icon" />
+                            </div>
+                            <div class="content_area">
+                                <p>
+                                    <a href="{{ route('app.profile.share') }}">
+                                        Get rewarded with 20 bings when your friends signs up using
+                                        your invitation!
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="collector_grid">
+                            <div class="icon">
+                                <img src="{{ asset('assets/app/icons/ract_shape_icon.svg') }}"
+                                    alt="react shape icon" />
+                            </div>
+                            <div class="content_area">
+                                <p>
+                                    <a href="{{ route('app.profile.share') }}">
+                                        Get rewarded with $10 when a shop owner signs up using your
+                                        invitation!
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Bings Coin History Modal  -->
-    <div wire:ignore.self class="sing_modal_area" id="coinModalArea">
+    <!-- Reward Card Modal  -->
+    <div class="sing_modal_area reward_modal_area" id="rewardModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
-                    <div class="d-flex align-items-center flex-wrap g-xl">
-                        <button type="button" class="close_btn" id="coainCloseBtn">
-                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
+                    <div class="d-flex align-items-center flex-wrap g-smm">
+                        <button type="button" class="close_btn" id="rewardCloseBtn">
+                            <img src="{{ asset('assets/app/icons/arrow-left-2.svg') }}" alt="back icon" />
                         </button>
-                        <h6 class="notification_title">Bings</h6>
+                        <h6 class="notification_title">Rewards</h6>
                     </div>
                 </div>
             </div>
-            <div class="coin_number_area text-center">
-                <div class="d-flex align-items-center justify-content-center flex-wrap g-smm">
-                    <img src="{{ asset('assets/app/icons/coin_big.svg') }}" alt="coin icion" />
-                    <h3 class="bing_number_title">{{ user()->bings_balance }} Bings</h3>
-                </div>
-                <h5>Total</h5>
-            </div>
-            <div class="coing_emoji_grid">
-                <div class="emoji_area">
-                    <img src="{{ asset('assets/app/icons/love_emoji.png') }}" alt="love emoji" />
-                </div>
-                <div class="conin_content_area">
-                    <h4>
-                        <span>Your referall bonus</span>
-                        <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow" />
-                    </h4>
-                    <div class="inner_content">
-                        <h5>
-                            Shop and complete any offer to unlock your referral bonuses
-                        </h5>
+            <div class="reward_grid_area">
+                <div class="container">
+                    <div class="reward_grid">
+                        <div class="reward_item active_reward" id="rewarConfirmModalBtn">
+                            <div class="price">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.41666 10.8333H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.41666 15.1667H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M20.5833 19.0749C19.3584 21.2771 17.1297 22.75 14.5833 22.75C10.7174 22.75 7.58334 19.3548 7.58334 15.1667V10.8333C7.58334 6.64518 10.7174 3.25 14.5833 3.25C17.1297 3.25 19.3584 4.72288 20.5833 6.92511"
+                                        stroke="#545C7C" stroke-width="3" stroke-linecap="round" />
+                                </svg>
+
+                                <span>5</span>
+                            </div>
+                            <h5>Convert 50 Bings</h5>
+                        </div>
+                        <div class="reward_item" id="rewarConfirmModalBtn">
+                            <div class="price">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.41666 10.8333H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.41666 15.1667H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M20.5833 19.0749C19.3584 21.2771 17.1297 22.75 14.5833 22.75C10.7174 22.75 7.58334 19.3548 7.58334 15.1667V10.8333C7.58334 6.64518 10.7174 3.25 14.5833 3.25C17.1297 3.25 19.3584 4.72288 20.5833 6.92511"
+                                        stroke="#545C7C" stroke-width="3" stroke-linecap="round" />
+                                </svg>
+
+                                <span>10</span>
+                            </div>
+                            <h5>Convert 100 Bings or fill in a shop owner</h5>
+                        </div>
+                        <div class="reward_item" id="rewarConfirmModalBtn">
+                            <div class="price">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.41666 10.8333H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.41666 15.1667H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M20.5833 19.0749C19.3584 21.2771 17.1297 22.75 14.5833 22.75C10.7174 22.75 7.58334 19.3548 7.58334 15.1667V10.8333C7.58334 6.64518 10.7174 3.25 14.5833 3.25C17.1297 3.25 19.3584 4.72288 20.5833 6.92511"
+                                        stroke="#545C7C" stroke-width="3" stroke-linecap="round" />
+                                </svg>
+
+                                <span>15</span>
+                            </div>
+                            <h5>Convert 150 Bings</h5>
+                        </div>
+                        <div class="reward_item" id="rewarConfirmModalBtn">
+                            <div class="price">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.41666 10.8333H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.41666 15.1667H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M20.5833 19.0749C19.3584 21.2771 17.1297 22.75 14.5833 22.75C10.7174 22.75 7.58334 19.3548 7.58334 15.1667V10.8333C7.58334 6.64518 10.7174 3.25 14.5833 3.25C17.1297 3.25 19.3584 4.72288 20.5833 6.92511"
+                                        stroke="#545C7C" stroke-width="3" stroke-linecap="round" />
+                                </svg>
+
+                                <span>20</span>
+                            </div>
+                            <h5>Convert 200 Bings</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                    <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                    <h4>{{ $referred_bings }}</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reward Confirm Card Modal  -->
+    <div class="sing_modal_area reward_confirm_modal_area" id="rewardConfirmModalArea">
+        <div class="bings_wrapper pb-0">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-smm">
+                        <button type="button" class="close_btn" id="rewardConfirmCloseBtn">
+                            <img src="{{ asset('assets/app/icons/arrow-left-2.svg') }}" alt="back icon" />
+                        </button>
+                        <h6 class="notification_title">Rewards</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="reward_confirm_area">
+                <div class="container">
+                    <div class="reward_grid">
+                        <div class="reward_confirm_item">
+                            <div class="price">
+                                <span>$10</span>
+                            </div>
+                            <h5 class="convert_text mt-24">
+                                Do you want to convert 1000 bings in $50?
+                            </h5>
+                        </div>
+                        <div class="button_grid mt-24">
+                            <button type="button" id="rewardNoCloseBtn">No</button>
+                            <button id="rewarSuccessModalBtn" type="button" class="confirm_yes_btn">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal  -->
+    <div class="sing_modal_area success_modal_area" id="rewardSuccessModalArea">
+        <div class="bings_wrapper pb-0">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-smm">
+                        <button type="button" class="close_btn" id="rewardSuccessCloseBtn">
+                            <img src="{{ asset('assets/app/icons/arrow-left-2.svg') }}" alt="back icon" />
+                        </button>
+                        <h6 class="notification_title">Rewards</h6>
+                    </div>
                 </div>
             </div>
             <div class="container">
-                <div class="coin_history_area">
-                    <h3 class="bing_inner_title">Bings History</h3>
-
-                    @foreach ($histories as $history)
-                        <div class="history_item_area">
-                            <h3>{{ $history['date'] }}</h3>
-
-                            @foreach ($history['data'] as $data)
-                                <div class="coing_emoji_grid">
-                                    <div class="emoji_area Onboarding_icon_area">
-                                        @if ($data->type == 'referral')
-                                            <img src="{{ asset('assets/app/icons/bing_coin_icon3.png') }}"
-                                                alt="bing coin icon" />
-                                        @elseif($data->type == 'validation')
-                                            <img src="{{ asset('assets/app/icons/bing_coin_icon2.png') }}"
-                                                alt="bing coin icon" />
-                                        @else
-                                            <img src="{{ asset('assets/app/icons/bing_coin_icon1.png') }}"
-                                                alt="bing coin icon" />
-                                        @endif
-
-                                    </div>
-                                    <div class="conin_content_area">
-                                        <h4>
-                                            <span>{{ $data->bings_for }}</span>
-                                            <img src="{{ asset('assets/app/icons/chevron-right.svg') }}"
-                                                alt="right arrow" />
-                                        </h4>
-                                        <h5>{{ $data->description }}</h5>
-                                        {{-- <h5>{{ date('jS F', strtotime($data->created_at)) }}</h5> --}}
-                                    </div>
-                                    <div class="coin_number d-flex align-items-center flex-wrap g-smm">
-                                        <img src="{{ asset('assets/app/icons/coin_small.svg') }}" alt="coin icon" />
-                                        <h4>{{ $data->bings }}</h4>
-                                    </div>
+                <div class="success_content_area">
+                    <img src="{{ asset('assets/app/icons/Checkmark.svg') }}" alt="check mark" />
+                    <h4>Successful</h4>
+                    <h5>Your 1000 bings convert successfully complete in $50.</h5>
+                    <div class="ok_btn_area">
+                        <button type="button" class="ok_btn" id="successOkCloseBtn">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loyalty Modal  -->
+    <div class="sing_modal_area loyalty_modal_area" id="loyaltyModalArea">
+        <div class="bings_wrapper pb-0">
+            <div class="bing_back_area">
+                <div class="container">
+                    <div class="d-flex align-items-center flex-wrap g-smm">
+                        <button type="button" class="close_btn" id="loyaltyCloseBtn">
+                            <img src="{{ asset('assets/app/icons/arrow-left-2.svg') }}" alt="back icon" />
+                        </button>
+                        <h6 class="notification_title">Rewards</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="loaylty_content_area">
+                    <form action="" class="post_search_form place_search_form">
+                        <input type="search" placeholder="Product Name" />
+                        <img src="{{ asset('assets/app/icons/post_search_icon.svg') }}" alt="search icon"
+                            class="search_icon" />
+                    </form>
+                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab"
+                                aria-controls="pills-home" aria-selected="true">
+                                Explored
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-profile" type="button" role="tab"
+                                aria-controls="pills-profile" aria-selected="false">
+                                Discover New
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-24" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                            aria-labelledby="pills-home-tab" tabindex="0">
+                            <div class="loyalty_grid">
+                                <div class="loyalty_item">
+                                    <div class="price"><span>1 free drink</span></div>
+                                    <h5>1 visit on 10</h5>
                                 </div>
-                            @endforeach
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Bings Coin History Modal  -->
-
-    <!-- Badges Modal  -->
-    <div class="sing_modal_area" id="loalModalArea" wire:ignore.self>
-        <div class="bings_wrapper pb-0">
-            <div class="bing_back_area">
-                <div class="container">
-                    <div class="d-flex align-items-center flex-wrap g-xl">
-                        <button type="button" class="close_btn" id="badgesCloseBtn">
-                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
-                        </button>
-                        <h6 class="notification_title">Badges</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                {{-- <div class="local_grid">
-                    <p>See your own Local Guides status Go to your contributions</p>
-                    <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
-                        class="right_arrow" />
-                </div> --}}
-                <div class="badge_profilel_area text-center">
-                    <img src="{{ asset('assets/app/icons/badge_star_icon.png') }}" alt="badge star icon"
-                        class="badge_star_icon" />
-                    <div>
-                        <h4 class="company_inner_title">Local Guide</h4>
-                        <h5 class="bidge_sub_text bidge_leavel mt-1">Level
-                            @if (user()->total_bings < 250)
-                                0
-                            @elseif (user()->total_bings >= 250)
-                                1
-                            @elseif (user()->total_bings >= 500)
-                                2
-                            @elseif (user()->total_bings >= 750)
-                                3
-                            @elseif (user()->total_bings >= 1000)
-                                4
-                            @elseif (user()->total_bings >= 1250)
-                                5
-                            @elseif (user()->total_bings >= 1500)
-                                6
-                            @elseif (user()->total_bings >= 1500)
-                                Top
-                            @endif
-                        </h5>
-                    </div>
-
-                    <div class="progress_area">
-                        <div class="progress">
-                            @if (user()->total_bings < 250)
-                                @php
-                                    $percentage = (user()->total_bings / 250) * 100;
-                                @endphp
-                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            @elseif (user()->total_bings >= 250)
-                                @php
-                                    $percentage = (user()->total_bings / 500) * 100;
-                                @endphp
-                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            @elseif (user()->total_bings >= 500)
-                                @php
-                                    $percentage = (user()->total_bings / 750) * 100;
-                                @endphp
-                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            @elseif (user()->total_bings >= 750)
-                                @php
-                                    $percentage = (user()->total_bings / 1000) * 100;
-                                @endphp
-                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            @elseif (user()->total_bings >= 1000)
-                                @php
-                                    $percentage = (user()->total_bings / 1250) * 100;
-                                @endphp
-                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            @elseif (user()->total_bings >= 1250)
-                                @php
-                                    $percentage = (user()->total_bings / 1500) * 100;
-                                @endphp
-                                <div class="progress-bar" role="progressbar" style="width: {{ $percentage }}%"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            @elseif (user()->total_bings >= 1500)
-                                <div class="progress-bar" role="progressbar" style="width: 100%"
-                                aria-valuemin="0" aria-valuemax="100"></div>
-                            @endif
-                        </div>
-                        <div class="progress_number_area d-flex-between">
-                            <h4>{{ user()->bings_balance }}</h4>
-                            <h4><span>{{ user()->total_bings }} /</span>
-                            @if (user()->total_bings < 250)
-                                250
-                            @elseif (user()->total_bings >= 250)
-                                500
-                            @elseif (user()->total_bings >= 500)
-                                750
-                            @elseif (user()->total_bings >= 750)
-                                1000
-                            @elseif (user()->total_bings >= 1000)
-                                1250
-                            @elseif (user()->total_bings >= 1250)
-                                1500
-                            @elseif (user()->total_bings >= 1500)
-                                No-Limit
-                            @endif</h4>
-                        </div>
-                        <h5 class="bidge_sub_text text-start">
-                            As you help other people, you earn points for each contribution
-                            and get closer to the next level.
-                        </h5>
-                    </div>
-                </div>
-                <div class="circle_progress_area">
-                    <h4 class="bing_inner_title">Badges</h4>
-                    <div class="progress_grid">
-                        <div class="circle_progress_item">
-                            <div class="badge_img_area">
-                                @if (user()->total_bings >= 250)
-                                    <img src="{{ asset('assets/app/icons/badges/active-badge-1.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @else
-                                    <img src="{{ asset('assets/app/icons/badges/badge-1.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @endif
-
-                            </div>
-                            <div class="progres_text_area">
-                                <h5>Silver Reviewer</h5>
-                                @if (user()->total_bings < 250)
-                                    <div class="badge_status_btn">Upcoming</div>
-                                @endif
+                                <div class="loyalty_item">
+                                    <div class="price"><span>1 meal free</span></div>
+                                    <h5>1 visit on 10</h5>
+                                </div>
+                                <div class="loyalty_item">
+                                    <div class="price"><span>1 meal free</span></div>
+                                    <h5>1 visit on 10</h5>
+                                </div>
                             </div>
                         </div>
-                        <div class="circle_progress_item">
-                            <div class="badge_img_area">
-                                @if (user()->total_bings >= 500)
-                                    <img src="{{ asset('assets/app/icons/badges/active-badge-2.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @else
-                                    <img src="{{ asset('assets/app/icons/badges/badge-2.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @endif
-                            </div>
-                            <div class="progres_text_area">
-                                <h5>Bronze Photographer</h5>
-                                @if (user()->total_bings < 500)
-                                    <div class="badge_status_btn">Upcoming</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="circle_progress_item">
-                            <div class="badge_img_area">
-                                @if (user()->total_bings >= 750)
-                                    <img src="{{ asset('assets/app/icons/badges/active-badge-3.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @else
-                                    <img src="{{ asset('assets/app/icons/badges/badge-3.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @endif
-
-                            </div>
-                            <div class="progres_text_area">
-                                <h5>Bronze Traiblazer</h5>
-                                @if (user()->total_bings < 750)
-                                    <div class="badge_status_btn">Upcoming</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="circle_progress_item">
-                            <div class="badge_img_area">
-                                @if (user()->total_bings >= 1000)
-                                    <img src="{{ asset('assets/app/icons/badges/active-badge-4.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @else
-                                    <img src="{{ asset('assets/app/icons/badges/badge-4.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @endif
-
-                            </div>
-                            <div class="progres_text_area">
-                                <h5>Silver Reviewer</h5>
-                                @if (user()->total_bings < 1000)
-                                    <div class="badge_status_btn">Upcoming</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="circle_progress_item">
-                            <div class="badge_img_area">
-                                @if (user()->total_bings >= 1250)
-                                    <img src="{{ asset('assets/app/icons/badges/active-badge-5.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @else
-                                    <img src="{{ asset('assets/app/icons/badges/badge-5.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @endif
-
-                            </div>
-                            <div class="progres_text_area">
-                                <h5>Bronze Traiblazer</h5>
-                                @if (user()->total_bings < 1250)
-                                    <div class="badge_status_btn">Upcoming</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="circle_progress_item">
-                            <div class="badge_img_area">
-                                @if (user()->total_bings >= 1500)
-                                    <img src="{{ asset('assets/app/icons/badges/active-badge-6.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @else
-                                    <img src="{{ asset('assets/app/icons/badges/badge-6.png') }}"
-                                        alt="badge check icon" class="badge_img" />
-                                @endif
-                            </div>
-                            <div class="progres_text_area">
-                                <h5>Bronze Traiblazer</h5>
-                                @if (user()->total_bings < 1500)
-                                    <div class="badge_status_btn">Upcoming</div>
-                                @endif
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab" tabindex="0">
+                            <div class="loyalty_grid">
+                                <div class="loyalty_item">
+                                    <div class="price"><span>1 free drink</span></div>
+                                    <h5>1 visit on 10</h5>
+                                </div>
+                                <div class="loyalty_item">
+                                    <div class="price"><span>1 meal free</span></div>
+                                    <h5>1 visit on 10</h5>
+                                </div>
+                                <div class="loyalty_item">
+                                    <div class="price"><span>1 meal free</span></div>
+                                    <h5>1 visit on 10</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Binges Invite Modal  -->
-    <div wire:ignore.self class="sing_modal_area" id="inviteModalArea">
-        <div class="bings_wrapper pb-0">
-            <div class="bing_back_area">
-                <div class="container">
-                    <div class="d-flex align-items-center flex-wrap g-xl">
-                        <button type="button" class="close_btn" id="inviteCloseBtn">
-                            <img src="{{ asset('assets/app/icons/coain_back_icon.svg') }}" alt="back icon" />
-                        </button>
-                        <h6 class="notification_title">Refer a friend</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="share_area">
-                <div class="container">
-                    <div style="width: 100%; text-align: center;">
-                        <h3 class="bing_inner_title">My Referral Code</h3>
-                        <h4 style="padding: 30px 0px;"><strong>{{ user()->referral_code }}</strong></h4>
-                    </div>
-
-                    <div class="share_list d-flex align-items-center justify-content-center flex-wrap mt-4">
-                        <div class="share_item">
-                            <button type="button" class="share_btn message_icon">
-                                <img src="{{ asset('assets/app/icons/bing_share_icon1.svg') }}"
-                                    alt="bing share icon" />
-                            </button>
-                            <h4 class="bring_bottom_text">Text</h4>
-                        </div>
-                        <div class="share_item">
-                            <button type="button" class="share_btn">
-                                <img src="{{ asset('assets/app/icons/bing_share_icon2.svg') }}"
-                                    alt="bing share icon" />
-                            </button>
-                            <h4 class="bring_bottom_text">Share</h4>
-                        </div>
-                        <div class="share_item">
-                            <button type="button" class="share_btn copy_icon">
-                                <img src="{{ asset('assets/app/icons/bing_share_icon3.svg') }}"
-                                    alt="bing share icon" />
-                            </button>
-                            <h4 class="bring_bottom_text">Copy</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="refer_invite_area">
-                    <h3 class="bing_inner_title">How to get a referral bonus</h3>
-                    <div class="refer_grid">
-                        <div class="number bing_inner_title">1</div>
-                        <div>
-                            <h4 class="bring_bottom_text">Refer a friend</h4>
-                            <p>Using your referral code</p>
-                        </div>
-                    </div>
-                    <div class="refer_grid">
-                        <div class="number bing_inner_title">2</div>
-                        <div>
-                            <h4 class="bring_bottom_text">They sign up and shop</h4>
-                            <p>Any shop offer QR Code to get bings</p>
-                        </div>
-                    </div>
-                    <div class="refer_grid">
-                        <div class="number bing_inner_title">3</div>
-                        <div>
-                            <h4 class="bring_bottom_text">Get bonus bings</h4>
-                            <p>Earn you referral bonus</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="terms_area">
-                    <a href="{{ route('app.terms-and-conditions') }}" class="terms_text">
-                        Terms and Conditions
-                    </a>
                 </div>
             </div>
         </div>

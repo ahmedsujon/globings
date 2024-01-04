@@ -1,12 +1,12 @@
 //hide footer when input box is on focus
-$(document).on("focus", "input, textarea,select", function () {
-  $("#mobileMenuWrapper").hide();
-});
+// $(document).on("focus", "input, textarea,select", function () {
+//   $("#mobileMenuWrapper").hide();
+// });
 
 //show footer when input is NOT on focus
-$(document).on("blur", "input, textarea,select", function () {
-  $("#mobileMenuWrapper").show();
-});
+// $(document).on("blur", "input, textarea,select", function () {
+//   $("#mobileMenuWrapper").show();
+// });
 
 $(document).ready(function () {
   //Hide Scroll bar
@@ -337,6 +337,75 @@ $(document).ready(function () {
     $("#inviteModalArea").toggleClass("sing_modal_active");
 
     if ($("#inviteModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Reward Modal
+  $("#rewardModalBtn,#rewardCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#rewardModalArea").toggleClass("sing_modal_active");
+
+    if ($("#rewardModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Reward Modal
+  $("#rewarConfirmModalBtn,#rewardConfirmCloseBtn,#rewardNoCloseBtn").click(
+    function (e) {
+      e.preventDefault();
+
+      $("#rewardConfirmModalArea").toggleClass("sing_modal_active");
+
+      if ($("#rewardConfirmModalArea").hasClass("sing_modal_active")) {
+        hideScrollbar();
+      } else {
+        showScrollbar();
+      }
+    }
+  );
+
+  //Reward Success Modal
+  $("#rewarSuccessModalBtn,#rewardSuccessCloseBtn,#successOkCloseBtn").click(
+    function (e) {
+      e.preventDefault();
+
+      $("#rewardSuccessModalArea").toggleClass("sing_modal_active");
+
+      if ($("#rewardSuccessModalArea").hasClass("sing_modal_active")) {
+        hideScrollbar();
+      } else {
+        showScrollbar();
+      }
+    }
+  );
+
+  //Loyalty Modal
+  $("#loyaltyModalBtn,#loyaltyCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#loyaltyModalArea").toggleClass("sing_modal_active");
+
+    if ($("#loyaltyModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  // Home Filter Modal
+  $("#homeFilterModalBtn,#homeFilterEditCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#homeFilterModalArea").toggleClass("filter_active");
+
+    if ($("#homeFilterModalArea").hasClass("filter_active")) {
       hideScrollbar();
     } else {
       showScrollbar();

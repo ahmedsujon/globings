@@ -344,7 +344,7 @@
                             //Current Location Marker
                             const beachFlagImg = document.createElement("img");
 
-                            beachFlagImg.src = "assets/icons/map_marker_2.png";
+                            beachFlagImg.src = "{{ asset('assets/app/icons/map_marker_2.png') }}";
 
                             const beachFlagMarkerView = new AdvancedMarkerElement({
                                 map,

@@ -8,7 +8,7 @@
                 </a>
                 <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
                     <li>
-                        <button type="button" class="search_icon" id="headerSearchBtn">
+                        <button type="button" class="search_icon" id="homeFilterModalBtn">
                             <img src="{{ asset('assets/app/icons/search-lg-topbar.svg') }}" alt="search icon" />
                         </button>
                     </li>
@@ -364,7 +364,42 @@
     </section>
 
     <!-- Search Modal  -->
-    <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
+    <div class="filter_modal_area pt-24" id="homeFilterModalArea" wire:ignore.self>
+        <div class="profile_edit_modal">
+            <div class="container">
+                <div class="d-flex-between">
+                    <h3 class="notification_title">Search</h3>
+                    <button type="button" id="homeFilterEditCloseBtn">
+                        <img src="{{ asset('assets/app/icons/result_close_btn.svg') }}" alt="close btn" />
+                    </button>
+                </div>
+                <form action="" id="searchForm" class="header_divided_search">
+                    <div class="search_input_area">
+                        <input type="text" placeholder="Search" id="search_input"
+                            value="{{ request()->get('search') }}" class="search_input" />
+                    </div>
+                    <input type="text" placeholder="Location" id="location_input"
+                        value="{{ request()->get('location') }}" class="location_input" />
+                    <button class="search_icon" type="submit">
+                        <img src="{{ asset('assets/app/icons/search-lg-header.svg') }}" alt="search icon" />
+                    </button>
+                    <button class="filter_icon sort_btn" type="button"
+                        data-value="{{ $sort_type == 'ASC' ? 'DESC' : 'ASC' }}">
+                        <img src="{{ asset('assets/app/icons/sort_icon.svg') }}" alt="filter icon" />
+                    </button>
+                </form>
+                <ul class="suggestion_list_area">
+                    @foreach ($search_histories as $search_history)
+                        <li class="search_item" data-search_val="{{ $search_history->search_value }}"
+                            data-location_val="{{ $search_history->location_value }}">
+                            {{ $search_history->search_value }}, {{ $search_history->location_value }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    {{-- <div class="filter_modal_area header_search_modal_area" wire:ignore.self id="headerSearchModalArea">
         <div class="container">
             <div class="d-flex-between">
                 <h3 class="notification_title">Search</h3>
@@ -395,7 +430,7 @@
                 @endforeach
             </ul>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Filter Modal  -->
     <div class="filter_modal_area" wire:ignore.self id="searchFilterArea">
@@ -481,9 +516,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-
-
                     </div>
 
                     {{-- <div class="category_filter_grid" wire:ignore>

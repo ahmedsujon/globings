@@ -27,7 +27,7 @@ class AdminsComponent extends Component
             'email' => 'required',
             'phone' => 'required',
             'password' => 'min:8|max:25',
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:20048',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:20000', // 20MB limit
         ]);
 
         $data = new Admin();
@@ -44,9 +44,7 @@ class AdminsComponent extends Component
             $data->avatar = 'assets/images/avatar.png';
         }
 
-
         $data->save();
-
         $this->resetInputs();
         $this->dispatch('closeModal');
         $this->dispatch('success', ['message' => 'New user added successfully']);
@@ -60,7 +58,7 @@ class AdminsComponent extends Component
         $this->phone = $data->phone;
         $this->uploadedAvatar = $data->avatar;
         $this->edit_id = $data->id;
-
+        
         $this->dispatch('showEditModal');
     }
 
@@ -72,12 +70,16 @@ class AdminsComponent extends Component
                 'email' => 'required|email',
                 'phone' => 'required|numeric',
                 'password' => 'min:8|max:25',
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:20000', // 20MB limit
+
             ]);
         } else {
             $this->validate([
                 'name' => 'required',
                 'email' => 'required|email',
                 'phone' => 'required|numeric',
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:20000', // 20MB limit
+
             ]);
         }
 
@@ -91,9 +93,11 @@ class AdminsComponent extends Component
         }
 
         if ($this->avatar) {
-            $imageName = Carbon::now()->timestamp . '_favicon' . $this->avatar->extension();
-            $this->avatar->storeAs('profile_images', $imageName);
-            $user->avatar = 'uploads/profile_images/' . $imageName;
+            $fileName = uniqid() . Carbon::now()->timestamp . '.' . $this->avatar->extension();
+            $this->avatar->storeAs('profile_images', $fileName);
+            $user->avatar = 'uploads/profile_images/' . $fileName;
+        } else {
+            $user->avatar = 'assets/images/avatar.png';
         }
 
         $user->save();

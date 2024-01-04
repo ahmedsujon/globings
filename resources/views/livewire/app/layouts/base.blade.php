@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1  maximum-scale=1 user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Globings</title>
 
@@ -54,9 +54,9 @@
 
 <body>
     {{-- <div class="mainContentArea"> --}}
-        <main>
-            {{ $slot }}
-        </main>
+    <main>
+        {{ $slot }}
+    </main>
     {{-- </div> --}}
     @livewire('app.partials.home-component-partials')
     @if (user())
@@ -116,44 +116,45 @@
         };
         firebase.initializeApp(firebaseConfig);
         const messaging = firebase.messaging();
+
         function startFCM() {
             var saved_token = $('#device_token').val();
 
             messaging
                 .requestPermission()
-                .then(function () {
+                .then(function() {
                     return messaging.getToken()
                 })
-                .then(function (response) {
+                .then(function(response) {
                     $.ajax({
-                        url: '{{ route("store.token") }}',
+                        url: '{{ route('store.token') }}',
                         type: 'POST',
                         data: {
                             token: response,
                             _token: '<?php echo csrf_token(); ?>',
                         },
                         dataType: 'JSON',
-                        success: function (response) {
+                        success: function(response) {
                             console.log('Token stored.');
                         },
-                        error: function (error) {
+                        error: function(error) {
                             console.log(error);
                         },
                     });
-                }).catch(function (error) {
+                }).catch(function(error) {
                     console.log(error);
                 });
         }
 
-        $(document).ready(function(){
+        $(document).ready(function() {
             var status = $('#notification_status').val();
 
-            if(status == 'authenticated'){
+            if (status == 'authenticated') {
                 startFCM();
             }
         });
 
-        messaging.onMessage(function (payload) {
+        messaging.onMessage(function(payload) {
             const title = payload.notification.title;
             const options = {
                 body: payload.notification.body,

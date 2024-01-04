@@ -344,7 +344,8 @@
   bottom: -100%;
   z-index: 1005;
   width: 100%;
-  max-height: 100vh;
+  // max-height: 100vh;
+  height: 100vh;
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: white;
@@ -553,5 +554,30 @@
   .form-check-label {
     display: block;
     margin-top: -5px;
+  }
+}
+
+
+//header Search Modal New
+.header_divider_search_area{
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  z-index: 505;
+  width: 100%;
+  height: 100vh;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: white;
+  box-shadow: 0px -6px 27px 0px rgba(0, 0, 0, 0.25);
+  // @include customScrollbarInner();
+  overflow-x: hidden;
+  @include hover-transition();
+  opacity: 0;
+  visibility: hidden;
+  &.filter_active {
+    bottom: 0;
+    opacity: 1;
+    visibility: visible;
   }
 }
