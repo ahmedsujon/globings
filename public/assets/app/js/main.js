@@ -343,6 +343,75 @@ $(document).ready(function () {
     }
   });
 
+  //Reward Modal
+  $("#rewardModalBtn,#rewardCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#rewardModalArea").toggleClass("sing_modal_active");
+
+    if ($("#rewardModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  //Reward Modal
+  $("#rewarConfirmModalBtn,#rewardConfirmCloseBtn,#rewardNoCloseBtn").click(
+    function (e) {
+      e.preventDefault();
+
+      $("#rewardConfirmModalArea").toggleClass("sing_modal_active");
+
+      if ($("#rewardConfirmModalArea").hasClass("sing_modal_active")) {
+        hideScrollbar();
+      } else {
+        showScrollbar();
+      }
+    }
+  );
+
+  //Reward Success Modal
+  $("#rewarSuccessModalBtn,#rewardSuccessCloseBtn,#successOkCloseBtn").click(
+    function (e) {
+      e.preventDefault();
+
+      $("#rewardSuccessModalArea").toggleClass("sing_modal_active");
+
+      if ($("#rewardSuccessModalArea").hasClass("sing_modal_active")) {
+        hideScrollbar();
+      } else {
+        showScrollbar();
+      }
+    }
+  );
+
+  //Loyalty Modal
+  $("#loyaltyModalBtn,#loyaltyCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#loyaltyModalArea").toggleClass("sing_modal_active");
+
+    if ($("#loyaltyModalArea").hasClass("sing_modal_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
+  // Home Filter Modal
+  $("#homeFilterModalBtn,#homeFilterEditCloseBtn").click(function (e) {
+    e.preventDefault();
+
+    $("#homeFilterModalArea").toggleClass("filter_active");
+
+    if ($("#homeFilterModalArea").hasClass("filter_active")) {
+      hideScrollbar();
+    } else {
+      showScrollbar();
+    }
+  });
+
   //QR Code Modal
   $("#qrCodeModalBtn,#qrCloseBtn").click(function (e) {
     e.preventDefault();
@@ -503,19 +572,6 @@ $(document).ready(function () {
     e.preventDefault();
     $(this).toggleClass("sorting_active");
   });
-
-    // Home Filter Modal
-    $("#homeFilterModalBtn,#homeFilterEditCloseBtn").click(function (e) {
-      e.preventDefault();
-  
-      $("#homeFilterModalArea").toggleClass("filter_active");
-  
-      if ($("#homeFilterModalArea").hasClass("filter_active")) {
-        hideScrollbar();
-      } else {
-        showScrollbar();
-      }
-    });
 
   // Contact Support Modal
   $("#supportModalBtn,#supportEditCloseBtn").click(function (e) {

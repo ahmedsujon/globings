@@ -29,6 +29,7 @@ use App\Http\Controllers\DependableDropdownController;
 use App\Livewire\App\Pages\ReloadShareProfileComponent;
 use App\Http\Controllers\payment\PayPalPaymentController;
 use App\Http\Controllers\payment\StripePaymentController;
+use App\Livewire\App\LoyaltyCards\LoyaltyComponent;
 use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 
 /*
@@ -76,13 +77,16 @@ Route::get('/paypal-payment-success', [PayPalPaymentController::class, 'paymentS
 
 Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->name('app.paymentSuccessComponent')->middleware('auth');
 
-Route::middleware(['auth', 'subscribed'])->group(function(){
+Route::middleware(['auth', 'subscribed'])->group(function () {
     // Profile share routes
     Route::get('/share-my-profile', ShareProfileComponent::class)->name('app.profile.share');
     Route::get('/share-my-profile-reload', ReloadShareProfileComponent::class)->name('app.profile.share.reload');
 
     // Bings routes
     Route::get('/bings', BingComponent::class)->name('app.bings');
+
+    // Loyalty Cards
+    Route::get('/loyalty-cards', LoyaltyComponent::class)->name('app.loyalty.cards');
 
     // Favorites shop routes
     Route::get('/my-favorite-shop', FavoriteShopComponent::class)->name('app.my-favorite-shop');
