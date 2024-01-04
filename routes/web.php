@@ -29,6 +29,7 @@ use App\Http\Controllers\DependableDropdownController;
 use App\Livewire\App\Pages\ReloadShareProfileComponent;
 use App\Http\Controllers\payment\PayPalPaymentController;
 use App\Http\Controllers\payment\StripePaymentController;
+use App\Livewire\App\Auth\VerificationComponent;
 use App\Livewire\App\LoyaltyCards\LoyaltyComponent;
 use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 
@@ -44,40 +45,42 @@ use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 */
 
 // Route::get('/', IndexComponent::class)->name('app.index');
-Route::get('/', HomeComponent::class)->name('app.home')->middleware('subscribed');
-Route::get('/filter', HomeComponent::class)->middleware('subscribed');
+Route::get('/', HomeComponent::class)->name('app.home')->middleware(['subscribed', 'verifiedAccount']);
+Route::get('/filter', HomeComponent::class)->middleware(['subscribed', 'verifiedAccount']);
 
 // Profile routes
-Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile')->middleware('subscribed');
-Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.shopProfile')->middleware('subscribed');
+Route::get('/user-profile/{id}', UserProfileComponent::class)->name('app.userProfile')->middleware(['subscribed', 'verifiedAccount']);
+Route::get('/shop-profile/{user_id}', ShopProfileComponent::class)->name('app.shopProfile')->middleware(['subscribed', 'verifiedAccount']);
 
 // App show menu
-Route::get('/shops', ShopsComponent::class)->name('app.shops')->middleware('subscribed');
-Route::get('/shops/filter', ShopsComponent::class)->middleware('subscribed');
-Route::get('/map-view', MapViewComponent::class)->name('app.map.view')->middleware('subscribed');
+Route::get('/shops', ShopsComponent::class)->name('app.shops')->middleware(['subscribed', 'verifiedAccount']);
+Route::get('/shops/filter', ShopsComponent::class)->middleware(['subscribed', 'verifiedAccount']);
+Route::get('/map-view', MapViewComponent::class)->name('app.map.view')->middleware(['subscribed', 'verifiedAccount']);
 
 // Events routes
-Route::get('/events', EventsComponent::class)->name('app.events')->middleware('subscribed');
-Route::get('/event/{id}', EventDetailsComponent::class)->name('app.event.details')->middleware('subscribed');
+Route::get('/events', EventsComponent::class)->name('app.events')->middleware(['subscribed', 'verifiedAccount']);
+Route::get('/event/{id}', EventDetailsComponent::class)->name('app.event.details')->middleware(['subscribed', 'verifiedAccount']);
 
 
 // Terms-and-conditions routes
-Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.terms-and-conditions')->middleware('subscribed');
+Route::get('/terms-and-conditions', TermsConditionComponent::class)->name('app.terms-and-conditions')->middleware(['subscribed', 'verifiedAccount']);
 
-Route::get('/plans', PackagePlanComponent::class)->name('app.plans')->middleware('auth');
-Route::get('/plans/payment/{subscription_id}', StripePaymentComponent::class)->name('app.planPayment')->middleware('auth');
+Route::get('/plans', PackagePlanComponent::class)->name('app.plans')->middleware(['auth', 'verifiedAccount']);
+Route::get('/plans/payment/{subscription_id}', StripePaymentComponent::class)->name('app.planPayment')->middleware(['auth', 'verifiedAccount']);
 
 //Stripe Payment
-Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe')->middleware('auth');
-Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess')->middleware('auth');
+Route::post('/plans/payment/stripe/pay', [StripePaymentController::class, 'makePayment'])->name('app.payWithStripe')->middleware(['auth', 'verifiedAccount']);
+Route::get('/stripe-payment-success', [StripePaymentController::class, 'paymentSuccess'])->name('app.stripePaymentSuccess')->middleware(['auth', 'verifiedAccount']);
 
 //Paypal Payment
-Route::post('/plans/payment/paypal/pay', [PayPalPaymentController::class, 'makePayment'])->name('app.payWithPaypal')->middleware('auth');
-Route::get('/paypal-payment-success', [PayPalPaymentController::class, 'paymentSuccess'])->name('app.paypalPaymentSuccess')->middleware('auth');
+Route::post('/plans/payment/paypal/pay', [PayPalPaymentController::class, 'makePayment'])->name('app.payWithPaypal')->middleware(['auth', 'verifiedAccount']);
+Route::get('/paypal-payment-success', [PayPalPaymentController::class, 'paymentSuccess'])->name('app.paypalPaymentSuccess')->middleware(['auth', 'verifiedAccount']);
 
-Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->name('app.paymentSuccessComponent')->middleware('auth');
+Route::get('/payment-success-component', StripePaymentSuccessComponent::class)->name('app.paymentSuccessComponent')->middleware(['auth', 'verifiedAccount']);
 
-Route::middleware(['auth', 'subscribed'])->group(function () {
+Route::get('/account-verification', VerificationComponent::class)->name('app.accountVerification')->middleware('auth');
+
+Route::middleware(['auth', 'subscribed', 'verifiedAccount'])->group(function () {
     // Profile share routes
     Route::get('/share-my-profile', ShareProfileComponent::class)->name('app.profile.share');
     Route::get('/share-my-profile-reload', ReloadShareProfileComponent::class)->name('app.profile.share.reload');
