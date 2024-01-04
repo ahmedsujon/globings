@@ -117,6 +117,8 @@ class LoginComponent extends Component
 
                         Auth::guard('web')->attempt(['email' => $this->email, 'password' => $this->password]);
 
+                        $this->sendVerificationCode();
+
                         session()->flash('success', 'Registration Successful');
                         return redirect()->route('app.home');
                     }
@@ -159,6 +161,8 @@ class LoginComponent extends Component
 
                     Auth::guard('web')->attempt(['email' => $this->email, 'password' => $this->password]);
 
+                    $this->sendVerificationCode();
+
                     session()->flash('success', 'Registration Successful');
                     return redirect()->route('app.home');
                 }
@@ -167,6 +171,26 @@ class LoginComponent extends Component
             }
         }
 
+    }
+
+    public function sendVerificationCode(){
+        $getUser = User::where('id', user()->id)->first();
+
+        $otp = rand(100000,999999);
+
+        $getUser->verification_code = $otp;
+        $getUser->save();
+
+        //function to send sms/email
+        $data['email'] = user()->email;
+        $data['verification_code'] = $otp;
+
+        Mail::send('emails.account-verification', $data, function ($message) use ($data) {
+            $message->to($data['email'])
+                ->subject('Account Verification');
+        });
+
+        $this->dispatch('resend_success');
     }
 
     public function forgetPassword()
