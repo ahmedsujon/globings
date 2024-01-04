@@ -8,8 +8,7 @@
                         <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" />
                     </a>
                     <a href="{{ route('app.loyalty.cards') }}" type="button"
-                        class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm"
-                        id="coinModalBtn">
+                        class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm">
                         <span>Loyalty Cards</span>
                         <img src="{{ asset('assets/app/icons/chevron-right.svg') }}" alt="right arrow"
                             class="right_arrow" />
@@ -49,7 +48,7 @@
                             <div class="position-relative">
                                 <div class="active_bar_area" style="width: 15%">
                                     <div class="active_bar"></div>
-                                    <div class="tooltip_text">0.05CHF</div>
+                                    <div class="tooltip_text">5bings</div>
                                 </div>
                                 <div class="bar_line">
                                     <div></div>
@@ -58,8 +57,7 @@
                                             <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
                                         </div>
                                         <div class="price">
-                                            <img src="{{ asset('assets/app/icons/euro.svg') }}" alt="euro icon" />
-                                            <span>5</span>
+                                            <span>€5</span>
                                         </div>
                                     </div>
                                     <div class="git_item">
@@ -67,8 +65,7 @@
                                             <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
                                         </div>
                                         <div class="price">
-                                            <img src="{{ asset('assets/app/icons/euro.svg') }}" alt="euro icon" />
-                                            <span>5</span>
+                                            <span>€10</span>
                                         </div>
                                     </div>
                                     <div class="git_item">
@@ -76,8 +73,7 @@
                                             <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
                                         </div>
                                         <div class="price">
-                                            <img src="{{ asset('assets/app/icons/euro.svg') }}" alt="euro icon" />
-                                            <span>5</span>
+                                            <span>€15</span>
                                         </div>
                                     </div>
                                     <div class="git_item">
@@ -85,8 +81,7 @@
                                             <img src="{{ asset('assets/app/icons/gift.svg') }}" alt="gift icon" />
                                         </div>
                                         <div class="price">
-                                            <img src="{{ asset('assets/app/icons/euro.svg') }}" alt="euro icon" />
-                                            <span>5</span>
+                                            <span>€20</span>
                                         </div>
                                     </div>
                                 </div>
@@ -101,8 +96,10 @@
                             </div>
                             <div class="content_area">
                                 <p>
-                                    Get rewarded with 20 bings when your friends signs up using
-                                    your invitation!
+                                    <a href="{{ route('app.profile.share') }}">
+                                        Get rewarded with 20 bings when your friends signs up using
+                                        your invitation!
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -113,8 +110,10 @@
                             </div>
                             <div class="content_area">
                                 <p>
-                                    Get rewarded with $10 when a shop owner signs up using your
-                                    invitation!
+                                    <a href="{{ route('app.profile.share') }}">
+                                        Get rewarded with $10 when a shop owner signs up using your
+                                        invitation!
+                                    </a>
                                 </p>
                             </div>
                         </div>
@@ -153,9 +152,9 @@
                                         stroke="#545C7C" stroke-width="3" stroke-linecap="round" />
                                 </svg>
 
-                                <span>10</span>
+                                <span>5</span>
                             </div>
-                            <h5>Convert 100 Bings</h5>
+                            <h5>Convert 50 Bings</h5>
                         </div>
                         <div class="reward_item" id="rewarConfirmModalBtn">
                             <div class="price">
@@ -172,7 +171,24 @@
 
                                 <span>10</span>
                             </div>
-                            <h5>Convert 200 Bings or fill in a shop owner</h5>
+                            <h5>Convert 100 Bings or fill in a shop owner</h5>
+                        </div>
+                        <div class="reward_item" id="rewarConfirmModalBtn">
+                            <div class="price">
+                                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.41666 10.8333H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5.41666 15.1667H14.0833" stroke="#545C7C" stroke-width="3"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path
+                                        d="M20.5833 19.0749C19.3584 21.2771 17.1297 22.75 14.5833 22.75C10.7174 22.75 7.58334 19.3548 7.58334 15.1667V10.8333C7.58334 6.64518 10.7174 3.25 14.5833 3.25C17.1297 3.25 19.3584 4.72288 20.5833 6.92511"
+                                        stroke="#545C7C" stroke-width="3" stroke-linecap="round" />
+                                </svg>
+
+                                <span>15</span>
+                            </div>
+                            <h5>Convert 150 Bings</h5>
                         </div>
                         <div class="reward_item" id="rewarConfirmModalBtn">
                             <div class="price">
@@ -189,7 +205,7 @@
 
                                 <span>20</span>
                             </div>
-                            <h5>Convert 400 Bings</h5>
+                            <h5>Convert 200 Bings</h5>
                         </div>
                     </div>
                 </div>
