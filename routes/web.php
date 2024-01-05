@@ -30,6 +30,7 @@ use App\Livewire\App\Pages\ReloadShareProfileComponent;
 use App\Http\Controllers\payment\PayPalPaymentController;
 use App\Http\Controllers\payment\StripePaymentController;
 use App\Livewire\App\Auth\VerificationComponent;
+use App\Livewire\App\Bings\RedeemSuccess;
 use App\Livewire\App\LoyaltyCards\LoyaltyComponent;
 use App\Livewire\App\Payment\StripePaymentSuccessComponent;
 
@@ -87,6 +88,7 @@ Route::middleware(['auth', 'subscribed', 'verifiedAccount'])->group(function () 
 
     // Bings routes
     Route::get('/bings', BingComponent::class)->name('app.bings');
+    Route::get('/bings/redeem/success/{redeem_history_id}', RedeemSuccess::class)->name('app.bingRedeemSuccess');
 
     // Loyalty Cards
     Route::get('/loyalty-cards', LoyaltyComponent::class)->name('app.loyalty.cards');

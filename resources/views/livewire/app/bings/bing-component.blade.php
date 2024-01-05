@@ -46,9 +46,9 @@
                         </div>
                         <div class="collector_bar_area">
                             <div class="position-relative">
-                                <div class="active_bar_area" style="width: 15%">
+                                <div class="active_bar_area" style="width: 72%">
                                     <div class="active_bar"></div>
-                                    <div class="tooltip_text">5bings</div>
+                                    <div class="tooltip_text">{{ user()->bings_balance }}Bings</div>
                                 </div>
                                 <div class="bar_line">
                                     <div></div>
@@ -124,7 +124,7 @@
     </main>
 
     <!-- Reward Card Modal  -->
-    <div class="sing_modal_area reward_modal_area" id="rewardModalArea">
+    <div class="sing_modal_area reward_modal_area" wire:ignore.self id="rewardModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -138,8 +138,9 @@
             </div>
             <div class="reward_grid_area">
                 <div class="container">
-                    <div class="reward_grid">
-                        <div class="reward_item active_reward" id="rewarConfirmModalBtn">
+                    <div class="reward_grid" wire:ignore>
+                        <div class="reward_item" data-value="5" data-bings="50" id="rewarConfirmModalBtn">
+                            {{-- active_reward --}}
                             <div class="price">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -156,7 +157,7 @@
                             </div>
                             <h5>Convert 50 Bings</h5>
                         </div>
-                        <div class="reward_item" id="rewarConfirmModalBtn">
+                        <div class="reward_item" data-value="10" data-bings="100" id="rewarConfirmModalBtn">
                             <div class="price">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -173,7 +174,7 @@
                             </div>
                             <h5>Convert 100 Bings or fill in a shop owner</h5>
                         </div>
-                        <div class="reward_item" id="rewarConfirmModalBtn">
+                        <div class="reward_item" data-value="15" data-bings="150" id="rewarConfirmModalBtn">
                             <div class="price">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -190,7 +191,7 @@
                             </div>
                             <h5>Convert 150 Bings</h5>
                         </div>
-                        <div class="reward_item" id="rewarConfirmModalBtn">
+                        <div class="reward_item" data-value="20" data-bings="200" id="rewarConfirmModalBtn">
                             <div class="price">
                                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -214,7 +215,7 @@
     </div>
 
     <!-- Reward Confirm Card Modal  -->
-    <div class="sing_modal_area reward_confirm_modal_area" id="rewardConfirmModalArea">
+    <div class="sing_modal_area reward_confirm_modal_area" wire:ignore.self id="rewardConfirmModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -229,17 +230,18 @@
             <div class="reward_confirm_area">
                 <div class="container">
                     <div class="reward_grid">
-                        <div class="reward_confirm_item">
+                        <div class="reward_confirm_item" wire:ignore>
                             <div class="price">
-                                <span>$10</span>
+                                <span id="selected_amount"></span>
                             </div>
                             <h5 class="convert_text mt-24">
-                                Do you want to convert 1000 bings in $50?
+                                Do you want to convert <span id="selected_bings"></span> bings in <span
+                                    id="selected_amount_in_details"></span>?
                             </h5>
                         </div>
                         <div class="button_grid mt-24">
                             <button type="button" id="rewardNoCloseBtn">No</button>
-                            <button id="rewarSuccessModalBtn" type="button" class="confirm_yes_btn">Yes</button>
+                            <button type="button" class="confirm_yes_btn" wire:loading.attr='disabled' wire:click.prevent='redeem'>{!! loadingStateWithTextApp('redeem', 'Yes') !!}</button>
                         </div>
                     </div>
                 </div>
@@ -248,7 +250,7 @@
     </div>
 
     <!-- Success Modal  -->
-    <div class="sing_modal_area success_modal_area" id="rewardSuccessModalArea">
+    {{-- <div class="sing_modal_area success_modal_area" wire:ignore.self id="rewardSuccessModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -273,9 +275,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Loyalty Modal  -->
-    <div class="sing_modal_area loyalty_modal_area" id="loyaltyModalArea">
+    <div class="sing_modal_area loyalty_modal_area" wire:ignore.self id="loyaltyModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -351,3 +353,41 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $('.reward_item').on('click', function() {
+            var value = $(this).data('value');
+            var bings = $(this).data('bings');
+
+            $('.reward_item').removeClass('active_reward');
+            $(this).addClass('active_reward');
+
+            $('#selected_amount').html('€' + value);
+            $('#selected_bings').html(bings);
+            $('#selected_amount_in_details').html('€' + value);
+
+            @this.set('amount', value);
+            @this.set('bings', bings);
+        });
+
+
+        $(document).ready(function() {
+            window.addEventListener('error', event => {
+                toast_msg(event.detail[0].message, 'error');
+            });
+
+            function toast_msg(msg,type){
+                $.toast({
+                    heading: "",
+                    text: msg,
+                    showHideTransition: "slide", //plain,fade
+                    icon: type, //success,warning,error,info
+                    position: "bottom-center",
+                    hideAfter: 3000,
+                    loader: true,
+                });
+            }
+        });
+    </script>
+@endpush
