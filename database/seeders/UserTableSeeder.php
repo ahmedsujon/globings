@@ -36,6 +36,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userTwo) {
@@ -49,6 +50,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'Professional';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userThree) {
@@ -62,6 +64,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'Professional';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userFour) {
@@ -75,6 +78,9 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
+            $user->total_bings = 5000;
+            $user->bings_balance = 5000;
             $user->save();
         }
         if (!$userFive) {
@@ -88,6 +94,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userSix) {
@@ -101,6 +108,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userSeven) {
@@ -114,6 +122,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userEight) {
@@ -127,6 +136,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userNine) {
@@ -140,6 +150,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'private';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
         if (!$userTen) {
@@ -153,6 +164,7 @@ class UserTableSeeder extends Seeder
             $user->avatar = 'assets/images/avatar.png';
             $user->account_type = 'Professional';
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
+            $user->email_verified_at = now();
             $user->save();
         }
     }
