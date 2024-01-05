@@ -2,11 +2,11 @@
 
 namespace App\Livewire\App\Bings;
 
-use Carbon\Carbon;
-use App\Models\User;
-use Livewire\Component;
 use App\Models\BingsHistory;
 use App\Models\RedeemHistory;
+use App\Models\User;
+use Carbon\Carbon;
+use Livewire\Component;
 
 class BingComponent extends Component
 {
@@ -22,7 +22,7 @@ class BingComponent extends Component
 
             $all_histories[] = [
                 'date' => Carbon::parse($date->created_at)->format('d F, Y'),
-                'data' => $his
+                'data' => $his,
             ];
         }
 
@@ -34,7 +34,7 @@ class BingComponent extends Component
     {
         sleep(1);
 
-        if($this->bings > user()->bings_balance){
+        if ($this->bings > user()->bings_balance) {
             $this->dispatch('error', ['message' => 'Not enough bings to redeem']);
         } else {
             $user = User::where('id', user()->id)->first();
@@ -51,11 +51,22 @@ class BingComponent extends Component
             return redirect()->route('app.bingRedeemSuccess', ['redeem_history_id' => $history->id]);
         }
 
-
     }
 
     public function render()
     {
-        return view('livewire.app.bings.bing-component')->layout('livewire.app.layouts.base');
+        $progress = 0;
+        $target = 200;
+        $bings = user()->bings_balance;
+
+        $progress = ($bings / $target) * 100;
+
+        if($progress >= 100){
+            $progress = 100;
+        }
+
+
+
+        return view('livewire.app.bings.bing-component', ['progress' => $progress])->layout('livewire.app.layouts.base');
     }
 }

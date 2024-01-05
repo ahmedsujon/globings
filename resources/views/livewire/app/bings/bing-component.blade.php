@@ -46,7 +46,7 @@
                         </div>
                         <div class="collector_bar_area">
                             <div class="position-relative">
-                                <div class="active_bar_area" style="width: 72%">
+                                <div class="active_bar_area" style="width: {{ $progress }}%">
                                     <div class="active_bar"></div>
                                     <div class="tooltip_text">{{ user()->bings_balance }}Bings</div>
                                 </div>
