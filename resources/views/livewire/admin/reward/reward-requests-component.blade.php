@@ -71,12 +71,17 @@
                                                 <tr>
                                                     <td class="text-center">{{ $sl++ }}</td>
                                                     <td>
-                                                        {{ getUserByID($reward_request->user_id)->first_name }} {{ getUserByID($reward_request->user_id)->last_name }}
+                                                        {{ getUserByID($reward_request->user_id)->first_name }}
+                                                        {{ getUserByID($reward_request->user_id)->last_name }}
                                                     </td>
-                                                    <td class="text-center">{{ getUserByID($reward_request->user_id)->phone }}</td>
-                                                    <td class="text-center">{{ getUserByID($reward_request->user_id)->email }}</td>
+                                                    <td class="text-center">
+                                                        {{ getUserByID($reward_request->user_id)->phone }}</td>
+                                                    <td class="text-center">
+                                                        {{ getUserByID($reward_request->user_id)->email }}</td>
                                                     <td class="text-center">€{{ $reward_request->amount }}</td>
-                                                    <td class="text-center">{{ getUserByID($reward_request->user_id)->bings_balance }} Bings</td>
+                                                    <td class="text-center">
+                                                        {{ getUserByID($reward_request->user_id)->bings_balance }} Bings
+                                                    </td>
                                                     <td class="text-center" style="width: 15%;">
                                                         @if ($reward_request->status == 0)
                                                             <button class="btn btn-xs btn-danger"
