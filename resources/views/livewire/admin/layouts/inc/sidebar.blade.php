@@ -46,6 +46,18 @@
                     </li>
                     @endif
 
+                    @if (isAdminPermitted('admins_manage'))
+                    <li class="{{ request()->is('admin/reward/requests') ? 'mm-active' : '' }}">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                            <i class="bx bx-add-to-queue"></i>
+                            <span key="t-multi-level">Reward Points</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="true">
+                            <li><a href="{{ route('admin.reward.requests') }}">Reward Request</a></li>
+                        </ul>
+                    </li>
+                    @endif
+
                     {{-- @if (isAdminPermitted('admins_manage'))
                     <li class="{{ request()->is('admin/onboardings') ? 'mm-active' : '' }}">
                         <a href="{{ route('admin.onboardings') }}" class="waves-effect">
