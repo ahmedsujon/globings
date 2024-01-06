@@ -112,7 +112,7 @@ Route::middleware(['auth', 'subscribed', 'verifiedAccount'])->group(function () 
     Route::get('/scanner/scan-success', ScanSuccessComponent::class)->name('app.scannerScanSuccess');
 
     Route::post('/store-token', [NotificationSendController::class, 'updateDeviceToken'])->name('store.token');
-    Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
+    Route::get('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
 });
 
 
