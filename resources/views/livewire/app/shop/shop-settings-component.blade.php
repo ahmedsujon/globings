@@ -110,10 +110,12 @@
                 </div>
 
                 <div class="input_row nice_select_row" wire:ignore>
-                    <select class="dependent" id="shop_sub_category_select" style="width: 100%; padding: 10px; border: 1px solid #F0F0F0;">
+                    <select class="dependent" id="shop_sub_category_select"
+                        style="width: 100%; padding: 10px; border: 1px solid #F0F0F0;">
                         <option value="">Select Sub-Category</option>
                         @foreach ($sub_cats as $scat)
-                            <option value="{{ $scat->id }}" {{ $scat->id == $shop_sub_category ? 'selected' : '' }}>
+                            <option value="{{ $scat->id }}"
+                                {{ $scat->id == $shop_sub_category ? 'selected' : '' }}>
                                 {{ $scat->name }}</option>
                         @endforeach
                     </select>
@@ -127,9 +129,29 @@
                     <select class="js-example-basic-single" multiple="multiple" id="multipleSelect">
                         <option value="">Select Sub-Sub-Categories</option>
                         @foreach ($sub_sub_cats as $sscat)
-                            <option value="{{ $sscat->id }}" {{ in_array($sscat->name, $shop_sub_sub_category) ? 'selected' : '' }}>{{ $sscat->name }}</option>
+                            <option value="{{ $sscat->id }}"
+                                {{ in_array($sscat->name, $shop_sub_sub_category) ? 'selected' : '' }}>
+                                {{ $sscat->name }}</option>
                         @endforeach
                     </select>
+                </div>
+
+                <p>Want to offer free gift to your returning customer for multiple visit your shop</p>
+                <div class="input_row mt-2">
+                    <label for="visit_gift">What you want to offer?</label>
+                    <input type="text" wire:model.blur="visit_gift" placeholder="1 Free Drink" class="input_field" />
+                    @error('visit_gift')
+                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                        <br>
+                    @enderror
+                </div>
+                <div class="input_row">
+                    <label for="visit_time">How much time should visit?</label>
+                    <input type="text" wire:model.blur="visit_time" placeholder="10" class="input_field" />
+                    @error('visit_time')
+                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                        <br>
+                    @enderror
                 </div>
 
                 <div class="input_row">
