@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\UserSubscription;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -52,6 +54,17 @@ class UserTableSeeder extends Seeder
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
             $user->email_verified_at = now();
             $user->save();
+
+            $subscription = new UserSubscription();
+            $subscription->user_id = $user->id;
+            $subscription->package_id = 3;
+            $subscription->time_plan_id = 9;
+            $subscription->start_date = Carbon::parse(now())->subDays(1);
+            $subscription->end_date = Carbon::parse(now())->addDays(30);
+            $subscription->payment_status = 'paid';
+            $subscription->paid_via = 'stripe';
+            $subscription->active = 1;
+            $subscription->save();
         }
         if (!$userThree) {
             $user = new User();
@@ -66,6 +79,18 @@ class UserTableSeeder extends Seeder
             $user->referral_code = 'GL-' . Str::upper(Str::random(7)) . '1';
             $user->email_verified_at = now();
             $user->save();
+
+            $subscription = new UserSubscription();
+            $subscription->user_id = $user->id;
+            $subscription->package_id = 3;
+            $subscription->time_plan_id = 9;
+            $subscription->start_date = Carbon::parse(now())->subDays(1);
+            $subscription->end_date = Carbon::parse(now())->addDays(30);
+            $subscription->payment_status = 'paid';
+            $subscription->paid_via = 'stripe';
+            $subscription->active = 1;
+            $subscription->save();
+
         }
         if (!$userFour) {
             $user = new User();
