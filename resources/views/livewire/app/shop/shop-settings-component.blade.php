@@ -136,7 +136,6 @@
                     </select>
                 </div>
 
-                <p>Want to offer free gift to your returning customer for multiple visit your shop</p>
                 <div class="input_row mt-2">
                     <label for="visit_gift">What you want to offer?</label>
                     <input type="text" wire:model.blur="visit_gift" placeholder="1 Free Drink" class="input_field" />

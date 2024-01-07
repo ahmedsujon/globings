@@ -39,8 +39,8 @@
             </div>
             <div class="container">
                 <div class="profile_action_grid">
-                    <button type="button" class="edit_btn" id="profileEditModalBtn">Edit profile</button>
-                    <a href="{{ route('app.profile.share') }}" class="invite_btn">Share Profile</a>
+                    <button type="button" class="edit_btn">Edit profile</button>
+                    <a href="{{ route('app.profile.share', ['referral_code'=>$profile->referral_code]) }}" class="invite_btn">Share Profile</a>
                 </div>
             </div>
             <div class="profile_card_area">

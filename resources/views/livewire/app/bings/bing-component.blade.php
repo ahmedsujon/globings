@@ -92,7 +92,7 @@
                             </div>
                             <div class="content_area">
                                 <p>
-                                    <a href="{{ route('app.profile.share') }}">
+                                    <a href="#">
                                         Get rewarded with 20 bings when your friends signs up using
                                         your invitation!
                                     </a>
@@ -106,7 +106,7 @@
                             </div>
                             <div class="content_area">
                                 <p>
-                                    <a href="{{ route('app.profile.share') }}">
+                                    <a href="#">
                                         Get rewarded with $10 when a shop owner signs up using your
                                         invitation!
                                     </a>
