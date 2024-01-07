@@ -16,7 +16,7 @@ class PackageTableSeeder extends Seeder
     {
         $packages = [
             [
-                'package_name' => 'Basic',
+                'package_name' => 'Basic: 2 Post Per Month',
                 'description' => 'Basic Package',
                 'time_plans' => [
                     'Monthly Plan' => [
@@ -38,7 +38,7 @@ class PackageTableSeeder extends Seeder
 
             ],
             [
-                'package_name' => 'Premium',
+                'package_name' => 'Premium: 5 Post Per Month',
                 'description' => 'Premium Package',
                 'time_plans' => [
                     'Monthly Plan' => [
@@ -60,7 +60,7 @@ class PackageTableSeeder extends Seeder
 
             ],
             [
-                'package_name' => 'Professional',
+                'package_name' => 'Professional: 10 Post Per Month',
                 'description' => 'Professional Package',
                 'time_plans' => [
                     'Monthly Plan' => [

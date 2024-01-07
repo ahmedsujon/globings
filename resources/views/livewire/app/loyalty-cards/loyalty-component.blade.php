@@ -6,7 +6,7 @@
                 <div class="container">
                     <div class="loaylty_content_area">
                         <form action="" class="post_search_form place_search_form">
-                            <input type="search" placeholder="Product Name" />
+                            <input type="search" placeholder="Search by Shop | Category" />
                             <img src="{{ asset('assets/app/icons/post_search_icon.svg') }}" alt="search icon"
                                 class="search_icon" />
                         </form>
@@ -33,7 +33,7 @@
                                     @foreach ($rewarded_shops as $rewarded_shop)
                                         <div class="loyalty_item">
                                             <div class="price"><span>{{ $rewarded_shop->visit_gift }}</span></div>
-                                            <h5>0 visit on{{ $rewarded_shop->visit_time }}</h5>
+                                            <h5>{{ $rewarded_shop->visited }} visit on{{ $rewarded_shop->visit_time }}</h5>
                                         </div>
                                     @endforeach
                                 </div>

@@ -4,9 +4,6 @@
         <section class="bings_wrapper bing_wrapper2 mt-24">
             <div class="container">
                 <div class="d-flex-between">
-                    <a href="#" class="bing_setting_icion">
-                        <img src="{{ asset('assets/app/icons/settings.svg') }}" alt="setting icon" />
-                    </a>
                     <a href="{{ route('app.loyalty.cards') }}" type="button"
                         class="bing_coin_btn bing_coin_top_btn d-flex align-items-center flex-wrap g-smm">
                         <span>Loyalty Cards</span>
@@ -34,7 +31,7 @@
                     </div>
                     <div class="coupon_collector_area mt-24">
                         <div class="collector_header d-flex-between">
-                            <h3>Coupon Collection</h3>
+                            <h3>The Bings Race</h3>
                             <button type="button" id="rewardModalBtn">
                                 <span> See all </span>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -86,7 +83,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <h3 class="remain_title">30 days remaining</h3>
                         </div>
                     </div>
                     <div class="collector_grid_area">
