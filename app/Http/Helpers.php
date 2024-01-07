@@ -1,21 +1,21 @@
 <?php
 
-use Carbon\Carbon;
-use App\Models\Post;
-use App\Models\Shop;
-use App\Models\User;
 use App\Models\Admin;
+use App\Models\AdminPermission;
 use App\Models\Category;
-use App\Models\FcmToken;
-use App\Models\PostLike;
-use App\Models\ShopReview;
 use App\Models\CommentLike;
 use App\Models\CommentReply;
-use App\Models\ShopBookmark;
-use App\Models\AdminPermission;
 use App\Models\CommentReplyLike;
-use Illuminate\Support\Facades\DB;
+use App\Models\FcmToken;
+use App\Models\Post;
+use App\Models\PostLike;
+use App\Models\Shop;
+use App\Models\ShopBookmark;
+use App\Models\ShopReview;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 function admin()
 {
@@ -31,7 +31,6 @@ function getCategoryID($id)
 {
     return Category::find($id);
 }
-
 
 function vendor()
 {
@@ -66,7 +65,7 @@ function getShopProfileHome($id)
 
 function isLiked($post_id)
 {
-    if(user()){
+    if (user()) {
         return PostLike::select('id')->where('user_id', user()->id)->where('post_id', $post_id)->first();
     } else {
         return false;
@@ -100,7 +99,7 @@ function post_comment_replies($comment_id)
 
 function isCommentLiked($comment_id)
 {
-    if(user()){
+    if (user()) {
         return CommentLike::select('id')->where('user_id', user()->id)->where('comment_id', $comment_id)->first();
     } else {
         return false;
@@ -108,7 +107,7 @@ function isCommentLiked($comment_id)
 }
 function isCommentReplyLiked($comment_reply_id)
 {
-    if(user()){
+    if (user()) {
         return CommentReplyLike::select('id')->where('user_id', user()->id)->where('comment_reply_id', $comment_reply_id)->first();
     } else {
         return false;
@@ -119,7 +118,7 @@ function userHasActiveSubscription()
 {
     $subscription = User::join('user_subscriptions', 'users.id', 'user_subscriptions.user_id')->where('end_date', '>', Carbon::parse(now()))->where('users.id', user()->id)->orderBy('user_subscriptions.created_at', 'DESC')->first();
 
-    if($subscription){
+    if ($subscription) {
         return true;
     } else {
         return false;
@@ -134,25 +133,22 @@ function postLimit()
 
     $value = '';
 
-    if($subscription->package_id == 1){
-        if($total_posts >= 2){
+    if ($subscription->package_id == 1) {
+        if ($total_posts >= 2) {
             $value = true;
-        }
-        else{
+        } else {
             $value = false;
         }
-    } else if($subscription->package_id == 2){
-        if($total_posts >= 4){
+    } else if ($subscription->package_id == 2) {
+        if ($total_posts >= 4) {
             $value = true;
-        }
-        else{
+        } else {
             $value = false;
         }
-    } else if($subscription->package_id == 3){
-        if($total_posts >= 8){
+    } else if ($subscription->package_id == 3) {
+        if ($total_posts >= 8) {
             $value = true;
-        }
-        else{
+        } else {
             $value = false;
         }
     }
@@ -172,8 +168,8 @@ function star_review($star)
 
     $rem_star = (5 - $avg_star);
 
-    $active_star = '<li><img src="'.asset('assets/app/icons/star_fill.svg').'" alt="star icon" /></li>';
-    $inactive_star = '<li><img src="'.asset('assets/app/icons/star_blank.svg').'" alt="star icon" /></li>';
+    $active_star = '<li><img src="' . asset('assets/app/icons/star_fill.svg') . '" alt="star icon" /></li>';
+    $inactive_star = '<li><img src="' . asset('assets/app/icons/star_blank.svg') . '" alt="star icon" /></li>';
 
     $html = str_repeat($active_star, $avg_star);
     $html .= str_repeat($inactive_star, $rem_star);
@@ -191,8 +187,8 @@ function shop_star_review($shop_id)
 
     $rem_star = (5 - $avg_star);
 
-    $active_star = '<li><img src="'.asset('assets/app/icons/star_fill.svg').'" alt="star icon" /></li>';
-    $inactive_star = '<li><img src="'.asset('assets/app/icons/star_blank.svg').'" alt="star icon" /></li>';
+    $active_star = '<li><img src="' . asset('assets/app/icons/star_fill.svg') . '" alt="star icon" /></li>';
+    $inactive_star = '<li><img src="' . asset('assets/app/icons/star_blank.svg') . '" alt="star icon" /></li>';
 
     $html = str_repeat($active_star, $avg_star);
     $html .= str_repeat($inactive_star, $rem_star);
@@ -212,7 +208,6 @@ function avgShopReview($shop_id)
     return $avg_star;
 }
 
-
 function category_total_shop($category_id)
 {
     return DB::table('shops')->where('category_id', $category_id)->count();
@@ -225,9 +220,8 @@ function sub_category_total_shop($category_id)
 
 function sub_sub_category_total_shop($category_name)
 {
-    return DB::table('shops')->where('sub_sub_category', 'LIKE', '%"'.$category_name.'"%')->count();
+    return DB::table('shops')->where('sub_sub_category', 'LIKE', '%"' . $category_name . '"%')->count();
 }
-
 
 //setting
 // function setting()
@@ -255,7 +249,6 @@ function isAdminPermitted($permission)
         return false;
     }
 }
-
 
 function loadingStateSm($key, $title)
 {
@@ -293,7 +286,6 @@ function loadingStateWithText($key, $title)
     return $loadingSpinner;
 }
 
-
 function loadingStateWithTextApp($key, $title)
 {
     $loadingSpinner = '
@@ -303,34 +295,36 @@ function loadingStateWithTextApp($key, $title)
     return $loadingSpinner;
 }
 
-function showErrorMessage($message, $file, $line){
-    if(env('APP_DEBUG') == 'true'){
+function showErrorMessage($message, $file, $line)
+{
+    if (env('APP_DEBUG') == 'true') {
         $error_array = [
             'Message' => $message,
             'File' => $file,
-            'Line No' => $line
+            'Line No' => $line,
         ];
         return dd($error_array);
     }
 }
 
-function tagify_array( $value ) {
+function tagify_array($value)
+{
 
     // Because the $value is an array of json objects
     // we need this helper function.
 
     // First check if is not empty
-    if( empty( $value ) ) {
+    if (empty($value)) {
 
         return $output = array();
 
     } else {
 
         // Remove squarebrackets
-        $value = str_replace( array('[',']') , '' , $value );
+        $value = str_replace(array('[', ']'), '', $value);
 
         // Fix escaped double quotes
-        $value = str_replace( '\"', "\"" , $value );
+        $value = str_replace('\"', "\"", $value);
 
         // Create an array of json objects
         $value = explode(',', $value);
@@ -340,10 +334,10 @@ function tagify_array( $value ) {
         $value_array = array();
 
         // Check if is array and not empty
-        if ( is_array($value) && 0 !== count($value) ) {
+        if (is_array($value) && 0 !== count($value)) {
 
             foreach ($value as $value_inner) {
-                $value_array[] = json_decode( $value_inner );
+                $value_array[] = json_decode($value_inner);
             }
 
             // Convert object to array
@@ -355,8 +349,8 @@ function tagify_array( $value ) {
             // Create an array only with the values of the child array
             $output = array();
 
-            foreach($value_array as $value_array_inner) {
-                foreach ($value_array_inner as $key=>$val) {
+            foreach ($value_array as $value_array_inner) {
+                foreach ($value_array_inner as $key => $val) {
                     $output[] = $val;
                 }
             }
@@ -369,47 +363,98 @@ function tagify_array( $value ) {
 
 }
 
-function pushNotification($title, $body) {
+// function pushNotification($title, $body)
+// {
+//     $serverKey = env('FIREBASE_SERVER_KEY');
+
+//     // Replace with the FCM registration token of the device you want to send the notification to
+//     $registrationToken = FcmToken::where('status', 1)->pluck('token')->all();
+
+//     // URL for FCM endpoint
+//     $endpoint = 'https://fcm.googleapis.com/v1/projects/globingsapp/messages:send';
+
+//     // Create the notification payload
+//     $message = [
+//         'message' => [
+//             'token' => $registrationToken,
+//             'notification' => [
+//                 "title" => $title,
+//                 "body" => $body,
+//             ],
+//         ],
+//     ];
+
+//     // Convert the payload to JSON
+//     $jsonMessage = json_encode($message);
+
+//     // Set up the HTTP headers
+//     $headers = [
+//         'Authorization: Bearer ' . $serverKey,
+//         'Content-Type: application/json',
+//     ];
+
+//     // Initialize cURL session
+//     $ch = curl_init($endpoint);
+
+//     // Set cURL options
+//     curl_setopt($ch, CURLOPT_POST, true);
+//     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//     curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonMessage);
+
+//     // Execute cURL session and get the result
+//     $response = curl_exec($ch);
+
+//     // Check for cURL errors
+//     if (curl_errno($ch)) {
+//         echo 'Error during cURL request: ' . curl_error($ch);
+//     }
+
+//     // Close cURL session
+//     curl_close($ch);
+
+//     // Output the FCM response
+//     // echo 'FCM Response: ' . $response;
+// }
+
+function pushNotification($title, $body)
+{
     $url = 'https://fcm.googleapis.com/fcm/send';
 
-        // $FcmToken = User::whereNotNull('device_token')->where('id', '!=', user()->id)->where('notification_status', 1)->pluck('device_token')->all();
-        $FcmToken = FcmToken::where('status', 1)->pluck('token')->all();
+    $FcmToken = FcmToken::where('status', 1)->pluck('token')->all();
 
-        $serverKey =env('FIREBASE_SERVER_KEY'); // ADD SERVER KEY HERE PROVIDED BY FCM
+    $serverKey = env('FIREBASE_SERVER_KEY'); // ADD SERVER KEY HERE PROVIDED BY FCM
 
-        $data = [
-            "registration_ids" => $FcmToken,
-            "notification" => [
-                "title" => $title,
-                "body" => $body,
-            ]
-        ];
-        $encodedData = json_encode($data);
+    $data = [
+        "registration_ids" => $FcmToken,
+        "notification" => [
+            "title" => $title,
+            "body" => $body,
+        ],
+    ];
+    $encodedData = json_encode($data);
 
-        $headers = [
-            'Authorization:key=' . $serverKey,
-            'Content-Type: application/json',
-        ];
+    $headers = [
+        'Authorization:key=' . $serverKey,
+        'Content-Type: application/json',
+    ];
 
-        $ch = curl_init();
+    $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        // Disabling SSL Certificate support temporarly
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
-        // Execute post
-        $result = curl_exec($ch);
-        if ($result === FALSE) {
-            die('Curl failed: ' . curl_error($ch));
-        }
-        // Close connection
-        curl_close($ch);
-        // FCM response
-        // dd($result);
-        return redirect()->back();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+    // Disabling SSL Certificate support temporarly
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
+    // Execute post
+    $result = curl_exec($ch);
+    if ($result === false) {
+        die('Curl failed: ' . curl_error($ch));
+    }
+    // Close connection
+    curl_close($ch);
 }

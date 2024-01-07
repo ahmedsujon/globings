@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\FcmToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,9 +11,13 @@ class NotificationSendController extends Controller
 {
     public function updateDeviceToken(Request $request)
     {
-        $user = User::find(user()->id);
-        $user->device_token = $request->token;
-        $user->save();
+        $getToken = FcmToken::where('token', $request->token)->first();
+
+        if (!$getToken) {
+            $token = new FcmToken();
+            $token->token = $request->token;
+            $token->save();
+        }
 
         return response()->json(['Token successfully stored.']);
     }
@@ -21,9 +26,9 @@ class NotificationSendController extends Controller
     {
         $url = 'https://fcm.googleapis.com/fcm/send';
 
-        $FcmToken = User::whereNotNull('device_token')->where('id', '!=', user()->id)->pluck('device_token')->all();
+        $FcmToken = FcmToken::where('status', 1)->pluck('token')->all();
 
-        $serverKey =env('FIREBASE_SERVER_KEY'); // ADD SERVER KEY HERE PROVIDED BY FCM
+        $serverKey = env('FIREBASE_SERVER_KEY'); // ADD SERVER KEY HERE PROVIDED BY FCM
 
         $data = [
             "registration_ids" => $FcmToken,
@@ -58,7 +63,6 @@ class NotificationSendController extends Controller
         // Close connection
         curl_close($ch);
         // FCM response
-        // dd($result);
-        return redirect()->back();
+        echo 'FCM Response: ' . $result;
     }
 }
