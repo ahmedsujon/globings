@@ -15,8 +15,8 @@ class ShopSettingsComponent extends Component
     use WithFileUploads;
 
     public $edit_id, $delete_id, $user_id;
-    public $name, $shop_category, $sub_category, $sub_sub_categories, $shop_sub_category, $shop_sub_sub_category, 
-    $sub_cats, $sub_sub_cats, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, 
+    public $name, $shop_category, $sub_category, $sub_sub_categories, $shop_sub_category, $shop_sub_sub_category,
+    $sub_cats, $sub_sub_cats, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude,
     $longitude, $city, $address, $bings_discount, $loyalty_card, $visit_time, $visit_gift;
 
     public function mount()
@@ -77,7 +77,9 @@ class ShopSettingsComponent extends Component
         $data->category_id = $this->shop_category;
         $data->sub_category_id = $this->sub_category;
         $data->shop_category = Category::find($this->shop_category)->name;
-        $data->sub_category = Category::find($this->sub_category)->name;
+        if($this->sub_category){
+            $data->sub_category = Category::find($this->sub_category)->name;
+        }
         if($this->sub_sub_categories){
             $data->sub_sub_category = Category::whereIn('id', $this->sub_sub_categories)->pluck('name')->toArray();
         }
