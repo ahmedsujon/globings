@@ -83,7 +83,7 @@ Route::get('/account-verification', VerificationComponent::class)->name('app.acc
 
 Route::middleware(['auth', 'subscribed', 'verifiedAccount'])->group(function () {
     // Profile share routes
-    Route::get('/share-my-profile', ShareProfileComponent::class)->name('app.profile.share');
+    Route::get('/share-my-profile/{referral_code}', ShareProfileComponent::class)->name('app.profile.share');
     Route::get('/share-my-profile-reload', ReloadShareProfileComponent::class)->name('app.profile.share.reload');
 
     // Bings routes

@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('app.profile.share') }}">
+                            <a href="{{ route('app.profile') }}">
                                 <img src="{{ asset('assets/app/icons/footer_top_menu_icon4.svg') }}"
                                     alt="footer menu icon " />
                                 <span class="text">Invite</span>

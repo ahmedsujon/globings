@@ -27,6 +27,8 @@ class ShopTableSeeder extends Seeder
             $shop->category_id = $category->id;
             $shop->name = $shop_ar;
             $shop->shop_category = $category->name;
+            $shop->visit_time = rand(1,5);
+            $shop->visit_gift = '1 Free Drinks';
             $shop->description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit';
             $shop->profile_image = 'assets/images/placeholder.jpg';
             $shop->cover_photo = 'assets/images/placeholder-rect.jpg';
