@@ -30,8 +30,19 @@ class BingComponent extends Component
         $this->referred_bings = BingsHistory::where('user_id', user()->id)->where('type', 'referral')->get()->sum('bings');
     }
 
+    public $payment_method, $phone, $email;
+
     public function redeem()
     {
+        $this->validate([
+            'payment_method' => 'required',
+            'phone' => 'required_if:payment_method,bank',
+            'email' => 'required_if:payment_method,paypal',
+        ], [
+            'payment_method.*' => 'Select payment method',
+            'phone.*' => 'This field is required',
+            'email.*' => 'This field is required',
+        ]);
         sleep(1);
 
         if ($this->bings > user()->bings_balance) {
@@ -45,6 +56,9 @@ class BingComponent extends Component
             $history->user_id = user()->id;
             $history->bings = $this->bings;
             $history->amount = $this->amount;
+            $history->payment_method = $this->payment_method;
+            $history->phone = $this->phone;
+            $history->email = $this->email;
             $history->status = 0;
             $history->save();
 

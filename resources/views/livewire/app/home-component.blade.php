@@ -757,7 +757,7 @@
                 <div class="input_row">
                     <label for="fileUpload" class="upload_label">
                         <img src="{{ asset('assets/app/icons/mdi_photo-library.svg') }}" alt="photo libray" />
-                        <span>Add photos/videos {{ $post_status }}</span>
+                        <span>Add photos/videos</span>
                     </label>
                     <input type="file" id="fileUpload" wire:model.blur='images' multiple class="d-none" />
                     @error('images')

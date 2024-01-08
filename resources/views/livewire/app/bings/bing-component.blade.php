@@ -237,7 +237,7 @@
                         </div>
                         <div class="button_grid mt-24">
                             <button type="button" id="rewardNoCloseBtn">No</button>
-                            <button type="button" class="confirm_yes_btn" wire:loading.attr='disabled' wire:click.prevent='redeem'>{!! loadingStateWithTextApp('redeem', 'Yes') !!}</button>
+                            <button id="rewarSuccessModalBtn" type="button" class="confirm_yes_btn">Yes</button>
                         </div>
                     </div>
                 </div>
@@ -246,7 +246,7 @@
     </div>
 
     <!-- Success Modal  -->
-    {{-- <div class="sing_modal_area success_modal_area" wire:ignore.self id="rewardSuccessModalArea">
+    <div class="sing_modal_area success_modal_area" wire:ignore.self id="rewardSuccessModalArea">
         <div class="bings_wrapper pb-0">
             <div class="bing_back_area">
                 <div class="container">
@@ -259,19 +259,47 @@
                 </div>
             </div>
             <div class="container">
-                <div class="success_content_area">
-                    <img src="{{ asset('assets/app/icons/Checkmark.svg') }}" alt="check mark" />
-                    <h4>Successful</h4>
-                    <h5>Your 1000 bings convert successfully complete in $50.</h5>
-                    <div class="ok_btn_area">
-                        <button type="button" class="ok_btn" id="successOkCloseBtn">
-                            OK
+                <form action="" class="mobile_form_area" wire:submit.prevent='redeem'>
+                    <div class="input_row">
+                        <label for="">Payment Method</label>
+                        <select wire:model.live='payment_method' class="input_field">
+                            <option value="">Select payment method</option>
+                            <option value="bank">Bank</option>
+                            <option value="paypal">Paypal</option>
+                        </select>
+                        @error('payment_method')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    @if ($payment_method == 'bank')
+                        <div class="input_row">
+                            <label for="">Phone Number</label>
+                            <input type="text" placeholder="Enter phone number" wire:model.blur='phone' class="input_field" />
+                            @error('phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    @elseif ($payment_method == 'paypal')
+                        <div class="input_row">
+                            <label for="">Email</label>
+                            <input type="email" placeholder="Enter email" wire:model.blur='email' class="input_field" />
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    @endif
+
+                    <div style="margin-top: 15px;">
+                        <button type="submit" class="login_btn login_btn_fill" wire:loading.attr='disabled' wire:click.prevent='redeem'>
+                            {!! loadingStateWithTextApp('redeem', 'Confirm') !!}
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </div> --}}
+    </div>
+
     <!-- Loyalty Modal  -->
     <div class="sing_modal_area loyalty_modal_area" wire:ignore.self id="loyaltyModalArea">
         <div class="bings_wrapper pb-0">

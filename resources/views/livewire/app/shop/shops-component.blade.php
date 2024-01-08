@@ -86,25 +86,7 @@
                     <img src="{{ asset('assets/app/images/header/header_logo.svg') }}" alt="logo" />
                 </a>
                 <ul class="header_right_list d-flex align-items-center justify-content-end flex-wrap">
-                    <li>
-                        @auth
-                            @if (user()->account_type == 'Professional')
-                                @if (userHasActiveSubscription())
-                                    <a href="javascript:void(0)" id="openPostCreateBtn">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
-                                @else
-                                    <a href="{{ route('app.plans') }}">
-                                        <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                                    </a>
-                                @endif
-                            @endif
-                        @else
-                            <a href="{{ route('login') }}">
-                                <img src="{{ asset('assets/app/icons/plus-circle.svg') }}" alt="plus icon" />
-                            </a>
-                        @endauth
-                    </li>
+                    
                     <li>
                         <a href="{{ route('app.my-favorite-shop') }}">
                             <img src="{{ asset('assets/app/icons/heart.svg') }}" alt="heart icon" />

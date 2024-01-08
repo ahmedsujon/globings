@@ -16,6 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->integer('bings')->default(0);
             $table->integer('amount')->default(0);
+            $table->string('payment_method')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

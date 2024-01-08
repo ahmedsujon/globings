@@ -138,7 +138,7 @@
 
 
                 <div class="form-check pb-3">
-                    <input class="form-check-input" wire:model.blur="loyalty_card" type="checkbox" value=""
+                    <input class="form-check-input" wire:model.live="loyalty_card" type="checkbox" value=""
                         id="flexCheckIndeterminate">
                     <label class="form-check-label" for="flexCheckIndeterminate">
                         Want to join Loyalty Card program?
