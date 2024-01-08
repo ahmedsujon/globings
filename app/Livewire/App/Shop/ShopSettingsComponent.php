@@ -17,7 +17,7 @@ class ShopSettingsComponent extends Component
     public $edit_id, $delete_id, $user_id;
     public $name, $shop_category, $sub_category, $sub_sub_categories, $shop_sub_category, $shop_sub_sub_category, 
     $sub_cats, $sub_sub_cats, $website_url, $description, $avatar, $uploadedAvatar, $coverImage, $latitude, 
-    $longitude, $city, $address, $bings_discount, $visit_time, $visit_gift;
+    $longitude, $city, $address, $bings_discount, $loyalty_card, $visit_time, $visit_gift;
 
     public function mount()
     {
@@ -32,6 +32,7 @@ class ShopSettingsComponent extends Component
         $this->sub_cats = Category::where('parent_id', $data->category_id)->where('level', 1)->get();
         $this->sub_sub_cats = Category::where('parent_id', $data->sub_category_id)->where('level', 2)->get();
 
+        $this->loyalty_card = $data->loyalty_card;
         $this->visit_time = $data->visit_time;
         $this->visit_gift = $data->visit_gift;
         $this->website_url = $data->website_url;
@@ -82,6 +83,7 @@ class ShopSettingsComponent extends Component
         }
         $data->description = $this->description;
         $data->website_url = $this->website_url;
+        $data->loyalty_card = $this->loyalty_card;
         $data->visit_time = $this->visit_time;
         $data->visit_gift = $this->visit_gift;
         $data->latitude = $this->latitude;

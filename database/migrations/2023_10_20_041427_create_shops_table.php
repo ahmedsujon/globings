@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('sub_category')->nullable();
             $table->longText('sub_sub_category')->nullable();
             $table->string('name')->nullable();
+            $table->integer('loyalty_card')->default(0);
             $table->string('visit_time')->nullable();
             $table->string('visit_gift')->nullable();
             $table->longText('description')->nullable();

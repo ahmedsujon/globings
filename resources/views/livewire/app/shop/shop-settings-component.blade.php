@@ -136,22 +136,35 @@
                     </select>
                 </div>
 
-                <div class="input_row mt-2">
-                    <label for="visit_gift">What you want to offer?</label>
-                    <input type="text" wire:model.blur="visit_gift" placeholder="1 Free Drink" class="input_field" />
-                    @error('visit_gift')
-                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                        <br>
-                    @enderror
+
+                <div class="form-check pb-3">
+                    <input class="form-check-input" wire:model.blur="loyalty_card" type="checkbox" value=""
+                        id="flexCheckIndeterminate">
+                    <label class="form-check-label" for="flexCheckIndeterminate">
+                        Want to join Loyalty Card program?
+                    </label>
                 </div>
-                <div class="input_row">
-                    <label for="visit_time">How much time should visit?</label>
-                    <input type="text" wire:model.blur="visit_time" placeholder="10" class="input_field" />
-                    @error('visit_time')
-                        <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                        <br>
-                    @enderror
-                </div>
+
+                @if ($loyalty_card)
+                    <div class="input_row mt-2">
+                        <label for="visit_gift">What you want to offer?</label>
+                        <input type="text" wire:model.blur="visit_gift" placeholder="1 Free Drink" class="input_field" />
+                        @error('visit_gift')
+                            <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            <br>
+                        @enderror
+                    </div>
+                    <div class="input_row">
+                        <label for="visit_time">How much time should visit?</label>
+                        <input type="text" wire:model.blur="visit_time" placeholder="10" class="input_field" />
+                        @error('visit_time')
+                            <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            <br>
+                        @enderror
+                    </div>
+                @endif
+
+
 
                 <div class="input_row">
                     <input type="text" wire:model.blur="website_url" placeholder="globings.com"
