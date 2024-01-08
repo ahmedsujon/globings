@@ -106,8 +106,23 @@ class ShopsComponent extends Component
             });
         }
 
+        $total_count = 0;
+        if($this->selected_sub_sub_categories) {
+            foreach ($this->selected_sub_sub_categories as $sub_category) {
+                $data = DB::table('shops')->where('sub_sub_category', 'LIKE', '%"' . $sub_category . '"%')->count();
+
+                $total_count += $data;
+            }
+        } else {
+            $total_count = 0;
+        }
+
+
+
+
+
         $shops = $shops->paginate($this->pagination_value);
 
-        return view('livewire.app.shop.shops-component', ['shops' => $shops])->layout('livewire.app.layouts.base');
+        return view('livewire.app.shop.shops-component', ['shops' => $shops, 'total_count'=>$total_count])->layout('livewire.app.layouts.base');
     }
 }

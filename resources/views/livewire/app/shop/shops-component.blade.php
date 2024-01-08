@@ -423,7 +423,7 @@
                     <div class="btn_area">
                         <input type="hidden" id="sub_sub_cats_filter" value="{{ json_encode($selected_sub_sub_categories) }}">
                         <button type="submit" class="login_btn login_btn_fill">
-                            Apply
+                            Apply @if($total_count > 0) {{ $total_count }} @endif
                         </button>
                     </div>
                 </div>
