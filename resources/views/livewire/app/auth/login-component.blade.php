@@ -35,6 +35,20 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="input_row">
+                    <div wire:ignore>
+                        {!! NoCaptcha::renderJs() !!}
+                        {!! NoCaptcha::display() !!}
+                    </div>
+
+                    @error('recaptcha_response')
+                        <div class="input_error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+
+
                 <div class="d-flex-between">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="rememberCheckbox" />
@@ -44,7 +58,7 @@
                         Forgot password
                     </button>
                 </div>
-                <button type="submit" class="login_btn login_btn_fill">
+                <button type="submit" class="login_btn login_btn_fill login_btn_1">
                     {!! loadingStateWithTextApp('userLogin', 'Sign In') !!}
                 </button>
                 <div class="dont_account text-center">
@@ -159,6 +173,7 @@
                                     <div class="invalid-feedback">{{ session('ref_error') }}</div>
                                 @endif
                             </div>
+                            
                             <div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox"
@@ -388,11 +403,13 @@
 </div>
 
 @push('scripts')
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         $(document).ready(function() {
-            // $('#telephone').on('change', function(){
-            //     @this.set('phone', $(this).val());
-            // });
+            $('.login_btn_1').on('click', function(){
+                var grecaptcharesponse = grecaptcha.getResponse();
+                @this.set('recaptcha_response', grecaptcharesponse);
+            });
 
             $('#verifyPin').on('change', function(){
                 @this.set('otp', $(this).val());

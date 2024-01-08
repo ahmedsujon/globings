@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 
 class LoginComponent extends Component
 {
-    public $email, $password;
+    public $email, $password, $recaptcha_response;
     public $first_name, $last_name, $confirm_password, $account_type = 'private', $agree_checkbox, $phone, $otp, $generated_otp, $refer_code, $forget_password_email, $otp_status = '';
 
     public function updated($fields)
@@ -25,6 +25,9 @@ class LoginComponent extends Component
             'email' => 'required',
             'password' => 'required',
             'confirm_password' => 'required',
+            'recaptcha_response' => 'required'
+        ], [
+            'recaptcha_response.*' => 'The captcha is required'
         ]);
     }
 
@@ -33,6 +36,9 @@ class LoginComponent extends Component
         $this->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'recaptcha_response' => 'required'
+        ], [
+            'recaptcha_response.*' => 'The captcha is required'
         ]);
 
         $getUser = User::where('email', $this->email)->first();
